@@ -273,8 +273,8 @@
     <!-- Header -->
     <header class="reading-header text-center">
         <div class="container">
-            <h1 class="display-4 fw-bold animate__animated animate__fadeInDown">📚 Winter Reading Club</h1>
-            <p class="lead animate__animated animate__fadeInUp animate__delay-1s">Reading makes a full man. Brighten winter with books, shape the future with reading.</p>
+            <h1 class="display-4 fw-bold animate__animated animate__fadeInDown">📚 寒假绘本馆</h1>
+            <p class="lead animate__animated animate__fadeInUp animate__delay-1s">Reading makes a full man. 绘本点亮寒假，阅读成就未来。</p>
         </div>
     </header>
 
@@ -285,19 +285,19 @@
                 <div class="stats-card animate__animated animate__zoomIn animate__delay-1s">
                     <div class="row align-items-center">
                         <div class="col-md-4 text-center border-end">
-                            <div class="text-muted mb-1 small">Reading Points</div>
+                            <div class="text-muted mb-1 small">阅读积分</div>
                             <div class="points-badge" id="user-points">0</div>
                         </div>
                         <div class="col-md-4 text-center border-end">
-                            <div class="text-muted mb-1 small">Check-in Streak</div>
-                            <div class="h3 fw-bold mb-0" id="streak-days">0 Days</div>
+                            <div class="text-muted mb-1 small">连续打卡</div>
+                            <div class="h3 fw-bold mb-0" id="streak-days">0 天</div>
                             <div id="calendar-dots" class="mt-2">
                                 <!-- Dots generated automatically -->
                             </div>
                         </div>
                         <div class="col-md-4 text-center">
-                            <button id="checkin-btn" onclick="handleCheckIn()" class="btn btn-primary rounded-pill px-4">Daily Check-in (+10 Points)</button>
-                            <p class="text-muted small mt-2 mb-0" id="checkin-status">Ready for today's reading?</p>
+                            <button id="checkin-btn" onclick="handleCheckIn()" class="btn btn-primary rounded-pill px-4">每日打卡 (+10 积分)</button>
+                            <p class="text-muted small mt-2 mb-0" id="checkin-status">准备好开始今天的阅读了吗？</p>
                         </div>
                     </div>
                 </div>
@@ -305,44 +305,44 @@
                 <!-- Medal Wall -->
                 <div class="medals-section animate__animated animate__fadeInUp animate__delay-1s">
                     <h6 class="fw-bold mb-3 d-flex align-items-center">
-                        <span class="me-2">🎖️</span> Medal Wall
-                        <small class="text-muted ms-auto fw-normal" style="font-size: 0.7rem;">Unlock achievements and get medals!</small>
+                        <span class="me-2">🎖️</span> 荣誉墙
+                        <small class="text-muted ms-auto fw-normal" style="font-size: 0.7rem;">完成任务，解锁精美勋章！</small>
                     </h6>
                     <div class="row g-2 justify-content-center" id="medals-container">
                         <div class="col-3 col-md-2">
                             <div class="medal-item" id="medal-rookie" title="Reach 50 points">
                                 <span class="medal-icon">🏅</span>
-                                <div class="medal-name">Reading Newbie</div>
+                                <div class="medal-name">阅读新手</div>
                             </div>
                         </div>
                         <div class="col-3 col-md-2">
                             <div class="medal-item" id="medal-seeker" title="Reach 200 points">
                                 <span class="medal-icon">🥈</span>
-                                <div class="medal-name">Knowledge Seeker</div>
+                                <div class="medal-name">知识探索者</div>
                             </div>
                         </div>
                         <div class="col-3 col-md-2">
                             <div class="medal-item" id="medal-star" title="Reach 500 points">
                                 <span class="medal-icon">🥇</span>
-                                <div class="medal-name">Reading Star</div>
+                                <div class="medal-name">阅读之星</div>
                             </div>
                         </div>
                         <div class="col-3 col-md-2">
                             <div class="medal-item" id="medal-king" title="Complete 3 Challenges">
                                 <span class="medal-icon">🏆</span>
-                                <div class="medal-name">Challenge King</div>
+                                <div class="medal-name">挑战之王</div>
                             </div>
                         </div>
                         <div class="col-3 col-md-2">
                             <div class="medal-item" id="medal-hero" title="7-day Check-in Streak">
                                 <span class="medal-icon">🔥</span>
-                                <div class="medal-name">Self-discipline Hero</div>
+                                <div class="medal-name">自律达人</div>
                             </div>
                         </div>
                         <div class="col-3 col-md-2">
                             <div class="medal-item" id="medal-master" title="Complete 10 Trainings">
                                 <span class="medal-icon">🧠</span>
-                                <div class="medal-name">Training Master</div>
+                                <div class="medal-name">训练大师</div>
                             </div>
                         </div>
                     </div>
@@ -351,14 +351,14 @@
                 <!-- My Reading History -->
                 <div class="history-section animate__animated animate__fadeInUp animate__delay-1s">
                     <h5 class="fw-bold mb-0 d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#footprintCollapse" style="cursor: pointer;">
-                        <span class="me-2">🐾</span> My Reading History
-                        <small class="text-muted ms-auto fw-normal me-3" style="font-size: 0.8rem;">Track your progress</small>
+                        <span class="me-2">🐾</span> 阅读足迹
+                        <small class="text-muted ms-auto fw-normal me-3" style="font-size: 0.8rem;">记录你的点滴进步</small>
                         <i class="bi bi-chevron-down small text-muted chevron-icon"></i>
                     </h5>
                     <div class="collapse show" id="footprintCollapse">
                         <div class="history-list mt-4" id="history-list">
                             <!-- Dynamic content -->
-                            <div class="text-center py-4 text-muted small">No records yet, go start reading!</div>
+                            <div class="text-center py-4 text-muted small">暂无记录，快去开始阅读吧！</div>
                         </div>
                     </div>
                 </div>
@@ -370,16 +370,16 @@
             <div class="col-12">
                 <ul class="nav nav-pills justify-content-center mb-4" id="gradeTabs" role="tablist">
                     <li class="nav-item">
-                        <button class="nav-link active" id="g3-tab" data-bs-toggle="pill" data-bs-target="#grade-3" type="button">Grade 3</button>
+                        <button class="nav-link active" id="g3-tab" data-bs-toggle="pill" data-bs-target="#grade-3" type="button">三年级</button>
                     </li>
                     <li class="nav-item">
-                        <button class="nav-link" id="g4-tab" data-bs-toggle="pill" data-bs-target="#grade-4" type="button">Grade 4</button>
+                        <button class="nav-link" id="g4-tab" data-bs-toggle="pill" data-bs-target="#grade-4" type="button">四年级</button>
                     </li>
                     <li class="nav-item">
-                        <button class="nav-link" id="g5-tab" data-bs-toggle="pill" data-bs-target="#grade-5" type="button">Grade 5</button>
+                        <button class="nav-link" id="g5-tab" data-bs-toggle="pill" data-bs-target="#grade-5" type="button">五年级</button>
                     </li>
                     <li class="nav-item">
-                        <button class="nav-link" id="g6-tab" data-bs-toggle="pill" data-bs-target="#grade-6" type="button">Grade 6</button>
+                        <button class="nav-link" id="g6-tab" data-bs-toggle="pill" data-bs-target="#grade-6" type="button">六年级</button>
                     </li>
                 </ul>
 
@@ -387,22 +387,22 @@
                     <!-- 三年级绘本展示 -->
                     <div class="tab-pane fade show active" id="grade-3" role="tabpanel">
                         <div class="mb-5">
-                            <h4 class="fw-bold border-start border-4 border-primary ps-3 mb-4">Upper Term</h4>
+                            <h4 class="fw-bold border-start border-4 border-primary ps-3 mb-4">上册</h4>
                             <div class="row g-4" id="books-container-3-upper">
                                 <!-- Monster Toon -->
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 3 · Upper</span>
+                                            <span class="book-badge">三年级 · 上册</span>
                                             <img src="assets/reading/images/g3_upper/monster_toon/page_00.jpg" alt="Monster Toon">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Monster Toon</h5>
                                             <p class="text-muted small mb-3">A day with a funny monster</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'monster_toon', 5, 5)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('monster_toon')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('monster_toon')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'monster_toon', 5, 5)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('monster_toon')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('monster_toon')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -411,16 +411,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 3 · Upper</span>
+                                            <span class="book-badge">三年级 · 上册</span>
                                             <img src="assets/reading/images/g3_upper/fox_hen/page_00.jpg" alt="Fox and Hen">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Fox and Mother Hen</h5>
                                             <p class="text-muted small mb-3">A clever hen and a fox</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'fox_hen', 5, 5)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('fox_hen')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('fox_hen')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'fox_hen', 5, 5)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('fox_hen')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('fox_hen')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -429,16 +429,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 3 · Upper</span>
+                                            <span class="book-badge">三年级 · 上册</span>
                                             <img src="assets/reading/images/g3_upper/schoolbag/page_00.jpg" alt="Schoolbag">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">My Noisy Schoolbag</h5>
                                             <p class="text-muted small mb-3">What's in the schoolbag?</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'schoolbag', 5, 5)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('schoolbag')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('schoolbag')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'schoolbag', 5, 5)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('schoolbag')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('schoolbag')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -447,16 +447,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 3 · Upper</span>
+                                            <span class="book-badge">三年级 · 上册</span>
                                             <img src="assets/reading/images/g3_upper/tiger_coming/page_00.jpg" alt="Tiger Coming">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Tiger Is Coming</h5>
                                             <p class="text-muted small mb-3">Watch out! The tiger is coming</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'tiger_coming', 5, 5)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('tiger_coming')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('tiger_coming')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'tiger_coming', 5, 5)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('tiger_coming')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('tiger_coming')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -465,16 +465,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 3 · Upper</span>
+                                            <span class="book-badge">三年级 · 上册</span>
                                             <img src="assets/reading/images/g3_upper/drawing/page_00.jpg" alt="Drawing">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">What Are You Drawing?</h5>
                                             <p class="text-muted small mb-3">Using colors to draw</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'drawing', 5, 5)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('drawing')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('drawing')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'drawing', 5, 5)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('drawing')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('drawing')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -483,16 +483,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 3 · Upper</span>
+                                            <span class="book-badge">三年级 · 上册</span>
                                             <img src="assets/reading/images/g3_upper/i_can_see/page_00.jpg" alt="I Can See">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">I Can See</h5>
                                             <p class="text-muted small mb-3">Learn about body parts</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'i_can_see', 5, 1)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('i_can_see')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('i_can_see')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'i_can_see', 5, 5)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('i_can_see')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('i_can_see')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -500,22 +500,22 @@
                             </div>
                         </div>
                         <div>
-                            <h4 class="fw-bold border-start border-4 border-primary ps-3 mb-4">Lower Term</h4>
+                            <h4 class="fw-bold border-start border-4 border-primary ps-3 mb-4">下册</h4>
                             <div class="row g-4" id="books-container-3-lower">
                                 <!-- Play with Me -->
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 3 · Lower</span>
+                                            <span class="book-badge">三年级 · 下册</span>
                                             <img src="assets/reading/images/g3_lower/play_with_me/page_00.jpg" alt="Can You Play with Me?">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Can You Play with Me?</h5>
                                             <p class="text-muted small mb-3">Can you play with me?</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'play_with_me', 5, 6)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('play_with_me')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('play_with_me')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'play_with_me', 5, 6)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('play_with_me')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('play_with_me')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -524,16 +524,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 3 · Lower</span>
+                                            <span class="book-badge">三年级 · 下册</span>
                                             <img src="assets/reading/images/g3_lower/caterpillar_home/page_00.jpg" alt="Caterpillar's Home">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Caterpillar's Home</h5>
                                             <p class="text-muted small mb-3">Caterpillar's home</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'caterpillar_home', 5, 6)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('caterpillar_home')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('caterpillar_home')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'caterpillar_home', 5, 6)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('caterpillar_home')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('caterpillar_home')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -542,16 +542,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 3 · Lower</span>
+                                            <span class="book-badge">三年级 · 下册</span>
                                             <img src="assets/reading/images/g3_lower/prince_seb_pet/page_00.jpg" alt="Prince Seb's Pet">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Prince Seb's Pet</h5>
                                             <p class="text-muted small mb-3">Prince Seb's pet</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'prince_seb_pet', 5, 6)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('prince_seb_pet')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('prince_seb_pet')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'prince_seb_pet', 5, 6)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('prince_seb_pet')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('prince_seb_pet')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -560,16 +560,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 3 · Lower</span>
+                                            <span class="book-badge">三年级 · 下册</span>
                                             <img src="assets/reading/images/g3_lower/snail_adventure/page_00.jpg" alt="Snail's Adventure">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Snail's Adventure</h5>
                                             <p class="text-muted small mb-3">Snail's adventure</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'snail_adventure', 5, 6)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('snail_adventure')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('snail_adventure')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'snail_adventure', 5, 6)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('snail_adventure')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('snail_adventure')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -578,16 +578,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 3 · Lower</span>
+                                            <span class="book-badge">三年级 · 下册</span>
                                             <img src="assets/reading/images/g3_lower/king_yu_player/page_00.jpg" alt="The King's Yu Player">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">The King's Yu Player</h5>
                                             <p class="text-muted small mb-3">The king's yu player</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'king_yu_player', 5, 6)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('king_yu_player')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('king_yu_player')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'king_yu_player', 5, 6)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('king_yu_player')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('king_yu_player')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -596,16 +596,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 3 · Lower</span>
+                                            <span class="book-badge">三年级 · 下册</span>
                                             <img src="assets/reading/images/g3_lower/what_did_get/page_00.jpg" alt="What Did You Get?">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">What Did You Get?</h5>
                                             <p class="text-muted small mb-3">What did you get?</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'what_did_get', 5, 6)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('what_did_get')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('what_did_get')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'what_did_get', 5, 6)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('what_did_get')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('what_did_get')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -617,22 +617,22 @@
                     <!-- 四年级绘本展示 -->
                     <div class="tab-pane fade" id="grade-4" role="tabpanel">
                         <div class="mb-5">
-                            <h4 class="fw-bold border-start border-4 border-warning ps-3 mb-4">Upper Term</h4>
+                            <h4 class="fw-bold border-start border-4 border-warning ps-3 mb-4">上册</h4>
                             <div class="row g-4" id="books-container-4-upper">
                                 <!-- Zob at School -->
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 4 · Upper</span>
-                                            <img src="assets/reading/images/g4_upper/zob_school/page_00.png" alt="Zob at School">
+                                            <span class="book-badge">四年级 · 上册</span>
+                                            <img src="assets/reading/images/g4_upper/zob_school/page_00.jpg" alt="Zob at School">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Zob at School</h5>
                                             <p class="text-muted small mb-3">Zob at school</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'zob_school', 5, 16)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('zob_school')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('zob_school')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'zob_school', 5, 16)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('zob_school')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('zob_school')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -641,16 +641,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 4 · Upper</span>
-                                            <img src="assets/reading/images/g4_upper/mimi_superhero/page_00.png" alt="Mimi the Superhero">
+                                            <span class="book-badge">四年级 · 上册</span>
+                                            <img src="assets/reading/images/g4_upper/mimi_superhero/page_00.jpg" alt="Mimi the Superhero">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Mimi the Superhero</h5>
                                             <p class="text-muted small mb-3">Mimi the superhero</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'mimi_superhero', 5, 16)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('mimi_superhero')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('mimi_superhero')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'mimi_superhero', 5, 16)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('mimi_superhero')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('mimi_superhero')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -659,16 +659,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 4 · Upper</span>
-                                            <img src="assets/reading/images/g4_upper/tortoise_friends/page_00.png" alt="Tortoise and His Friends">
+                                            <span class="book-badge">四年级 · 上册</span>
+                                            <img src="assets/reading/images/g4_upper/tortoise_friends/page_00.jpg" alt="Tortoise and His Friends">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Tortoise and His Friends</h5>
                                             <p class="text-muted small mb-3">Tortoise and his friends</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'tortoise_friends', 5, 16)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('tortoise_friends')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('tortoise_friends')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'tortoise_friends', 5, 16)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('tortoise_friends')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('tortoise_friends')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -677,16 +677,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 4 · Upper</span>
-                                            <img src="assets/reading/images/g4_upper/quiet_house/page_00.png" alt="A Quiet House">
+                                            <span class="book-badge">四年级 · 上册</span>
+                                            <img src="assets/reading/images/g4_upper/quiet_house/page_00.jpg" alt="A Quiet House">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">A Quiet House</h5>
                                             <p class="text-muted small mb-3">A quiet house</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'quiet_house', 5, 16)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('quiet_house')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('quiet_house')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'quiet_house', 5, 16)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('quiet_house')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('quiet_house')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -695,16 +695,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 4 · Upper</span>
-                                            <img src="assets/reading/images/g4_upper/dinner_dragon/page_00.png" alt="Dinner for a Dragon">
+                                            <span class="book-badge">四年级 · 上册</span>
+                                            <img src="assets/reading/images/g4_upper/dinner_dragon/page_00.jpg" alt="Dinner for a Dragon">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Dinner for a Dragon</h5>
                                             <p class="text-muted small mb-3">Dinner for a dragon</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'dinner_dragon', 5, 16)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('dinner_dragon')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('dinner_dragon')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'dinner_dragon', 5, 16)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('dinner_dragon')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('dinner_dragon')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -713,16 +713,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 4 · Upper</span>
-                                            <img src="assets/reading/images/g4_upper/puppy_box/page_00.png" alt="Puppy in a Box">
+                                            <span class="book-badge">四年级 · 上册</span>
+                                            <img src="assets/reading/images/g4_upper/puppy_box/page_00.jpg" alt="Puppy in a Box">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Puppy in a Box</h5>
                                             <p class="text-muted small mb-3">Puppy in a box</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'puppy_box', 5, 16)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('puppy_box')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('puppy_box')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'puppy_box', 5, 16)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('puppy_box')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('puppy_box')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -730,22 +730,22 @@
                             </div>
                         </div>
                         <div>
-                            <h4 class="fw-bold border-start border-4 border-warning ps-3 mb-4">Lower Term</h4>
+                            <h4 class="fw-bold border-start border-4 border-warning ps-3 mb-4">下册</h4>
                             <div class="row g-4" id="books-container-4-lower">
                                 <!-- Are You Lost, Zob -->
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 4 · Lower</span>
-                                            <img src="assets/reading/images/g4_lower/lost_zob/page_00.png" alt="Are You Lost, Zob">
+                                            <span class="book-badge">四年级 · 下册</span>
+                                            <img src="assets/reading/images/g4_lower/lost_zob/page_00.jpg" alt="Are You Lost, Zob">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Are You Lost, Zob</h5>
                                             <p class="text-muted small mb-3">Are you lost, Zob?</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'lost_zob', 5, 16)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('lost_zob')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('lost_zob')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'lost_zob', 5, 16)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('lost_zob')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('lost_zob')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -754,16 +754,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 4 · Lower</span>
-                                            <img src="assets/reading/images/g4_lower/angry_dragon/page_00.png" alt="The Angry Dragon">
+                                            <span class="book-badge">四年级 · 下册</span>
+                                            <img src="assets/reading/images/g4_lower/angry_dragon/page_00.jpg" alt="The Angry Dragon">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">The Angry Dragon</h5>
                                             <p class="text-muted small mb-3">The angry dragon</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'angry_dragon', 5, 16)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('angry_dragon')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('angry_dragon')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'angry_dragon', 5, 16)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('angry_dragon')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('angry_dragon')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -772,16 +772,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 4 · Lower</span>
-                                            <img src="assets/reading/images/g4_lower/eek_spider/page_00.png" alt="Eek, Spider">
+                                            <span class="book-badge">四年级 · 下册</span>
+                                            <img src="assets/reading/images/g4_lower/eek_spider/page_00.jpg" alt="Eek, Spider">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Eek, Spider</h5>
                                             <p class="text-muted small mb-3">Eek, spider!</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'eek_spider', 5, 16)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('eek_spider')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('eek_spider')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'eek_spider', 5, 16)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('eek_spider')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('eek_spider')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -790,16 +790,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 4 · Lower</span>
-                                            <img src="assets/reading/images/g4_lower/village_show/page_00.png" alt="The Village Show">
+                                            <span class="book-badge">四年级 · 下册</span>
+                                            <img src="assets/reading/images/g4_lower/village_show/page_00.jpg" alt="The Village Show">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">The Village Show</h5>
                                             <p class="text-muted small mb-3">The village show</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'village_show', 5, 16)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('village_show')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('village_show')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'village_show', 5, 16)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('village_show')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('village_show')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -808,16 +808,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 4 · Lower</span>
-                                            <img src="assets/reading/images/g4_lower/world_book_day/page_00.png" alt="World Book Day">
+                                            <span class="book-badge">四年级 · 下册</span>
+                                            <img src="assets/reading/images/g4_lower/world_book_day/page_00.jpg" alt="World Book Day">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">World Book Day</h5>
                                             <p class="text-muted small mb-3">World Book Day</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'world_book_day', 5, 16)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('world_book_day')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('world_book_day')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'world_book_day', 5, 16)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('world_book_day')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('world_book_day')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -826,16 +826,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 4 · Lower</span>
-                                            <img src="assets/reading/images/g4_lower/sara_medicine/page_00.png" alt="Sara's Medicine">
+                                            <span class="book-badge">四年级 · 下册</span>
+                                            <img src="assets/reading/images/g4_lower/sara_medicine/page_00.jpg" alt="Sara's Medicine">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Sara's Medicine</h5>
                                             <p class="text-muted small mb-3">Sara's medicine</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'sara_medicine', 5, 16)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('sara_medicine')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('sara_medicine')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'sara_medicine', 5, 16)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('sara_medicine')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('sara_medicine')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -846,22 +846,22 @@
                     <!-- 五年级绘本展示 -->
                     <div class="tab-pane fade" id="grade-5" role="tabpanel">
                         <div class="mb-5">
-                            <h4 class="fw-bold border-start border-4 border-info ps-3 mb-4">Upper Term</h4>
+                            <h4 class="fw-bold border-start border-4 border-info ps-3 mb-4">上册</h4>
                             <div class="row g-4" id="books-container-5-upper">
                                 <!-- Book 1: The New Teacher -->
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 5 · Upper</span>
-                                            <img src="assets/reading/images/g5_upper/new_teacher/page_00.png" alt="The New Teacher">
+                                            <span class="book-badge">五年级 · 上册</span>
+                                            <img src="assets/reading/images/g5_upper/new_teacher/page_00.jpg" alt="The New Teacher">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">The New Teacher</h5>
                                             <p class="text-muted small mb-3">The new teacher</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'new_teacher', 5, 22)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('new_teacher')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('new_teacher')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'new_teacher', 5, 22)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('new_teacher')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('new_teacher')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -870,16 +870,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 5 · Upper</span>
-                                            <img src="assets/reading/images/g5_upper/zob_bored/page_00.png" alt="Zob Is Bored">
+                                            <span class="book-badge">五年级 · 上册</span>
+                                            <img src="assets/reading/images/g5_upper/zob_bored/page_00.jpg" alt="Zob Is Bored">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Zob Is Bored</h5>
                                             <p class="text-muted small mb-3">Zob is bored</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'zob_bored', 5, 22)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('zob_bored')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('zob_bored')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'zob_bored', 5, 22)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('zob_bored')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('zob_bored')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -888,16 +888,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 5 · Upper</span>
-                                            <img src="assets/reading/images/g5_upper/street_party/page_00.png" alt="The Street Party">
+                                            <span class="book-badge">五年级 · 上册</span>
+                                            <img src="assets/reading/images/g5_upper/street_party/page_00.jpg" alt="The Street Party">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">The Street Party</h5>
                                             <p class="text-muted small mb-3">The street party</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'street_party', 5, 22)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('street_party')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('street_party')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'street_party', 5, 22)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('street_party')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('street_party')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -906,16 +906,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 5 · Upper</span>
-                                            <img src="assets/reading/images/g5_upper/emma_birthday/page_00.png" alt="Emma's Birthday">
+                                            <span class="book-badge">五年级 · 上册</span>
+                                            <img src="assets/reading/images/g5_upper/emma_birthday/page_00.jpg" alt="Emma's Birthday">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Emma's Birthday</h5>
                                             <p class="text-muted small mb-3">Emma's birthday</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'emma_birthday', 5, 22)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('emma_birthday')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('emma_birthday')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'emma_birthday', 5, 22)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('emma_birthday')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('emma_birthday')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -924,16 +924,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 5 · Upper</span>
-                                            <img src="assets/reading/images/g5_upper/empty_room/page_00.png" alt="The Empty Room">
+                                            <span class="book-badge">五年级 · 上册</span>
+                                            <img src="assets/reading/images/g5_upper/empty_room/page_00.jpg" alt="The Empty Room">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">The Empty Room</h5>
                                             <p class="text-muted small mb-3">The empty room</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'empty_room', 5, 22)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('empty_room')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('empty_room')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'empty_room', 5, 22)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('empty_room')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('empty_room')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -942,16 +942,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 5 · Upper</span>
-                                            <img src="assets/reading/images/g5_upper/toby_eagle/page_00.png" alt="Toby and the Eagle">
+                                            <span class="book-badge">五年级 · 上册</span>
+                                            <img src="assets/reading/images/g5_upper/toby_eagle/page_00.jpg" alt="Toby and the Eagle">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Toby and the Eagle</h5>
                                             <p class="text-muted small mb-3">Toby and the eagle</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'toby_eagle', 5, 22)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('toby_eagle')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('toby_eagle')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'toby_eagle', 5, 22)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('toby_eagle')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('toby_eagle')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -961,22 +961,22 @@
 
                         <!-- 五年级下册 -->
                         <div>
-                            <h4 class="fw-bold border-start border-4 border-info ps-3 mb-4">Lower Term</h4>
+                            <h4 class="fw-bold border-start border-4 border-info ps-3 mb-4">下册</h4>
                             <div class="row g-4" id="books-container-5-lower">
                                 <!-- Book 1 -->
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 5 · Lower</span>
-                                            <img src="assets/reading/images/g5_lower/fish/page_00.png" alt="Fish!">
+                                            <span class="book-badge">五年级 · 下册</span>
+                                            <img src="assets/reading/images/g5_lower/fish/page_00.jpg" alt="Fish!">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Fish!</h5>
                                             <p class="text-muted small mb-3">Fish!</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'fish', 5, 22)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('fish')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('fish')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'fish', 5, 22)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('fish')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('fish')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -985,16 +985,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 5 · Lower</span>
-                                            <img src="assets/reading/images/g5_lower/long_wait/page_00.png" alt="A Long Wait">
+                                            <span class="book-badge">五年级 · 下册</span>
+                                            <img src="assets/reading/images/g5_lower/long_wait/page_00.jpg" alt="A Long Wait">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">A Long Wait</h5>
                                             <p class="text-muted small mb-3">A long wait</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'long_wait', 5, 22)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('long_wait')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('long_wait')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'long_wait', 5, 22)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('long_wait')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('long_wait')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1003,16 +1003,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 5 · Lower</span>
-                                            <img src="assets/reading/images/g5_lower/best_time/page_00.png" alt="The Best Time">
+                                            <span class="book-badge">五年级 · 下册</span>
+                                            <img src="assets/reading/images/g5_lower/best_time/page_00.jpg" alt="The Best Time">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">The Best Time of All</h5>
                                             <p class="text-muted small mb-3">The best time of all</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'best_time', 5, 22)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('best_time')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('best_time')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'best_time', 5, 22)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('best_time')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('best_time')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1021,16 +1021,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 5 · Lower</span>
-                                            <img src="assets/reading/images/g5_lower/whose_dog/page_00.png" alt="Whose Dog">
+                                            <span class="book-badge">五年级 · 下册</span>
+                                            <img src="assets/reading/images/g5_lower/whose_dog/page_00.jpg" alt="Whose Dog">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Whose Dog</h5>
                                             <p class="text-muted small mb-3">Whose dog?</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'whose_dog', 5, 22)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('whose_dog')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('whose_dog')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'whose_dog', 5, 22)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('whose_dog')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('whose_dog')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1039,16 +1039,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 5 · Lower</span>
-                                            <img src="assets/reading/images/g5_lower/homework/page_00.png" alt="Homework">
+                                            <span class="book-badge">五年级 · 下册</span>
+                                            <img src="assets/reading/images/g5_lower/homework/page_00.jpg" alt="Homework">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Don't Forget Homework</h5>
                                             <p class="text-muted small mb-3">Don't forget homework</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'homework', 5, 22)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('homework')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('homework')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'homework', 5, 22)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('homework')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('homework')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1057,16 +1057,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 5 · Lower</span>
-                                            <img src="assets/reading/images/g5_lower/class_trip/page_00.png" alt="Class Trip">
+                                            <span class="book-badge">五年级 · 下册</span>
+                                            <img src="assets/reading/images/g5_lower/class_trip/page_00.jpg" alt="Class Trip">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">The Class Trip</h5>
                                             <p class="text-muted small mb-3">The class trip</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'class_trip', 5, 22)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('class_trip')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('class_trip')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'class_trip', 5, 22)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('class_trip')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('class_trip')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1079,22 +1079,22 @@
                     <div class="tab-pane fade" id="grade-6" role="tabpanel">
                         <!-- 六年级上册 -->
                         <div class="mb-5">
-                            <h4 class="fw-bold border-start border-4 border-success ps-3 mb-4">Upper Term</h4>
+                            <h4 class="fw-bold border-start border-4 border-success ps-3 mb-4">上册</h4>
                             <div class="row g-4" id="books-container-6-upper">
                                 <!-- Book 1: The Box of Books -->
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 6 · Upper</span>
-                                            <img src="assets/reading/images/g6_upper/box_books/page_00.png" alt="The Box of Books">
+                                            <span class="book-badge">六年级 · 上册</span>
+                                            <img src="assets/reading/images/g6_upper/box_books/page_00.jpg" alt="The Box of Books">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">The Box of Books</h5>
                                             <p class="text-muted small mb-3">The box of books</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'box_books', 5, 22)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('box_books')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('box_books')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'box_books', 5, 22)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('box_books')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('box_books')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1103,16 +1103,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 6 · Upper</span>
-                                            <img src="assets/reading/images/g6_upper/lorna_upset/page_00.png" alt="Lorna Is Upset">
+                                            <span class="book-badge">六年级 · 上册</span>
+                                            <img src="assets/reading/images/g6_upper/lorna_upset/page_00.jpg" alt="Lorna Is Upset">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Lorna Is Upset</h5>
                                             <p class="text-muted small mb-3">Lorna is upset</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'lorna_upset', 5, 22)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('lorna_upset')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('lorna_upset')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'lorna_upset', 5, 22)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('lorna_upset')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('lorna_upset')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1121,16 +1121,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 6 · Upper</span>
-                                            <img src="assets/reading/images/g6_upper/dont_forget/page_00.png" alt="Don't Forget!">
+                                            <span class="book-badge">六年级 · 上册</span>
+                                            <img src="assets/reading/images/g6_upper/dont_forget/page_00.jpg" alt="Don't Forget!">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Don't Forget!</h5>
                                             <p class="text-muted small mb-3">Don't forget!</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'dont_forget', 5, 22)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('dont_forget')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('dont_forget')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'dont_forget', 5, 22)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('dont_forget')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('dont_forget')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1139,16 +1139,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 6 · Upper</span>
-                                            <img src="assets/reading/images/g6_upper/stop_everyone/page_00.png" alt="Stop! Everyone Stop!!">
+                                            <span class="book-badge">六年级 · 上册</span>
+                                            <img src="assets/reading/images/g6_upper/stop_everyone/page_00.jpg" alt="Stop! Everyone Stop!!">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Stop! Everyone Stop!!</h5>
                                             <p class="text-muted small mb-3">Stop! Everyone stop!!</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'stop_everyone', 5, 22)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('stop_everyone')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('stop_everyone')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'stop_everyone', 5, 22)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('stop_everyone')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('stop_everyone')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1157,16 +1157,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 6 · Upper</span>
-                                            <img src="assets/reading/images/g6_upper/zob_work/page_00.png" alt="Zob at Work">
+                                            <span class="book-badge">六年级 · 上册</span>
+                                            <img src="assets/reading/images/g6_upper/zob_work/page_00.jpg" alt="Zob at Work">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Zob at Work</h5>
                                             <p class="text-muted small mb-3">Zob at work</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'zob_work', 5, 22)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('zob_work')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('zob_work')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'zob_work', 5, 22)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('zob_work')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('zob_work')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1175,16 +1175,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 6 · Upper</span>
-                                            <img src="assets/reading/images/g6_upper/eliza_jane/page_00.png" alt="Eliza Jane's Bad Day">
+                                            <span class="book-badge">六年级 · 上册</span>
+                                            <img src="assets/reading/images/g6_upper/eliza_jane/page_00.jpg" alt="Eliza Jane's Bad Day">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Eliza Jane's Bad Day</h5>
                                             <p class="text-muted small mb-3">Eliza Jane's bad day</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'eliza_jane', 5, 22)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('eliza_jane')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('eliza_jane')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'eliza_jane', 5, 22)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('eliza_jane')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('eliza_jane')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1193,22 +1193,22 @@
                         </div>
                         <!-- 六年级下册 -->
                         <div>
-                            <h4 class="fw-bold border-start border-4 border-success ps-3 mb-4">Lower Term</h4>
+                            <h4 class="fw-bold border-start border-4 border-success ps-3 mb-4">下册</h4>
                             <div class="row g-4" id="books-container-6-lower">
                                 <!-- Book 1: The New King -->
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 6 · Lower</span>
-                                            <img src="assets/reading/images/g6_lower/new_king/page_00.png" alt="The New King">
+                                            <span class="book-badge">六年级 · 下册</span>
+                                            <img src="assets/reading/images/g6_lower/new_king/page_00.jpg" alt="The New King">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">The New King</h5>
                                             <p class="text-muted small mb-3">The new king</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'new_king', 5, 22)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('new_king')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('new_king')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'new_king', 5, 22)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('new_king')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('new_king')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1217,16 +1217,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 6 · Lower</span>
-                                            <img src="assets/reading/images/g6_lower/weekend_bear/page_00.png" alt="The Weekend Bear">
+                                            <span class="book-badge">六年级 · 下册</span>
+                                            <img src="assets/reading/images/g6_lower/weekend_bear/page_00.jpg" alt="The Weekend Bear">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">The Weekend Bear</h5>
                                             <p class="text-muted small mb-3">The weekend bear</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'weekend_bear', 5, 22)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('weekend_bear')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('weekend_bear')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'weekend_bear', 5, 22)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('weekend_bear')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('weekend_bear')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1235,16 +1235,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 6 · Lower</span>
-                                            <img src="assets/reading/images/g6_lower/camping_trip/page_00.png" alt="The Camping Trip">
+                                            <span class="book-badge">六年级 · 下册</span>
+                                            <img src="assets/reading/images/g6_lower/camping_trip/page_00.jpg" alt="The Camping Trip">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">The Camping Trip</h5>
                                             <p class="text-muted small mb-3">The camping trip</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'camping_trip', 5, 22)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('camping_trip')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('camping_trip')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'camping_trip', 5, 22)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('camping_trip')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('camping_trip')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1253,16 +1253,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 6 · Lower</span>
-                                            <img src="assets/reading/images/g6_lower/tiny_tv/page_00.png" alt="The Tiny TV">
+                                            <span class="book-badge">六年级 · 下册</span>
+                                            <img src="assets/reading/images/g6_lower/tiny_tv/page_00.jpg" alt="The Tiny TV">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">The Tiny TV</h5>
                                             <p class="text-muted small mb-3">The tiny TV</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'tiny_tv', 5, 22)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('tiny_tv')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('tiny_tv')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'tiny_tv', 5, 22)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('tiny_tv')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('tiny_tv')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1271,16 +1271,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 6 · Lower</span>
-                                            <img src="assets/reading/images/g6_lower/dining_dragons/page_00.png" alt="Dining with Dragons">
+                                            <span class="book-badge">六年级 · 下册</span>
+                                            <img src="assets/reading/images/g6_lower/dining_dragons/page_00.jpg" alt="Dining with Dragons">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Dining with Dragons</h5>
                                             <p class="text-muted small mb-3">Dining with dragons</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'dining_dragons', 5, 22)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('dining_dragons')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('dining_dragons')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'dining_dragons', 5, 22)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('dining_dragons')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('dining_dragons')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1289,16 +1289,16 @@
                                 <div class="col-md-4 col-lg-3">
                                     <div class="book-card">
                                         <div class="book-cover">
-                                            <span class="book-badge">Grade 6 · Lower</span>
-                                            <img src="assets/reading/images/g6_lower/bellas_bike/page_00.png" alt="Bella's Bike">
+                                            <span class="book-badge">六年级 · 下册</span>
+                                            <img src="assets/reading/images/g6_lower/bellas_bike/page_00.jpg" alt="Bella's Bike">
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fw-bold mb-1">Bella's Bike</h5>
                                             <p class="text-muted small mb-3">Bella's bike</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'bellas_bike', 5, 22)">📖 Reading</button>
-                                                <button class="btn btn-action btn-training" onclick="startTraining('bellas_bike')">🧠 Training</button>
-                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('bellas_bike')">🏆 Challenge</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'bellas_bike', 5, 22)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-training" onclick="startTraining('bellas_bike')">🧠 单词训练</button>
+                                                <button class="btn btn-action btn-challenge" onclick="startChallenge('bellas_bike')">🏆 知识挑战</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1515,7 +1515,7 @@
             if (type === 'images') {
                 // 绘本图片模式
                 const folderMap = {
-                    // 三年级上册 (Grade 3 · Upper)
+                    // 三年级上册 (三年级 · 上册)
                     'monster_toon': { title: 'Monster Toon', path: 'g3_upper/monster_toon/page_', ext: '.jpg', audio: 'monster_toon.mp3' },
                     'fox_hen': { title: 'Fox and Mother Hen', path: 'g3_upper/fox_hen/page_', ext: '.jpg', audio: 'fox_hen.mp3' },
                     'schoolbag': { title: 'My Noisy Schoolbag', path: 'g3_upper/schoolbag/page_', ext: '.jpg', audio: 'schoolbag.mp3' },
@@ -1523,14 +1523,14 @@
                     'drawing': { title: 'What Are You Drawing?', path: 'g3_upper/drawing/page_', ext: '.jpg', audio: 'drawing.mp3' },
                     'i_can_see': { title: 'I Can See', path: 'g3_upper/i_can_see/page_', ext: '.jpg', audio: 'i_can_see.mp3' },
                     
-                    // 下册绘本
+                    // 下册绘本 (五年级 · 下册)
                     'fish': { title: 'Fish!', path: 'g5_lower/fish/page_', ext: '.jpg', audio: 'fish.mp3' },
                     'long_wait': { title: 'A Long Wait', path: 'g5_lower/long_wait/page_', ext: '.jpg', audio: 'long_wait.mp3' },
                     'best_time': { title: 'The Best Time of All', path: 'g5_lower/best_time/page_', ext: '.jpg', audio: 'best_time.mp3' },
                     'whose_dog': { title: 'Whose Dog', path: 'g5_lower/whose_dog/page_', ext: '.jpg', audio: 'whose_dog.mp3' },
                     'homework': { title: "Don't Forget Homework", path: 'g5_lower/homework/page_', ext: '.jpg', audio: 'homework.mp3' },
                     'class_trip': { title: 'The Class Trip', path: 'g5_lower/class_trip/page_', ext: '.jpg', audio: 'class_trip.mp3' },
-                    // 上册绘本
+                    // 上册绘本 (五年级 · 上册)
                     'new_teacher': { title: 'The New Teacher', path: 'g5_upper/new_teacher/page_', ext: '.jpg', audio: 'new_teacher.mp3' },
                     'zob_bored': { title: 'Zob Is Bored', path: 'g5_upper/zob_bored/page_', ext: '.jpg', audio: 'zob_bored.mp3' },
                     'street_party': { title: 'The Street Party', path: 'g5_upper/street_party/page_', ext: '.jpg', audio: 'street_party.mp3' },
@@ -1554,7 +1554,7 @@
                     'world_book_day': { title: 'World Book Day', path: 'g4_lower/world_book_day/page_', ext: '.jpg', audio: 'story.mp3' },
                     'sara_medicine': { title: "Sara's Medicine", path: 'g4_lower/sara_medicine/page_', ext: '.jpg', audio: 'story.mp3' },
 
-                    // 三年级下册 (Grade 3 · Lower)
+                    // 三年级下册 (三年级 · 下册)
                     'play_with_me': { title: 'Can You Play with Me?', path: 'g3_lower/play_with_me/page_', ext: '.jpg', audio: 'play_with_me.mp3' },
                     'caterpillar_home': { title: "Caterpillar's Home", path: 'g3_lower/caterpillar_home/page_', ext: '.jpg', audio: 'caterpillar_home.mp3' },
                     'prince_seb_pet': { title: "Prince Seb's Pet", path: 'g3_lower/prince_seb_pet/page_', ext: '.jpg', audio: 'prince_seb_pet.mp3' },

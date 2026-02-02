@@ -1,0 +1,242 @@
+{
+  "dinner_dragon": {
+    "grade_term": "g4_upper",
+    "count": 17,
+    "max_page": 16
+  },
+  "zob_school": {
+    "grade_term": "g4_upper",
+    "count": 17,
+    "max_page": 16
+  },
+  "quiet_house": {
+    "grade_term": "g4_upper",
+    "count": 17,
+    "max_page": 16
+  },
+  "puppy_box": {
+    "grade_term": "g4_upper",
+    "count": 17,
+    "max_page": 16
+  },
+  "tortoise_friends": {
+    "grade_term": "g4_upper",
+    "count": 17,
+    "max_page": 16
+  },
+  "mimi_superhero": {
+    "grade_term": "g4_upper",
+    "count": 17,
+    "max_page": 16
+  },
+  "eliza_jane": {
+    "grade_term": "g6_upper",
+    "count": 23,
+    "max_page": 22
+  },
+  "dont_forget": {
+    "grade_term": "g6_upper",
+    "count": 23,
+    "max_page": 22
+  },
+  "zob_work": {
+    "grade_term": "g6_upper",
+    "count": 23,
+    "max_page": 22
+  },
+  "lorna_upset": {
+    "grade_term": "g6_upper",
+    "count": 23,
+    "max_page": 22
+  },
+  "stop_everyone": {
+    "grade_term": "g6_upper",
+    "count": 23,
+    "max_page": 22
+  },
+  "box_books": {
+    "grade_term": "g6_upper",
+    "count": 23,
+    "max_page": 22
+  },
+  "whose_dog": {
+    "grade_term": "g5_lower",
+    "count": 23,
+    "max_page": 22
+  },
+  "best_time": {
+    "grade_term": "g5_lower",
+    "count": 23,
+    "max_page": 22
+  },
+  "long_wait": {
+    "grade_term": "g5_lower",
+    "count": 23,
+    "max_page": 22
+  },
+  "homework": {
+    "grade_term": "g5_lower",
+    "count": 23,
+    "max_page": 22
+  },
+  "fish": {
+    "grade_term": "g5_lower",
+    "count": 23,
+    "max_page": 22
+  },
+  "class_trip": {
+    "grade_term": "g5_lower",
+    "count": 23,
+    "max_page": 22
+  },
+  "what_did_get": {
+    "grade_term": "g3_lower",
+    "count": 7,
+    "max_page": 6
+  },
+  "caterpillar_home": {
+    "grade_term": "g3_lower",
+    "count": 7,
+    "max_page": 6
+  },
+  "snail_adventure": {
+    "grade_term": "g3_lower",
+    "count": 7,
+    "max_page": 6
+  },
+  "prince_seb_pet": {
+    "grade_term": "g3_lower",
+    "count": 7,
+    "max_page": 6
+  },
+  "play_with_me": {
+    "grade_term": "g3_lower",
+    "count": 7,
+    "max_page": 6
+  },
+  "king_yu_player": {
+    "grade_term": "g3_lower",
+    "count": 7,
+    "max_page": 6
+  },
+  "world_book_day": {
+    "grade_term": "g4_lower",
+    "count": 17,
+    "max_page": 16
+  },
+  "angry_dragon": {
+    "grade_term": "g4_lower",
+    "count": 17,
+    "max_page": 16
+  },
+  "sara_medicine": {
+    "grade_term": "g4_lower",
+    "count": 17,
+    "max_page": 16
+  },
+  "village_show": {
+    "grade_term": "g4_lower",
+    "count": 17,
+    "max_page": 16
+  },
+  "eek_spider": {
+    "grade_term": "g4_lower",
+    "count": 17,
+    "max_page": 16
+  },
+  "lost_zob": {
+    "grade_term": "g4_lower",
+    "count": 17,
+    "max_page": 16
+  },
+  "new_king": {
+    "grade_term": "g6_lower",
+    "count": 23,
+    "max_page": 22
+  },
+  "dining_dragons": {
+    "grade_term": "g6_lower",
+    "count": 23,
+    "max_page": 22
+  },
+  "weekend_bear": {
+    "grade_term": "g6_lower",
+    "count": 23,
+    "max_page": 22
+  },
+  "bellas_bike": {
+    "grade_term": "g6_lower",
+    "count": 23,
+    "max_page": 22
+  },
+  "camping_trip": {
+    "grade_term": "g6_lower",
+    "count": 23,
+    "max_page": 22
+  },
+  "tiny_tv": {
+    "grade_term": "g6_lower",
+    "count": 23,
+    "max_page": 22
+  },
+  "emma_birthday": {
+    "grade_term": "g5_upper",
+    "count": 23,
+    "max_page": 22
+  },
+  "toby_eagle": {
+    "grade_term": "g5_upper",
+    "count": 23,
+    "max_page": 22
+  },
+  "street_party": {
+    "grade_term": "g5_upper",
+    "count": 23,
+    "max_page": 22
+  },
+  "zob_bored": {
+    "grade_term": "g5_upper",
+    "count": 23,
+    "max_page": 22
+  },
+  "new_teacher": {
+    "grade_term": "g5_upper",
+    "count": 23,
+    "max_page": 22
+  },
+  "empty_room": {
+    "grade_term": "g5_upper",
+    "count": 23,
+    "max_page": 22
+  },
+  "drawing": {
+    "grade_term": "g3_upper",
+    "count": 6,
+    "max_page": 5
+  },
+  "i_can_see": {
+    "grade_term": "g3_upper",
+    "count": 6,
+    "max_page": 5
+  },
+  "schoolbag": {
+    "grade_term": "g3_upper",
+    "count": 6,
+    "max_page": 5
+  },
+  "tiger_coming": {
+    "grade_term": "g3_upper",
+    "count": 6,
+    "max_page": 5
+  },
+  "monster_toon": {
+    "grade_term": "g3_upper",
+    "count": 6,
+    "max_page": 5
+  },
+  "fox_hen": {
+    "grade_term": "g3_upper",
+    "count": 6,
+    "max_page": 5
+  }
+}
