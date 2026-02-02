@@ -1495,7 +1495,7 @@
                 
                 saveStats();
                 updateUI();
-                alert('Check-in successful! Points +10 🎉');
+                alert('打卡成功！积分 +10 🎉');
             }
         }
 
@@ -1581,7 +1581,7 @@
                 
                 const config = folderMap[filename];
                 resourceTitle = config ? config.title : filename;
-                title.innerText = `Reading：${resourceTitle}`;
+                title.innerText = `📖 正在阅读：${resourceTitle}`;
                 
                 let html = `
                     <div id="bookCarousel" class="carousel carousel-dark slide" data-bs-interval="false">
@@ -1593,7 +1593,7 @@
                     html += `
                         <div class="carousel-item ${i === 0 ? 'active' : ''}">
                             <img src="${imgSrc}" class="d-block w-100 rounded" style="max-height: 60vh; object-fit: contain;" alt="Page ${i}">
-                            <div class="mt-2 text-muted small">Page ${i + 1} / Total ${totalPages + 1}</div>
+                            <div class="mt-2 text-muted small">第 ${i + 1} 页 / 共 ${totalPages + 1} 页</div>
                         </div>`;
                 }
                 
@@ -1601,11 +1601,11 @@
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#bookCarousel" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
+                            <span class="visually-hidden">上一页</span>
                         </button>
                         <button class="carousel-control-next" type="button" data-bs-target="#bookCarousel" data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
+                            <span class="visually-hidden">下一页</span>
                         </button>
                     </div>`;
 
@@ -1620,33 +1620,33 @@
                     html += `
                     <div class="mt-4 p-3 bg-light rounded-pill shadow-sm mx-auto" style="max-width: 500px;">
                         <div class="d-flex align-items-center justify-content-center gap-3">
-                            <span class="small fw-bold text-success">🎧 Audio Reading:</span>
+                            <span class="small fw-bold text-success">🎧 伴读音频:</span>
                             <audio controls class="flex-grow-1" style="height: 30px;">
                                 <source src="${audioSrc}" type="audio/mpeg">
                             </audio>
                         </div>
-                        <div class="small text-muted mt-1">Click to play and start listening</div>
+                        <div class="small text-muted mt-1">点击播放，开启绘本之旅</div>
                     </div>`;
                 }
 
                 body.innerHTML = html;
             } else if (type === 'pdf') {
                 resourceTitle = `PDF: ${filename}`;
-                title.innerText = `Reading: ${resourceTitle}`;
-                body.innerHTML = `<div class="p-5 bg-light rounded"><h4>PDF Reader</h4><p class="text-muted">Loading: assets/reading/pdf/${filename}</p></div>`;
+                title.innerText = `📖 阅读 PDF: ${resourceTitle}`;
+                body.innerHTML = `<div class="p-5 bg-light rounded"><h4>PDF 阅读器</h4><p class="text-muted">正在加载: assets/reading/pdf/${filename}</p></div>`;
             } else if (type === 'video') {
-                resourceTitle = `Video: ${filename}`;
-                title.innerText = `Playing: ${resourceTitle}`;
+                resourceTitle = `视频: ${filename}`;
+                title.innerText = `🎬 正在播放：${resourceTitle}`;
                 body.innerHTML = `
                     <div class="ratio ratio-16x9">
                         <video controls>
                             <source src="assets/reading/video/${filename}" type="video/mp4">
-                            Your browser does not support the video tag.
+                            您的浏览器不支持视频播放。
                         </video>
                     </div>`;
             }
 
-            rewardInfo.innerText = `Complete learning to get ${reward} points!`;
+            rewardInfo.innerText = `🎁 读完绘本可获得 ${reward} 积分！`;
             modal.show();
             
             // 模拟获得积分和记录历史
@@ -1667,7 +1667,7 @@
                 
                 saveStats();
                 updateUI();
-                rewardInfo.innerText = `✅ Congratulations! You earned ${reward} points!`;
+                rewardInfo.innerText = `✅ 恭喜！你获得了 ${reward} 积分！`;
             }, 3000);
         }
 
@@ -2563,15 +2563,15 @@
                 const word = currentTraining.words[trainingIndex];
                 html = `
                     <div class="text-center py-4 animate__animated animate__fadeIn">
-                        <div class="badge bg-info mb-3">Step 1: Vocabulary Learning</div>
+                        <div class="badge bg-info mb-3">第一步：词汇学习</div>
                         <div class="mb-2 text-muted small">${trainingIndex + 1} / ${currentTraining.words.length}</div>
-                        <h1 class="display-3 fw-bold text-primary mb-2 clickable-text" onclick="speak('${word.en.replace(/'/g, "\\'")}')" style="cursor: pointer;" title="Click to hear">
+                        <h1 class="display-3 fw-bold text-primary mb-2 clickable-text" onclick="speak('${word.en.replace(/'/g, "\\'")}')" style="cursor: pointer;" title="点击发音">
                             ${word.en} <i class="bi bi-volume-up-fill fs-4 text-muted"></i>
                         </h1>
                         <h4 class="text-muted mb-4">${word.zh}</h4>
                         
                         <div class="mt-4 p-3 bg-light rounded border-start border-primary border-4 text-start mx-auto" style="max-width: 400px;">
-                            <div class="small text-primary fw-bold mb-1"><i class="bi bi-pencil-fill me-1"></i>Example:</div>
+                            <div class="small text-primary fw-bold mb-1"><i class="bi bi-pencil-fill me-1"></i>例句:</div>
                             <p class="mb-0 fs-5 clickable-text" onclick="speak('${word.example.replace(/'/g, "\\'")}')" style="cursor: pointer;">
                                 ${word.example} <i class="bi bi-volume-up-fill fs-6 text-muted"></i>
                             </p>
@@ -2579,7 +2579,7 @@
 
                         <div class="d-grid mt-4">
                             <button class="btn btn-primary py-3 rounded-pill shadow fw-bold" onclick="nextTraining()">
-                                ${trainingIndex < currentTraining.words.length - 1 ? 'Next Word' : 'Start Vocabulary Quiz'}
+                                ${trainingIndex < currentTraining.words.length - 1 ? '下一个' : '开始自测'}
                             </button>
                         </div>
                     </div>
@@ -2593,13 +2593,13 @@
 
                 html = `
                     <div class="text-center py-4 animate__animated animate__fadeIn">
-                        <div class="badge bg-warning text-dark mb-3">Step 2: Vocabulary Quiz</div>
+                        <div class="badge bg-warning text-dark mb-3">第二步：词汇自测</div>
                         <div class="mb-4 px-3">
-                            <h5 class="text-muted small mb-2">Which word means:</h5>
-                            <h3 class="fw-bold text-primary lh-base">" ${word.para} "</h3>
+                            <h5 class="text-muted small mb-2">请选择正确单词：</h5>
+                            <h3 class="fw-bold text-primary lh-base">" ${word.zh} "</h3>
                             <div id="wordHint" class="mt-2">
-                                <button class="btn btn-sm btn-link text-muted text-decoration-none" onclick="showWordHint('${word.zh.replace(/'/g, "\\'")}')">
-                                    <i class="bi bi-lightbulb"></i> Need a hint?
+                                <button class="btn btn-sm btn-link text-muted text-decoration-none" onclick="showWordHint('${word.en.replace(/'/g, "\\'")}')">
+                                    <i class="bi bi-lightbulb"></i> 需要提示吗？
                                 </button>
                             </div>
                         </div>
@@ -2617,15 +2617,15 @@
                 const sent = currentTraining.sentences[trainingIndex];
                 html = `
                     <div class="text-center py-4 animate__animated animate__fadeIn">
-                        <div class="badge bg-success mb-3">Step 3: Sentence Learning</div>
+                        <div class="badge bg-success mb-3">第三步：句子学习</div>
                         <div class="mb-2 text-muted small">${trainingIndex + 1} / ${currentTraining.sentences.length}</div>
-                        <h3 class="fw-bold text-primary mb-2 lh-base px-3 clickable-text" onclick="speak('${sent.en.replace(/'/g, "\\'")}')" style="cursor: pointer;" title="Click to hear">
+                        <h3 class="fw-bold text-primary mb-2 lh-base px-3 clickable-text" onclick="speak('${sent.en.replace(/'/g, "\\'")}')" style="cursor: pointer;" title="点击发音">
                             ${sent.en} <i class="bi bi-volume-up-fill fs-5 text-muted"></i>
                         </h3>
                         <h5 class="text-muted mb-4">${sent.zh}</h5>
                         <div class="d-grid mt-4">
                             <button class="btn btn-primary py-3 rounded-pill shadow fw-bold" onclick="nextTraining()">
-                                ${trainingIndex < currentTraining.sentences.length - 1 ? 'Next Sentence' : 'Start Sentence Challenge'}
+                                ${trainingIndex < currentTraining.sentences.length - 1 ? '下一个' : '开始句子挑战'}
                             </button>
                         </div>
                     </div>
@@ -2636,7 +2636,7 @@
                 const words = shuffle(sent.en.replace(/[.?!]/g, '').split(' '));
                 html = `
                     <div class="text-center py-4 animate__animated animate__fadeIn">
-                        <div class="badge bg-danger mb-3">Step 4: Sentence Challenge</div>
+                        <div class="badge bg-danger mb-3">第四步：句子挑战</div>
                         <h5 class="text-muted mb-3">${sent.zh}</h5>
                         <div id="sentenceDisplay" class="p-3 bg-white rounded border-primary border-2 mb-4 min-vh-10 d-flex flex-wrap justify-content-center align-items-center gap-2 shadow-sm" style="min-height: 80px"></div>
                         <div class="d-flex flex-wrap justify-content-center gap-2" id="wordBank">
@@ -2646,10 +2646,10 @@
                         </div>
                         <div class="row g-2 mt-4">
                             <div class="col-6">
-                                <button class="btn btn-light w-100 rounded-pill border fw-bold" onclick="clearSentence()">Clear</button>
+                                <button class="btn btn-light w-100 rounded-pill border fw-bold" onclick="clearSentence()">重置</button>
                             </div>
                             <div class="col-6">
-                                <button class="btn btn-primary w-100 rounded-pill shadow fw-bold" onclick="checkSentenceQuiz('${sent.en.replace(/'/g, "\\'")}')">Check</button>
+                                <button class="btn btn-primary w-100 rounded-pill shadow fw-bold" onclick="checkSentenceQuiz('${sent.en.replace(/'/g, "\\'")}')">检查</button>
                             </div>
                         </div>
                     </div>
@@ -2662,7 +2662,7 @@
         function showWordHint(hint) {
             const hintElement = document.getElementById('wordHint');
             if (hintElement) {
-                hintElement.innerHTML = `<span class="text-muted small animate__animated animate__fadeIn">💡 Hint: ${hint}</span>`;
+                hintElement.innerHTML = `<span class="text-muted small animate__animated animate__fadeIn">💡 提示: ${hint}</span>`;
             }
         }
 
@@ -3200,7 +3200,7 @@
         function startChallenge(bookKey) {
             const data = quizData[bookKey];
             if (!data) {
-                alert('No challenge for this book yet. Try another one!');
+                alert('该绘本暂无挑战，换一本试试吧！');
                 return;
             }
 
@@ -3220,8 +3220,8 @@
             let html = `
                 <div class="mb-4">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="badge bg-primary">Q ${currentQuestionIndex + 1} / ${currentQuiz.questions.length}</span>
-                        <span class="badge ${qData.type === 'choice' ? 'bg-info' : 'bg-warning'} text-dark">${qData.type === 'choice' ? 'Multiple Choice' : 'True or False'}</span>
+                        <span class="badge bg-primary">第 ${currentQuestionIndex + 1} / ${currentQuiz.questions.length} 题</span>
+                        <span class="badge ${qData.type === 'choice' ? 'bg-info' : 'bg-warning'} text-dark">${qData.type === 'choice' ? '选择题' : '判断题'}</span>
                     </div>
                     <h5 class="fw-bold lh-base">${qData.q}</h5>
                 </div>
@@ -3242,13 +3242,13 @@
                         <div class="col-6">
                             <button class="btn btn-outline-success w-100 p-4 shadow-sm border-2 fw-bold" onclick="checkAnswer(0)">
                                 <div class="h2 mb-0">✔</div>
-                                <div>True</div>
+                                <div>正确</div>
                             </button>
                         </div>
                         <div class="col-6">
                             <button class="btn btn-outline-danger w-100 p-4 shadow-sm border-2 fw-bold" onclick="checkAnswer(1)">
                                 <div class="h2 mb-0">✘</div>
-                                <div>False</div>
+                                <div>错误</div>
                             </button>
                         </div>
                     </div>
@@ -3267,20 +3267,20 @@
             if (isCorrect) score++;
 
             // 显示反馈
-            const feedbackTitle = isCorrect ? 'Great Job! 🎉' : 'Keep Going! 💪';
+            const feedbackTitle = isCorrect ? '太棒了！🎉' : '加油！💪';
             const feedbackClass = isCorrect ? 'text-success' : 'text-danger';
-            const correctAnswer = qData.type === 'choice' ? qData.a[qData.correct] : (qData.correct === 0 ? 'True' : 'False');
+            const correctAnswer = qData.type === 'choice' ? qData.a[qData.correct] : (qData.correct === 0 ? '正确' : '错误');
 
             container.innerHTML = `
                 <div class="text-center py-4 animate__animated animate__pulse">
                     <div class="display-1 mb-3">${isCorrect ? '🌟' : '💡'}</div>
                     <h4 class="${feedbackClass} fw-bold">${feedbackTitle}</h4>
                     <div class="mt-3 p-3 bg-light rounded border">
-                        <p class="mb-1 text-muted small">Correct Answer:</p>
+                        <p class="mb-1 text-muted small">正确答案：</p>
                         <p class="fw-bold mb-0 text-dark">${correctAnswer}</p>
                     </div>
                     <button class="btn btn-primary mt-4 px-5 py-2 rounded-pill shadow" onclick="nextStep()">
-                        ${currentQuestionIndex < currentQuiz.questions.length - 1 ? 'Next Question' : 'View Result'}
+                        ${currentQuestionIndex < currentQuiz.questions.length - 1 ? '下一题' : '查看结果'}
                     </button>
                 </div>
             `;
@@ -3301,26 +3301,26 @@
             const accuracy = Math.round((score / total) * 100);
             const rewardPoints = score * 10; 
 
-            let evaluation = 'Good Job!';
+            let evaluation = '做得好！';
             let emoji = '👏';
-            if (accuracy === 100) { evaluation = 'Perfect! 🏆'; emoji = '🌈'; }
-            else if (accuracy >= 80) { evaluation = 'Excellent! 🌟'; emoji = '✨'; }
+            if (accuracy === 100) { evaluation = '完美！🏆'; emoji = '🌈'; }
+            else if (accuracy >= 80) { evaluation = '优秀！🌟'; emoji = '✨'; }
 
             container.innerHTML = `
                 <div class="text-center py-4 animate__animated animate__zoomIn">
                     <div class="display-3 mb-3">${emoji}</div>
                     <h3 class="fw-bold mb-1">${evaluation}</h3>
-                    <p class="text-muted mb-4">You got ${score} / ${total} correct!</p>
+                    <p class="text-muted mb-4">你答对了 ${score} / ${total} 题！</p>
                     
                     <div class="card bg-warning bg-opacity-10 border-warning mb-4">
                         <div class="card-body">
-                            <div class="text-warning small mb-1">Challenge Reward</div>
-                            <div class="h2 fw-bold text-danger mb-0">+${rewardPoints} Points</div>
+                            <div class="text-warning small mb-1">挑战奖励</div>
+                            <div class="h2 fw-bold text-danger mb-0">+${rewardPoints} 积分</div>
                         </div>
                     </div>
                     
                     <button class="btn btn-success w-100 py-3 rounded-pill fw-bold shadow" onclick="finishChallenge()">
-                        Awesome! Back to Home
+                        太棒了，返回首页
                     </button>
                 </div>
             `;
