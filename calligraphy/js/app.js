@@ -11,51 +11,51 @@ document.addEventListener('DOMContentLoaded', () => {
     // 颜体字库数据 (多宝塔碑真迹原帖 - 高清源)
     const duobaotaDb = {
         '興': { 
-            img: './assets/chars/xing.jpg?v=final_20260207_v3', 
+            img: './assets/chars/xing.jpg?v=final_20260207_v4', 
             desc: '真迹：出自《多宝塔碑》“千福寺兴工”。结体开阔，上方错落有致，下方支撑有力。' 
         },
         '旺': { 
-            img: './assets/chars/wang.jpg?v=final_20260207_v3', 
+            img: './assets/chars/wang.jpg?v=final_20260207_v4', 
             desc: '真迹：出自颜真卿《勤礼碑》。日字旁挺拔，整体端庄稳重，尽显颜体丰腴之美。' 
         },
         '發': { 
-            img: './assets/chars/fa.jpg?v=final_20260207_v3', 
+            img: './assets/chars/fa.jpg?v=final_20260207_v4', 
             desc: '真迹：出自《多宝塔碑》“发明资乎十力”。撇画舒展，内部穿插有序，笔力雄健。' 
         },
         '達': { 
-            img: './assets/chars/da.jpg?v=final_20260207_v3', 
+            img: './assets/chars/da.jpg?v=final_20260207_v4', 
             desc: '真迹：出自《多宝塔碑》“通达”。走之底有力，内部结构紧凑，重心极稳。' 
         },
         '永': { 
-            img: 'https://pic.ziyuan.wang/2024/02/07/yong_yanzhenqing_dbt.jpg', 
+            img: './assets/chars/yong.jpg?v=final_20260207_v4', 
             desc: '起笔圆润，侧锋转折有力，是练习颜体的入门经典。' 
         },
         '和': { 
-            img: 'https://pic.ziyuan.wang/2024/02/07/he_yanzhenqing_dbt.jpg', 
+            img: './assets/chars/he.jpg?v=final_20260207_v4', 
             desc: '结构左右平衡，线条粗细变化丰富，体现了颜体的宽博。' 
         },
         '九': { 
-            img: 'https://pic.ziyuan.wang/2024/02/07/jiu_yanzhenqing_dbt.jpg', 
+            img: './assets/chars/jiu.jpg?v=final_20260207_v4', 
             desc: '极简之字，却最显功力。撇画有力，横折钩饱满。' 
         },
         '年': { 
-            img: 'https://pic.ziyuan.wang/2024/02/07/nian_yanzhenqing_dbt.jpg', 
+            img: './assets/chars/nian.jpg?v=final_20260207_v4', 
             desc: '中轴线挺拔，横画平稳，展现了颜体书法的厚重感。' 
         },
         '多': { 
-            img: 'https://pic.ziyuan.wang/2024/02/07/duo_yanzhenqing_dbt.jpg', 
+            img: './assets/chars/duo.jpg?v=final_20260207_v4', 
             desc: '两夕相叠，错位而生动，重心极其稳固。' 
         },
         '寶': { 
-            img: 'https://pic.ziyuan.wang/2024/02/07/bao_yanzhenqing_dbt.jpg', 
+            img: './assets/chars/bao.jpg?v=final_20260207_v4', 
             desc: '宝盖头宽阔，内部结构充实，体现了“颜筋”的质感。' 
         },
         '塔': { 
-            img: 'https://pic.ziyuan.wang/2024/02/07/ta_yanzhenqing_dbt.jpg', 
+            img: './assets/chars/ta.jpg?v=final_20260207_v4', 
             desc: '土字旁稳健，右侧结构复杂但安排合理，密而不乱。' 
         },
         '碑': { 
-            img: 'https://pic.ziyuan.wang/2024/02/07/bei_yanzhenqing_dbt.jpg', 
+            img: './assets/chars/bei.jpg?v=final_20260207_v4', 
             desc: '石字旁坚实，右侧笔画舒展，气势开阔。' 
         },
         '大': {
