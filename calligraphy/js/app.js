@@ -173,12 +173,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const modalImgContainer = document.getElementById('modalImgContainer');
         modalImgContainer.innerHTML = '';
         
+        // 控制模拟字体风格选择器的显示
+        const fontControl = document.getElementById('simulatedFontControl');
+        if (!data.img) {
+            fontControl.classList.remove('hidden');
+        } else {
+            fontControl.classList.add('hidden');
+        }
+
         // 清理旧的详情页标签
         const existingTag = document.querySelector('#copyStage .source-tag');
         if (existingTag) existingTag.remove();
         
         const fontChar = document.createElement('div');
         fontChar.className = 'calligraphy-font';
+        fontChar.id = 'modalFontChar';
         fontChar.innerText = char;
         modalImgContainer.appendChild(fontChar);
 
@@ -208,6 +217,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
         detailModal.classList.remove('hidden');
     }
+
+    // 暴露给全局的字体风格切换函数
+    window.setFontStyle = (style) => {
+        const fontChar = document.getElementById('modalFontChar');
+        if (!fontChar) return;
+
+        // 移除所有风格类
+        fontChar.classList.remove('font-style-formal', 'font-style-brush', 'font-style-elegant', 'font-style-modern');
+        
+        // 添加新风格类
+        fontChar.classList.add(`font-style-${style}`);
+
+        // 更新按钮样式
+        document.querySelectorAll('.font-btn').forEach(btn => {
+            btn.classList.remove('bg-amber-700', 'text-white');
+            btn.classList.add('bg-white', 'border', 'border-amber-200');
+        });
+        
+        // 兼容点击事件
+        if (event && event.target) {
+            event.target.classList.remove('bg-white', 'border', 'border-amber-200');
+            event.target.classList.add('bg-amber-700', 'text-white');
+        }
+    };
 
     // 暴露给全局的格线切换函数
     window.setGrid = (type) => {
