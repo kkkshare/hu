@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // 创建容器
             const gridBox = document.createElement('div');
-            gridBox.className = 'mi-zi-ge w-full aspect-square max-w-[140px] md:max-w-[160px] bg-white flex items-center justify-center overflow-hidden transition-transform group-hover:scale-105 shadow-md relative';
+            gridBox.className = 'mi-zi-ge w-full aspect-square max-w-[130px] md:max-w-[160px] bg-white flex items-center justify-center overflow-hidden transition-transform group-hover:scale-105 shadow-md relative';
             
             // 模拟模式强制使用繁体字体展示
             const fontChar = document.createElement('div');
@@ -144,20 +144,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (data && data.img) {
                 const img = document.createElement('img');
-                img.src = data.img;
                 img.alt = searchChar;
                 img.className = 'char-img w-full h-full object-contain absolute inset-0 opacity-0 transition-opacity duration-300';
                 
+                // 先设置监听器，再设置 src，防止缓存导致的 onload 错过
                 img.onload = () => {
                     img.classList.remove('opacity-0');
                     fontChar.style.display = 'none';
                 };
                 
                 img.onerror = () => {
-                    console.log(`图片加载失败: ${searchChar}`);
+                    console.error(`图片加载失败: ${searchChar}`, data.img);
                     img.remove();
+                    // 加载失败时显示备用文字，并给个提示
+                    fontChar.style.color = '#999';
                 };
                 
+                img.src = data.img;
                 gridBox.appendChild(img);
             }
 
