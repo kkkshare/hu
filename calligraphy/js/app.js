@@ -11,19 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // 颜体字库数据 (多宝塔碑真迹原帖 - 高清源)
     const duobaotaDb = {
         '興': { 
-            img: './assets/chars/xing.jpg?v=20260207', 
+            img: './assets/chars/xing.jpg?v=final_20260207_v3', 
             desc: '真迹：出自《多宝塔碑》“千福寺兴工”。结体开阔，上方错落有致，下方支撑有力。' 
         },
         '旺': { 
-            img: './assets/chars/wang.jpg?v=20260207', 
+            img: './assets/chars/wang.jpg?v=final_20260207_v3', 
             desc: '真迹：出自颜真卿《勤礼碑》。日字旁挺拔，整体端庄稳重，尽显颜体丰腴之美。' 
         },
         '發': { 
-            img: './assets/chars/fa.jpg?v=20260207', 
+            img: './assets/chars/fa.jpg?v=final_20260207_v3', 
             desc: '真迹：出自《多宝塔碑》“发明资乎十力”。撇画舒展，内部穿插有序，笔力雄健。' 
         },
         '達': { 
-            img: './assets/chars/da.jpg?v=20260207', 
+            img: './assets/chars/da.jpg?v=final_20260207_v3', 
             desc: '真迹：出自《多宝塔碑》“通达”。走之底有力，内部结构紧凑，重心极稳。' 
         },
         '永': { 
