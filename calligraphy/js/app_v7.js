@@ -143,13 +143,19 @@ document.addEventListener('DOMContentLoaded', () => {
             gridBox.appendChild(tag);
 
             if (data && data.img) {
-                const img = document.createElement('img');
+                const img = new Image(); // 改用 new Image() 构造函数
                 img.alt = searchChar;
                 img.className = 'char-img w-full h-full object-contain absolute inset-0 opacity-0 transition-opacity duration-300';
                 
-                // 先设置监听器，再设置 src，防止缓存导致的 onload 错过
+                // 先设置监听器，再设置 src
                 img.onload = () => {
-                    img.classList.remove('opacity-0');
+                    console.log(`图片加载成功: ${searchChar}`, img.src);
+                    // 动态创建 img 标签并插入 DOM
+                    const domImg = document.createElement('img');
+                    domImg.src = img.src;
+                    domImg.className = img.className;
+                    gridBox.appendChild(domImg);
+                    setTimeout(() => domImg.classList.remove('opacity-0'), 10);
                     fontChar.style.display = 'none';
                 };
                 
@@ -161,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
                 
                 img.src = data.img;
-                gridBox.appendChild(img);
+                // gridBox.appendChild(img); // 移除这行，改为 onload 时动态插入
             }
 
             charCard.appendChild(gridBox);
