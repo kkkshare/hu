@@ -8,15 +8,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalTitle = document.getElementById('modalTitle');
     const modalDesc = document.getElementById('modalDesc');
 
-    // 颜体字库数据 (多宝塔碑部分常用字)
+    // 颜体字库数据 (多宝塔碑真迹原帖 - 高清源)
     const duobaotaDb = {
+        '興': { 
+            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/xing.jpg', 
+            desc: '出自《多宝塔碑》，上部错落有致，下部撇点支撑有力，气势磅礴。' 
+        },
+        '旺': { 
+            img: 'https://www.shufazidian.com/images/yanzhenqing/duobaota/wang.jpg', 
+            desc: '日字旁挺拔，右侧“王”字横画间距均匀，尽显颜体丰腴。' 
+        },
+        '發': { 
+            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/fa.jpg', 
+            desc: '笔画繁多但穿插有序，展现了颜体极强的结构控制力。' 
+        },
+        '達': { 
+            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/da2.jpg', 
+            desc: '走之底舒展有力，内部笔画紧凑，重心极稳。' 
+        },
         '永': { 
-            img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Yan_Zhenqing_001.jpg/200px-Yan_Zhenqing_001.jpg', 
-            desc: '出自《多宝塔碑》，起笔圆润，侧锋转折有力。' 
+            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/yong.jpg', 
+            desc: '起笔圆润，侧锋转折有力，是练习颜体的入门经典。' 
         },
         '和': { 
-            img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Yan_Zhenqing_002.jpg/200px-Yan_Zhenqing_002.jpg', 
-            desc: '左侧“禾”字收放有度，右侧“口”字稳重。' 
+            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/he.jpg', 
+            desc: '左侧“禾”字收放有度，右侧“口”字稳重宽博。' 
         },
         '九': { 
             img: 'https://shufazidian.com/images/yanzhenqing/duobaota/jiu.jpg',
@@ -62,10 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
             img: 'https://shufazidian.com/images/yanzhenqing/duobaota/long.jpg',
             desc: '撇折灵动，右侧竖弯钩雄劲有力。'
         },
-        '興': {
-            img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Yan_Zhenqing_Duobaota_002.jpg/200px-Yan_Zhenqing_Duobaota_002.jpg',
-            desc: '上部错落有致，下部撇点支撑有力，结构严谨。'
-        },
         '寺': {
             img: 'https://shufazidian.com/images/yanzhenqing/duobaota/si.jpg',
             desc: '上下比例协调，横画长短变化丰富。'
@@ -76,22 +88,14 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '一': {
             img: 'https://shufazidian.com/images/yanzhenqing/duobaota/yi.jpg',
-            desc: '虽只有一横，但起笔、行笔、收笔交代得极其清楚，力透纸背。'
+            desc: '虽只有一横，但起笔、行笔、收笔交代得极其清楚。'
         },
         '心': { 
-            img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Yan_Zhenqing_Duobaota_001.jpg/200px-Yan_Zhenqing_Duobaota_001.jpg', 
+            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/xin.jpg', 
             desc: '卧钩圆劲，三点位置错落有致，意态生动。' 
         },
-        '發': {
-            img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Yan_Zhenqing_Duobaota_003.jpg/200px-Yan_Zhenqing_Duobaota_003.jpg',
-            desc: '笔画繁多但穿插有序，展现了颜体极强的结构控制力。'
-        },
-        '達': {
-            img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Yan_Zhenqing_Duobaota_004.jpg/200px-Yan_Zhenqing_Duobaota_004.jpg',
-            desc: '走之底舒展有力，内部笔画紧凑。'
-        },
         '國': {
-            img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Yan_Zhenqing_Duobaota_005.jpg/200px-Yan_Zhenqing_Duobaota_005.jpg',
+            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/guo.jpg',
             desc: '外框宽博稳健，内部“或”字处理极其平衡。'
         }
     };

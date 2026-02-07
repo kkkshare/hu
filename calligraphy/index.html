@@ -84,9 +84,9 @@
             filter: contrast(1.2) brightness(0.9);
         }
         .calligraphy-font {
-            /* 恢复简洁、稳重的楷体风格 */
-            font-family: 'Noto Serif SC', 'STKaiti', 'Kaiti', serif;
-            font-weight: 700;
+            /* 使用更具书法感的马善政字体作为兜底，但保持清晰度 */
+            font-family: 'Ma Shan Zheng', 'Zhi Mang Xing', cursive;
+            font-weight: 400;
             font-size: 6rem;
             color: #1a1a1a;
             display: flex;
@@ -94,7 +94,7 @@
             justify-content: center;
             height: 100%;
             width: 100%;
-            text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.05);
         }
         @media (min-width: 768px) {
             .calligraphy-font {
