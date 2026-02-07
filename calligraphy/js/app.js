@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             img: 'https://shufazidian.com/images/yanzhenqing/duobaota/duo.jpg',
             desc: '上下两个“夕”字重心对齐，撇画厚重。'
         },
-        '宝': {
+        '寶': {
             img: 'https://shufazidian.com/images/yanzhenqing/duobaota/bao.jpg',
             desc: '宝盖头覆盖全字，内部“玉”字精炼。'
         },
@@ -58,13 +58,13 @@ document.addEventListener('DOMContentLoaded', () => {
             img: 'https://shufazidian.com/images/yanzhenqing/duobaota/jing.jpg',
             desc: '点画有力，横钩利落，下部支撑稳固。'
         },
-        '龙': {
+        '龍': {
             img: 'https://shufazidian.com/images/yanzhenqing/duobaota/long.jpg',
             desc: '撇折灵动，右侧竖弯钩雄劲有力。'
         },
-        '兴': {
-            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/xing.jpg',
-            desc: '上部错落有致，下部撇点支撑有力。'
+        '興': {
+            img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Yan_Zhenqing_Duobaota_002.jpg/200px-Yan_Zhenqing_Duobaota_002.jpg',
+            desc: '上部错落有致，下部撇点支撑有力，结构严谨。'
         },
         '寺': {
             img: 'https://shufazidian.com/images/yanzhenqing/duobaota/si.jpg',
@@ -78,13 +78,21 @@ document.addEventListener('DOMContentLoaded', () => {
             img: 'https://shufazidian.com/images/yanzhenqing/duobaota/yi.jpg',
             desc: '虽只有一横，但起笔、行笔、收笔交代得极其清楚，力透纸背。'
         },
-        '心': {
-            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/xin.jpg',
-            desc: '卧钩圆劲，三点位置错落有致，意态生动。'
+        '心': { 
+            img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Yan_Zhenqing_Duobaota_001.jpg/200px-Yan_Zhenqing_Duobaota_001.jpg', 
+            desc: '卧钩圆劲，三点位置错落有致，意态生动。' 
         },
-        '月': {
-            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/yue.jpg',
-            desc: '外框稳健，内部两横平齐，体现了颜体宽博的特点。'
+        '發': {
+            img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Yan_Zhenqing_Duobaota_003.jpg/200px-Yan_Zhenqing_Duobaota_003.jpg',
+            desc: '笔画繁多但穿插有序，展现了颜体极强的结构控制力。'
+        },
+        '達': {
+            img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Yan_Zhenqing_Duobaota_004.jpg/200px-Yan_Zhenqing_Duobaota_004.jpg',
+            desc: '走之底舒展有力，内部笔画紧凑。'
+        },
+        '國': {
+            img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Yan_Zhenqing_Duobaota_005.jpg/200px-Yan_Zhenqing_Duobaota_005.jpg',
+            desc: '外框宽博稳健，内部“或”字处理极其平衡。'
         }
     };
 
@@ -173,21 +181,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const modalImgContainer = document.getElementById('modalImgContainer');
         modalImgContainer.innerHTML = '';
         
-        // 控制模拟字体风格选择器的显示
-        const fontControl = document.getElementById('simulatedFontControl');
-        if (!data.img) {
-            fontControl.classList.remove('hidden');
-        } else {
-            fontControl.classList.add('hidden');
-        }
-
         // 清理旧的详情页标签
         const existingTag = document.querySelector('#copyStage .source-tag');
         if (existingTag) existingTag.remove();
         
         const fontChar = document.createElement('div');
         fontChar.className = 'calligraphy-font';
-        fontChar.id = 'modalFontChar';
         fontChar.innerText = char;
         modalImgContainer.appendChild(fontChar);
 
@@ -217,30 +216,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         detailModal.classList.remove('hidden');
     }
-
-    // 暴露给全局的字体风格切换函数
-    window.setFontStyle = (style) => {
-        const fontChar = document.getElementById('modalFontChar');
-        if (!fontChar) return;
-
-        // 移除所有风格类
-        fontChar.classList.remove('font-style-formal', 'font-style-brush', 'font-style-elegant', 'font-style-modern');
-        
-        // 添加新风格类
-        fontChar.classList.add(`font-style-${style}`);
-
-        // 更新按钮样式
-        document.querySelectorAll('.font-btn').forEach(btn => {
-            btn.classList.remove('bg-amber-700', 'text-white');
-            btn.classList.add('bg-white', 'border', 'border-amber-200');
-        });
-        
-        // 兼容点击事件
-        if (event && event.target) {
-            event.target.classList.remove('bg-white', 'border', 'border-amber-200');
-            event.target.classList.add('bg-amber-700', 'text-white');
-        }
-    };
 
     // 暴露给全局的格线切换函数
     window.setGrid = (type) => {

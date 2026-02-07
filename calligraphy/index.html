@@ -84,9 +84,9 @@
             filter: contrast(1.2) brightness(0.9);
         }
         .calligraphy-font {
-            /* 模拟颜体厚重感的字体组合 */
-            font-family: 'Noto Serif SC', 'STKaiti', 'Kaiti', 'Ma Shan Zheng', serif;
-            font-weight: 900;
+            /* 恢复简洁、稳重的楷体风格 */
+            font-family: 'Noto Serif SC', 'STKaiti', 'Kaiti', serif;
+            font-weight: 700;
             font-size: 6rem;
             color: #1a1a1a;
             display: flex;
@@ -94,19 +94,8 @@
             justify-content: center;
             height: 100%;
             width: 100%;
-            /* 墨迹浸润效果 */
-            text-shadow: 
-                0 0 1px rgba(0,0,0,0.5),
-                1px 1px 3px rgba(0,0,0,0.2);
-            filter: blur(0.4px); /* 边缘稍微柔化，模拟墨迹在宣纸上的散开 */
-            letter-spacing: -0.05em;
-            transition: all 0.3s ease;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
         }
-        /* 不同风格的模拟字体 */
-        .font-style-formal { font-family: 'Noto Serif SC', 'STKaiti', 'Kaiti', serif; font-weight: 900; }
-        .font-style-brush { font-family: 'Ma Shan Zheng', cursive; font-weight: 400; }
-        .font-style-elegant { font-family: 'Long Cang', cursive; font-weight: 400; }
-        .font-style-modern { font-family: 'ZCOOL XiaoWei', serif; font-weight: 400; }
         @media (min-width: 768px) {
             .calligraphy-font {
                 font-size: 8rem;
@@ -205,16 +194,6 @@
                                     <button onclick="setGrid('mi')" class="grid-btn px-3 py-1 text-[10px] bg-amber-700 text-white rounded shadow-sm">米字</button>
                                     <button onclick="setGrid('tian')" class="grid-btn px-3 py-1 text-[10px] bg-white border border-amber-200 rounded shadow-sm">田字</button>
                                     <button onclick="setGrid('none')" class="grid-btn px-3 py-1 text-[10px] bg-white border border-amber-200 rounded shadow-sm">无格</button>
-                                </div>
-                            </div>
-                            <!-- 模拟字体风格切换 -->
-                            <div id="simulatedFontControl" class="flex items-center gap-4 hidden">
-                                <span class="text-[10px] text-gray-500 w-10">模拟风格</span>
-                                <div class="flex flex-wrap gap-2">
-                                    <button onclick="setFontStyle('formal')" class="font-btn px-2 py-1 text-[10px] bg-amber-700 text-white rounded shadow-sm">雄强</button>
-                                    <button onclick="setFontStyle('brush')" class="font-btn px-2 py-1 text-[10px] bg-white border border-amber-200 rounded shadow-sm">洒脱</button>
-                                    <button onclick="setFontStyle('elegant')" class="font-btn px-2 py-1 text-[10px] bg-white border border-amber-200 rounded shadow-sm">灵动</button>
-                                    <button onclick="setFontStyle('modern')" class="font-btn px-2 py-1 text-[10px] bg-white border border-amber-200 rounded shadow-sm">清秀</button>
                                 </div>
                             </div>
                         </div>
