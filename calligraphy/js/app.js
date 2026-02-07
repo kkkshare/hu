@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (existingTag) existingTag.remove();
         
         const fontChar = document.createElement('div');
-        fontChar.className = 'calligraphy-font text-9xl';
+        fontChar.className = 'calligraphy-font';
         fontChar.innerText = char;
         modalImgContainer.appendChild(fontChar);
 
@@ -208,19 +208,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // 暴露给全局的格线切换函数
     window.setGrid = (type) => {
         const copyStage = document.getElementById('copyStage');
-        copyStage.className = 'w-64 h-64 md:w-96 md:h-96 bg-white mb-6 flex items-center justify-center overflow-hidden relative';
+        // 保持响应式基础类名
+        copyStage.className = 'mi-zi-ge w-full aspect-square max-w-[280px] md:max-w-[384px] bg-white mb-4 md:mb-6 flex items-center justify-center overflow-hidden relative';
         
         if (type === 'mi') copyStage.classList.add('mi-zi-ge');
         else if (type === 'tian') copyStage.classList.add('tian-zi-ge');
-        else if (type === 'none') copyStage.classList.add('no-grid');
+        else if (type === 'none') {
+            copyStage.classList.remove('mi-zi-ge');
+            copyStage.classList.add('no-grid');
+        }
 
         // 更新按钮样式
         document.querySelectorAll('.grid-btn').forEach(btn => {
             btn.classList.remove('bg-amber-700', 'text-white');
             btn.classList.add('bg-white', 'border', 'border-amber-200');
         });
-        event.target.classList.remove('bg-white', 'border', 'border-amber-200');
-        event.target.classList.add('bg-amber-700', 'text-white');
+        
+        // 兼容点击事件对象
+        const target = event ? event.target : null;
+        if (target) {
+            target.classList.remove('bg-white', 'border', 'border-amber-200');
+            target.classList.add('bg-amber-700', 'text-white');
+        }
     };
 
     // 透明度调节
