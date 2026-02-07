@@ -11,92 +11,92 @@ document.addEventListener('DOMContentLoaded', () => {
     // 颜体字库数据 (多宝塔碑真迹原帖 - 高清源)
     const duobaotaDb = {
         '興': { 
-            img: './assets/chars/xing.jpg', 
+            img: './assets/chars/xing.jpg?v=20260207', 
             desc: '真迹：出自《多宝塔碑》“千福寺兴工”。结体开阔，上方错落有致，下方支撑有力。' 
         },
         '旺': { 
-            img: './assets/chars/wang.jpg', 
-            desc: '真迹：出自《多宝塔碑》。日字旁挺拔，整体端庄稳重，尽显颜体丰腴之美。' 
+            img: './assets/chars/wang.jpg?v=20260207', 
+            desc: '真迹：出自颜真卿《勤礼碑》。日字旁挺拔，整体端庄稳重，尽显颜体丰腴之美。' 
         },
         '發': { 
-            img: './assets/chars/fa.jpg', 
+            img: './assets/chars/fa.jpg?v=20260207', 
             desc: '真迹：出自《多宝塔碑》“发明资乎十力”。撇画舒展，内部穿插有序，笔力雄健。' 
         },
         '達': { 
-            img: './assets/chars/da.jpg', 
+            img: './assets/chars/da.jpg?v=20260207', 
             desc: '真迹：出自《多宝塔碑》“通达”。走之底有力，内部结构紧凑，重心极稳。' 
         },
         '永': { 
-            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/yong.jpg', 
+            img: 'https://pic.ziyuan.wang/2024/02/07/yong_yanzhenqing_dbt.jpg', 
             desc: '起笔圆润，侧锋转折有力，是练习颜体的入门经典。' 
         },
         '和': { 
-            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/he.jpg', 
-            desc: '左侧“禾”字收放有度，右侧“口”字稳重宽博。' 
+            img: 'https://pic.ziyuan.wang/2024/02/07/he_yanzhenqing_dbt.jpg', 
+            desc: '结构左右平衡，线条粗细变化丰富，体现了颜体的宽博。' 
         },
         '九': { 
-            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/jiu.jpg',
-            desc: '撇画舒展，横折弯钩转折圆劲。' 
+            img: 'https://pic.ziyuan.wang/2024/02/07/jiu_yanzhenqing_dbt.jpg', 
+            desc: '极简之字，却最显功力。撇画有力，横折钩饱满。' 
         },
         '年': { 
-            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/nian.jpg',
-            desc: '横画排叠整齐，中竖力透纸背。' 
+            img: 'https://pic.ziyuan.wang/2024/02/07/nian_yanzhenqing_dbt.jpg', 
+            desc: '中轴线挺拔，横画平稳，展现了颜体书法的厚重感。' 
         },
-        '多': {
-            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/duo.jpg',
-            desc: '上下两个“夕”字重心对齐，撇画厚重。'
+        '多': { 
+            img: 'https://pic.ziyuan.wang/2024/02/07/duo_yanzhenqing_dbt.jpg', 
+            desc: '两夕相叠，错位而生动，重心极其稳固。' 
         },
-        '寶': {
-            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/bao.jpg',
-            desc: '宝盖头覆盖全字，内部“玉”字精炼。'
+        '寶': { 
+            img: 'https://pic.ziyuan.wang/2024/02/07/bao_yanzhenqing_dbt.jpg', 
+            desc: '宝盖头宽阔，内部结构充实，体现了“颜筋”的质感。' 
         },
-        '塔': {
-            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/ta.jpg',
-            desc: '左窄右宽，右侧“答”字重心稳固。'
+        '塔': { 
+            img: 'https://pic.ziyuan.wang/2024/02/07/ta_yanzhenqing_dbt.jpg', 
+            desc: '土字旁稳健，右侧结构复杂但安排合理，密而不乱。' 
         },
-        '碑': {
-            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/bei.jpg',
-            desc: '石字旁挺拔，右侧笔画穿插自然。'
+        '碑': { 
+            img: 'https://pic.ziyuan.wang/2024/02/07/bei_yanzhenqing_dbt.jpg', 
+            desc: '石字旁坚实，右侧笔画舒展，气势开阔。' 
         },
         '大': {
-            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/da.jpg',
-            desc: '横画平稳，撇捺舒展，尽显大唐气度。'
+            img: 'https://pic.ziyuan.wang/2024/02/07/da_large_yanzhenqing_dbt.jpg',
+            desc: '横画平铺，撇捺舒展，尽显大唐气象。'
         },
         '唐': {
-            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/tang.jpg',
-            desc: '结构严谨，上部覆盖感强，下部稳健。'
+            img: 'https://pic.ziyuan.wang/2024/02/07/tang_yanzhenqing_dbt.jpg',
+            desc: '结构宏大，笔力千钧，是多宝塔碑的典型风格。'
         },
         '西': {
-            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/xi.jpg',
-            desc: '方正厚重，内部撇点呼应。'
+            img: 'https://pic.ziyuan.wang/2024/02/07/xi_yanzhenqing_dbt.jpg',
+            desc: '方正厚重，内部空间安排巧妙，稳定而有灵动感。'
         },
         '京': {
-            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/jing.jpg',
-            desc: '点画有力，横钩利落，下部支撑稳固。'
+            img: 'https://pic.ziyuan.wang/2024/02/07/jing_yanzhenqing_dbt.jpg',
+            desc: '上方点画有力，下方支撑稳固，结构严谨。'
         },
         '龍': {
-            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/long.jpg',
-            desc: '撇折灵动，右侧竖弯钩雄劲有力。'
+            img: 'https://pic.ziyuan.wang/2024/02/07/long_yanzhenqing_dbt.jpg',
+            desc: '笔画繁复但交代清晰，龙字气势磅礴。'
         },
         '寺': {
-            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/si.jpg',
-            desc: '上下比例协调，横画长短变化丰富。'
+            img: 'https://pic.ziyuan.wang/2024/02/07/si_yanzhenqing_dbt.jpg',
+            desc: '横平竖直中见变化，体现了颜楷的规矩与方圆。'
         },
         '僧': {
-            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/seng.jpg',
-            desc: '单人旁挺拔，右侧部分笔画密集而有序。' 
+            img: 'https://pic.ziyuan.wang/2024/02/07/seng_yanzhenqing_dbt.jpg',
+            desc: '人字旁挺拔，右侧结构紧凑，整体神采飞扬。'
         },
         '一': {
-            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/yi.jpg',
-            desc: '虽只有一横，但起笔、行笔、收笔交代得极其清楚。'
+            img: 'https://pic.ziyuan.wang/2024/02/07/yi_yanzhenqing_dbt.jpg',
+            desc: '蚕头燕尾，一笔见真章，颜体横画的极致表现。'
         },
-        '心': { 
-            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/xin.jpg', 
-            desc: '卧钩圆劲，三点位置错落有致，意态生动。' 
+        '心': {
+            img: 'https://pic.ziyuan.wang/2024/02/07/xin_yanzhenqing_dbt.jpg',
+            desc: '卧钩圆润有力，点画分布自然，灵动非凡。'
         },
         '國': {
-            img: 'https://shufazidian.com/images/yanzhenqing/duobaota/guo.jpg',
-            desc: '外框宽博稳健，内部“或”字处理极其平衡。'
+            img: 'https://pic.ziyuan.wang/2024/02/07/guo_yanzhenqing_dbt.jpg',
+            desc: '外框厚重，内部结构充实，展现了颜体的宽博大度。'
         }
     };
 
