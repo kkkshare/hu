@@ -88,12 +88,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // 简繁转换 (扩充常用字)
+    // 简繁转换词库 (书法常用字扩充)
     const s2tDict = {
+        '兴': '興', '旺': '旺', '发': '發', '达': '達',
         '国': '國', '爱': '愛', '书': '書', '法': '法', '颜': '顔', '真': '眞', '唐': '唐',
         '宝': '寶', '年': '年', '九': '九', '永': '永', '和': '和', '多': '多', '塔': '塔', '碑': '碑',
-        '龙': '龍', '兴': '興', '寺': '寺', '僧': '僧', '京': '京', '西': '西', '大': '大',
-        '一': '一', '心': '心', '月': '月', '门': '門', '无': '無', '时': '時'
+        '龙': '龍', '寺': '寺', '僧': '僧', '京': '京', '西': '西', '大': '大',
+        '一': '一', '心': '心', '月': '月', '门': '門', '无': '無', '时': '時',
+        '开': '開', '礼': '禮', '广': '廣', '万': '萬', '义': '義', '见': '見',
+        '云': '雲', '气': '氣', '华': '華', '东': '東', '后': '後', '当': '當'
     };
 
     function searchChars() {
@@ -104,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const chars = input.split('');
         
         chars.forEach(char => {
+            // 优先转繁体，确保书法练习的严谨性
             const searchChar = s2tDict[char] || char;
             const data = duobaotaDb[searchChar];
 
@@ -114,10 +118,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const gridBox = document.createElement('div');
             gridBox.className = 'mi-zi-ge w-full aspect-square max-w-[140px] md:max-w-[160px] bg-white flex items-center justify-center overflow-hidden transition-transform group-hover:scale-105 shadow-md relative';
             
-            // 默认使用字体显示
+            // 模拟模式强制使用繁体字体展示
             const fontChar = document.createElement('div');
             fontChar.className = 'calligraphy-font';
-            fontChar.innerText = searchChar;
+            fontChar.innerText = searchChar; // 这里已经是繁体了
             gridBox.appendChild(fontChar);
 
             // 来源标签
