@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // 创建容器
             const gridBox = document.createElement('div');
-            gridBox.className = 'mi-zi-ge w-32 h-32 md:w-40 md:h-40 bg-white flex items-center justify-center overflow-hidden transition-transform group-hover:scale-105 shadow-md relative';
+            gridBox.className = 'mi-zi-ge w-full aspect-square max-w-[140px] md:max-w-[160px] bg-white flex items-center justify-center overflow-hidden transition-transform group-hover:scale-105 shadow-md relative';
             
             // 默认使用字体显示
             const fontChar = document.createElement('div');
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.setGrid = (type) => {
         const copyStage = document.getElementById('copyStage');
         // 保持响应式基础类名
-        copyStage.className = 'mi-zi-ge w-full aspect-square max-w-[280px] md:max-w-[384px] bg-white mb-4 md:mb-6 flex items-center justify-center overflow-hidden relative';
+        copyStage.className = 'mi-zi-ge w-full aspect-square max-w-[300px] md:max-w-[384px] bg-white mb-4 md:mb-6 flex items-center justify-center overflow-hidden relative shadow-inner';
         
         if (type === 'mi') copyStage.classList.add('mi-zi-ge');
         else if (type === 'tian') copyStage.classList.add('tian-zi-ge');

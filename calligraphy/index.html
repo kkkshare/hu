@@ -7,6 +7,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Ma+Shan+Zheng&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
     <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
         body {
             font-family: 'Noto Serif SC', serif;
             background-color: #f4f1ea; /* 宣纸色 */
@@ -121,28 +131,28 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center p-2 md:p-8">
-    <header class="w-full max-w-4xl text-center my-6 md:my-8">
-        <h1 class="text-2xl md:text-4xl font-bold text-gray-800 mb-2">颜体书法练习助手</h1>
-        <p class="text-gray-600 italic text-sm md:text-base">—— 临摹名家风采，领略大唐气象 ——</p>
+<body class="min-h-screen flex flex-col items-center p-2 md:p-8 w-full">
+    <header class="w-full max-w-4xl text-center my-4 md:my-8 px-2">
+        <h1 class="text-xl md:text-4xl font-bold text-gray-800 mb-1 md:mb-2">颜体书法练习助手</h1>
+        <p class="text-gray-600 italic text-xs md:text-base">—— 临摹名家风采，领略大唐气象 ——</p>
     </header>
 
-    <main class="w-full max-w-2xl bg-white/80 backdrop-blur-sm rounded-xl shadow-lg p-4 md:p-10 border border-amber-100">
+    <main class="w-full max-w-2xl bg-white/80 backdrop-blur-sm rounded-xl shadow-lg p-3 md:p-10 border border-amber-100 box-border">
         <!-- 搜索区域 -->
-        <div class="flex flex-col gap-3 md:gap-4 mb-8">
-            <label for="charInput" class="text-base md:text-lg font-medium text-gray-700">请输入想要练习的汉字：</label>
+        <div class="flex flex-col gap-2 md:gap-4 mb-6 md:mb-8">
+            <label for="charInput" class="text-sm md:text-lg font-medium text-gray-700">请输入想要练习的汉字：</label>
             <div class="flex flex-col sm:flex-row gap-2">
                 <input type="text" id="charInput" maxlength="10" placeholder="永、和、九、年" 
-                    class="flex-1 px-4 py-3 rounded-lg border border-amber-200 focus:ring-2 focus:ring-amber-400 focus:outline-none text-lg md:text-xl tracking-widest">
-                <button id="searchBtn" class="bg-amber-700 hover:bg-amber-800 text-white px-8 py-3 rounded-lg transition-colors font-bold active:scale-95">
+                    class="w-full sm:flex-1 px-4 py-2 md:py-3 rounded-lg border border-amber-200 focus:ring-2 focus:ring-amber-400 focus:outline-none text-base md:text-xl tracking-widest">
+                <button id="searchBtn" class="w-full sm:w-auto bg-amber-700 hover:bg-amber-800 text-white px-8 py-2 md:py-3 rounded-lg transition-colors font-bold active:scale-95 whitespace-nowrap">
                     搜索
                 </button>
             </div>
-            <p class="text-xs md:text-sm text-gray-500">当前字帖：<span class="font-bold text-amber-900">颜真卿 · 《多宝塔碑》</span></p>
+            <p class="text-[10px] md:text-sm text-gray-500">当前字帖：<span class="font-bold text-amber-900">颜真卿 · 《多宝塔碑》</span></p>
         </div>
 
         <!-- 结果展示区域 -->
-        <div id="resultContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 items-start justify-center">
+        <div id="resultContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 items-start justify-items-center">
             <!-- 初始欢迎或加载状态 -->
             <div class="col-span-full text-center py-10 text-gray-400">
                 <p>输入汉字后，名家真迹将在此呈现</p>
@@ -157,41 +167,41 @@
     </footer>
 
     <!-- 详情弹窗 (Modal) -->
-    <div id="detailModal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-center justify-center p-2 md:p-4 overflow-y-auto">
-        <div class="bg-[#f4f1ea] max-w-4xl w-full rounded-2xl overflow-hidden shadow-2xl relative my-auto">
-            <button id="closeModal" class="absolute top-2 right-2 md:top-4 md:right-4 text-gray-500 hover:text-black text-2xl z-20 bg-white/50 rounded-full w-10 h-10 flex items-center justify-center">✕</button>
-            <div class="p-4 md:p-8 flex flex-col items-center">
-                <div class="mi-zi-ge w-full aspect-square max-w-[280px] md:max-w-[384px] bg-white mb-4 md:mb-6 flex items-center justify-center overflow-hidden relative" id="copyStage">
+    <div id="detailModal" class="fixed inset-0 bg-black/90 hidden z-50 flex items-center justify-center p-0 sm:p-4 overflow-y-auto">
+        <div class="bg-[#f4f1ea] w-full min-h-full sm:min-h-0 sm:max-w-xl sm:rounded-2xl overflow-hidden shadow-2xl relative flex flex-col">
+            <button id="closeModal" class="absolute top-2 right-2 text-gray-500 hover:text-black text-2xl z-20 bg-white/80 rounded-full w-10 h-10 flex items-center justify-center shadow-sm">✕</button>
+            <div class="p-4 md:p-8 flex flex-col items-center flex-1">
+                <div class="mi-zi-ge w-full aspect-square max-w-[300px] md:max-w-[384px] bg-white mb-4 md:mb-6 flex items-center justify-center overflow-hidden relative shadow-inner" id="copyStage">
                     <div id="modalImgContainer" class="w-full h-full flex items-center justify-center"></div>
                 </div>
-                <div class="text-center w-full">
-                    <h2 id="modalTitle" class="text-xl md:text-2xl font-bold text-gray-800 mb-1 md:mb-2"></h2>
-                    <p id="modalDesc" class="text-xs md:text-sm text-gray-600 mb-4 md:mb-6 px-4"></p>
+                <div class="text-center w-full max-w-sm">
+                    <h2 id="modalTitle" class="text-lg md:text-2xl font-bold text-gray-800 mb-1"></h2>
+                    <p id="modalDesc" class="text-[11px] md:text-sm text-gray-600 mb-4 px-2"></p>
                     
                     <!-- 电子拷贝台控制区 -->
-                    <div class="bg-white/50 p-3 md:p-4 rounded-xl border border-amber-200 mb-4 md:mb-6 w-full max-w-md mx-auto">
-                        <p class="text-xs md:text-sm font-bold text-amber-900 mb-2 md:mb-3">电子拷贝台控制</p>
-                        <div class="flex flex-col gap-3 md:gap-4">
+                    <div class="bg-white/50 p-3 rounded-xl border border-amber-200 mb-4 w-full">
+                        <p class="text-xs font-bold text-amber-900 mb-2">电子拷贝台控制</p>
+                        <div class="flex flex-col gap-3">
                             <div class="flex items-center gap-4">
-                                <span class="text-[10px] md:text-xs text-gray-500 w-10 md:w-12">透明度</span>
+                                <span class="text-[10px] text-gray-500 w-10">透明度</span>
                                 <input type="range" id="opacitySlider" min="0.1" max="1" step="0.1" value="1" class="flex-1 accent-amber-700">
                             </div>
                             <div class="flex items-center gap-4">
-                                <span class="text-[10px] md:text-xs text-gray-500 w-10 md:w-12">格线</span>
-                                <div class="flex gap-1 md:gap-2 flex-wrap">
-                                    <button onclick="setGrid('mi')" class="grid-btn px-2 md:px-3 py-1 text-[10px] md:text-xs bg-amber-700 text-white rounded active:scale-95">米字</button>
-                                    <button onclick="setGrid('tian')" class="grid-btn px-2 md:px-3 py-1 text-[10px] md:text-xs bg-white border border-amber-200 rounded active:scale-95">田字</button>
-                                    <button onclick="setGrid('none')" class="grid-btn px-2 md:px-3 py-1 text-[10px] md:text-xs bg-white border border-amber-200 rounded active:scale-95">无格</button>
+                                <span class="text-[10px] text-gray-500 w-10">格线</span>
+                                <div class="flex gap-2">
+                                    <button onclick="setGrid('mi')" class="grid-btn px-3 py-1 text-[10px] bg-amber-700 text-white rounded shadow-sm">米字</button>
+                                    <button onclick="setGrid('tian')" class="grid-btn px-3 py-1 text-[10px] bg-white border border-amber-200 rounded shadow-sm">田字</button>
+                                    <button onclick="setGrid('none')" class="grid-btn px-3 py-1 text-[10px] bg-white border border-amber-200 rounded shadow-sm">无格</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex flex-col sm:flex-row justify-center gap-3 md:gap-4">
-                        <button id="fullScreenBtn" class="px-6 md:px-8 py-2 md:py-3 border border-amber-700 text-amber-700 rounded-full hover:bg-amber-700 hover:text-white transition-all font-bold text-sm md:text-base active:scale-95">
+                    <div class="flex flex-col gap-2 mt-2 px-4">
+                        <button id="fullScreenBtn" class="w-full py-2.5 border border-amber-700 text-amber-700 rounded-full font-bold text-sm active:bg-amber-50">
                             全屏临摹
                         </button>
-                        <button class="px-6 md:px-8 py-2 md:py-3 bg-amber-700 text-white rounded-full hover:bg-amber-800 shadow-md font-bold text-sm md:text-base active:scale-95">
+                        <button class="w-full py-2.5 bg-amber-700 text-white rounded-full font-bold text-sm shadow-md active:bg-amber-800">
                             加入收藏
                         </button>
                     </div>
