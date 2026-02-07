@@ -8,263 +8,299 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         :root {
-            --primary-color: #2d5a27;
-            --secondary-color: #6a994e;
-            --accent-color: #f2e8cf;
-            --text-main: #386641;
-            --gold: #f4a261;
+            --ios-blue: #007AFF;
+            --ios-system-bg: #F2F2F7;
+            --ios-card-bg: #FFFFFF;
+            --ios-text-main: #1C1C1E;
+            --ios-text-secondary: #8E8E93;
+            --ios-accent: #E5E5EA;
+            --gold: #FFD60A;
+            --success: #34C759;
+            --warning: #FF9500;
         }
 
         body {
-            background-color: #f8f9fa;
-            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            color: var(--text-main);
+            background-color: var(--ios-system-bg);
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            color: var(--ios-text-main);
+            -webkit-font-smoothing: antialiased;
         }
 
         .reading-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 3rem 0;
-            border-bottom-left-radius: 50px;
-            border-bottom-right-radius: 50px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background: var(--ios-card-bg);
+            color: var(--ios-text-main);
+            padding: 4rem 0 3rem;
+            border-bottom: 1px solid var(--ios-accent);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
             margin-bottom: 2rem;
         }
 
+        .reading-header h1 {
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--ios-blue);
+        }
+
         .stats-card {
-            background: white;
+            background: var(--ios-card-bg);
             border-radius: 20px;
             padding: 1.5rem;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            margin-top: -50px;
-            border: 2px solid var(--accent-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            margin-top: -60px;
+            border: none;
         }
 
         .points-badge {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--gold);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--ios-blue);
+        }
+
+        .nav-pills {
+            background: var(--ios-accent);
+            padding: 4px;
+            border-radius: 12px;
+            display: inline-flex;
+            margin-bottom: 2rem;
+            border: none;
         }
 
         .nav-pills .nav-link {
-            border-radius: 50px;
-            padding: 0.8rem 1.5rem;
-            color: var(--text-main);
-            font-weight: 600;
-            margin: 0 0.5rem;
+            border-radius: 10px;
+            padding: 0.6rem 1.2rem;
+            color: var(--ios-text-main);
+            font-weight: 500;
+            margin: 0;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
         }
 
         .nav-pills .nav-link.active {
-            background-color: var(--primary-color);
-            box-shadow: 0 4px 10px rgba(45, 90, 39, 0.3);
+            background-color: var(--ios-card-bg);
+            color: var(--ios-blue);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.12);
         }
 
         .book-card {
-            background: white;
-            border-radius: 20px;
+            background: var(--ios-card-bg);
+            border-radius: 22px;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             border: none;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
             height: 100%;
         }
 
         .book-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
         }
 
         .book-cover {
-            height: 250px;
-            background-color: #e9ecef;
+            height: 220px;
+            background-color: #F8F8F8;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+            border-bottom: 1px solid rgba(0,0,0,0.02);
         }
 
         .book-cover img {
             max-width: 100%;
             max-height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .book-card:hover .book-cover img {
+            transform: scale(1.05);
         }
 
         .book-badge {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 12px;
+            left: 12px;
             background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
             padding: 4px 12px;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: bold;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--ios-blue);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
         .btn-action {
-            border-radius: 50px;
-            padding: 0.5rem 1rem;
-            font-size: 0.85rem;
+            border-radius: 12px;
+            padding: 0.6rem 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
             transition: all 0.2s;
-        }
-
-        .btn-read { background-color: #e7f5ff; color: #1971c2; border: 1px solid #a5d8ff; }
-        .btn-listen { background-color: #fff4e6; color: #d9480f; border: 1px solid #ffd8a8; }
-        .btn-training { background-color: #fff4e6; color: #d9480f; border: 1px solid #ffd8a8; }
-        .clickable-text:hover { color: #0d6efd !important; text-decoration: underline; }
-        .clickable-text:hover .bi-volume-up-fill { color: #0d6efd !important; }
-        .btn-watch { background-color: #f3f0ff; color: #6741d9; border: 1px solid #d0bfff; }
-        .btn-challenge { background-color: #ebfbee; color: #2b8a3e; border: 1px solid #b2f2bb; font-weight: bold; }
-
-        .btn-action:hover {
-            transform: scale(1.05);
-            filter: brightness(0.95);
-        }
-
-        #checkin-btn {
-            background: linear-gradient(45deg, #f4a261, #e76f51);
             border: none;
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(231, 111, 81, 0.3);
-        }
-
-        #checkin-btn:disabled {
-            background: #adb5bd;
-            box-shadow: none;
-        }
-
-        .modal-content {
-            border-radius: 25px;
-            border: none;
-        }
-
-        .modal-header {
-            background-color: var(--primary-color);
-            color: white;
-            border-top-left-radius: 25px;
-            border-top-right-radius: 25px;
-        }
-
-        /* Reading History/打卡记录小部件 */
-        .calendar-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            display: inline-block;
-            margin: 0 2px;
-            background-color: #dee2e6;
-        }
-        .calendar-dot.active {
-            background-color: var(--secondary-color);
-        }
-
-        /* 新增：阅读记录样式 */
-        .history-section {
-            background: white;
-            border-radius: 20px;
-            padding: 1.5rem;
-            margin-top: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border: 1px solid var(--accent-color);
-        }
-
-        .history-section h5:hover {
-            opacity: 0.8;
-        }
-
-        .chevron-icon {
-            transition: transform 0.3s;
-        }
-
-        [aria-expanded="false"] .chevron-icon {
-            transform: rotate(-90deg);
-        }
-
-        .history-list {
-            max-height: 300px;
-            overflow-y: auto;
-            padding-right: 10px;
-        }
-
-        .history-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0.8rem;
-            border-bottom: 1px dashed #eee;
-            transition: all 0.2s;
-        }
-
-        .history-item:last-child { border-bottom: none; }
-        
-        .history-item:hover {
-            background-color: #fcfaf2;
-        }
-
-        .history-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 1rem;
-            font-size: 1.2rem;
+            gap: 6px;
         }
 
-        .icon-checkin { background-color: #fff4e6; color: #d9480f; }
-        .icon-read { background-color: #e7f5ff; color: #1971c2; }
-        .icon-challenge { background-color: #ebfbee; color: #2b8a3e; }
-        .icon-training { background-color: #f3f0ff; color: #845ef7; }
+        .btn-read { background-color: var(--ios-blue); color: white; }
+        .btn-listen { background-color: #EBF5FF; color: var(--ios-blue); }
+        .btn-training { background-color: #F2F2F7; color: var(--ios-text-main); }
+        .btn-challenge { background-color: #E8FAEF; color: var(--success); }
 
-        .history-info { flex-grow: 1; }
-        .history-date { font-size: 0.75rem; color: #999; }
-        .history-points { font-weight: bold; color: var(--gold); }
+        .btn-action:hover {
+            opacity: 0.85;
+            transform: scale(0.98);
+        }
 
-        /* 自定义滚动条 */
-        .history-list::-webkit-scrollbar { width: 6px; }
-        .history-list::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
-        .history-list::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
-        /* 勋章墙样式 */
+        #checkin-btn {
+            background: var(--ios-blue);
+            border: none;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 14px;
+            font-weight: 600;
+            box-shadow: 0 8px 20px rgba(0, 122, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #checkin-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(0, 122, 255, 0.3);
+        }
+
+        #checkin-btn:active {
+            transform: scale(0.97);
+        }
+
+        #checkin-btn:disabled {
+            background: var(--ios-accent);
+            color: var(--ios-text-secondary);
+            box-shadow: none;
+            transform: none;
+            cursor: not-allowed;
+        }
+
         .medals-section {
-            background: linear-gradient(135deg, #fffcf0, #fff9db);
+            background: var(--ios-card-bg);
             border-radius: 20px;
-            padding: 1.2rem;
+            padding: 1.5rem;
             margin-top: 1.5rem;
-            border: 1px solid #ffec99;
-            box-shadow: 0 5px 15px rgba(255, 236, 153, 0.2);
+            border: none;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
         }
 
-        .medal-item {
-            text-align: center;
-            opacity: 0.3;
-            filter: grayscale(1);
-            transition: all 0.5s ease;
-            cursor: help;
+        .history-section {
+            background: var(--ios-card-bg);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+            border: none;
         }
 
-        .medal-item.unlocked {
-            opacity: 1;
-            filter: grayscale(0);
-            transform: scale(1.1);
+        .history-item {
+            padding: 1rem;
+            border-bottom: 1px solid var(--ios-accent);
+            border-radius: 12px;
+            margin-bottom: 4px;
         }
 
-        .medal-icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.3rem;
+        .history-item:hover {
+            background-color: var(--ios-system-bg);
+        }
+
+        .grade-title {
+            font-weight: 700;
+            color: var(--ios-text-main);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .grade-title::before {
+            content: '';
             display: block;
+            width: 4px;
+            height: 24px;
+            background: var(--ios-blue);
+            border-radius: 2px;
         }
 
-        .medal-name {
-            font-size: 0.7rem;
-            font-weight: bold;
-            color: #868e96;
+        /* 动画微调 */
+        .animate__animated {
+            animation-duration: 0.8s;
         }
 
-        .medal-item.unlocked .medal-name {
-            color: #d9480f;
+        /* Modal 美化 */
+        .modal-content {
+            border-radius: 28px;
+            border: none;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .modal-header {
+            background-color: var(--ios-card-bg);
+            color: var(--ios-text-main);
+            border-bottom: 1px solid var(--ios-accent);
+            padding: 1.5rem;
+        }
+
+        .modal-title {
+            font-weight: 700;
+            color: var(--ios-blue);
+        }
+
+        /* iOS Badge Styles */
+        .ios-badge {
+            padding: 6px 14px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .ios-badge-blue { background-color: #EBF5FF; color: var(--ios-blue); }
+        .ios-badge-green { background-color: #E8FAEF; color: var(--success); }
+        .ios-badge-orange { background-color: #FFF4E5; color: var(--warning); }
+        .ios-badge-gray { background-color: var(--ios-accent); color: var(--ios-text-secondary); }
+
+        /* iOS Button Style Override */
+        .btn-ios {
+            border-radius: 14px;
+            padding: 0.8rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+        }
+        .btn-ios-primary { background-color: var(--ios-blue); color: white; }
+        .btn-ios-secondary { background-color: var(--ios-accent); color: var(--ios-text-main); }
+
+        /* iOS Segmented Control for Tabs */
+        .nav-ios-segmented {
+            background-color: var(--ios-accent);
+            border-radius: 12px;
+            padding: 4px;
+            display: inline-flex;
+            width: auto;
+            border: none;
+        }
+
+        .nav-ios-segmented .nav-link {
+            border-radius: 8px;
+            padding: 8px 24px;
+            font-weight: 600;
+            color: var(--ios-text-secondary);
+            border: none;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-ios-segmented .nav-link.active {
+            background-color: white !important;
+            color: var(--ios-text-main) !important;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.12);
         }
     </style>
 </head>
@@ -273,7 +309,7 @@
     <!-- Header -->
     <header class="reading-header text-center">
         <div class="container">
-            <h1 class="display-4 fw-bold animate__animated animate__fadeInDown">📚 寒假绘本馆</h1>
+            <h1 class="display-4 fw-bold animate__animated animate__fadeInDown">📚 绘本馆</h1>
             <p class="lead animate__animated animate__fadeInUp animate__delay-1s">Reading makes a full man. 绘本点亮寒假，阅读成就未来。</p>
         </div>
     </header>
@@ -296,7 +332,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 text-center">
-                            <button id="checkin-btn" onclick="handleCheckIn()" class="btn btn-primary rounded-pill px-4">每日打卡 (+10 积分)</button>
+                            <button id="checkin-btn" onclick="handleCheckIn()" class="btn btn-ios btn-ios-primary px-4">每日打卡 (+10 积分)</button>
                             <p class="text-muted small mt-2 mb-0" id="checkin-status">准备好开始今天的阅读了吗？</p>
                         </div>
                     </div>
@@ -367,8 +403,8 @@
 
         <!-- 年级切换 -->
         <div class="row mt-5">
-            <div class="col-12">
-                <ul class="nav nav-pills justify-content-center mb-4" id="gradeTabs" role="tablist">
+            <div class="col-12 text-center">
+                <ul class="nav nav-pills nav-ios-segmented mb-4" id="gradeTabs" role="tablist">
                     <li class="nav-item">
                         <button class="nav-link active" id="g3-tab" data-bs-toggle="pill" data-bs-target="#grade-3" type="button">三年级</button>
                     </li>
@@ -387,7 +423,7 @@
                     <!-- 三年级绘本展示 -->
                     <div class="tab-pane fade show active" id="grade-3" role="tabpanel">
                         <div class="mb-5">
-                            <h4 class="fw-bold border-start border-4 border-primary ps-3 mb-4">上册</h4>
+                            <h4 class="grade-title">上册</h4>
                             <div class="row g-4" id="books-container-3-upper">
                                 <!-- Monster Toon -->
                                 <div class="col-md-4 col-lg-3">
@@ -400,7 +436,7 @@
                                             <h5 class="fw-bold mb-1">Monster Toon</h5>
                                             <p class="text-muted small mb-3">A day with a funny monster</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'monster_toon', 5, 5)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'monster_toon', 10, 10)">📖 开始阅读</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('monster_toon')">🧠 单词训练</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('monster_toon')">🏆 知识挑战</button>
                                             </div>
@@ -418,7 +454,7 @@
                                             <h5 class="fw-bold mb-1">Fox and Mother Hen</h5>
                                             <p class="text-muted small mb-3">A clever hen and a fox</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'fox_hen', 5, 5)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'fox_hen', 10, 29)">📖 开始阅读</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('fox_hen')">🧠 单词训练</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('fox_hen')">🏆 知识挑战</button>
                                             </div>
@@ -436,7 +472,7 @@
                                             <h5 class="fw-bold mb-1">My Noisy Schoolbag</h5>
                                             <p class="text-muted small mb-3">What's in the schoolbag?</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'schoolbag', 5, 5)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'schoolbag', 10, 75)">📖 开始阅读</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('schoolbag')">🧠 单词训练</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('schoolbag')">🏆 知识挑战</button>
                                             </div>
@@ -454,7 +490,7 @@
                                             <h5 class="fw-bold mb-1">Tiger Is Coming</h5>
                                             <p class="text-muted small mb-3">Watch out! The tiger is coming</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'tiger_coming', 5, 5)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'tiger_coming', 10, 44)">📖 开始阅读</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('tiger_coming')">🧠 单词训练</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('tiger_coming')">🏆 知识挑战</button>
                                             </div>
@@ -490,7 +526,7 @@
                                             <h5 class="fw-bold mb-1">I Can See</h5>
                                             <p class="text-muted small mb-3">Learn about body parts</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'i_can_see', 5, 5)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'i_can_see', 10, 43)">📖 开始阅读</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('i_can_see')">🧠 单词训练</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('i_can_see')">🏆 知识挑战</button>
                                             </div>
@@ -500,7 +536,7 @@
                             </div>
                         </div>
                         <div>
-                            <h4 class="fw-bold border-start border-4 border-primary ps-3 mb-4">下册</h4>
+                            <h4 class="grade-title">下册</h4>
                             <div class="row g-4" id="books-container-3-lower">
                                 <!-- Play with Me -->
                                 <div class="col-md-4 col-lg-3">
@@ -513,7 +549,7 @@
                                             <h5 class="fw-bold mb-1">Can You Play with Me?</h5>
                                             <p class="text-muted small mb-3">Can you play with me?</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'play_with_me', 5, 6)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'play_with_me', 10, 32)">📖 开始阅读</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('play_with_me')">🧠 单词训练</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('play_with_me')">🏆 知识挑战</button>
                                             </div>
@@ -531,7 +567,7 @@
                                             <h5 class="fw-bold mb-1">Caterpillar's Home</h5>
                                             <p class="text-muted small mb-3">Caterpillar's home</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'caterpillar_home', 5, 6)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'caterpillar_home', 10, 8)">📖 开始阅读</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('caterpillar_home')">🧠 单词训练</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('caterpillar_home')">🏆 知识挑战</button>
                                             </div>
@@ -567,7 +603,7 @@
                                             <h5 class="fw-bold mb-1">Snail's Adventure</h5>
                                             <p class="text-muted small mb-3">Snail's adventure</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'snail_adventure', 5, 6)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'snail_adventure', 10, 79)">📖 开始阅读</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('snail_adventure')">🧠 单词训练</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('snail_adventure')">🏆 知识挑战</button>
                                             </div>
@@ -585,7 +621,7 @@
                                             <h5 class="fw-bold mb-1">The King's Yu Player</h5>
                                             <p class="text-muted small mb-3">The king's yu player</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'king_yu_player', 5, 6)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'king_yu_player', 10, 32)">📖 开始阅读</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('king_yu_player')">🧠 单词训练</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('king_yu_player')">🏆 知识挑战</button>
                                             </div>
@@ -603,7 +639,7 @@
                                             <h5 class="fw-bold mb-1">What Did You Get?</h5>
                                             <p class="text-muted small mb-3">What did you get?</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'what_did_get', 5, 6)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'what_did_get', 10, 43)">📖 开始阅读</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('what_did_get')">🧠 单词训练</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('what_did_get')">🏆 知识挑战</button>
                                             </div>
@@ -617,7 +653,7 @@
                     <!-- 四年级绘本展示 -->
                     <div class="tab-pane fade" id="grade-4" role="tabpanel">
                         <div class="mb-5">
-                            <h4 class="fw-bold border-start border-4 border-warning ps-3 mb-4">上册</h4>
+                            <h4 class="grade-title">上册</h4>
                             <div class="row g-4" id="books-container-4-upper">
                                 <!-- Zob at School -->
                                 <div class="col-md-4 col-lg-3">
@@ -630,7 +666,7 @@
                                             <h5 class="fw-bold mb-1">Zob at School</h5>
                                             <p class="text-muted small mb-3">Zob at school</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'zob_school', 5, 16)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'zob_school', 10, 16)">📖 开始阅读</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('zob_school')">🧠 单词训练</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('zob_school')">🏆 知识挑战</button>
                                             </div>
@@ -648,7 +684,7 @@
                                             <h5 class="fw-bold mb-1">Mimi the Superhero</h5>
                                             <p class="text-muted small mb-3">Mimi the superhero</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'mimi_superhero', 5, 16)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'mimi_superhero', 10, 16)">📖 开始阅读</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('mimi_superhero')">🧠 单词训练</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('mimi_superhero')">🏆 知识挑战</button>
                                             </div>
@@ -666,7 +702,7 @@
                                             <h5 class="fw-bold mb-1">Tortoise and His Friends</h5>
                                             <p class="text-muted small mb-3">Tortoise and his friends</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'tortoise_friends', 5, 16)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'tortoise_friends', 10, 16)">📖 开始阅读</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('tortoise_friends')">🧠 单词训练</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('tortoise_friends')">🏆 知识挑战</button>
                                             </div>
@@ -684,7 +720,7 @@
                                             <h5 class="fw-bold mb-1">A Quiet House</h5>
                                             <p class="text-muted small mb-3">A quiet house</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'quiet_house', 5, 16)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'quiet_house', 10, 16)">📖 开始阅读</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('quiet_house')">🧠 单词训练</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('quiet_house')">🏆 知识挑战</button>
                                             </div>
@@ -702,7 +738,7 @@
                                             <h5 class="fw-bold mb-1">Dinner for a Dragon</h5>
                                             <p class="text-muted small mb-3">Dinner for a dragon</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'dinner_dragon', 5, 16)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'dinner_dragon', 10, 16)">📖 开始阅读</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('dinner_dragon')">🧠 单词训练</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('dinner_dragon')">🏆 知识挑战</button>
                                             </div>
@@ -720,7 +756,7 @@
                                             <h5 class="fw-bold mb-1">Puppy in a Box</h5>
                                             <p class="text-muted small mb-3">Puppy in a box</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'puppy_box', 5, 16)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'puppy_box', 10, 16)">📖 开始阅读</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('puppy_box')">🧠 单词训练</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('puppy_box')">🏆 知识挑战</button>
                                             </div>
@@ -730,7 +766,7 @@
                             </div>
                         </div>
                         <div>
-                            <h4 class="fw-bold border-start border-4 border-warning ps-3 mb-4">下册</h4>
+                            <h4 class="grade-title">下册</h4>
                             <div class="row g-4" id="books-container-4-lower">
                                 <!-- Are You Lost, Zob -->
                                 <div class="col-md-4 col-lg-3">
@@ -743,7 +779,7 @@
                                             <h5 class="fw-bold mb-1">Are You Lost, Zob</h5>
                                             <p class="text-muted small mb-3">Are you lost, Zob?</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'lost_zob', 5, 16)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'lost_zob', 10, 16)">📖 开始阅读</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('lost_zob')">🧠 单词训练</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('lost_zob')">🏆 知识挑战</button>
                                             </div>
@@ -761,7 +797,7 @@
                                             <h5 class="fw-bold mb-1">The Angry Dragon</h5>
                                             <p class="text-muted small mb-3">The angry dragon</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'angry_dragon', 5, 16)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'angry_dragon', 10, 16)">📖 开始阅读</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('angry_dragon')">🧠 单词训练</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('angry_dragon')">🏆 知识挑战</button>
                                             </div>
@@ -779,7 +815,7 @@
                                             <h5 class="fw-bold mb-1">Eek, Spider</h5>
                                             <p class="text-muted small mb-3">Eek, spider!</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'eek_spider', 5, 16)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'eek_spider', 10, 16)">📖 开始阅读</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('eek_spider')">🧠 单词训练</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('eek_spider')">🏆 知识挑战</button>
                                             </div>
@@ -797,7 +833,7 @@
                                             <h5 class="fw-bold mb-1">The Village Show</h5>
                                             <p class="text-muted small mb-3">The village show</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'village_show', 5, 16)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'village_show', 10, 16)">📖 开始阅读</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('village_show')">🧠 单词训练</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('village_show')">🏆 知识挑战</button>
                                             </div>
@@ -815,7 +851,7 @@
                                             <h5 class="fw-bold mb-1">World Book Day</h5>
                                             <p class="text-muted small mb-3">World Book Day</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'world_book_day', 5, 16)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'world_book_day', 10, 16)">📖 开始阅读</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('world_book_day')">🧠 单词训练</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('world_book_day')">🏆 知识挑战</button>
                                             </div>
@@ -833,7 +869,7 @@
                                             <h5 class="fw-bold mb-1">Sara's Medicine</h5>
                                             <p class="text-muted small mb-3">Sara's medicine</p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'sara_medicine', 5, 16)">📖 开始阅读</button>
+                                                <button class="btn btn-action btn-read" onclick="openResource('images', 'sara_medicine', 10, 16)">📖 开始阅读</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('sara_medicine')">🧠 单词训练</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('sara_medicine')">🏆 知识挑战</button>
                                             </div>
@@ -846,7 +882,7 @@
                     <!-- 五年级绘本展示 -->
                     <div class="tab-pane fade" id="grade-5" role="tabpanel">
                         <div class="mb-5">
-                            <h4 class="fw-bold border-start border-4 border-info ps-3 mb-4">上册</h4>
+                            <h4 class="grade-title">上册</h4>
                             <div class="row g-4" id="books-container-5-upper">
                                 <!-- Book 1: The New Teacher -->
                                 <div class="col-md-4 col-lg-3">
@@ -961,7 +997,7 @@
 
                         <!-- 五年级下册 -->
                         <div>
-                            <h4 class="fw-bold border-start border-4 border-info ps-3 mb-4">下册</h4>
+                            <h4 class="grade-title">下册</h4>
                             <div class="row g-4" id="books-container-5-lower">
                                 <!-- Book 1 -->
                                 <div class="col-md-4 col-lg-3">
@@ -1079,7 +1115,7 @@
                     <div class="tab-pane fade" id="grade-6" role="tabpanel">
                         <!-- 六年级上册 -->
                         <div class="mb-5">
-                            <h4 class="fw-bold border-start border-4 border-success ps-3 mb-4">上册</h4>
+                            <h4 class="grade-title">上册</h4>
                             <div class="row g-4" id="books-container-6-upper">
                                 <!-- Book 1: The Box of Books -->
                                 <div class="col-md-4 col-lg-3">
@@ -1193,7 +1229,7 @@
                         </div>
                         <!-- 六年级下册 -->
                         <div>
-                            <h4 class="fw-bold border-start border-4 border-success ps-3 mb-4">下册</h4>
+                            <h4 class="grade-title">下册</h4>
                             <div class="row g-4" id="books-container-6-lower">
                                 <!-- Book 1: The New King -->
                                 <div class="col-md-4 col-lg-3">
@@ -1322,9 +1358,9 @@
     <div class="modal fade" id="trainingModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0 shadow-lg">
-                <div class="modal-header bg-info text-white">
-                    <h5 class="modal-title fw-bold">Training</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold">单词训练</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4" id="trainingBody">
                     <!-- 动态内容 -->
@@ -1337,9 +1373,9 @@
     <div class="modal fade" id="challengeModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header bg-success">
-                    <h5 class="modal-title text-white">Challenge</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header">
+                    <h5 class="modal-title">绘本挑战</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4" id="challengeBody">
                     <!-- 动态加载题目 -->
@@ -1351,16 +1387,16 @@
     <!-- 资源播放模态框 -->
     <div class="modal fade" id="resourceModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
+            <div class="modal-content border-0 shadow-lg rounded-4">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="resourceTitle">Reading</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="resourceTitle">开始阅读</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body text-center" id="resourceBody">
+                <div class="modal-body text-center p-4" id="resourceBody">
                     <!-- 动态加载内容 -->
                 </div>
-                <div class="modal-footer justify-content-center">
-                    <div class="text-success fw-bold" id="reward-info"></div>
+                <div class="modal-footer justify-content-center border-0 pb-4">
+                    <div id="reward-info"></div>
                 </div>
             </div>
         </div>
@@ -1592,8 +1628,10 @@
                     const imgSrc = `assets/reading/images/${config.path}${pageNum}${config.ext}`;
                     html += `
                         <div class="carousel-item ${i === 0 ? 'active' : ''}">
-                            <img src="${imgSrc}" class="d-block w-100 rounded" style="max-height: 60vh; object-fit: contain;" alt="Page ${i}">
-                            <div class="mt-2 text-muted small">第 ${i + 1} 页 / 共 ${totalPages + 1} 页</div>
+                            <img src="${imgSrc}" class="d-block w-100 rounded-3 shadow-sm" style="max-height: 60vh; object-fit: contain;" alt="Page ${i}">
+                            <div class="mt-3">
+                                <span class="ios-badge ios-badge-blue">第 ${i + 1} 页 / 共 ${totalPages + 1} 页</span>
+                            </div>
                         </div>`;
                 }
                 
@@ -1618,14 +1656,14 @@
                         audioSrc = `assets/reading/images/${folderPath}story.mp3`;
                     }
                     html += `
-                    <div class="mt-4 p-3 bg-light rounded-pill shadow-sm mx-auto" style="max-width: 500px;">
-                        <div class="d-flex align-items-center justify-content-center gap-3">
-                            <span class="small fw-bold text-success">🎧 伴读音频:</span>
-                            <audio controls class="flex-grow-1" style="height: 30px;">
+                    <div class="mt-4 p-3 bg-white border border-light rounded-4 shadow-sm mx-auto" style="max-width: 500px;">
+                        <div class="d-flex align-items-center justify-content-center gap-3 mb-2">
+                            <span class="ios-badge ios-badge-blue">🎧 伴读音频</span>
+                            <audio controls class="flex-grow-1" style="height: 36px;">
                                 <source src="${audioSrc}" type="audio/mpeg">
                             </audio>
                         </div>
-                        <div class="small text-muted mt-1">点击播放，开启绘本之旅</div>
+                        <div class="small text-muted">点击播放，开启绘本之旅</div>
                     </div>`;
                 }
 
@@ -1633,12 +1671,12 @@
             } else if (type === 'pdf') {
                 resourceTitle = `PDF: ${filename}`;
                 title.innerText = `📖 阅读 PDF: ${resourceTitle}`;
-                body.innerHTML = `<div class="p-5 bg-light rounded"><h4>PDF 阅读器</h4><p class="text-muted">正在加载: assets/reading/pdf/${filename}</p></div>`;
+                body.innerHTML = `<div class="p-5 bg-light rounded-4"><h4>PDF 阅读器</h4><p class="text-muted">正在加载: assets/reading/pdf/${filename}</p></div>`;
             } else if (type === 'video') {
                 resourceTitle = `视频: ${filename}`;
                 title.innerText = `🎬 正在播放：${resourceTitle}`;
                 body.innerHTML = `
-                    <div class="ratio ratio-16x9">
+                    <div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow-sm">
                         <video controls>
                             <source src="assets/reading/video/${filename}" type="video/mp4">
                             您的浏览器不支持视频播放。
@@ -1646,7 +1684,10 @@
                     </div>`;
             }
 
-            rewardInfo.innerText = `🎁 读完绘本可获得 ${reward} 积分！`;
+            rewardInfo.innerHTML = `
+                <div class="ios-badge ios-badge-orange px-4 py-2">
+                    🎁 读完绘本可获得 ${reward} 积分！
+                </div>`;
             modal.show();
             
             // 模拟获得积分和记录历史
@@ -1667,7 +1708,10 @@
                 
                 saveStats();
                 updateUI();
-                rewardInfo.innerText = `✅ 恭喜！你获得了 ${reward} 积分！`;
+                rewardInfo.innerHTML = `
+                    <div class="ios-badge ios-badge-green px-4 py-2 animate__animated animate__bounceIn">
+                        ✅ 恭喜！你获得了 ${reward} 积分！
+                    </div>`;
             }, 3000);
         }
 
@@ -2563,14 +2607,14 @@
                 const word = currentTraining.words[trainingIndex];
                 html = `
                     <div class="text-center py-4 animate__animated animate__fadeIn">
-                        <div class="badge bg-info mb-3">第一步：词汇学习</div>
+                        <div class="ios-badge ios-badge-blue mb-3">第一步：词汇学习</div>
                         <div class="mb-2 text-muted small">${trainingIndex + 1} / ${currentTraining.words.length}</div>
                         <h1 class="display-3 fw-bold text-primary mb-2 clickable-text" onclick="speak('${word.en.replace(/'/g, "\\'")}')" style="cursor: pointer;" title="点击发音">
                             ${word.en} <i class="bi bi-volume-up-fill fs-4 text-muted"></i>
                         </h1>
                         <h4 class="text-muted mb-4">${word.zh}</h4>
                         
-                        <div class="mt-4 p-3 bg-light rounded border-start border-primary border-4 text-start mx-auto" style="max-width: 400px;">
+                        <div class="mt-4 p-3 bg-light rounded-4 border-start border-primary border-4 text-start mx-auto" style="max-width: 400px;">
                             <div class="small text-primary fw-bold mb-1"><i class="bi bi-pencil-fill me-1"></i>例句:</div>
                             <p class="mb-0 fs-5 clickable-text" onclick="speak('${word.example.replace(/'/g, "\\'")}')" style="cursor: pointer;">
                                 ${word.example} <i class="bi bi-volume-up-fill fs-6 text-muted"></i>
@@ -2578,7 +2622,7 @@
                         </div>
 
                         <div class="d-grid mt-4">
-                            <button class="btn btn-primary py-3 rounded-pill shadow fw-bold" onclick="nextTraining()">
+                            <button class="btn btn-ios btn-ios-primary shadow-sm" onclick="nextTraining()">
                                 ${trainingIndex < currentTraining.words.length - 1 ? '下一个' : '开始自测'}
                             </button>
                         </div>
@@ -2593,7 +2637,7 @@
 
                 html = `
                     <div class="text-center py-4 animate__animated animate__fadeIn">
-                        <div class="badge bg-warning text-dark mb-3">第二步：词汇自测</div>
+                        <div class="ios-badge ios-badge-orange mb-3">第二步：词汇自测</div>
                         <div class="mb-4 px-3">
                             <h5 class="text-muted small mb-2">请选择正确单词：</h5>
                             <h3 class="fw-bold text-primary lh-base">" ${word.zh} "</h3>
@@ -2605,7 +2649,7 @@
                         </div>
                         <div class="d-grid gap-3">
                             ${shuffledOptions.map(opt => `
-                                <button class="btn btn-outline-primary py-3 rounded-pill border-2 fw-bold" onclick="checkWordQuiz('${opt.en}', '${word.en}')">
+                                <button class="btn btn-outline-primary btn-ios border-2" onclick="checkWordQuiz('${opt.en}', '${word.en}')">
                                     ${opt.en}
                                 </button>
                             `).join('')}
@@ -2617,14 +2661,14 @@
                 const sent = currentTraining.sentences[trainingIndex];
                 html = `
                     <div class="text-center py-4 animate__animated animate__fadeIn">
-                        <div class="badge bg-success mb-3">第三步：句子学习</div>
+                        <div class="ios-badge ios-badge-green mb-3">第三步：句子学习</div>
                         <div class="mb-2 text-muted small">${trainingIndex + 1} / ${currentTraining.sentences.length}</div>
                         <h3 class="fw-bold text-primary mb-2 lh-base px-3 clickable-text" onclick="speak('${sent.en.replace(/'/g, "\\'")}')" style="cursor: pointer;" title="点击发音">
                             ${sent.en} <i class="bi bi-volume-up-fill fs-5 text-muted"></i>
                         </h3>
                         <h5 class="text-muted mb-4">${sent.zh}</h5>
                         <div class="d-grid mt-4">
-                            <button class="btn btn-primary py-3 rounded-pill shadow fw-bold" onclick="nextTraining()">
+                            <button class="btn btn-ios btn-ios-primary shadow-sm" onclick="nextTraining()">
                                 ${trainingIndex < currentTraining.sentences.length - 1 ? '下一个' : '开始句子挑战'}
                             </button>
                         </div>
@@ -2636,20 +2680,20 @@
                 const words = shuffle(sent.en.replace(/[.?!]/g, '').split(' '));
                 html = `
                     <div class="text-center py-4 animate__animated animate__fadeIn">
-                        <div class="badge bg-danger mb-3">第四步：句子挑战</div>
+                        <div class="ios-badge ios-badge-blue mb-3">第四步：句子挑战</div>
                         <h5 class="text-muted mb-3">${sent.zh}</h5>
-                        <div id="sentenceDisplay" class="p-3 bg-white rounded border-primary border-2 mb-4 min-vh-10 d-flex flex-wrap justify-content-center align-items-center gap-2 shadow-sm" style="min-height: 80px"></div>
+                        <div id="sentenceDisplay" class="p-3 bg-white rounded-4 border-primary border-2 mb-4 min-vh-10 d-flex flex-wrap justify-content-center align-items-center gap-2 shadow-sm" style="min-height: 80px"></div>
                         <div class="d-flex flex-wrap justify-content-center gap-2" id="wordBank">
                             ${words.map(w => `
-                                <button class="btn btn-outline-secondary rounded-pill px-3 shadow-sm" onclick="addToSentence(this)">${w}</button>
+                                <button class="btn btn-outline-secondary btn-ios py-2 px-3 shadow-sm" onclick="addToSentence(this)">${w}</button>
                             `).join('')}
                         </div>
                         <div class="row g-2 mt-4">
                             <div class="col-6">
-                                <button class="btn btn-light w-100 rounded-pill border fw-bold" onclick="clearSentence()">重置</button>
+                                <button class="btn btn-ios btn-ios-secondary w-100" onclick="clearSentence()">重置</button>
                             </div>
                             <div class="col-6">
-                                <button class="btn btn-primary w-100 rounded-pill shadow fw-bold" onclick="checkSentenceQuiz('${sent.en.replace(/'/g, "\\'")}')">检查</button>
+                                <button class="btn btn-ios btn-ios-primary w-100 shadow-sm" onclick="checkSentenceQuiz('${sent.en.replace(/'/g, "\\'")}')">检查</button>
                             </div>
                         </div>
                     </div>
@@ -2747,10 +2791,13 @@
             body.innerHTML = `
                 <div class="text-center py-4 animate__animated animate__zoomIn">
                     <div class="display-1 mb-3">🎓</div>
-                    <h3 class="fw-bold">Training Completed!</h3>
-                    <p class="text-muted small">You've mastered the core words and sentences!</p>
-                    <div class="h2 text-danger fw-bold mb-4">+${points} Points</div>
-                    <button class="btn btn-success w-100 py-3 rounded-pill shadow fw-bold" onclick="finishTraining()">Back to Home</button>
+                    <h3 class="fw-bold">训练完成！</h3>
+                    <p class="text-muted mb-4">你已经掌握了核心词汇和句子！</p>
+                    <div class="p-4 bg-primary bg-opacity-10 rounded-4 border border-primary border-opacity-20 mb-4 mx-auto" style="max-width: 260px;">
+                        <div class="text-primary small mb-1 fw-bold">获得奖励</div>
+                        <div class="h2 fw-bold text-primary mb-0">+${points} 积分</div>
+                    </div>
+                    <button class="btn btn-ios btn-ios-primary w-100 shadow-sm" onclick="finishTraining()">太棒了，返回首页</button>
                 </div>
             `;
         }
@@ -3220,10 +3267,10 @@
             let html = `
                 <div class="mb-4">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="badge bg-primary">第 ${currentQuestionIndex + 1} / ${currentQuiz.questions.length} 题</span>
-                        <span class="badge ${qData.type === 'choice' ? 'bg-info' : 'bg-warning'} text-dark">${qData.type === 'choice' ? '选择题' : '判断题'}</span>
+                        <span class="ios-badge ios-badge-blue">第 ${currentQuestionIndex + 1} / ${currentQuiz.questions.length} 题</span>
+                        <span class="ios-badge ${qData.type === 'choice' ? 'ios-badge-blue' : 'ios-badge-orange'}">${qData.type === 'choice' ? '选择题' : '判断题'}</span>
                     </div>
-                    <h5 class="fw-bold lh-base">${qData.q}</h5>
+                    <h5 class="fw-bold lh-base text-dark">${qData.q}</h5>
                 </div>
                 <div class="d-grid gap-3">
             `;
@@ -3231,8 +3278,8 @@
             if (qData.type === 'choice') {
                 qData.a.forEach((option, index) => {
                     html += `
-                        <button class="btn btn-outline-success text-start p-3 shadow-sm border-2" onclick="checkAnswer(${index})">
-                            <span class="fw-bold me-2">${String.fromCharCode(65 + index)}.</span> ${option}
+                        <button class="btn btn-outline-primary btn-ios text-start p-3 border-2" onclick="checkAnswer(${index})">
+                            <span class="fw-bold me-2 text-primary">${String.fromCharCode(65 + index)}.</span> ${option}
                         </button>
                     `;
                 });
@@ -3240,14 +3287,14 @@
                 html += `
                     <div class="row g-3">
                         <div class="col-6">
-                            <button class="btn btn-outline-success w-100 p-4 shadow-sm border-2 fw-bold" onclick="checkAnswer(0)">
-                                <div class="h2 mb-0">✔</div>
+                            <button class="btn btn-outline-success btn-ios w-100 p-4 border-2 fw-bold" onclick="checkAnswer(0)">
+                                <div class="h2 mb-1">✔</div>
                                 <div>正确</div>
                             </button>
                         </div>
                         <div class="col-6">
-                            <button class="btn btn-outline-danger w-100 p-4 shadow-sm border-2 fw-bold" onclick="checkAnswer(1)">
-                                <div class="h2 mb-0">✘</div>
+                            <button class="btn btn-outline-danger btn-ios w-100 p-4 border-2 fw-bold" onclick="checkAnswer(1)">
+                                <div class="h2 mb-1">✘</div>
                                 <div>错误</div>
                             </button>
                         </div>
@@ -3269,17 +3316,18 @@
             // 显示反馈
             const feedbackTitle = isCorrect ? '太棒了！🎉' : '加油！💪';
             const feedbackClass = isCorrect ? 'text-success' : 'text-danger';
+            const feedbackBadge = isCorrect ? 'ios-badge-green' : 'ios-badge-orange';
             const correctAnswer = qData.type === 'choice' ? qData.a[qData.correct] : (qData.correct === 0 ? '正确' : '错误');
 
             container.innerHTML = `
                 <div class="text-center py-4 animate__animated animate__pulse">
                     <div class="display-1 mb-3">${isCorrect ? '🌟' : '💡'}</div>
-                    <h4 class="${feedbackClass} fw-bold">${feedbackTitle}</h4>
-                    <div class="mt-3 p-3 bg-light rounded border">
+                    <h4 class="${feedbackClass} fw-bold mb-3">${feedbackTitle}</h4>
+                    <div class="mt-3 p-3 bg-light rounded-4 border border-light shadow-sm mx-auto" style="max-width: 300px;">
                         <p class="mb-1 text-muted small">正确答案：</p>
-                        <p class="fw-bold mb-0 text-dark">${correctAnswer}</p>
+                        <p class="fw-bold mb-0 text-dark fs-5">${correctAnswer}</p>
                     </div>
-                    <button class="btn btn-primary mt-4 px-5 py-2 rounded-pill shadow" onclick="nextStep()">
+                    <button class="btn btn-ios btn-ios-primary mt-4 px-5 shadow-sm" onclick="nextStep()">
                         ${currentQuestionIndex < currentQuiz.questions.length - 1 ? '下一题' : '查看结果'}
                     </button>
                 </div>
