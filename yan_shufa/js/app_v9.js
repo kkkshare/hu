@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalDesc = document.getElementById('modalDesc');
 
     // 颜体字库数据 (多宝塔碑真迹原帖 - 高清源)
-    // 使用相对路径，确保在任何环境下都能正确加载
     const duobaotaDb = {
         '興': { img: 'assets/shufa_v9/xing.jpg', desc: '真迹：出自《多宝塔碑》“千福寺兴工”。结体开阔，上方错落有致，下方支撑有力。' },
         '旺': { img: 'assets/shufa_v9/wang.jpg', desc: '真迹：出自颜真卿《勤礼碑》。日字旁挺拔，整体端庄稳重，尽显颜体丰腴之美。' },
@@ -63,30 +62,32 @@ document.addEventListener('DOMContentLoaded', () => {
             const gridBox = document.createElement('div');
             gridBox.className = 'mi-zi-ge w-full aspect-square max-w-[130px] md:max-w-[160px] bg-white flex items-center justify-center overflow-hidden transition-transform group-hover:scale-105 shadow-md relative';
             
+            // 兜底字体永远存在，只是可能被图片遮挡
             const fontChar = document.createElement('div');
-            fontChar.className = 'calligraphy-font';
+            fontChar.className = 'calligraphy-font absolute inset-0 flex items-center justify-center';
             fontChar.innerText = searchChar;
             gridBox.appendChild(fontChar);
 
             const tag = document.createElement('span');
-            tag.className = 'source-tag ' + (data ? 'tag-authentic' : 'tag-simulated');
+            tag.className = 'source-tag z-20 ' + (data ? 'tag-authentic' : 'tag-simulated');
             tag.innerText = data ? '真迹' : '模拟';
             gridBox.appendChild(tag);
 
             if (data && data.img) {
                 const img = document.createElement('img');
-                // 添加时间戳防止缓存
                 img.src = data.img + '?t=' + new Date().getTime();
-                img.className = 'char-img w-full h-full object-contain absolute inset-0 opacity-0 transition-opacity duration-300';
+                img.className = 'char-img w-full h-full object-contain absolute inset-0 z-10 opacity-0 transition-opacity duration-300';
                 
                 img.onload = () => {
                     img.classList.remove('opacity-0');
-                    fontChar.style.display = 'none';
+                    // 图片加载成功后，让兜底文字变淡（不消失，防止抖动）
+                    fontChar.style.opacity = '0.1';
                 };
                 
                 img.onerror = () => {
                     console.error('加载失败:', data.img);
-                    fontChar.style.color = '#ccc'; // 加载失败时文字变淡
+                    fontChar.style.opacity = '1';
+                    fontChar.style.color = '#991b1b'; // 红色表示真迹加载失败
                 };
                 
                 gridBox.appendChild(img);
@@ -113,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gridBox.className = 'mi-zi-ge w-full h-full bg-white flex items-center justify-center relative';
         
         const fontChar = document.createElement('div');
-        fontChar.className = 'calligraphy-font text-8xl';
+        fontChar.className = 'calligraphy-font text-8xl absolute inset-0 flex items-center justify-center';
         fontChar.innerText = char;
         gridBox.appendChild(fontChar);
 
@@ -124,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
             img.style.opacity = document.getElementById('opacitySlider').value;
             
             img.onload = () => {
-                fontChar.style.display = 'none';
+                fontChar.style.opacity = '0.1';
             };
             gridBox.appendChild(img);
         }
