@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>丸子的调试实验室 - 字体图片检测</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f0f0f0; }
+        .test-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+        .test-item { background: white; padding: 10px; border-radius: 8px; text-align: center; border: 1px solid #ccc; }
+        .status { font-weight: bold; margin-top: 5px; }
+        .success { color: green; }
+        .fail { color: red; }
+        img { max-width: 100px; height: auto; border: 1px solid #eee; display: block; margin: 0 auto; }
+        .build-info { background: #333; color: #fff; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="build-info">
+        <h3>诊断报告 (Diagnostic Report)</h3>
+        <p>Build ID: 20260210_v8_DEBUG</p>
+        <p>当前路径: <span id="currentPath"></span></p>
+    </div>
+
+    <div class="test-grid" id="testGrid"></div>
+
+    <script>
+        document.getElementById('currentPath').innerText = window.location.href;
+        
+        const chars = [
+            { name: '兴 (xing.jpg)', path: './assets/shufa_v9/xing.jpg' },
+            { name: '旺 (wang.jpg)', path: './assets/shufa_v9/wang.jpg' },
+            { name: '发 (fa.jpg)', path: './assets/shufa_v9/fa.jpg' },
+            { name: '达 (da.jpg)', path: './assets/shufa_v9/da.jpg' },
+            { name: '多 (duo.jpg)', path: './assets/shufa_v9/duo.jpg' },
+            { name: '宝 (bao.jpg)', path: './assets/shufa_v9/bao.jpg' },
+            { name: '塔 (ta.jpg)', path: './assets/shufa_v9/ta.jpg' },
+            { name: '碑 (bei.jpg)', path: './assets/shufa_v9/bei.jpg' }
+        ];
+
+        const grid = document.getElementById('testGrid');
+        
+        chars.forEach(char => {
+            const div = document.createElement('div');
+            div.className = 'test-item';
+            div.innerHTML = `<div>${char.name}</div>`;
+            
+            const img = new Image();
+            img.onload = () => {
+                div.innerHTML += `<img src="${char.path}?t=${Date.now()}">`;
+                div.innerHTML += `<div class="status success">✅ 加载成功</div>`;
+            };
+            img.onerror = () => {
+                div.innerHTML += `<div style="height:100px; background:#ffebeb; display:flex; align-items:center; justify-content:center;">404</div>`;
+                div.innerHTML += `<div class="status fail">❌ 无法找到 (404)</div>`;
+                div.innerHTML += `<div style="font-size:10px; color:gray; word-break:break-all;">${char.path}</div>`;
+            };
+            img.src = char.path;
+            grid.appendChild(div);
+        });
+    </script>
+</body>
+</html>
