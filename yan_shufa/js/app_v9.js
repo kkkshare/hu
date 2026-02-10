@@ -4,103 +4,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultContainer = document.getElementById('resultContainer');
     const detailModal = document.getElementById('detailModal');
     const closeModal = document.getElementById('closeModal');
-    const modalImg = document.getElementById('modalImg');
+    const modalImgContainer = document.getElementById('modalImgContainer');
     const modalTitle = document.getElementById('modalTitle');
     const modalDesc = document.getElementById('modalDesc');
 
     // 颜体字库数据 (多宝塔碑真迹原帖 - 高清源)
+    // 使用相对路径，确保在任何环境下都能正确加载
     const duobaotaDb = {
-        '興': { 
-            img: '//hu.witplay.com/yan_shufa/assets/shufa_v9/xing.jpg?v=v9.1', 
-            desc: '真迹：出自《多宝塔碑》“千福寺兴工”。结体开阔，上方错落有致，下方支撑有力。' 
-        },
-        '旺': { 
-            img: '//hu.witplay.com/yan_shufa/assets/shufa_v9/wang.jpg?v=v9.1', 
-            desc: '真迹：出自颜真卿《勤礼碑》。日字旁挺拔，整体端庄稳重，尽显颜体丰腴之美。' 
-        },
-        '發': { 
-            img: '//hu.witplay.com/yan_shufa/assets/shufa_v9/fa.jpg?v=v9.1', 
-            desc: '真迹：出自《多宝塔碑》“发明资乎十力”。撇画舒展，内部穿插有序，笔力雄健。' 
-        },
-        '達': { 
-            img: '//hu.witplay.com/yan_shufa/assets/shufa_v9/da.jpg?v=v9.1', 
-            desc: '真迹：出自《多宝塔碑》“通达”。走之底有力，内部结构紧凑，重心极稳。' 
-        },
-        '永': { 
-            img: '//hu.witplay.com/yan_shufa/assets/shufa_v9/yong.jpg?v=v9.1', 
-            desc: '起笔圆润，侧锋转折有力，是练习颜体的入门经典。' 
-        },
-        '和': { 
-            img: '//hu.witplay.com/yan_shufa/assets/shufa_v9/he.jpg?v=v9.1', 
-            desc: '结构左右平衡，线条粗细变化丰富，体现了颜体的宽博。' 
-        },
-        '九': { 
-            img: '//hu.witplay.com/yan_shufa/assets/shufa_v9/jiu.jpg?v=v9.1', 
-            desc: '极简之字，却最显功力。撇画有力，横折钩饱满。' 
-        },
-        '年': { 
-            img: '//hu.witplay.com/yan_shufa/assets/shufa_v9/nian.jpg?v=v9.1', 
-            desc: '中轴线挺拔，横画平稳，展现了颜体书法的厚重感。' 
-        },
-        '多': { 
-            img: '//hu.witplay.com/yan_shufa/assets/shufa_v9/duo.jpg?v=v9.1', 
-            desc: '两夕相叠，错位而生动，重心极其稳固。' 
-        },
-        '寶': { 
-            img: '//hu.witplay.com/yan_shufa/assets/shufa_v9/bao.jpg?v=v9.1', 
-            desc: '宝盖头宽阔，内部结构充实，体现了“颜筋”的质感。' 
-        },
-        '塔': { 
-            img: '//hu.witplay.com/yan_shufa/assets/shufa_v9/ta.jpg?v=v9.1', 
-            desc: '土字旁稳健，右侧结构复杂但安排合理，密而不乱。' 
-        },
-        '碑': { 
-            img: '//hu.witplay.com/yan_shufa/assets/shufa_v9/bei.jpg?v=v9.1', 
-            desc: '石字旁坚实，右侧笔画舒展，气势开阔。' 
-        },
-        '大': {
-            img: '//hu.witplay.com/yan_shufa/assets/shufa_v9/da_large.jpg?v=v9.1',
-            desc: '横画平铺，撇捺舒展，尽显大唐气象。'
-        },
-        '唐': {
-            img: '//hu.witplay.com/yan_shufa/assets/shufa_v9/tang.jpg?v=v9.1',
-            desc: '结构宏大，笔力千钧，是多宝塔碑的典型风格。'
-        },
-        '西': {
-            img: '//hu.witplay.com/yan_shufa/assets/shufa_v9/xi.jpg?v=v9.1',
-            desc: '方正厚重，内部空间安排巧妙，稳定而有灵动感。'
-        },
-        '京': {
-            img: '//hu.witplay.com/yan_shufa/assets/shufa_v9/jing.jpg?v=v9.1',
-            desc: '上方点画有力，下方支撑稳固，结构严谨。'
-        },
-        '龍': {
-            img: '//hu.witplay.com/yan_shufa/assets/shufa_v9/long.jpg?v=v9.1',
-            desc: '笔画繁复 but 交代清晰，龙字气势磅礴。'
-        },
-        '寺': {
-            img: '//hu.witplay.com/yan_shufa/assets/shufa_v9/si.jpg?v=v9.1',
-            desc: '横平竖直中见变化，体现了颜楷的规矩与方圆。'
-        },
-        '僧': {
-            img: '//hu.witplay.com/yan_shufa/assets/shufa_v9/seng.jpg?v=v9.1',
-            desc: '人字旁挺拔，右侧结构紧凑，整体神采飞扬。' 
-        },
-        '一': {
-            img: '//hu.witplay.com/yan_shufa/assets/shufa_v9/yi.jpg?v=v9.1',
-            desc: '蚕头燕尾，一笔见真章，颜体横画的极致表现。'
-        },
-        '心': {
-            img: '//hu.witplay.com/yan_shufa/assets/shufa_v9/xin.jpg?v=v9.1',
-            desc: '卧钩圆润有力，点画分布自然，灵动非凡。'
-        },
-        '國': {
-            img: '//hu.witplay.com/yan_shufa/assets/shufa_v9/guo.jpg?v=v9.1',
-            desc: '外框厚重，内部结构充实，展现了颜体的宽博大度。'
-        }
+        '興': { img: 'assets/shufa_v9/xing.jpg', desc: '真迹：出自《多宝塔碑》“千福寺兴工”。结体开阔，上方错落有致，下方支撑有力。' },
+        '旺': { img: 'assets/shufa_v9/wang.jpg', desc: '真迹：出自颜真卿《勤礼碑》。日字旁挺拔，整体端庄稳重，尽显颜体丰腴之美。' },
+        '發': { img: 'assets/shufa_v9/fa.jpg', desc: '真迹：出自《多宝塔碑》“发明资乎十力”。撇画舒展，内部穿插有序，笔力雄健。' },
+        '達': { img: 'assets/shufa_v9/da.jpg', desc: '真迹：出自《多宝塔碑》“通达”。走之底有力，内部结构紧凑，重心极稳。' },
+        '永': { img: 'assets/shufa_v9/yong.jpg', desc: '起笔圆润，侧锋转折有力，是练习颜体的入门经典。' },
+        '和': { img: 'assets/shufa_v9/he.jpg', desc: '结构左右平衡，线条粗细变化丰富，体现了颜体的宽博。' },
+        '九': { img: 'assets/shufa_v9/jiu.jpg', desc: '极简之字，却最显功力。撇画有力，横折钩饱满。' },
+        '年': { img: 'assets/shufa_v9/nian.jpg', desc: '中轴线挺拔，横画平稳，展现了颜体书法的厚重感。' },
+        '多': { img: 'assets/shufa_v9/duo.jpg', desc: '两夕相叠，错位而生动，重心极其稳固。' },
+        '寶': { img: 'assets/shufa_v9/bao.jpg', desc: '宝盖头宽阔，内部结构充实，体现了“颜筋”的质感。' },
+        '塔': { img: 'assets/shufa_v9/ta.jpg', desc: '土字旁稳健，右侧结构复杂但安排合理，密而不乱。' },
+        '碑': { img: 'assets/shufa_v9/bei.jpg', desc: '石字旁坚实，右侧笔画舒展，气势开阔。' },
+        '大': { img: 'assets/shufa_v9/da_large.jpg', desc: '横画平铺，撇捺舒展，尽显大唐气象。' },
+        '唐': { img: 'assets/shufa_v9/tang.jpg', desc: '结构宏大，笔力千钧，是多宝塔碑的典型风格。' },
+        '西': { img: 'assets/shufa_v9/xi.jpg', desc: '方正厚重，内部空间安排巧妙，稳定而有灵动感。' },
+        '京': { img: 'assets/shufa_v9/jing.jpg', desc: '上方点画有力，下方支撑稳固，结构严谨。' },
+        '龍': { img: 'assets/shufa_v9/long.jpg', desc: '笔画繁复 but 交代清晰，龙字气势磅礴。' },
+        '寺': { img: 'assets/shufa_v9/si.jpg', desc: '横平竖直中见变化，体现了颜楷的规矩与方圆。' },
+        '僧': { img: 'assets/shufa_v9/seng.jpg', desc: '人字旁挺拔，右侧结构紧凑，整体神采飞扬。' },
+        '一': { img: 'assets/shufa_v9/yi.jpg', desc: '蚕头燕尾，一笔见真章，颜体横画的极致表现。' },
+        '心': { img: 'assets/shufa_v9/xin.jpg', desc: '卧钩圆润有力，点画分布自然，灵动非凡。' },
+        '國': { img: 'assets/shufa_v9/guo.jpg', desc: '外框厚重，内部结构充实，展现了颜体的宽博大度。' }
     };
 
-    // 简繁转换词库 (书法常用字扩充)
+    // 简繁转换词库
     const s2tDict = {
         '兴': '興', '旺': '旺', '发': '發', '达': '達',
         '国': '國', '爱': '愛', '书': '書', '法': '法', '颜': '顔', '真': '眞', '唐': '唐',
@@ -119,55 +54,42 @@ document.addEventListener('DOMContentLoaded', () => {
         const chars = input.split('');
         
         chars.forEach(char => {
-            // 优先转繁体，确保书法练习的严谨性
             const searchChar = s2tDict[char] || char;
             const data = duobaotaDb[searchChar];
 
             const charCard = document.createElement('div');
             charCard.className = 'flex flex-col items-center group cursor-pointer';
             
-            // 创建容器
             const gridBox = document.createElement('div');
             gridBox.className = 'mi-zi-ge w-full aspect-square max-w-[130px] md:max-w-[160px] bg-white flex items-center justify-center overflow-hidden transition-transform group-hover:scale-105 shadow-md relative';
             
-            // 模拟模式强制使用繁体字体展示
             const fontChar = document.createElement('div');
             fontChar.className = 'calligraphy-font';
-            fontChar.innerText = searchChar; // 这里已经是繁体了
+            fontChar.innerText = searchChar;
             gridBox.appendChild(fontChar);
 
-            // 来源标签
             const tag = document.createElement('span');
             tag.className = 'source-tag ' + (data ? 'tag-authentic' : 'tag-simulated');
             tag.innerText = data ? '真迹' : '模拟';
             gridBox.appendChild(tag);
 
             if (data && data.img) {
-                const img = new Image(); // 改用 new Image() 构造函数
-                img.alt = searchChar;
+                const img = document.createElement('img');
+                // 添加时间戳防止缓存
+                img.src = data.img + '?t=' + new Date().getTime();
                 img.className = 'char-img w-full h-full object-contain absolute inset-0 opacity-0 transition-opacity duration-300';
                 
-                // 先设置监听器，再设置 src
                 img.onload = () => {
-                    console.log(`图片加载成功: ${searchChar}`, img.src);
-                    // 动态创建 img 标签并插入 DOM
-                    const domImg = document.createElement('img');
-                    domImg.src = img.src;
-                    domImg.className = img.className;
-                    gridBox.appendChild(domImg);
-                    setTimeout(() => domImg.classList.remove('opacity-0'), 10);
+                    img.classList.remove('opacity-0');
                     fontChar.style.display = 'none';
                 };
                 
                 img.onerror = () => {
-                    console.error(`图片加载失败: ${searchChar}`, data.img);
-                    img.remove();
-                    // 加载失败时显示备用文字，并给个提示
-                    fontChar.style.color = '#999';
+                    console.error('加载失败:', data.img);
+                    fontChar.style.color = '#ccc'; // 加载失败时文字变淡
                 };
                 
-                img.src = data.img;
-                // gridBox.appendChild(img); // 移除这行，改为 onload 时动态插入
+                gridBox.appendChild(img);
             }
 
             charCard.appendChild(gridBox);
@@ -177,11 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
             title.innerText = searchChar;
             charCard.appendChild(title);
 
-            const subtitle = document.createElement('span');
-            subtitle.className = 'text-xs text-gray-400';
-            subtitle.innerText = data ? '颜真卿 · 多宝塔碑' : '书法模拟 (颜体风)';
-            charCard.appendChild(subtitle);
-
             charCard.onclick = () => showDetail(searchChar, data || { desc: '当前为书法模拟效果。丸子正在为您搜集更多《多宝塔碑》原碑高清切图。' });
             resultContainer.appendChild(charCard);
         });
@@ -190,95 +107,33 @@ document.addEventListener('DOMContentLoaded', () => {
     function showDetail(char, data) {
         modalTitle.innerText = `颜真卿 · ${char}`;
         modalDesc.innerText = data.desc;
-        
-        const modalImgContainer = document.getElementById('modalImgContainer');
         modalImgContainer.innerHTML = '';
         
-        // 清理旧的详情页标签
-        const existingTag = document.querySelector('#copyStage .source-tag');
-        if (existingTag) existingTag.remove();
+        const gridBox = document.createElement('div');
+        gridBox.className = 'mi-zi-ge w-full h-full bg-white flex items-center justify-center relative';
         
         const fontChar = document.createElement('div');
-        fontChar.className = 'calligraphy-font';
+        fontChar.className = 'calligraphy-font text-8xl';
         fontChar.innerText = char;
-        modalImgContainer.appendChild(fontChar);
-
-        // 详情页来源标签
-        const tag = document.createElement('span');
-        tag.className = 'source-tag ' + (data.img ? 'tag-authentic' : 'tag-simulated');
-        tag.style.top = '12px';
-        tag.style.right = '12px';
-        tag.style.fontSize = '14px';
-        tag.innerText = data.img ? '颜真卿 · 真迹原帖' : '书法 AI 模拟 (颜体风)';
-        document.getElementById('copyStage').appendChild(tag);
+        gridBox.appendChild(fontChar);
 
         if (data && data.img) {
             const img = document.createElement('img');
-            img.src = data.img;
-            img.className = 'char-img w-full h-full object-contain absolute inset-0 opacity-0 transition-opacity';
-            img.id = 'currentCharImg'; // 为透明度调节设置ID
+            img.src = data.img + '?t=' + new Date().getTime();
+            img.className = 'char-img w-full h-full object-contain absolute inset-0 z-10';
+            img.style.opacity = document.getElementById('opacitySlider').value;
             
             img.onload = () => {
-                img.classList.remove('opacity-0');
                 fontChar.style.display = 'none';
-                // 重置透明度滑块
-                document.getElementById('opacitySlider').value = 1;
             };
-            modalImgContainer.appendChild(img);
+            gridBox.appendChild(img);
         }
 
+        modalImgContainer.appendChild(gridBox);
         detailModal.classList.remove('hidden');
     }
 
-    // 暴露给全局的格线切换函数
-    window.setGrid = (type) => {
-        const copyStage = document.getElementById('copyStage');
-        // 保持响应式基础类名
-        copyStage.className = 'mi-zi-ge w-full aspect-square max-w-[300px] md:max-w-[384px] bg-white mb-4 md:mb-6 flex items-center justify-center overflow-hidden relative shadow-inner';
-        
-        if (type === 'mi') copyStage.classList.add('mi-zi-ge');
-        else if (type === 'tian') copyStage.classList.add('tian-zi-ge');
-        else if (type === 'none') {
-            copyStage.classList.remove('mi-zi-ge');
-            copyStage.classList.add('no-grid');
-        }
-
-        // 更新按钮样式
-        document.querySelectorAll('.grid-btn').forEach(btn => {
-            btn.classList.remove('bg-amber-700', 'text-white');
-            btn.classList.add('bg-white', 'border', 'border-amber-200');
-        });
-        
-        // 兼容点击事件对象
-        const target = event ? event.target : null;
-        if (target) {
-            target.classList.remove('bg-white', 'border', 'border-amber-200');
-            target.classList.add('bg-amber-700', 'text-white');
-        }
-    };
-
-    // 透明度调节
-    const opacitySlider = document.getElementById('opacitySlider');
-    opacitySlider.addEventListener('input', (e) => {
-        const img = document.getElementById('currentCharImg');
-        if (img) {
-            img.style.opacity = e.target.value;
-        }
-    });
-
-    // 全屏临摹
-    const fullScreenBtn = document.getElementById('fullScreenBtn');
-    fullScreenBtn.addEventListener('click', () => {
-        const copyStage = document.getElementById('copyStage');
-        if (copyStage.requestFullscreen) {
-            copyStage.requestFullscreen();
-        } else if (copyStage.webkitRequestFullscreen) {
-            copyStage.webkitRequestFullscreen();
-        } else if (copyStage.msRequestFullscreen) {
-            copyStage.msRequestFullscreen();
-        }
-    });
-
+    // 事件绑定
     searchBtn.addEventListener('click', searchChars);
     charInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') searchChars();
@@ -288,7 +143,24 @@ document.addEventListener('DOMContentLoaded', () => {
         detailModal.classList.add('hidden');
     });
 
-    detailModal.addEventListener('click', (e) => {
-        if (e.target === detailModal) detailModal.classList.add('hidden');
+    window.setGrid = (type) => {
+        const boxes = document.querySelectorAll('.mi-zi-ge, .tian-zi-ge, .no-grid');
+        boxes.forEach(box => {
+            box.classList.remove('mi-zi-ge', 'tian-zi-ge', 'no-grid');
+            if (type === 'mi') box.classList.add('mi-zi-ge');
+            else if (type === 'tian') box.classList.add('tian-zi-ge');
+            else box.classList.add('no-grid');
+        });
+    };
+
+    document.getElementById('opacitySlider').addEventListener('input', (e) => {
+        const img = modalImgContainer.querySelector('img');
+        if (img) img.style.opacity = e.target.value;
+    });
+
+    document.getElementById('fullScreenBtn').addEventListener('click', () => {
+        const stage = document.getElementById('copyStage');
+        if (stage.requestFullscreen) stage.requestFullscreen();
+        else if (stage.webkitRequestFullscreen) stage.webkitRequestFullscreen();
     });
 });
