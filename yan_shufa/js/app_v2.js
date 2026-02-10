@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <text x="${center}" y="${center + 350}" 
                     text-anchor="middle" 
                     fill="${charColor}" 
-                    style="font-family: 'YanTi', serif; font-size: 850px; font-weight: normal;">
+                    style="font-family: 'DongFangDaKai', serif; font-size: 820px; font-weight: normal;">
                     ${char}
                 </text>
             </svg>
