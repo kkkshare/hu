@@ -11,91 +11,91 @@ document.addEventListener('DOMContentLoaded', () => {
     // 颜体字库数据 (多宝塔碑真迹原帖 - 高清源)
     const duobaotaDb = {
         '興': { 
-            img: './assets/shufa_chars/xing.jpg?v=final_20260207_v6', 
+            img: './assets/shufa_v8/xing.jpg?v=v8_final', 
             desc: '真迹：出自《多宝塔碑》“千福寺兴工”。结体开阔，上方错落有致，下方支撑有力。' 
         },
         '旺': { 
-            img: './assets/shufa_chars/wang.jpg?v=final_20260207_v6', 
+            img: './assets/shufa_v8/wang.jpg?v=v8_final', 
             desc: '真迹：出自颜真卿《勤礼碑》。日字旁挺拔，整体端庄稳重，尽显颜体丰腴之美。' 
         },
         '發': { 
-            img: './assets/shufa_chars/fa.jpg?v=final_20260207_v6', 
+            img: './assets/shufa_v8/fa.jpg?v=v8_final', 
             desc: '真迹：出自《多宝塔碑》“发明资乎十力”。撇画舒展，内部穿插有序，笔力雄健。' 
         },
         '達': { 
-            img: './assets/shufa_chars/da.jpg?v=final_20260207_v6', 
+            img: './assets/shufa_v8/da.jpg?v=v8_final', 
             desc: '真迹：出自《多宝塔碑》“通达”。走之底有力，内部结构紧凑，重心极稳。' 
         },
         '永': { 
-            img: './assets/shufa_chars/yong.jpg?v=final_20260207_v6', 
+            img: './assets/shufa_v8/yong.jpg?v=v8_final', 
             desc: '起笔圆润，侧锋转折有力，是练习颜体的入门经典。' 
         },
         '和': { 
-            img: './assets/shufa_chars/he.jpg?v=final_20260207_v6', 
+            img: './assets/shufa_v8/he.jpg?v=v8_final', 
             desc: '结构左右平衡，线条粗细变化丰富，体现了颜体的宽博。' 
         },
         '九': { 
-            img: './assets/shufa_chars/jiu.jpg?v=final_20260207_v6', 
+            img: './assets/shufa_v8/jiu.jpg?v=v8_final', 
             desc: '极简之字，却最显功力。撇画有力，横折钩饱满。' 
         },
         '年': { 
-            img: './assets/shufa_chars/nian.jpg?v=final_20260207_v6', 
+            img: './assets/shufa_v8/nian.jpg?v=v8_final', 
             desc: '中轴线挺拔，横画平稳，展现了颜体书法的厚重感。' 
         },
         '多': { 
-            img: './assets/shufa_chars/duo.jpg?v=final_20260207_v6', 
+            img: './assets/shufa_v8/duo.jpg?v=v8_final', 
             desc: '两夕相叠，错位而生动，重心极其稳固。' 
         },
         '寶': { 
-            img: './assets/shufa_chars/bao.jpg?v=final_20260207_v6', 
+            img: './assets/shufa_v8/bao.jpg?v=v8_final', 
             desc: '宝盖头宽阔，内部结构充实，体现了“颜筋”的质感。' 
         },
         '塔': { 
-            img: './assets/shufa_chars/ta.jpg?v=final_20260207_v6', 
+            img: './assets/shufa_v8/ta.jpg?v=v8_final', 
             desc: '土字旁稳健，右侧结构复杂但安排合理，密而不乱。' 
         },
         '碑': { 
-            img: './assets/shufa_chars/bei.jpg?v=final_20260207_v6', 
+            img: './assets/shufa_v8/bei.jpg?v=v8_final', 
             desc: '石字旁坚实，右侧笔画舒展，气势开阔。' 
         },
         '大': {
-            img: './assets/shufa_chars/da_large.jpg?v=final_20260207_v6',
+            img: './assets/shufa_v8/da_large.jpg?v=v8_final',
             desc: '横画平铺，撇捺舒展，尽显大唐气象。'
         },
         '唐': {
-            img: './assets/shufa_chars/tang.jpg?v=final_20260207_v6',
+            img: './assets/shufa_v8/tang.jpg?v=v8_final',
             desc: '结构宏大，笔力千钧，是多宝塔碑的典型风格。'
         },
         '西': {
-            img: './assets/shufa_chars/xi.jpg?v=final_20260207_v6',
+            img: './assets/shufa_v8/xi.jpg?v=v8_final',
             desc: '方正厚重，内部空间安排巧妙，稳定而有灵动感。'
         },
         '京': {
-            img: './assets/shufa_chars/jing.jpg?v=final_20260207_v6',
+            img: './assets/shufa_v8/jing.jpg?v=v8_final',
             desc: '上方点画有力，下方支撑稳固，结构严谨。'
         },
         '龍': {
-            img: './assets/shufa_chars/long.jpg?v=final_20260207_v6',
+            img: './assets/shufa_v8/long.jpg?v=v8_final',
             desc: '笔画繁复 but 交代清晰，龙字气势磅礴。'
         },
         '寺': {
-            img: './assets/shufa_chars/si.jpg?v=final_20260207_v6',
+            img: './assets/shufa_v8/si.jpg?v=v8_final',
             desc: '横平竖直中见变化，体现了颜楷的规矩与方圆。'
         },
         '僧': {
-            img: './assets/shufa_chars/seng.jpg?v=final_20260207_v6',
+            img: './assets/shufa_v8/seng.jpg?v=v8_final',
             desc: '人字旁挺拔，右侧结构紧凑，整体神采飞扬。'
         },
         '一': {
-            img: './assets/shufa_chars/yi.jpg?v=final_20260207_v6',
+            img: './assets/shufa_v8/yi.jpg?v=v8_final',
             desc: '蚕头燕尾，一笔见真章，颜体横画的极致表现。'
         },
         '心': {
-            img: './assets/shufa_chars/xin.jpg?v=final_20260207_v6',
+            img: './assets/shufa_v8/xin.jpg?v=v8_final',
             desc: '卧钩圆润有力，点画分布自然，灵动非凡。'
         },
         '國': {
-            img: './assets/shufa_chars/guo.jpg?v=final_20260207_v6',
+            img: './assets/shufa_v8/guo.jpg?v=v8_final',
             desc: '外框厚重，内部结构充实，展现了颜体的宽博大度。'
         }
     };
