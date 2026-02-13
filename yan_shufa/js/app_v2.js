@@ -8,26 +8,51 @@
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     const searchBtn = document.getElementById('searchBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const resultMeta = document.getElementById('resultMeta');
     const resultContainer = document.getElementById('resultContainer');
     const fullscreenOverlay = document.getElementById('fullscreenOverlay');
     const fullscreenContent = document.getElementById('fullscreenContent');
     const fullscreenCharTitle = document.getElementById('fullscreenChar');
+    const fullscreenIndex = document.getElementById('fullscreenIndex');
     const closeFullscreen = document.getElementById('closeFullscreen');
+    const prevCharBtn = document.getElementById('prevChar');
+    const nextCharBtn = document.getElementById('nextChar');
+
+    let currentChars = [];
+    let currentIndex = -1;
 
     // 搜索逻辑
     const performSearch = () => {
         const text = searchInput.value.trim();
-        if (!text) return;
+        if (!text) {
+            showEmptyState();
+            return;
+        }
+
+        currentChars = [...text].filter((char) => char.trim() !== '');
+        if (!currentChars.length) {
+            showEmptyState();
+            return;
+        }
 
         resultContainer.innerHTML = ''; // 清空
-        
-        [...text].forEach(char => {
-            const card = createCharCard(char);
+
+        currentChars.forEach((char, index) => {
+            const card = createCharCard(char, index);
             resultContainer.appendChild(card);
         });
+
+        resultMeta.textContent = `已载入 ${currentChars.length} 个字，点击任意汉字开始巨幕临摹。`;
     };
 
     searchBtn.addEventListener('click', performSearch);
+    clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        currentChars = [];
+        currentIndex = -1;
+        showEmptyState();
+    });
     searchInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') performSearch();
     });
@@ -35,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      * 创建汉字卡片 (基于 SVG)
      */
-    function createCharCard(char) {
+    function createCharCard(char, index) {
         const card = document.createElement('div');
         card.className = 'bg-white rounded-3xl shadow-md p-6 cursor-pointer hover:shadow-xl transition-all border border-gray-100';
         
@@ -46,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.appendChild(svgWrapper);
         
         // 点击进入全屏
-        card.onclick = () => openFullscreen(char);
+        card.onclick = () => openFullscreenByIndex(index);
         
         return card;
     }
@@ -86,15 +111,48 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      * 全屏临摹模式
      */
-    function openFullscreen(char) {
+    function openFullscreenByIndex(index) {
+        if (!currentChars.length) return;
+        currentIndex = index;
+        const char = currentChars[currentIndex];
         fullscreenContent.innerHTML = generateMiZiGeSVG(char, true);
         fullscreenCharTitle.innerText = `颜体临摹：${char}`;
+        fullscreenIndex.innerText = `${currentIndex + 1} / ${currentChars.length}`;
+        prevCharBtn.disabled = currentIndex <= 0;
+        nextCharBtn.disabled = currentIndex >= currentChars.length - 1;
+        prevCharBtn.classList.toggle('opacity-30', prevCharBtn.disabled);
+        nextCharBtn.classList.toggle('opacity-30', nextCharBtn.disabled);
         fullscreenOverlay.style.display = 'flex';
         document.body.style.overflow = 'hidden'; // 禁止背景滚动
     }
 
-    closeFullscreen.onclick = () => {
+    function closeFullscreenMode() {
         fullscreenOverlay.style.display = 'none';
         document.body.style.overflow = '';
+    }
+
+    function showEmptyState() {
+        resultContainer.innerHTML = `
+            <div class="col-span-full flex flex-col items-center justify-center py-20 text-gray-300">
+                <div class="text-8xl mb-4 opacity-20 calligraphy-font">颜</div>
+                <p class="text-lg">请输入汉字开启矢量巨幕练习</p>
+            </div>
+        `;
+        resultMeta.textContent = '';
+    }
+
+    closeFullscreen.onclick = closeFullscreenMode;
+    prevCharBtn.onclick = () => {
+        if (currentIndex > 0) openFullscreenByIndex(currentIndex - 1);
     };
+    nextCharBtn.onclick = () => {
+        if (currentIndex < currentChars.length - 1) openFullscreenByIndex(currentIndex + 1);
+    };
+
+    document.addEventListener('keydown', (event) => {
+        if (fullscreenOverlay.style.display !== 'flex') return;
+        if (event.key === 'Escape') closeFullscreenMode();
+        if (event.key === 'ArrowLeft' && currentIndex > 0) openFullscreenByIndex(currentIndex - 1);
+        if (event.key === 'ArrowRight' && currentIndex < currentChars.length - 1) openFullscreenByIndex(currentIndex + 1);
+    });
 });

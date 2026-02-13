@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>颜体书法练习 v2.0 - 矢量巨幕版</title>
+    <title>颜体书法练习 v2.1 - 巨幕导航版</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
     <style>
@@ -70,7 +70,7 @@
             <h1 class="text-xl font-bold text-red-600 flex items-center">
                 <span class="mr-2">🖌️</span> 颜体练字 2.0
             </h1>
-            <div class="text-xs text-gray-400 font-mono">Build: 20260211_v2.0_SVG</div>
+            <div class="text-xs text-gray-400 font-mono">Build: 20260213_v2.1_NAV</div>
         </div>
     </nav>
 
@@ -86,7 +86,11 @@
                     检索
                 </button>
             </div>
-            <p class="mt-4 text-gray-500 text-sm">提示：点击汉字可进入“全屏巨幕临摹模式”</p>
+            <div class="mt-4 flex items-center justify-center gap-3">
+                <p class="text-gray-500 text-sm">提示：点击汉字可进入“全屏巨幕临摹模式”</p>
+                <button id="clearBtn" class="text-sm px-3 py-1.5 rounded-full border border-gray-200 text-gray-500 hover:text-red-600 hover:border-red-200 transition-colors">清空</button>
+            </div>
+            <p id="resultMeta" class="mt-2 text-xs text-gray-400"></p>
         </div>
 
         <!-- 结果展示 -->
@@ -107,7 +111,12 @@
         <div id="fullscreenContent" class="w-full max-w-[90vh] aspect-square"></div>
         <div class="mt-8 text-center">
             <h2 id="fullscreenChar" class="text-2xl font-bold text-gray-800">汉字详情</h2>
-            <p class="text-gray-400 text-sm mt-1">请将手机横放或靠近宣纸临摹</p>
+            <p id="fullscreenIndex" class="text-gray-400 text-sm mt-1"></p>
+            <div class="mt-4 flex items-center justify-center gap-3">
+                <button id="prevChar" class="px-4 py-2 rounded-xl border border-gray-200 text-gray-600 hover:border-red-200 hover:text-red-600 transition-colors">上一个</button>
+                <button id="nextChar" class="px-4 py-2 rounded-xl border border-gray-200 text-gray-600 hover:border-red-200 hover:text-red-600 transition-colors">下一个</button>
+            </div>
+            <p class="text-gray-300 text-xs mt-3">提示：键盘左右键可切换，Esc 可退出</p>
         </div>
     </div>
 
