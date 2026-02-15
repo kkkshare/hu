@@ -171,7 +171,8 @@
         }
 
         .search-shell {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr auto;
             width: 100%;
             max-width: 760px;
             margin: 0 auto;
@@ -191,7 +192,8 @@
         }
 
         .antique-btn {
-            padding: 0 24px;
+            min-width: 84px;
+            padding: 0 20px;
             font-weight: 700;
             color: #fffaf1;
             background: var(--accent);
@@ -284,6 +286,16 @@
                 grid-template-columns: 1fr;
                 gap: 1rem;
             }
+
+            .search-shell {
+                grid-template-columns: 1fr;
+            }
+
+            .antique-btn {
+                width: 100%;
+                min-height: 46px;
+                border-top: 1px solid rgba(122, 47, 29, 0.2);
+            }
         }
     </style>
 </head>
@@ -309,7 +321,7 @@
             <div class="search-shell">
                 <input type="text" id="searchInput" 
                     class="antique-input" 
-                    placeholder="输入想要练习的汉字（如：兴旺发达）"
+                    placeholder="输入汉字（如：興旺發達）"
                     maxlength="10">
                 <button id="searchBtn" class="antique-btn">
                     检索
