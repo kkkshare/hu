@@ -6,15 +6,57 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>颜体书法练习 v2.1 - 巨幕导航版</title>
+    <title>砚边拾字 v2.8 - 覆盖优先版</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/opencc-js@1.0.5/dist/umd/full.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --mi-color: #ef4444; /* 红色米字格 */
-            --char-color: #1a1a1a; /* 墨色 */
+            --mi-color: #a8472f;
+            --char-color: #1f1a17;
+            --paper: #f4ead6;
+            --paper-deep: #ead9bc;
+            --ink-soft: #5b4a39;
+            --accent: #7a2f1d;
+            --accent-hover: #5f2315;
         }
         
+        @font-face {
+            font-family: 'ZhaoMengFuKai';
+            src: url('./assets/fonts/zhaomengfu-kaishu.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'XinDiZhaoMengFu';
+            src: url('./assets/fonts/xindi-zhaomengfu.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'HYXingKaiFan';
+            src: url('./assets/fonts/hanyi-xingkai-fan.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'TXTieShanKaiFan';
+            src: url('./assets/fonts/tengxiang-tieshan-kaishu-fan.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'FZGuanJunKaiFan';
+            src: url('./assets/fonts/fz-guanjun-kaishu-fan.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'LiShouShuHaoZiJF';
+            src: url('./assets/fonts/lishoushu-haozi-jianfan.ttf') format('truetype');
+            font-display: swap;
+        }
+
         @font-face {
             font-family: 'DongFangDaKai';
             /* 阿里妈妈东方大楷：基于《多宝塔碑》算法生成的专业书法字库 */
@@ -23,11 +65,178 @@
         }
 
         .calligraphy-font {
-            font-family: 'DongFangDaKai', serif;
+            font-family: 'ZhaoMengFuKai', serif;
             font-weight: normal;
         }
 
-        /* 强制巨幕容器 */
+        .font-picker {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 10px auto 0;
+            flex-wrap: wrap;
+        }
+
+        .font-select {
+            font-size: 13px;
+            padding: 8px 10px;
+            border-radius: 12px;
+            border: 1px solid rgba(122, 47, 29, 0.25);
+            background: rgba(255, 247, 233, 0.85);
+            color: #4b3a2a;
+            outline: none;
+        }
+
+        .cn-serif {
+            font-family: "Noto Serif SC", "Songti SC", serif;
+        }
+
+        .antique-body {
+            position: relative;
+            background:
+                radial-gradient(circle at 10% 0%, rgba(122, 47, 29, 0.10), transparent 40%),
+                radial-gradient(circle at 90% 100%, rgba(90, 61, 41, 0.12), transparent 35%),
+                repeating-linear-gradient(45deg, rgba(145, 112, 79, 0.04) 0px, rgba(145, 112, 79, 0.04) 2px, transparent 2px, transparent 8px),
+                linear-gradient(180deg, #f9f2e4 0%, #f2e5cf 100%);
+            color: var(--ink-soft);
+        }
+
+        .antique-body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.22;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(94, 63, 36, 0.22), transparent 23%),
+                radial-gradient(circle at 82% 12%, rgba(88, 58, 34, 0.18), transparent 20%),
+                radial-gradient(circle at 70% 82%, rgba(88, 58, 34, 0.2), transparent 22%);
+            mix-blend-mode: multiply;
+            z-index: 0;
+        }
+
+        .main-nav {
+            background: linear-gradient(180deg, rgba(244, 234, 214, 0.95), rgba(236, 219, 188, 0.95));
+            border-bottom: 1px solid rgba(122, 47, 29, 0.25);
+            backdrop-filter: blur(6px);
+        }
+
+        .main-title {
+            font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+            color: var(--accent);
+            letter-spacing: 1px;
+        }
+
+        .seal-badge {
+            font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+            font-size: 14px;
+            color: #fff4e4;
+            background: linear-gradient(160deg, #b7442f, #7e2414);
+            border: 1px solid rgba(95, 17, 8, 0.45);
+            border-radius: 10px;
+            padding: 4px 8px;
+            box-shadow: 0 4px 10px rgba(85, 22, 10, 0.32);
+            transform: rotate(-6deg);
+        }
+
+        .antique-panel {
+            position: relative;
+            background: rgba(255, 250, 239, 0.88);
+            border: 1px solid rgba(122, 47, 29, 0.20);
+            border-radius: 22px;
+            box-shadow: 0 10px 28px rgba(96, 64, 37, 0.14);
+            overflow: hidden;
+        }
+
+        .antique-panel::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(145deg, rgba(255, 255, 255, 0.22), transparent 30%),
+                radial-gradient(circle at 0 0, rgba(136, 94, 57, 0.08), transparent 45%);
+        }
+
+        .scroll-unfurl {
+            opacity: 0;
+            transform: translateY(16px) scale(0.985);
+            animation: unfurl 480ms ease-out forwards;
+        }
+
+        @keyframes unfurl {
+            from { opacity: 0; transform: translateY(16px) scale(0.985); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .search-shell {
+            display: flex;
+            width: 100%;
+            max-width: 760px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid rgba(122, 47, 29, 0.2);
+            background: #fff9ee;
+        }
+
+        .antique-input {
+            flex: 1;
+            padding: 16px 18px;
+            font-size: 18px;
+            background: transparent;
+            color: #3f3227;
+            outline: none;
+        }
+
+        .antique-btn {
+            padding: 0 24px;
+            font-weight: 700;
+            color: #fffaf1;
+            background: var(--accent);
+            transition: background-color 0.2s;
+        }
+
+        .antique-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        .ghost-btn {
+            font-size: 13px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(122, 47, 29, 0.25);
+            color: var(--ink-soft);
+            background: rgba(255, 247, 233, 0.8);
+            transition: all 0.2s;
+        }
+
+        .ghost-btn:hover {
+            color: var(--accent);
+            border-color: rgba(122, 47, 29, 0.5);
+        }
+
+        .warn-badge {
+            display: inline-block;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            color: #7a2f1d;
+            border: 1px solid rgba(122, 47, 29, 0.35);
+            background: rgba(255, 235, 205, 0.85);
+        }
+
+        .missing-panel {
+            display: none;
+            margin-top: 10px;
+            padding: 10px 12px;
+            border-radius: 12px;
+            border: 1px dashed rgba(122, 47, 29, 0.35);
+            background: rgba(255, 246, 228, 0.75);
+            text-align: left;
+        }
+
         .svg-container {
             width: 100%;
             aspect-ratio: 1 / 1;
@@ -36,87 +245,146 @@
             position: relative;
         }
 
-        /* 搜索结果网格：锁死 280px 最小宽度 */
         #resultContainer {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.2rem;
             width: 100%;
         }
 
-        /* 隐藏滚动条但保持功能 */
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .char-card {
+            background: linear-gradient(180deg, rgba(255, 250, 240, 0.96), rgba(246, 233, 209, 0.98));
+            border: 1px solid rgba(122, 47, 29, 0.16);
+            border-radius: 22px;
+            box-shadow: 0 6px 18px rgba(74, 45, 23, 0.12);
+            padding: 14px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
 
-        /* 全屏临摹模式 */
+        .char-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(74, 45, 23, 0.16);
+        }
+
         #fullscreenOverlay {
             display: none;
             position: fixed;
             inset: 0;
-            background: white;
+            background: radial-gradient(circle at center, #f7edd9 0%, #e9d5b1 100%);
             z-index: 100;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 1rem;
         }
+
+        @media (max-width: 640px) {
+            #resultContainer {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen font-sans">
+<body class="antique-body min-h-screen cn-serif">
 
     <!-- 导航栏 -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
+    <nav class="main-nav sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-            <h1 class="text-xl font-bold text-red-600 flex items-center">
-                <span class="mr-2">🖌️</span> 颜体练字 2.0
+            <h1 class="main-title text-xl font-bold flex items-center">
+                <span class="mr-2">🖌️</span> 砚边拾字
             </h1>
-            <div class="text-xs text-gray-400 font-mono">Build: 20260213_v2.1_NAV</div>
+            <div class="flex items-center gap-2">
+                <span class="seal-badge">雅集印</span>
+                <div class="text-xs text-amber-900/60 font-mono">Build: 20260213_v2.8_FULLSET</div>
+            </div>
         </div>
     </nav>
 
-    <main class="max-w-6xl mx-auto px-4 py-8">
+    <main class="max-w-6xl mx-auto px-4 py-6 relative z-10">
         <!-- 搜索区域 -->
-        <div class="mb-12 text-center">
-            <div class="inline-flex w-full max-w-xl shadow-lg rounded-2xl overflow-hidden border-2 border-red-100 bg-white">
+        <div class="mb-6 text-center antique-panel p-4 md:p-5 scroll-unfurl">
+            <div class="mb-2 text-xs text-amber-900/65">输入简体会自动转为繁体</div>
+            <div class="search-shell">
                 <input type="text" id="searchInput" 
-                    class="flex-1 px-6 py-4 text-lg focus:outline-none" 
+                    class="antique-input" 
                     placeholder="输入想要练习的汉字（如：兴旺发达）"
                     maxlength="10">
-                <button id="searchBtn" class="bg-red-600 text-white px-8 py-4 font-bold hover:bg-red-700 transition-colors">
+                <button id="searchBtn" class="antique-btn">
                     检索
                 </button>
             </div>
-            <div class="mt-4 flex items-center justify-center gap-3">
-                <p class="text-gray-500 text-sm">提示：点击汉字可进入“全屏巨幕临摹模式”</p>
-                <button id="clearBtn" class="text-sm px-3 py-1.5 rounded-full border border-gray-200 text-gray-500 hover:text-red-600 hover:border-red-200 transition-colors">清空</button>
+            <div class="mt-3 flex items-center justify-center gap-3">
+                <p class="text-amber-900/65 text-sm">点击汉字可全屏临摹</p>
+                <button id="clearBtn" class="ghost-btn">清空</button>
             </div>
-            <p id="resultMeta" class="mt-2 text-xs text-gray-400"></p>
+            <p id="resultMeta" class="mt-1 text-xs text-amber-900/60"></p>
+            <details class="mt-3 text-left">
+                <summary class="text-xs text-amber-900/65 cursor-pointer">高级设置</summary>
+                <div class="mt-3">
+                    <p id="fontStatus" class="mb-2 text-xs text-amber-900/70">字帖字体加载中...</p>
+                    <div class="font-picker justify-start">
+                        <label for="fontPreset" class="text-xs text-amber-900/70">字帖字体：</label>
+                        <select id="fontPreset" class="font-select">
+                            <option value="XinDiZhaoMengFu">新蒂赵孟頫（覆盖优先）</option>
+                            <option value="ZhaoMengFuKai">赵孟頫楷书</option>
+                            <option value="HYXingKaiFan">汉仪行楷繁</option>
+                            <option value="TXTieShanKaiFan">腾祥铁山楷书繁</option>
+                            <option value="FZGuanJunKaiFan">方正管峻楷书繁体</option>
+                            <option value="LiShouShuHaoZiJF">励手书昊仔简繁</option>
+                        </select>
+                    </div>
+                    <div id="missingPanel" class="missing-panel">
+                        <div class="flex items-center justify-between gap-3">
+                            <p id="missingMeta" class="text-xs text-amber-900/70"></p>
+                            <div class="flex items-center gap-2">
+                                <button id="copyMissingBtn" class="ghost-btn">复制缺字</button>
+                                <button id="autoGenMissingBtn" class="ghost-btn">自动补字</button>
+                                <button id="importGlyphBtn" class="ghost-btn">导入补字</button>
+                                <button id="clearGlyphBtn" class="ghost-btn">清空补字</button>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="file" id="glyphFileInput" accept=".json,application/json" class="hidden">
+                    <div class="mt-2 text-left text-xs text-amber-900/65">
+                        <details>
+                            <summary class="cursor-pointer">AI补字配置（可选）</summary>
+                            <div class="mt-2 grid gap-2">
+                                <input id="aiBaseUrl" class="font-select w-full" placeholder="Base URL，例如 http://host.docker.internal:3000/k9x2m/v1">
+                                <input id="aiModel" class="font-select w-full" placeholder="模型名，例如 gpt-4.1-mini">
+                                <input id="aiApiKey" class="font-select w-full" type="password" placeholder="API Key（仅保存在本地浏览器）">
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </details>
         </div>
 
         <!-- 结果展示 -->
         <div id="resultContainer">
             <!-- 初始引导内容 -->
-            <div class="col-span-full flex flex-col items-center justify-center py-20 text-gray-300">
+            <div class="col-span-full flex flex-col items-center justify-center py-20 text-amber-900/30">
                 <div class="text-8xl mb-4 opacity-20 calligraphy-font">颜</div>
-                <p class="text-lg">请输入汉字开启矢量巨幕练习</p>
+                <p class="text-lg">请输入汉字开启古风临摹</p>
             </div>
         </div>
     </main>
 
     <!-- 全屏临摹层 -->
     <div id="fullscreenOverlay">
-        <button id="closeFullscreen" class="absolute top-6 right-6 text-4xl text-gray-400 hover:text-red-600 transition-colors">
+        <button id="closeFullscreen" class="absolute top-6 right-6 text-4xl text-amber-900/45 hover:text-amber-900 transition-colors">
             &times;
         </button>
         <div id="fullscreenContent" class="w-full max-w-[90vh] aspect-square"></div>
         <div class="mt-8 text-center">
-            <h2 id="fullscreenChar" class="text-2xl font-bold text-gray-800">汉字详情</h2>
-            <p id="fullscreenIndex" class="text-gray-400 text-sm mt-1"></p>
+            <h2 id="fullscreenChar" class="text-2xl font-bold text-amber-950">汉字详情</h2>
+            <p id="fullscreenIndex" class="text-amber-900/70 text-sm mt-1"></p>
             <div class="mt-4 flex items-center justify-center gap-3">
-                <button id="prevChar" class="px-4 py-2 rounded-xl border border-gray-200 text-gray-600 hover:border-red-200 hover:text-red-600 transition-colors">上一个</button>
-                <button id="nextChar" class="px-4 py-2 rounded-xl border border-gray-200 text-gray-600 hover:border-red-200 hover:text-red-600 transition-colors">下一个</button>
+                <button id="prevChar" class="ghost-btn">上一个</button>
+                <button id="nextChar" class="ghost-btn">下一个</button>
             </div>
-            <p class="text-gray-300 text-xs mt-3">提示：键盘左右键可切换，Esc 可退出</p>
+            <p class="text-amber-900/45 text-xs mt-3">提示：键盘左右键可切换，Esc 可退出</p>
         </div>
     </div>
 

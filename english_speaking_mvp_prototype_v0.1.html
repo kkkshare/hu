@@ -1,0 +1,870 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>英语口语软件低代码原型 v0.1</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121a31;
+      --panel-2: #192443;
+      --line: #2b3961;
+      --text: #e8edf9;
+      --muted: #9db0d6;
+      --brand: #5f8cff;
+      --ok: #22c55e;
+      --warn: #f59e0b;
+      --bad: #ef4444;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top, #1b2550 0%, var(--bg) 45%);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+    .app { max-width: 980px; margin: 0 auto; padding: 16px; }
+    .head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .title { margin: 0; font-size: 24px; }
+    .tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tab {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .tab.active { background: var(--brand); border-color: var(--brand); }
+    .card {
+      background: rgba(18, 26, 49, 0.9);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+    .muted { color: var(--muted); }
+    .lesson { cursor: pointer; }
+    .lesson:hover { border-color: var(--brand); }
+    .grid { display: grid; gap: 10px; }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: var(--panel-2);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 10px;
+    }
+    textarea { min-height: 130px; resize: vertical; }
+    button {
+      border: 1px solid var(--line);
+      background: var(--panel-2);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+    button.brand { background: var(--brand); border-color: var(--brand); }
+    button.ok { background: var(--ok); border-color: var(--ok); color: #09130a; }
+    button.warn { background: var(--warn); border-color: var(--warn); color: #2f1c00; }
+    button.bad { background: var(--bad); border-color: var(--bad); }
+    button:disabled { opacity: 0.45; cursor: not-allowed; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .space { height: 10px; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .hidden { display: none !important; }
+    .chunk { border-left: 4px solid var(--brand); }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .big {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+    .status-ok { color: var(--ok); }
+    .status-warn { color: var(--warn); }
+    @media (max-width: 720px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .title { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="head">
+      <h1 class="title">英语口语软件 · 低代码原型 <span class="muted">v0.1</span></h1>
+      <div class="tabs">
+        <button class="tab active" data-tab="feed">Feed</button>
+        <button class="tab" data-tab="dojo">Dojo</button>
+        <button class="tab" data-tab="review">Review</button>
+        <button class="tab" data-tab="studio">Studio</button>
+      </div>
+    </div>
+
+    <section id="tab-feed"></section>
+    <section id="tab-dojo" class="hidden"></section>
+    <section id="tab-review" class="hidden"></section>
+    <section id="tab-studio" class="hidden"></section>
+  </div>
+
+  <script>
+    const STORAGE_KEY = "speaking_mvp_v01";
+
+    const seedLesson = {
+      id: crypto.randomUUID(),
+      title: "How to stay relevant at work",
+      scene: "职场面试中的机智回应",
+      level: "B1",
+      sourceType: "text",
+      transcript: [
+        "Where do you see yourself in 10 years?",
+        "When I'm 80?",
+        "Yeah, sure.",
+        "Listen, I think I'd be... meaningful? I'd like to be relevant."
+      ].join("\n"),
+      chunks: [
+        {
+          id: crypto.randomUUID(),
+          text: "stay relevant",
+          meaningZh: "保持价值、不过时",
+          usageNote: "表达职业状态持续有价值，比 useful 更成熟。",
+          commonMistake: "不要机械直译成 related。",
+          alt: ["remain valuable", "keep up with the times"],
+          tone: "成熟、职业、长期主义",
+          useWhen: "谈职业规划、晋升面谈、转型沟通",
+          avoidWhen: "描述短期事务时不必强行使用",
+          pattern: "I want to stay relevant by + 动作",
+          correctionBad: "I want to be useful after retirement.",
+          correctionGood: "I want to stay relevant and keep contributing.",
+          mission: "用 stay relevant 说 2 句：1句讲工作，1句讲个人成长。"
+        },
+        {
+          id: crypto.randomUUID(),
+          text: "Where do you see yourself in 10 years?",
+          meaningZh: "你觉得自己十年后会怎样？",
+          usageNote: "常见面试问法，回答需具体且积极。",
+          commonMistake: "不要只回答职位名称，最好补充能力目标。",
+          alt: ["What are your long-term goals?"],
+          tone: "正式、评估型提问",
+          useWhen: "面试、绩效沟通、职业辅导",
+          avoidWhen: "朋友闲聊时会显得距离感强",
+          pattern: "In 10 years, I hope to + 目标 + 价值贡献",
+          correctionBad: "I will be manager.",
+          correctionGood: "In 10 years, I hope to lead projects and mentor younger teammates.",
+          mission: "录一段 20 秒回答：你的 10 年目标 + 你能带来的价值。"
+        },
+        {
+          id: crypto.randomUUID(),
+          text: "Yeah, sure.",
+          meaningZh: "好，当然。",
+          usageNote: "语气可缓和对话，衔接后续观点。",
+          commonMistake: "语调太硬会显得敷衍。",
+          alt: ["Absolutely.", "Sure thing."],
+          tone: "轻松、过渡、缓冲",
+          useWhen: "先表示接住对话，再补充观点",
+          avoidWhen: "正式道歉或严肃反馈时不够稳重",
+          pattern: "Yeah, sure. What I mean is + 观点",
+          correctionBad: "Yeah sure whatever.",
+          correctionGood: "Yeah, sure. Let me explain what I mean.",
+          mission: "模拟对话：先用 Yeah, sure. 接住问题，再完整表达观点。"
+        }
+      ],
+      createdAt: Date.now()
+    };
+
+    let state = loadState();
+
+    function loadState() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) return normalizeState(JSON.parse(raw));
+      return {
+        lessons: [seedLesson],
+        selectedLessonId: seedLesson.id,
+        dojoStep: 1,
+        attempts: [],
+        reviewMap: {},
+        missionMap: {},
+        recording: null
+      };
+    }
+
+    function chunkDefaults(chunk, idx = 0, scene = "日常沟通") {
+      return {
+        tone: chunk.tone || "自然、清晰、礼貌",
+        useWhen: chunk.useWhen || `适用于${scene}表达`,
+        avoidWhen: chunk.avoidWhen || "避免逐字翻译，优先传达意图",
+        pattern: chunk.pattern || `I can ${chunk.text.toLowerCase()} by + doing...`,
+        correctionBad: chunk.correctionBad || "I very like this expression.",
+        correctionGood: chunk.correctionGood || "I really like how this expression sounds.",
+        mission: chunk.mission || `围绕 "${chunk.text}" 说 20 秒，至少包含 1 个替换表达。`,
+        difficulty: chunk.difficulty || (idx < 2 ? "基础" : "进阶")
+      };
+    }
+
+    function normalizeState(input) {
+      const safe = input || {};
+      const lessons = (safe.lessons || []).map(hydrateLesson);
+      return {
+        lessons: lessons.length ? lessons : [seedLesson],
+        selectedLessonId: safe.selectedLessonId || (lessons[0] ? lessons[0].id : seedLesson.id),
+        dojoStep: safe.dojoStep || 1,
+        attempts: safe.attempts || [],
+        reviewMap: safe.reviewMap || {},
+        missionMap: safe.missionMap || {},
+        recording: null
+      };
+    }
+
+    function hydrateLesson(lesson) {
+      const safeLesson = lesson || {};
+      const scene = safeLesson.scene || "日常沟通";
+      return {
+        id: safeLesson.id || crypto.randomUUID(),
+        title: safeLesson.title || "Untitled Lesson",
+        scene,
+        level: safeLesson.level || "B1",
+        sourceType: safeLesson.sourceType || "text",
+        source_url: safeLesson.source_url || "",
+        transcript: safeLesson.transcript || safeLesson.transcript_text || "",
+        chunks: (safeLesson.chunks || []).map((chunk, idx) => ({
+          id: chunk.id || crypto.randomUUID(),
+          text: chunk.text || chunk.chunk_text || "",
+          meaningZh: chunk.meaningZh || chunk.meaning_zh || "（待编辑）请补充中文释义",
+          usageNote: chunk.usageNote || chunk.usage_note || "可用于日常/职场沟通",
+          commonMistake: chunk.commonMistake || chunk.common_mistake || "先关注语调与连读，再追求复杂词汇",
+          alt: Array.isArray(chunk.alt) ? chunk.alt : (chunk.alt_expressions || []),
+          ...chunkDefaults(chunk, idx, scene)
+        })),
+        createdAt: safeLesson.createdAt || Date.now()
+      };
+    }
+
+    function lessonSignature(lesson) {
+      return `${lesson.title || ""}::${lesson.scene || ""}::${lesson.transcript || ""}`.toLowerCase();
+    }
+
+    function saveState() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function lessonById(id) {
+      return state.lessons.find(l => l.id === id);
+    }
+
+    function activeLesson() {
+      return lessonById(state.selectedLessonId) || state.lessons[0] || null;
+    }
+
+    function setTab(tab) {
+      document.querySelectorAll(".tab").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.tab === tab);
+      });
+      ["feed", "dojo", "review", "studio"].forEach(name => {
+        const el = document.getElementById("tab-" + name);
+        el.classList.toggle("hidden", name !== tab);
+      });
+      render();
+    }
+
+    function smartSplitTranscript(transcript) {
+      return transcript
+        .split(/\n|(?<=[.!?])\s+/)
+        .map(s => s.trim())
+        .filter(Boolean)
+        .slice(0, 8);
+    }
+
+    function autoGenerateChunks(transcript) {
+      const lines = smartSplitTranscript(transcript);
+      return lines.slice(0, 6).map((line, idx) => ({
+        id: crypto.randomUUID(),
+        text: line,
+        meaningZh: "（待编辑）请补充中文释义",
+        usageNote: idx === 0 ? "建议作为开场句重点练" : "可用于日常/职场沟通",
+        commonMistake: "先关注语调与连读，再追求复杂词汇",
+        alt: [],
+        ...chunkDefaults({ text: line }, idx)
+      }));
+    }
+
+    function markReview(chunkId, status) {
+      state.reviewMap[chunkId] = status;
+      saveState();
+      renderReview();
+    }
+
+    function completeMission(chunkId) {
+      state.missionMap[chunkId] = (state.missionMap[chunkId] || 0) + 1;
+      logAttempt("mission_completed", 30, { chunkId });
+      saveState();
+      renderDojo();
+      renderReview();
+    }
+
+    function logAttempt(step, durationSec = 0, extra = {}) {
+      const lesson = activeLesson();
+      if (!lesson) return;
+      state.attempts.push({
+        id: crypto.randomUUID(),
+        lessonId: lesson.id,
+        step,
+        durationSec,
+        at: Date.now(),
+        ...extra
+      });
+      saveState();
+    }
+
+    function clamp(value, min, max) {
+      return Math.min(max, Math.max(min, value));
+    }
+
+    function countWords(text) {
+      return String(text)
+        .trim()
+        .split(/\s+/)
+        .filter(Boolean).length;
+    }
+
+    async function calculateBasicScores(blob, transcript) {
+      const arrayBuffer = await blob.arrayBuffer();
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const audioBuffer = await audioContext.decodeAudioData(arrayBuffer.slice(0));
+      const data = audioBuffer.getChannelData(0);
+      let sumSquares = 0;
+      for (let i = 0; i < data.length; i += 1) {
+        sumSquares += data[i] * data[i];
+      }
+      const rms = Math.sqrt(sumSquares / Math.max(1, data.length));
+      const durationSec = Math.max(1, audioBuffer.duration);
+      const words = Math.max(1, countWords(transcript));
+      const wpm = words / (durationSec / 60);
+      const expectedWpm = 130;
+      const fluency = Math.round(clamp(100 - Math.abs(wpm - expectedWpm) * 0.8, 35, 100));
+      const volume = Math.round(clamp(rms * 220, 35, 100));
+      const total = Math.round((fluency + volume) / 2);
+      await audioContext.close();
+      return { durationSec, wpm, fluency, volume, total };
+    }
+
+    function renderFeed() {
+      const root = document.getElementById("tab-feed");
+      const lessonsHtml = state.lessons
+        .slice()
+        .sort((a, b) => b.createdAt - a.createdAt)
+        .map(lesson => `
+          <div class="card lesson" data-lesson-id="${lesson.id}">
+            <div class="row" style="justify-content:space-between;align-items:center;">
+              <strong>${escapeHtml(lesson.title)}</strong>
+              <span class="pill">${lesson.level}</span>
+            </div>
+            <div class="space"></div>
+            <div class="muted">场景：${escapeHtml(lesson.scene || "未填写")}</div>
+            <div class="muted">语块数：${lesson.chunks.length}</div>
+          </div>
+        `).join("");
+
+      root.innerHTML = `
+        <div class="card">
+          <strong>学习入口</strong>
+          <div class="muted">点击卡片后可直接进入 Dojo 三步练习。</div>
+        </div>
+        ${lessonsHtml || '<div class="card">暂无课程，请去 Studio 创建。</div>'}
+      `;
+
+      root.querySelectorAll("[data-lesson-id]").forEach(el => {
+        el.addEventListener("click", () => {
+          state.selectedLessonId = el.dataset.lessonId;
+          state.dojoStep = 1;
+          saveState();
+          setTab("dojo");
+        });
+      });
+    }
+
+    function renderDojo() {
+      const root = document.getElementById("tab-dojo");
+      const lesson = activeLesson();
+      if (!lesson) {
+        root.innerHTML = '<div class="card">暂无课程，请先去 Studio 创建。</div>';
+        return;
+      }
+
+      const step = state.dojoStep;
+      const stepText = step === 1 ? "Step 1 盲听" : step === 2 ? "Step 2 解码" : "Step 3 跟读";
+
+      root.innerHTML = `
+        <div class="card">
+          <div class="row" style="justify-content:space-between;align-items:center;">
+            <strong>${escapeHtml(lesson.title)}</strong>
+            <span class="pill">${stepText}</span>
+          </div>
+          <div class="space"></div>
+          <div class="muted">场景：${escapeHtml(lesson.scene || "未填写")}</div>
+        </div>
+
+        <div class="card ${step === 2 ? 'chunk' : ''}">
+          ${renderStepContent(lesson, step)}
+        </div>
+
+        <div class="row">
+          <button ${step <= 1 ? "disabled" : ""} id="prev-step">上一步</button>
+          <button class="brand" ${step >= 3 ? "disabled" : ""} id="next-step">下一步</button>
+          <button id="reset-step">重置为 Step1</button>
+        </div>
+      `;
+
+      const prev = root.querySelector("#prev-step");
+      const next = root.querySelector("#next-step");
+      const reset = root.querySelector("#reset-step");
+      if (prev) prev.onclick = () => { state.dojoStep = Math.max(1, state.dojoStep - 1); saveState(); renderDojo(); };
+      if (next) next.onclick = () => { state.dojoStep = Math.min(3, state.dojoStep + 1); logAttempt(`step_${state.dojoStep}`); saveState(); renderDojo(); };
+      if (reset) reset.onclick = () => { state.dojoStep = 1; saveState(); renderDojo(); };
+
+      bindDojoActions(lesson, step);
+    }
+
+    function renderStepContent(lesson, step) {
+      if (step === 1) {
+        return `
+          <div class="big">盲听模式</div>
+          <div class="muted">先听，不看字幕。听完再判断难度。</div>
+          <div class="space"></div>
+          <div class="row">
+            <button class="brand" id="play-slow">慢速播放 0.75x</button>
+            <button id="play-normal">正常播放 1.0x</button>
+            <button id="stop-tts">停止</button>
+          </div>
+          <div class="space"></div>
+          <div id="listen-status" class="muted">状态：待播放</div>
+          <div class="space"></div>
+          <div class="row">
+            <button class="ok" id="heard-it">我听懂了</button>
+            <button class="warn" id="too-fast">太快了</button>
+          </div>
+          <div class="space"></div>
+          <details>
+            <summary class="muted">查看字幕（可选）</summary>
+            <pre class="mono" style="white-space:pre-wrap;line-height:1.5">${escapeHtml(lesson.transcript)}</pre>
+          </details>
+        `;
+      }
+
+      if (step === 2) {
+        const cards = lesson.chunks.map((c, i) => `
+          <div class="card" style="margin:8px 0;background:rgba(25,36,67,0.5)">
+            <div class="row" style="justify-content:space-between;align-items:center;">
+              <div><strong>${i + 1}. ${escapeHtml(c.text)}</strong></div>
+              <span class="pill">难度：${escapeHtml(c.difficulty || "基础")}</span>
+            </div>
+            <div class="muted">释义：${escapeHtml(c.meaningZh)}</div>
+            <div class="muted">语气：${escapeHtml(c.tone || "-")}</div>
+            <div class="muted">适用：${escapeHtml(c.useWhen || "-")}</div>
+            <div class="muted">慎用：${escapeHtml(c.avoidWhen || "-")}</div>
+            <div class="muted">句型模板：<span class="mono">${escapeHtml(c.pattern || "-")}</span></div>
+            <div class="muted">替换：${escapeHtml((c.alt || []).join(" / ") || "-")}</div>
+            <div class="muted">纠错题：<span class="mono">${escapeHtml(c.correctionBad || "-")}</span></div>
+            <div class="muted">参考改写：<span class="mono">${escapeHtml(c.correctionGood || "-")}</span></div>
+            <div class="muted">输出任务：${escapeHtml(c.mission || "-")}</div>
+            <div class="row" style="margin-top:8px;">
+              <button onclick="window.__markReview('${c.id}','new')">记为新学</button>
+              <button class="ok" onclick="window.__markReview('${c.id}','reviewed')">记为已练</button>
+              <button class="brand" onclick="window.__markReview('${c.id}','mastered')">记为掌握</button>
+              <button class="warn" onclick="window.__completeMission('${c.id}')">完成任务打卡</button>
+            </div>
+            <div class="muted">任务打卡次数：${state.missionMap[c.id] || 0}</div>
+          </div>
+        `).join("");
+
+        return `
+          <div class="big">解码模式</div>
+          <div class="muted">深度学习卡：精讲 + 变体 + 纠错 + 任务输出</div>
+          <div class="space"></div>
+          ${cards || '<div class="muted">暂无语块</div>'}
+        `;
+      }
+
+      return `
+        <div class="big">跟读模式</div>
+        <div class="muted">基础评分已启用：按语速与音量给出参考分。</div>
+        <div class="space"></div>
+        <div class="row">
+          <button class="brand" id="start-record">开始录音</button>
+          <button class="bad" id="stop-record" disabled>停止录音</button>
+        </div>
+        <div class="space"></div>
+        <audio id="play-record" controls style="width:100%"></audio>
+        <div class="space"></div>
+        <div id="record-status" class="muted">状态：未录音</div>
+        <div class="space"></div>
+        <div id="score-panel" class="muted">评分：暂无</div>
+      `;
+    }
+
+    function bindDojoActions(lesson, step) {
+      if (step === 1) {
+        const playSlow = document.getElementById("play-slow");
+        const playNormal = document.getElementById("play-normal");
+        const stopTts = document.getElementById("stop-tts");
+        const listenStatus = document.getElementById("listen-status");
+        const heard = document.getElementById("heard-it");
+        const fast = document.getElementById("too-fast");
+        const speakAtRate = (rate) => {
+          if (!window.speechSynthesis) {
+            listenStatus.innerHTML = '<span class="status-warn">当前浏览器不支持朗读。</span>';
+            return;
+          }
+          window.speechSynthesis.cancel();
+          const utterance = new SpeechSynthesisUtterance(lesson.transcript.replace(/\n/g, " "));
+          utterance.lang = "en-US";
+          utterance.rate = rate;
+          utterance.onstart = () => {
+            listenStatus.textContent = `状态：播放中 (${rate.toFixed(2)}x)`;
+          };
+          utterance.onend = () => {
+            listenStatus.innerHTML = '<span class="status-ok">播放完成。</span>';
+          };
+          utterance.onerror = () => {
+            listenStatus.innerHTML = '<span class="status-warn">朗读失败，请稍后重试。</span>';
+          };
+          window.speechSynthesis.speak(utterance);
+        };
+        if (playSlow) playSlow.onclick = () => speakAtRate(0.75);
+        if (playNormal) playNormal.onclick = () => speakAtRate(1.0);
+        if (stopTts) stopTts.onclick = () => {
+          if (window.speechSynthesis) {
+            window.speechSynthesis.cancel();
+          }
+          listenStatus.textContent = "状态：已停止";
+        };
+        if (heard) heard.onclick = () => {
+          if (window.speechSynthesis) {
+            window.speechSynthesis.cancel();
+          }
+          logAttempt("blind_understood", 60);
+          state.dojoStep = 2;
+          saveState();
+          renderDojo();
+        };
+        if (fast) fast.onclick = () => {
+          if (window.speechSynthesis) {
+            window.speechSynthesis.cancel();
+          }
+          logAttempt("blind_too_fast", 60);
+          alert("收到：已标记为太快，建议先用 0.75x 再进入解码。");
+          state.dojoStep = 2;
+          saveState();
+          renderDojo();
+        };
+      }
+
+      if (step === 3) {
+        const startBtn = document.getElementById("start-record");
+        const stopBtn = document.getElementById("stop-record");
+        const player = document.getElementById("play-record");
+        const status = document.getElementById("record-status");
+        const scorePanel = document.getElementById("score-panel");
+
+        let mediaRecorder = null;
+        let chunks = [];
+        let streamRef = null;
+
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || !window.MediaRecorder) {
+          status.innerHTML = '<span class="status-warn">当前浏览器不支持录音，请换 Chrome/Safari 新版本。</span>';
+          startBtn.disabled = true;
+          stopBtn.disabled = true;
+          return;
+        }
+
+        startBtn.onclick = async () => {
+          try {
+            streamRef = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(streamRef);
+            chunks = [];
+            mediaRecorder.ondataavailable = e => chunks.push(e.data);
+            mediaRecorder.onstop = async () => {
+              const blob = new Blob(chunks, { type: "audio/webm" });
+              player.src = URL.createObjectURL(blob);
+              status.innerHTML = '<span class="status-ok">录音完成，可回放并继续练。</span>';
+              try {
+                const score = await calculateBasicScores(blob, lesson.transcript);
+                scorePanel.innerHTML = `评分：流利度 <strong>${score.fluency}</strong> / 音量 <strong>${score.volume}</strong> / 总分 <strong>${score.total}</strong><br><span class="muted">语速 ${Math.round(score.wpm)} WPM，时长 ${score.durationSec.toFixed(1)} 秒</span>`;
+                logAttempt("dubbing_recorded", Math.round(score.durationSec), {
+                  score_fluency: score.fluency,
+                  score_volume: score.volume,
+                  score_total: score.total
+                });
+              } catch (err) {
+                scorePanel.innerHTML = '<span class="status-warn">评分失败：当前录音格式暂不支持分析。</span>';
+                logAttempt("dubbing_recorded", 30);
+              }
+              if (streamRef) {
+                streamRef.getTracks().forEach(t => t.stop());
+              }
+            };
+            mediaRecorder.start();
+            startBtn.disabled = true;
+            stopBtn.disabled = false;
+            status.textContent = "状态：录音中...";
+          } catch (err) {
+            status.innerHTML = '<span class="status-warn">未获取到麦克风权限。</span>';
+          }
+        };
+
+        stopBtn.onclick = () => {
+          if (mediaRecorder && mediaRecorder.state !== "inactive") {
+            mediaRecorder.stop();
+          }
+          startBtn.disabled = false;
+          stopBtn.disabled = true;
+        };
+      }
+    }
+
+    function renderReview() {
+      const root = document.getElementById("tab-review");
+      const lesson = activeLesson();
+      if (!lesson) {
+        root.innerHTML = '<div class="card">暂无数据。</div>';
+        return;
+      }
+      const lines = lesson.chunks.map(c => {
+        const s = state.reviewMap[c.id] || "new";
+        const label = s === "mastered" ? "已掌握" : s === "reviewed" ? "已练习" : "新学";
+        return `<div class="card"><strong>${escapeHtml(c.text)}</strong><div class="muted">状态：${label}</div></div>`;
+      }).join("");
+
+      const todayAttempts = state.attempts.filter(a => {
+        const d = new Date(a.at);
+        const now = new Date();
+        return d.toDateString() === now.toDateString();
+      });
+      const latestScore = [...state.attempts].reverse().find(a => typeof a.score_total === "number");
+      const missionDone = Object.values(state.missionMap || {}).reduce((sum, v) => sum + Number(v || 0), 0);
+
+      root.innerHTML = `
+        <div class="card">
+          <strong>今日学习概览</strong>
+          <div class="muted">今日操作次数：${todayAttempts.length}</div>
+          <div class="muted">总课程数：${state.lessons.length}</div>
+          <div class="muted">最近跟读总分：${latestScore ? latestScore.score_total : "-"}</div>
+          <div class="muted">任务打卡总次数：${missionDone}</div>
+        </div>
+        ${lines || '<div class="card">暂无复习项</div>'}
+      `;
+    }
+
+    function renderStudio() {
+      const root = document.getElementById("tab-studio");
+      root.innerHTML = `
+        <div class="card">
+          <strong>Studio（内容生产）</strong>
+          <div class="muted">把字幕粘贴进来，点击“生成语块（模拟）”后可一键发布。</div>
+          <div class="space"></div>
+          <div class="row">
+            <button class="brand" id="btn-import-seed">一键导入10条种子内容</button>
+            <span id="seed-status" class="muted">状态：未导入</span>
+          </div>
+        </div>
+
+        <div class="card grid grid-2">
+          <div>
+            <label>课程标题</label>
+            <input id="input-title" placeholder="例如：How to end awkward small talk" />
+          </div>
+          <div>
+            <label>场景</label>
+            <input id="input-scene" placeholder="例如：职场/面试/社交" />
+          </div>
+          <div>
+            <label>级别</label>
+            <select id="input-level">
+              <option>A2</option>
+              <option selected>B1</option>
+              <option>B2</option>
+            </select>
+          </div>
+          <div>
+            <label>来源类型</label>
+            <select id="input-source-type">
+              <option value="text" selected>text</option>
+              <option value="youtube">youtube</option>
+              <option value="bilibili">bilibili</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="card">
+          <label>字幕/台词（每行一句）</label>
+          <textarea id="input-transcript" placeholder="把字幕贴这里..."></textarea>
+          <div class="space"></div>
+          <div class="row">
+            <button class="brand" id="btn-generate">生成语块（模拟）</button>
+            <button id="btn-clear">清空</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <strong>生成结果预览</strong>
+          <div id="generated-box" class="muted">还未生成</div>
+          <div class="space"></div>
+          <button class="ok" id="btn-publish" disabled>发布课程</button>
+        </div>
+      `;
+
+      let generated = null;
+
+      const titleEl = document.getElementById("input-title");
+      const sceneEl = document.getElementById("input-scene");
+      const levelEl = document.getElementById("input-level");
+      const sourceTypeEl = document.getElementById("input-source-type");
+      const transcriptEl = document.getElementById("input-transcript");
+      const box = document.getElementById("generated-box");
+      const publishBtn = document.getElementById("btn-publish");
+      const seedStatus = document.getElementById("seed-status");
+
+      document.getElementById("btn-import-seed").onclick = async () => {
+        const candidates = [
+          "./english_speaking_seed_lessons_v1.json",
+          "./hu_project/english_speaking_seed_lessons_v1.json",
+          "./输出/英语口语软件_冷启动脚本10条_v1.json"
+        ];
+        seedStatus.textContent = "状态：导入中...";
+        let payload = null;
+        for (const path of candidates) {
+          try {
+            const res = await fetch(path, { cache: "no-store" });
+            if (res.ok) {
+              payload = await res.json();
+              break;
+            }
+          } catch (err) {
+            // continue trying next path
+          }
+        }
+        if (!payload || !Array.isArray(payload.lessons)) {
+          seedStatus.innerHTML = '<span class="status-warn">状态：导入失败（未找到种子文件）</span>';
+          return;
+        }
+
+        const existing = new Set(state.lessons.map(lessonSignature));
+        let added = 0;
+        let firstAddedLessonId = "";
+        payload.lessons.forEach(rawLesson => {
+          const lesson = hydrateLesson(rawLesson);
+          const sig = lessonSignature(lesson);
+          if (!existing.has(sig)) {
+            state.lessons.push(lesson);
+            existing.add(sig);
+            added += 1;
+            if (!firstAddedLessonId) {
+              firstAddedLessonId = lesson.id;
+            }
+          }
+        });
+        saveState();
+        if (added > 0) {
+          state.selectedLessonId = firstAddedLessonId || state.lessons[state.lessons.length - 1].id;
+          state.dojoStep = 1;
+          saveState();
+          seedStatus.innerHTML = `<span class="status-ok">状态：导入完成，新增 ${added} 条，正在进入第一课</span>`;
+          setTab("dojo");
+          return;
+        }
+        seedStatus.innerHTML = '<span class="status-warn">状态：没有新增内容（可能已导入过）</span>';
+      };
+
+      document.getElementById("btn-generate").onclick = () => {
+        const transcript = transcriptEl.value.trim();
+        if (!transcript) {
+          alert("请先粘贴字幕。");
+          return;
+        }
+        generated = autoGenerateChunks(transcript);
+        box.innerHTML = generated.map((g, i) => `
+          <div class="card" style="margin:8px 0;background:rgba(25,36,67,0.5)">
+            <strong>${i + 1}. ${escapeHtml(g.text)}</strong>
+            <div class="muted">${escapeHtml(g.meaningZh)}</div>
+          </div>
+        `).join("");
+        publishBtn.disabled = false;
+      };
+
+      document.getElementById("btn-clear").onclick = () => {
+        titleEl.value = "";
+        sceneEl.value = "";
+        transcriptEl.value = "";
+        box.innerHTML = "还未生成";
+        generated = null;
+        publishBtn.disabled = true;
+      };
+
+      publishBtn.onclick = () => {
+        if (!generated || !generated.length) {
+          alert("请先生成语块。");
+          return;
+        }
+
+        const lesson = hydrateLesson({
+          id: crypto.randomUUID(),
+          title: titleEl.value.trim() || "Untitled Lesson",
+          scene: sceneEl.value.trim() || "未定义场景",
+          level: levelEl.value,
+          sourceType: sourceTypeEl.value,
+          transcript: transcriptEl.value.trim(),
+          chunks: generated,
+          createdAt: Date.now()
+        });
+
+        state.lessons.push(lesson);
+        state.selectedLessonId = lesson.id;
+        state.dojoStep = 1;
+        saveState();
+        alert("发布成功！已加入 Feed。");
+        setTab("feed");
+      };
+    }
+
+    function escapeHtml(text) {
+      return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function render() {
+      renderFeed();
+      renderDojo();
+      renderReview();
+      renderStudio();
+    }
+
+    window.__markReview = markReview;
+    window.__completeMission = completeMission;
+
+    document.querySelectorAll(".tab").forEach(btn => {
+      btn.addEventListener("click", () => setTab(btn.dataset.tab));
+    });
+
+    render();
+  </script>
+</body>
+</html>

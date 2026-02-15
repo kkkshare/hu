@@ -1,0 +1,126 @@
+{
+  "version": "v1",
+  "generated_at": "2026-02-13",
+  "lessons": [
+    {
+      "title": "面试开场：自我介绍不尴尬",
+      "scene": "面试",
+      "level": "B1",
+      "sourceType": "text",
+      "transcript": "Thanks for having me today.\nI've spent the last five years working on classroom innovation.\nI focus on turning complex goals into practical routines.",
+      "chunks": [
+        {"text": "Thanks for having me today.", "meaningZh": "感谢今天给我这个机会。", "usageNote": "面试开场礼貌表达", "commonMistake": "不要说 Thanks for your interview", "alt": ["Thank you for inviting me."], "tone": "礼貌、稳重", "useWhen": "开场第一句", "avoidWhen": "朋友闲聊", "pattern": "Thanks for + 动词ing", "correctionBad": "Thanks for interview me.", "correctionGood": "Thanks for having me today.", "mission": "用这句开场并接一句你的核心优势。", "difficulty": "基础"},
+        {"text": "I've spent the last five years...", "meaningZh": "过去五年我一直在...", "usageNote": "讲经历时很自然", "commonMistake": "不要漏掉 have", "alt": ["Over the past five years, I've..."], "tone": "客观、专业", "useWhen": "讲履历", "avoidWhen": "纯未来计划", "pattern": "I've spent the last + 时间 + doing...", "correctionBad": "I spend last five years...", "correctionGood": "I've spent the last five years working on...", "mission": "说出你过去 3-5 年的一个重点。", "difficulty": "进阶"},
+        {"text": "turn ... into ...", "meaningZh": "把...转化为...", "usageNote": "展示解决问题能力", "commonMistake": "into 后面常接结果", "alt": ["translate ... into ..."], "tone": "行动导向", "useWhen": "讲成果", "avoidWhen": "抽象空话", "pattern": "turn A into B", "correctionBad": "I change goal to routine.", "correctionGood": "I turn complex goals into practical routines.", "mission": "用 turn A into B 说一个真实案例。", "difficulty": "进阶"}
+      ]
+    },
+    {
+      "title": "会议表达：先认同再补充",
+      "scene": "会议",
+      "level": "B1",
+      "sourceType": "text",
+      "transcript": "That's a fair point.\nI agree with the direction, and I'd add one concern.\nIf we adjust the timeline, we can reduce risk.",
+      "chunks": [
+        {"text": "That's a fair point.", "meaningZh": "这个观点很中肯。", "usageNote": "先接住他人观点", "commonMistake": "fair 不是公平交易语境", "alt": ["That's a valid point."], "tone": "合作、克制", "useWhen": "不同意前", "avoidWhen": "直接否定", "pattern": "That's a fair/valid point, but...", "correctionBad": "You are right but you are wrong.", "correctionGood": "That's a fair point, and I'd add one concern.", "mission": "先认可，再提出一个不同意见。", "difficulty": "基础"},
+        {"text": "I'd add one concern.", "meaningZh": "我想补充一个担忧点。", "usageNote": "比 I disagree 更柔和", "commonMistake": "concern 不是 complain", "alt": ["I'd raise one concern."], "tone": "理性", "useWhen": "风险提示", "avoidWhen": "情绪化抱怨", "pattern": "I'd add/raise + one concern", "correctionBad": "I have one complain.", "correctionGood": "I'd add one concern.", "mission": "围绕一个项目风险说 2 句。", "difficulty": "进阶"},
+        {"text": "reduce risk", "meaningZh": "降低风险", "usageNote": "决策讨论高频词组", "commonMistake": "不要说 low risk as verb", "alt": ["mitigate risk"], "tone": "决策导向", "useWhen": "提方案", "avoidWhen": "只提问题不提解法", "pattern": "If we ..., we can reduce risk.", "correctionBad": "We can low the risk.", "correctionGood": "We can reduce risk.", "mission": "用 if 条件句提出一个降风险建议。", "difficulty": "进阶"}
+      ]
+    },
+    {
+      "title": "社交寒暄：优雅结束聊天",
+      "scene": "社交",
+      "level": "A2",
+      "sourceType": "text",
+      "transcript": "It's been great talking with you.\nI should get going, but let's stay in touch.\nHave a lovely evening.",
+      "chunks": [
+        {"text": "It's been great talking with you.", "meaningZh": "和你聊天很愉快。", "usageNote": "结束前先给正向反馈", "commonMistake": "不要只说 Bye", "alt": ["I've really enjoyed our chat."], "tone": "温暖", "useWhen": "结束前", "avoidWhen": "冲突场景", "pattern": "It's been great + 动词ing", "correctionBad": "I am happy talk with you.", "correctionGood": "It's been great talking with you.", "mission": "用这句自然结束一次聊天。", "difficulty": "基础"},
+        {"text": "I should get going.", "meaningZh": "我该先走了。", "usageNote": "礼貌离场神句", "commonMistake": "不要说 I must go now 太硬", "alt": ["I need to head out."], "tone": "礼貌", "useWhen": "离场", "avoidWhen": "上级正式汇报", "pattern": "I should get going, but...", "correctionBad": "I go first.", "correctionGood": "I should get going.", "mission": "搭配 but 说一个后续动作。", "difficulty": "基础"},
+        {"text": "stay in touch", "meaningZh": "保持联系", "usageNote": "结束关系不断联", "commonMistake": "touch 不是物理接触", "alt": ["keep in touch"], "tone": "友好", "useWhen": "告别", "avoidWhen": "不想继续联系", "pattern": "Let's stay in touch.", "correctionBad": "Let us touch in future.", "correctionGood": "Let's stay in touch.", "mission": "完成 20 秒告别话术。", "difficulty": "基础"}
+      ]
+    },
+    {
+      "title": "请求帮助：不卑不亢",
+      "scene": "职场协作",
+      "level": "B1",
+      "sourceType": "text",
+      "transcript": "Could you help me review this draft?\nI'd really value your feedback.\nA quick 10-minute look would be enough.",
+      "chunks": [
+        {"text": "Could you help me...", "meaningZh": "你能帮我...吗", "usageNote": "礼貌请求", "commonMistake": "不要命令式 Help me", "alt": ["Would you mind helping me..."], "tone": "礼貌", "useWhen": "跨部门协作", "avoidWhen": "紧急命令", "pattern": "Could you help me + 动词原形", "correctionBad": "Help me check this.", "correctionGood": "Could you help me review this draft?", "mission": "请求同事帮你看一个文件。", "difficulty": "基础"},
+        {"text": "I'd really value your feedback.", "meaningZh": "我非常看重你的反馈。", "usageNote": "让对方感到被尊重", "commonMistake": "value 在这里是动词", "alt": ["Your feedback would mean a lot."], "tone": "尊重", "useWhen": "请求意见", "avoidWhen": "催促语气", "pattern": "I'd value your + 名词", "correctionBad": "I very need your feedback.", "correctionGood": "I'd really value your feedback.", "mission": "先请求，再表达重视。", "difficulty": "进阶"},
+        {"text": "A quick 10-minute look", "meaningZh": "快速看十分钟", "usageNote": "降低对方心理负担", "commonMistake": "时间要具体", "alt": ["A brief review would help."], "tone": "体贴", "useWhen": "请求帮忙", "avoidWhen": "模糊表达", "pattern": "A quick + 时间 + look would be enough.", "correctionBad": "Please spend much time for me.", "correctionGood": "A quick 10-minute look would be enough.", "mission": "把请求拆成可执行的小动作。", "difficulty": "进阶"}
+      ]
+    },
+    {
+      "title": "拒绝邀约：体面说不",
+      "scene": "社交边界",
+      "level": "B1",
+      "sourceType": "text",
+      "transcript": "I appreciate the invitation.\nI won't be able to make it this time.\nI'd love to join next week if that works.",
+      "chunks": [
+        {"text": "I appreciate the invitation.", "meaningZh": "感谢你的邀请。", "usageNote": "先感谢再拒绝", "commonMistake": "不要直接 No", "alt": ["Thanks so much for inviting me."], "tone": "尊重", "useWhen": "婉拒", "avoidWhen": "直接冲突", "pattern": "I appreciate + 名词", "correctionBad": "No, I cannot.", "correctionGood": "I appreciate the invitation.", "mission": "拒绝前先给一句感谢。", "difficulty": "基础"},
+        {"text": "I won't be able to make it.", "meaningZh": "我这次去不了。", "usageNote": "委婉拒绝标准句", "commonMistake": "make it 表示赶到/参加", "alt": ["I can't make it this time."], "tone": "清楚、礼貌", "useWhen": "明确拒绝", "avoidWhen": "拖延不回复", "pattern": "I won't be able to make it + 时间", "correctionBad": "I no go.", "correctionGood": "I won't be able to make it this time.", "mission": "拒绝并给出时间限定。", "difficulty": "基础"},
+        {"text": "if that works", "meaningZh": "如果你方便的话", "usageNote": "给替代方案", "commonMistake": "不要忘记 if", "alt": ["if that suits you"], "tone": "协商", "useWhen": "提出替代", "avoidWhen": "强行改时间", "pattern": "I'd love to ..., if that works.", "correctionBad": "You change to next week.", "correctionGood": "I'd love to join next week if that works.", "mission": "拒绝后给一个可行替代。", "difficulty": "进阶"}
+      ]
+    },
+    {
+      "title": "冲突场景：先降温",
+      "scene": "冲突沟通",
+      "level": "B2",
+      "sourceType": "text",
+      "transcript": "I hear your frustration.\nLet's take a step back and look at the facts.\nI want us to solve this, not blame each other.",
+      "chunks": [
+        {"text": "I hear your frustration.", "meaningZh": "我理解你的挫败感。", "usageNote": "先共情再处理问题", "commonMistake": "hear 在这里是理解", "alt": ["I understand why you're upset."], "tone": "共情", "useWhen": "对方情绪高", "avoidWhen": "讽刺语气", "pattern": "I hear your + 情绪词", "correctionBad": "You are too emotional.", "correctionGood": "I hear your frustration.", "mission": "先共情一句，再进入事实。", "difficulty": "进阶"},
+        {"text": "take a step back", "meaningZh": "先退一步看问题", "usageNote": "冲突降温高频语块", "commonMistake": "不是真的后退一步", "alt": ["pause for a moment"], "tone": "冷静", "useWhen": "争执升级", "avoidWhen": "嘲讽对方", "pattern": "Let's take a step back and ...", "correctionBad": "Calm down now.", "correctionGood": "Let's take a step back and look at the facts.", "mission": "用这句把讨论拉回事实。", "difficulty": "进阶"},
+        {"text": "not blame each other", "meaningZh": "不是互相指责", "usageNote": "重设讨论目标", "commonMistake": "blame 后接人", "alt": ["focus on solutions"], "tone": "解决导向", "useWhen": "团队冲突", "avoidWhen": "翻旧账", "pattern": "I want us to ..., not ...", "correctionBad": "Don't blame me.", "correctionGood": "I want us to solve this, not blame each other.", "mission": "做一段 25 秒冲突降温表达。", "difficulty": "进阶"}
+      ]
+    },
+    {
+      "title": "邮件口语化：催进度不冒犯",
+      "scene": "项目推进",
+      "level": "B1",
+      "sourceType": "text",
+      "transcript": "Just checking in on the timeline.\nDo you think we can finalize this by Friday?\nLet me know if you need anything from me.",
+      "chunks": [
+        {"text": "Just checking in", "meaningZh": "跟进一下", "usageNote": "轻催进度", "commonMistake": "不是 check it", "alt": ["Quick follow-up"], "tone": "轻柔", "useWhen": "提醒", "avoidWhen": "严厉催办", "pattern": "Just checking in on + 名词", "correctionBad": "I rush you now.", "correctionGood": "Just checking in on the timeline.", "mission": "用 checking in 发一条礼貌提醒。", "difficulty": "基础"},
+        {"text": "finalize this by Friday", "meaningZh": "周五前定稿", "usageNote": "期限表达", "commonMistake": "by 是截止到", "alt": ["wrap this up by Friday"], "tone": "明确", "useWhen": "节点确认", "avoidWhen": "无截止日期", "pattern": "Can we + 动词 + by + 时间", "correctionBad": "Can finish Friday?", "correctionGood": "Do you think we can finalize this by Friday?", "mission": "说一个你的本周截止节点。", "difficulty": "进阶"},
+        {"text": "if you need anything from me", "meaningZh": "如果你需要我配合", "usageNote": "展现协作姿态", "commonMistake": "anything from me 固定搭配", "alt": ["happy to help on my side"], "tone": "支持", "useWhen": "催进度后", "avoidWhen": "甩锅", "pattern": "Let me know if you need anything from me.", "correctionBad": "Tell me if need.", "correctionGood": "Let me know if you need anything from me.", "mission": "催进度后补一句支持。", "difficulty": "基础"}
+      ]
+    },
+    {
+      "title": "课堂表达：给学生积极反馈",
+      "scene": "教学沟通",
+      "level": "A2",
+      "sourceType": "text",
+      "transcript": "Good try.\nYou're getting clearer every time.\nLet's fix one small part and try again.",
+      "chunks": [
+        {"text": "Good try.", "meaningZh": "尝试得很好。", "usageNote": "先鼓励", "commonMistake": "不要只说 Wrong", "alt": ["Nice attempt."], "tone": "鼓励", "useWhen": "学生出错后", "avoidWhen": "讽刺", "pattern": "Good + 名词", "correctionBad": "No, wrong.", "correctionGood": "Good try.", "mission": "先鼓励再给一个改进点。", "difficulty": "基础"},
+        {"text": "You're getting clearer", "meaningZh": "你越来越清晰了", "usageNote": "强调进步", "commonMistake": "clearer 是比较级", "alt": ["You're improving each time."], "tone": "成长导向", "useWhen": "连续练习", "avoidWhen": "只比较他人", "pattern": "You're getting + 比较级", "correctionBad": "You more clear now.", "correctionGood": "You're getting clearer every time.", "mission": "描述对方一个进步趋势。", "difficulty": "基础"},
+        {"text": "fix one small part", "meaningZh": "先改一个小点", "usageNote": "降低挫败感", "commonMistake": "不要一次提太多", "alt": ["adjust one small part"], "tone": "可执行", "useWhen": "纠错", "avoidWhen": "一次性全面批评", "pattern": "Let's fix + one small part", "correctionBad": "You need change all.", "correctionGood": "Let's fix one small part and try again.", "mission": "给学生一个可执行的改进动作。", "difficulty": "进阶"}
+      ]
+    },
+    {
+      "title": "客户沟通：延迟交付说明",
+      "scene": "客户服务",
+      "level": "B2",
+      "sourceType": "text",
+      "transcript": "I want to give you a quick update.\nWe're experiencing a short delay due to testing.\nThe new delivery date is next Tuesday, and we'll keep you posted.",
+      "chunks": [
+        {"text": "a quick update", "meaningZh": "简要更新", "usageNote": "先给结构预期", "commonMistake": "不要上来解释很长", "alt": ["a brief update"], "tone": "专业", "useWhen": "状态同步", "avoidWhen": "没有核心信息", "pattern": "I want to give you a quick update.", "correctionBad": "I tell you many things.", "correctionGood": "I want to give you a quick update.", "mission": "30 秒内完成状态更新开场。", "difficulty": "基础"},
+        {"text": "We're experiencing a short delay", "meaningZh": "我们遇到了短期延迟", "usageNote": "客观陈述问题", "commonMistake": "avoid blame language", "alt": ["There is a slight delay on our side."], "tone": "透明", "useWhen": "延期告知", "avoidWhen": "推卸责任", "pattern": "We're experiencing + 问题 + due to + 原因", "correctionBad": "We are late because others.", "correctionGood": "We're experiencing a short delay due to testing.", "mission": "说清问题 + 原因，不甩锅。", "difficulty": "进阶"},
+        {"text": "we'll keep you posted", "meaningZh": "我们会持续同步进展", "usageNote": "给客户安全感", "commonMistake": "posted 不是发帖", "alt": ["we'll keep you updated"], "tone": "负责", "useWhen": "结尾承诺", "avoidWhen": "空口承诺", "pattern": "We'll keep you posted.", "correctionBad": "I tell you later maybe.", "correctionGood": "We'll keep you posted.", "mission": "延期说明结尾加承诺句。", "difficulty": "基础"}
+      ]
+    },
+    {
+      "title": "表达观点：不同意但不对立",
+      "scene": "讨论辩论",
+      "level": "B2",
+      "sourceType": "text",
+      "transcript": "I see it differently.\nFrom my perspective, the priority is user retention.\nCan we test both options before deciding?",
+      "chunks": [
+        {"text": "I see it differently.", "meaningZh": "我看法不太一样。", "usageNote": "温和表达不同意见", "commonMistake": "避免 You're wrong", "alt": ["I have a different take."], "tone": "冷静", "useWhen": "观点冲突", "avoidWhen": "人身攻击", "pattern": "I see it differently because...", "correctionBad": "You are wrong.", "correctionGood": "I see it differently.", "mission": "用 because 补充你的依据。", "difficulty": "基础"},
+        {"text": "From my perspective", "meaningZh": "从我的角度看", "usageNote": "观点归因", "commonMistake": "persepective 拼写", "alt": ["From where I stand"], "tone": "主观但克制", "useWhen": "表达立场", "avoidWhen": "绝对化判断", "pattern": "From my perspective, ...", "correctionBad": "In my side...", "correctionGood": "From my perspective, the priority is user retention.", "mission": "说出你当前工作的优先级。", "difficulty": "进阶"},
+        {"text": "test both options", "meaningZh": "两个方案都测试", "usageNote": "把争论转为实验", "commonMistake": "option 常用复数", "alt": ["run a quick A/B test"], "tone": "实证导向", "useWhen": "僵持时", "avoidWhen": "拍脑袋决策", "pattern": "Can we test both options before ...?", "correctionBad": "We choose now, no test.", "correctionGood": "Can we test both options before deciding?", "mission": "提出一个可执行的小实验。", "difficulty": "进阶"}
+      ]
+    }
+  ]
+}

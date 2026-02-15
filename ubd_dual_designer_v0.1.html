@@ -1,0 +1,910 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>中附英语组备课小助手 v0.2</title>
+  <style>
+    :root {
+      --bg: #f7f4ee;
+      --paper: #fffdf8;
+      --ink: #22313f;
+      --accent: #146356;
+      --accent-2: #ef8f3f;
+      --line: #dfd6c8;
+      --muted: #6b7a86;
+      --shadow: 0 12px 30px rgba(34, 49, 63, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 0%, #fbf0dc 0%, rgba(251, 240, 220, 0) 35%),
+        radial-gradient(circle at 100% 0%, #e9f2ef 0%, rgba(233, 242, 239, 0) 35%),
+        var(--bg);
+      font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", sans-serif;
+    }
+
+    .page {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 18px;
+    }
+
+    .panel {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .nav {
+      padding: 16px;
+      position: sticky;
+      top: 16px;
+      height: fit-content;
+    }
+
+    .brand {
+      padding: 12px;
+      border-radius: 12px;
+      background: linear-gradient(120deg, #fef7e8, #eaf5f2);
+      margin-bottom: 14px;
+    }
+
+    .brand h1 {
+      margin: 0 0 6px;
+      font-size: 18px;
+    }
+
+    .brand p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .nav button {
+      width: 100%;
+      margin-bottom: 8px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 10px;
+      padding: 9px 10px;
+      text-align: left;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .nav button.active,
+    .nav button:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateX(3px);
+    }
+
+    .actions { margin-top: 12px; }
+
+    .ghost,
+    .primary {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 0;
+      cursor: pointer;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .primary { background: var(--accent); color: #fff; }
+    .ghost { background: #edf4f2; color: var(--accent); }
+
+    .content {
+      padding: 18px;
+      min-height: 80vh;
+    }
+
+    .tab { display: none; animation: fade 0.25s ease; }
+    .tab.active { display: block; }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 22px;
+    }
+
+    .hint {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    label {
+      font-size: 13px;
+      color: #334e5d;
+      font-weight: 600;
+    }
+
+    input, textarea, select {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 14px;
+      font-family: inherit;
+      background: #fff;
+      color: var(--ink);
+    }
+
+    textarea { min-height: 92px; resize: vertical; }
+
+    .section {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 12px;
+      background: #fff;
+    }
+
+    .section h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+      color: var(--accent);
+    }
+
+    .list-card {
+      border: 1px dashed #c8d5cf;
+      border-radius: 12px;
+      padding: 10px;
+      margin-bottom: 10px;
+      background: #fbfffe;
+    }
+
+    .inline {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .tiny {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 8px;
+      padding: 6px 9px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .danger { color: #b3261e; border-color: #e9b4b0; }
+
+    pre {
+      background: #17212b;
+      color: #e6eef4;
+      border-radius: 12px;
+      padding: 14px;
+      white-space: pre-wrap;
+      line-height: 1.55;
+      font-size: 13px;
+      margin: 0;
+      min-height: 450px;
+    }
+
+    @media (max-width: 960px) {
+      .page { grid-template-columns: 1fr; }
+      .nav { position: static; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <aside class="panel nav">
+      <div class="brand">
+        <h1>中附英语组备课小助手</h1>
+        <p>流程：导入单元课文 -> 生成教案 -> 生成四单导学</p>
+      </div>
+      <button class="tab-btn active" data-tab="import">1. 导入单元课文</button>
+      <button class="tab-btn" data-tab="plan">2. 生成教案</button>
+      <button class="tab-btn" data-tab="guide">3. 生成四单导学</button>
+      <button class="tab-btn" data-tab="preview">4. 生成预览</button>
+      <div class="actions">
+        <button class="primary" id="loadSample">加载U4示例</button>
+        <button class="ghost" id="toPreview">生成全文</button>
+        <button class="ghost" id="downloadTxt">下载TXT</button>
+        <button class="ghost" id="printDoc">打印</button>
+      </div>
+    </aside>
+
+    <main class="panel content">
+      <section class="tab active" id="tab-import">
+        <h2>导入单元课文</h2>
+        <p class="hint">支持扫描版PDF：先上传，再OCR回填到教案与导学字段。</p>
+        <div class="section">
+          <h3>步骤一：上传与识别</h3>
+          <div class="inline" style="margin-bottom:10px;">
+            <button class="ghost" id="uploadPdfBtn">上传PDF课本</button>
+            <input id="pdfInput" type="file" accept="application/pdf" style="display:none" />
+            <button class="ghost" id="uploadImgsBtn">导入课文图片</button>
+            <input id="imgInput" type="file" accept="image/*" multiple style="display:none" />
+            <input id="pagesPerLesson" type="number" min="1" value="2" style="width:110px;" />
+            <button class="ghost" id="ocrFillBtn">OCR并回填</button>
+            <button class="primary" id="oneClickGenBtn">一键生成教案</button>
+            <button class="tiny" id="goPlanBtn">前往生成教案</button>
+          </div>
+          <div id="pdfStatus" style="font-size:12px;color:#6b7a86;line-height:1.5;">未上传课本PDF</div>
+        </div>
+        <div class="section">
+          <h3>推荐流程</h3>
+          <div class="hint" style="margin:0;">1) 导入单元课文 -> 2) 生成教案 -> 3) 生成四单导学 -> 4) 生成预览与导出</div>
+        </div>
+      </section>
+
+      <section class="tab" id="tab-plan">
+        <h2>生成教案</h2>
+        <p class="hint">对齐学校 `UbD大单元整体教学设计模型修订版11.7`（单元UbD + 课时案）。</p>
+
+        <div class="grid">
+          <div class="field"><label>年级</label><input id="grade" placeholder="如：五年级" /></div>
+          <div class="field"><label>学科</label><input id="subject" value="英语" /></div>
+          <div class="field"><label>主题/单元</label><input id="theme" placeholder="如：Unit 4 What can you do?" /></div>
+          <div class="field"><label>总课时</label><input id="totalHours" placeholder="如：5" /></div>
+          <div class="field"><label>主备人</label><input id="owner" /></div>
+          <div class="field"><label>审核人</label><input id="reviewer" /></div>
+        </div>
+
+        <div class="section">
+          <h3>单元概述</h3>
+          <div class="field"><label>教材分析</label><textarea id="materialAnalysis"></textarea></div>
+          <div class="field"><label>学情分析</label><textarea id="learnerAnalysis"></textarea></div>
+          <div class="field"><label>所需资源</label><textarea id="resources"></textarea></div>
+        </div>
+
+        <div class="section">
+          <h3>阶段1 预期结果</h3>
+          <div class="field"><label>课标目标要求（内容标准 + 学业质量）</label><textarea id="standards"></textarea></div>
+          <div class="field"><label>学生将理解（U）</label><textarea id="understandings"></textarea></div>
+          <div class="field"><label>基本问题（每行一个）</label><textarea id="essentialQuestions"></textarea></div>
+          <div class="field"><label>学生将知道（K）</label><textarea id="knowledge"></textarea></div>
+          <div class="field"><label>学生将能做（D）</label><textarea id="doings"></textarea></div>
+        </div>
+
+        <div class="section">
+          <h3>阶段2 评估任务</h3>
+          <div class="field"><label>表现性任务</label><textarea id="performanceTask"></textarea></div>
+          <div class="field"><label>主要标准（评价维度/等级）</label><textarea id="rubric"></textarea></div>
+          <div class="field"><label>其他证据</label><textarea id="otherEvidence"></textarea></div>
+        </div>
+
+        <div class="section">
+          <h3>阶段3 学习计划（单元课时地图）</h3>
+          <div id="unitPlanList"></div>
+          <button class="tiny" id="addUnitPlan">+ 添加课时项</button>
+        </div>
+
+        <div class="section">
+          <h3>课时案设计</h3>
+          <p class="hint">对齐“教学评一致性学历案（课时）”模板，支持多课时增删。</p>
+          <div id="lessonList"></div>
+          <button class="tiny" id="addLesson">+ 新增课时案</button>
+        </div>
+      </section>
+
+      <section class="tab" id="tab-guide">
+        <h2>四单导学设计（学生用）</h2>
+        <p class="hint">对齐“中附四单导学模板（推进两单）”：KWL + 学习任务单。</p>
+
+        <div class="section">
+          <h3>单元预习单（KWL）</h3>
+          <div class="field"><label>K 我已经知道的</label><textarea id="unitK"></textarea></div>
+          <div class="field"><label>W 我想知道的问题</label><textarea id="unitW"></textarea></div>
+          <div class="field"><label>L 我所学到的（学后反思）</label><textarea id="unitL"></textarea></div>
+        </div>
+
+        <div class="section">
+          <h3>课时预习单（KWL）</h3>
+          <div id="guideLessonList"></div>
+          <button class="tiny" id="addGuideLesson">+ 添加课时导学</button>
+        </div>
+
+        <div class="section">
+          <h3>学习任务单</h3>
+          <div class="field">
+            <label>任务呈现（可写：思维导图/问题链/任务地图）</label>
+            <textarea id="taskSheet"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab" id="tab-preview">
+        <h2>生成预览</h2>
+        <p class="hint">点击左侧“生成全文”后，可直接打印或下载文本继续编辑。</p>
+        <pre id="previewText">尚未生成内容</pre>
+      </section>
+    </main>
+  </div>
+
+  <template id="unitPlanTemplate">
+    <div class="list-card">
+      <div class="grid">
+        <div class="field"><label>课时标题</label><input data-k="title" placeholder="如：The talent show" /></div>
+        <div class="field"><label>课时数</label><input data-k="hours" placeholder="1课时" /></div>
+      </div>
+      <div class="field"><label>课时目标与活动描述</label><textarea data-k="desc"></textarea></div>
+      <button class="tiny danger" data-action="remove">删除</button>
+    </div>
+  </template>
+
+  <template id="lessonTemplate">
+    <div class="list-card">
+      <div class="grid">
+        <div class="field"><label>课时序号</label><input data-k="no" placeholder="1" /></div>
+        <div class="field"><label>课型</label><input data-k="type" placeholder="听说课/语音课/读写课" /></div>
+        <div class="field"><label>课题</label><input data-k="topic" /></div>
+        <div class="field"><label>课时</label><input data-k="period" placeholder="Part A Let’s talk" /></div>
+      </div>
+      <div class="field"><label>学习目标（1/2/3，每行一个）</label><textarea data-k="goals"></textarea></div>
+      <div class="field"><label>评估证据（1/2/3，每行一个）</label><textarea data-k="evidence"></textarea></div>
+      <div class="field"><label>教师导入</label><textarea data-k="leadin"></textarea></div>
+      <div class="field"><label>学习活动（导学链）</label><textarea data-k="activities"></textarea></div>
+      <div class="field"><label>学生反思与教师总结</label><textarea data-k="reflection"></textarea></div>
+      <div class="grid">
+        <div class="field"><label>作业必做</label><textarea data-k="mustDo"></textarea></div>
+        <div class="field"><label>作业选做</label><textarea data-k="optionalDo"></textarea></div>
+      </div>
+      <button class="tiny danger" data-action="remove">删除课时案</button>
+    </div>
+  </template>
+
+  <template id="guideLessonTemplate">
+    <div class="list-card">
+      <div class="field"><label>课时标题</label><input data-k="title" placeholder="如：课时一" /></div>
+      <div class="field"><label>K 我已经知道</label><textarea data-k="k"></textarea></div>
+      <div class="field"><label>W 我想知道</label><textarea data-k="w"></textarea></div>
+      <div class="field"><label>L 我所学到</label><textarea data-k="l"></textarea></div>
+      <button class="tiny danger" data-action="remove">删除课时导学</button>
+    </div>
+  </template>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script>
+    const byId = (id) => document.getElementById(id);
+    let uploadedPdfMeta = null;
+    let uploadedPdfFile = null;
+    let ocrRawText = '';
+    let importedImages = [];
+    let imageLessonGroups = [];
+    if (window.pdfjsLib) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+    }
+
+    const navButtons = [...document.querySelectorAll('.tab-btn')];
+    navButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        navButtons.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        const target = btn.dataset.tab;
+        [...document.querySelectorAll('.tab')].forEach((tab) => tab.classList.remove('active'));
+        byId(`tab-${target}`).classList.add('active');
+      });
+    });
+
+    function addCard(containerId, templateId, data = {}) {
+      const container = byId(containerId);
+      const tpl = byId(templateId).content.cloneNode(true);
+      const card = tpl.firstElementChild;
+      card.querySelectorAll('[data-k]').forEach((el) => {
+        el.value = data[el.dataset.k] || '';
+      });
+      card.querySelector('[data-action="remove"]').addEventListener('click', () => card.remove());
+      container.appendChild(card);
+    }
+
+    function readCards(containerId) {
+      return [...byId(containerId).children].map((card) => {
+        const obj = {};
+        card.querySelectorAll('[data-k]').forEach((el) => {
+          obj[el.dataset.k] = el.value.trim();
+        });
+        return obj;
+      });
+    }
+
+    function lines(text) {
+      return text.split('\n').map(s => s.trim()).filter(Boolean);
+    }
+
+    function norm(text) {
+      return (text || '').replace(/\r/g, '').replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n');
+    }
+
+    function extractBlock(text, startKey, endKeys) {
+      const s = text.indexOf(startKey);
+      if (s === -1) return '';
+      const after = text.slice(s + startKey.length);
+      let end = after.length;
+      endKeys.forEach((k) => {
+        const i = after.indexOf(k);
+        if (i !== -1 && i < end) end = i;
+      });
+      return after.slice(0, end).replace(/^[:：\s]+/, '').trim();
+    }
+
+    function pick(re, text) {
+      const m = text.match(re);
+      return m && m[1] ? m[1].trim() : '';
+    }
+
+    function fillFieldsFromOcr(raw) {
+      const text = norm(raw);
+      byId('grade').value = byId('grade').value || pick(/年级[:：]?\s*([^\s\n]+)/, text) || pick(/([三四五六]年级)/, text);
+      byId('subject').value = byId('subject').value || pick(/学科[:：]?\s*([^\s\n]+)/, text) || '英语';
+      byId('theme').value = byId('theme').value || pick(/主题[:：]?\s*([^\n]+)/, text) || pick(/(Unit\s*\d+[^\n]*)/i, text);
+      byId('totalHours').value = byId('totalHours').value || pick(/总课时[:：]?\s*(\d+)/, text);
+      byId('owner').value = byId('owner').value || pick(/主备人[:：]?\s*([^\s\n]+)/, text);
+      byId('reviewer').value = byId('reviewer').value || pick(/审核人[:：]?\s*([^\s\n]+)/, text);
+
+      const material = extractBlock(text, '教材分析', ['学情分析', '所需资源', '阶段1', '阶段 1']);
+      const learner = extractBlock(text, '学情分析', ['所需资源', '阶段1', '阶段 1']);
+      const resources = extractBlock(text, '所需资源', ['阶段1', '阶段 1']);
+      const standards = extractBlock(text, '课标目标要求', ['学生将理解', '学生将理解（U）', '基本问题']);
+      const u = extractBlock(text, '学生将理解', ['基本问题', '学生将知道']);
+      const k = extractBlock(text, '学生将知道', ['学生将能做', '阶段2', '阶段 2']);
+      const d = extractBlock(text, '学生将能做', ['阶段2', '阶段 2']);
+      const perf = extractBlock(text, '表现性任务', ['主要标准', '其他证据']);
+      const rubric = extractBlock(text, '主要标准', ['其他证据', '阶段3', '阶段 3']);
+      const evidence = extractBlock(text, '其他证据', ['阶段3', '阶段 3']);
+
+      if (material) byId('materialAnalysis').value = material;
+      if (learner) byId('learnerAnalysis').value = learner;
+      if (resources) byId('resources').value = resources;
+      if (standards) byId('standards').value = standards;
+      if (u) byId('understandings').value = u;
+      if (k) byId('knowledge').value = k;
+      if (d) byId('doings').value = d;
+      if (perf) byId('performanceTask').value = perf;
+      if (rubric) byId('rubric').value = rubric;
+      if (evidence) byId('otherEvidence').value = evidence;
+
+      if (!byId('essentialQuestions').value.trim()) {
+        const questionBlock = extractBlock(text, '基本问题', ['学生将知道', '学生将能做', '阶段2', '阶段 2']);
+        if (questionBlock) {
+          const qs = questionBlock.split(/\n|[?？]/).map((s) => s.trim()).filter((s) => s.length > 6);
+          byId('essentialQuestions').value = qs.slice(0, 4).map((s) => s + (/[?？]$/.test(s) ? '' : '?')).join('\n');
+        }
+      }
+
+      if (!byId('taskSheet').value.trim()) {
+        byId('taskSheet').value = 'OCR草稿：\n' + text.slice(0, 400);
+      }
+    }
+
+    function autoBuildFromOcr(raw) {
+      const text = norm(raw);
+      const planMatches = [...text.matchAll(/(?:^|\n)\s*(\d{1,2})[\.、]\s*([^\n]{3,80}?课时[^\n]{0,60}|[^\n]{6,120})/g)];
+      const pickedPlans = planMatches.slice(0, 8).map((m) => m[2].trim());
+      if (pickedPlans.length) {
+        byId('unitPlanList').innerHTML = '';
+        pickedPlans.forEach((line, i) => {
+          const hoursHit = line.match(/(\d+\s*课时)/);
+          addCard('unitPlanList', 'unitPlanTemplate', {
+            title: line.replace(/（?\d+\s*课时）?/g, '').trim(),
+            hours: hoursHit ? hoursHit[1] : '1课时',
+            desc: line
+          });
+          if (i >= 5) return;
+        });
+      }
+
+      const hours = parseInt(byId('totalHours').value || '', 10);
+      const lessonCount = Number.isFinite(hours) && hours > 0 ? Math.min(hours, 8) : Math.max(pickedPlans.length, 5);
+      byId('lessonList').innerHTML = '';
+      byId('guideLessonList').innerHTML = '';
+      for (let i = 1; i <= lessonCount; i += 1) {
+        const title = pickedPlans[i - 1] ? pickedPlans[i - 1].replace(/（?\d+\s*课时）?/g, '').trim() : `课时${i}`;
+        addCard('lessonList', 'lessonTemplate', {
+          no: String(i),
+          type: i === 1 ? '听说课' : (i === 2 ? '语音课' : (i >= 4 ? '读写/阅读课' : '综合课')),
+          topic: title,
+          period: `第${i}课时`,
+          goals: '基于OCR自动生成，请按本班学情微调。',
+          evidence: '课堂表现、任务单、小组输出、形成性评价。',
+          leadin: '从课文主题导入，激活已知。',
+          activities: '输入理解 -> 操练迁移 -> 输出展示 -> 反思修订',
+          reflection: '关注目标达成与个体差异。',
+          mustDo: '完成课堂核心任务复盘。',
+          optionalDo: '完成拓展任务并进行同伴互评。'
+        });
+        addCard('guideLessonList', 'guideLessonTemplate', {
+          title: `课时${i}`,
+          k: '我已经知道的：',
+          w: '我想知道的：',
+          l: '我所学到的：'
+        });
+      }
+    }
+
+    function unitNameFromFileName(name) {
+      if (!name) return 'Unit 1';
+      const lower = name.toLowerCase();
+      const mNum = lower.match(/unit[\s_-]*([0-9]+)/);
+      if (mNum) return `Unit ${mNum[1]}`;
+      const words = ['one','two','three','four','five','six','seven','eight'];
+      for (let i = 0; i < words.length; i += 1) {
+        if (lower.includes(`unit${words[i]}`) || lower.includes(`unit ${words[i]}`)) return `Unit ${i + 1}`;
+      }
+      return 'Unit 1';
+    }
+
+    function buildFallbackDraftByFile() {
+      const unit = unitNameFromFileName(uploadedPdfMeta ? uploadedPdfMeta.name : '');
+      byId('grade').value = byId('grade').value || '五年级';
+      byId('subject').value = byId('subject').value || '英语';
+      byId('theme').value = byId('theme').value || unit;
+      byId('totalHours').value = byId('totalHours').value || '5';
+      byId('owner').value = byId('owner').value || '英语备课组';
+      byId('materialAnalysis').value = byId('materialAnalysis').value || `本单元为${unit}课文内容，围绕核心话题开展听说读写整合学习。`;
+      byId('learnerAnalysis').value = byId('learnerAnalysis').value || '学生有基础词汇积累，但需强化语篇理解与迁移表达。';
+      byId('resources').value = byId('resources').value || '课本、PPT、音视频、任务单、评价表。';
+      byId('standards').value = byId('standards').value || '围绕真实情境发展语言能力、文化意识、思维品质和学习能力。';
+      byId('understandings').value = byId('understandings').value || '语言学习服务真实交流，理解主题并能迁移使用。';
+      byId('essentialQuestions').value = byId('essentialQuestions').value || 'What is this unit mainly about?\nHow can we use English in real contexts?\nHow can we learn with others effectively?';
+      byId('knowledge').value = byId('knowledge').value || '核心词汇、句型、语篇结构与功能表达。';
+      byId('doings').value = byId('doings').value || '能在任务情境中进行口头和书面输出。';
+      byId('performanceTask').value = byId('performanceTask').value || `Unit Performance Task：围绕${unit}主题完成展示任务。`;
+      byId('rubric').value = byId('rubric').value || '语言准确性、内容完整性、合作参与度。';
+      byId('otherEvidence').value = byId('otherEvidence').value || '课堂表现、任务单、形成性评估、同伴互评。';
+
+      byId('unitPlanList').innerHTML = '';
+      byId('lessonList').innerHTML = '';
+      byId('guideLessonList').innerHTML = '';
+      for (let i = 1; i <= 5; i += 1) {
+        addCard('unitPlanList', 'unitPlanTemplate', { title: `${unit} Lesson ${i}`, hours: '1课时', desc: '输入理解 -> 操练迁移 -> 输出展示' });
+        addCard('lessonList', 'lessonTemplate', {
+          no: String(i), type: i === 2 ? '语音课' : (i >= 4 ? '读写/阅读课' : '听说课'),
+          topic: `${unit} Lesson ${i}`, period: `第${i}课时`,
+          goals: '理解本课重点内容\n完成核心语言操练\n完成任务输出',
+          evidence: '课堂互动质量\n任务单完成度\n输出表现',
+          leadin: '情境导入，激活旧知',
+          activities: '读/听输入 -> 语言聚焦 -> 小组任务 -> 展示反馈',
+          reflection: '学生自评+教师反馈',
+          mustDo: '复习本课重点并完成巩固任务',
+          optionalDo: '完成拓展任务并记录反思'
+        });
+        addCard('guideLessonList', 'guideLessonTemplate', { title: `课时${i}`, k: '我已经知道：', w: '我想知道：', l: '我学到了：' });
+      }
+      byId('unitK').value = byId('unitK').value || '我已有相关生活经验和部分词汇基础。';
+      byId('unitW').value = byId('unitW').value || `我想知道${unit}主题如何在真实情境中表达。`;
+      byId('unitL').value = byId('unitL').value || '我可以用英语完成主题任务并进行合作交流。';
+      byId('taskSheet').value = byId('taskSheet').value || '任务地图：预习 -> 输入理解 -> 任务实践 -> 展示评价 -> 反思改进';
+    }
+
+    function buildDraftFromImages() {
+      if (!importedImages.length) return false;
+      const per = Math.max(1, parseInt(byId('pagesPerLesson').value || '2', 10) || 2);
+      const groups = [];
+      for (let i = 0; i < importedImages.length; i += per) groups.push(importedImages.slice(i, i + per));
+      imageLessonGroups = groups;
+      const unit = unitNameFromFileName(uploadedPdfMeta ? uploadedPdfMeta.name : (importedImages[0] && importedImages[0].name) || '');
+      const lessonCount = groups.length;
+
+      byId('grade').value = byId('grade').value || '五年级';
+      byId('subject').value = byId('subject').value || '英语';
+      byId('theme').value = byId('theme').value || unit;
+      byId('totalHours').value = String(lessonCount);
+      byId('materialAnalysis').value = `本单元基于课文图片导入（共${importedImages.length}页），按每课${per}页自动分组为${lessonCount}课时。`;
+      byId('learnerAnalysis').value = byId('learnerAnalysis').value || '学生需要在图文语境中提取信息并迁移表达。';
+      byId('resources').value = '课文图片、PPT、任务单、评价表。';
+
+      byId('unitPlanList').innerHTML = '';
+      byId('lessonList').innerHTML = '';
+      byId('guideLessonList').innerHTML = '';
+      groups.forEach((g, idx) => {
+        const n = idx + 1;
+        addCard('unitPlanList', 'unitPlanTemplate', {
+          title: `${unit} Lesson ${n}`,
+          hours: '1课时',
+          desc: `本课关联图片：${g.map((x) => x.name).join(' / ')}`
+        });
+        addCard('lessonList', 'lessonTemplate', {
+          no: String(n),
+          type: n === 2 ? '语音课' : (n >= 4 ? '读写/阅读课' : '听说课'),
+          topic: `${unit} Lesson ${n}`,
+          period: `第${n}课时`,
+          goals: '根据课文图片理解语篇信息\n提炼核心词句\n完成任务输出',
+          evidence: '图片信息提取准确度\n课堂任务单\n口头或书面展示',
+          leadin: `展示第${(idx * per) + 1}-${Math.min((idx + 1) * per, importedImages.length)}页图片导入`,
+          activities: '看图预测 -> 听读验证 -> 语言操练 -> 任务输出',
+          reflection: '围绕目标达成进行自评和同伴互评',
+          mustDo: '复述本课图文核心内容',
+          optionalDo: '完成拓展表达任务'
+        });
+        addCard('guideLessonList', 'guideLessonTemplate', {
+          title: `课时${n}`,
+          k: '我已知道：从图片看到了什么？',
+          w: '我想知道：这页主要表达什么？',
+          l: '我学到了：本课可以怎样表达？'
+        });
+      });
+      byId('taskSheet').value = `任务地图：看图预测 -> 语篇理解 -> 语言操练 -> 小组输出（共${lessonCount}课时）`;
+      return true;
+    }
+
+    async function ocrPdfAndFill() {
+      if (!uploadedPdfFile) {
+        byId('pdfStatus').textContent = '请先上传扫描版PDF，再执行OCR回填。';
+        return '';
+      }
+      if (!window.pdfjsLib || !window.Tesseract) {
+        byId('pdfStatus').textContent = 'OCR依赖加载失败，请检查网络后重试。';
+        return '';
+      }
+
+      byId('pdfStatus').textContent = '正在进行OCR，请稍候...';
+      const data = await uploadedPdfFile.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument({ data }).promise;
+      const maxPages = Math.min(pdf.numPages, 8);
+      let merged = '';
+
+      for (let i = 1; i <= maxPages; i += 1) {
+        byId('pdfStatus').textContent = `OCR处理中：第 ${i}/${maxPages} 页...`;
+        const page = await pdf.getPage(i);
+        const viewport = page.getViewport({ scale: 1.7 });
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        await page.render({ canvasContext: ctx, viewport }).promise;
+        const ret = await Tesseract.recognize(canvas, 'chi_sim+eng');
+        merged += '\n' + (ret.data && ret.data.text ? ret.data.text : '');
+      }
+
+      ocrRawText = norm(merged);
+      fillFieldsFromOcr(ocrRawText);
+      byId('pdfStatus').textContent = `OCR完成：已处理 ${maxPages} 页并回填字段，请检查并微调。`;
+      return ocrRawText;
+    }
+
+    function buildDoc() {
+      const unitPlans = readCards('unitPlanList');
+      const lessons = readCards('lessonList');
+      const guideLessons = readCards('guideLessonList');
+
+      const doc = [];
+      if (uploadedPdfMeta) {
+        doc.push(`【PDF来源】${uploadedPdfMeta.name}（${uploadedPdfMeta.sizeMB} MB）`);
+        doc.push('');
+      }
+      if (ocrRawText) {
+        doc.push(`【OCR状态】已抽取文本（前80字）：${ocrRawText.slice(0, 80).replace(/\n/g, ' ')}`);
+        doc.push('');
+      }
+      doc.push('中附外国语学校 UbD单元整体教学设计（单元）');
+      doc.push(`年级：${byId('grade').value || '-'}  学科：${byId('subject').value || '-'}  主题：${byId('theme').value || '-'}  主备人：${byId('owner').value || '-'}  审核人：${byId('reviewer').value || '-'}`);
+      doc.push('');
+      doc.push('单元概述');
+      doc.push(`1. 教材分析：${byId('materialAnalysis').value || '-'}`);
+      doc.push(`2. 学情分析：${byId('learnerAnalysis').value || '-'}`);
+      doc.push(`3. 所需资源：${byId('resources').value || '-'}`);
+      doc.push('');
+      doc.push('阶段1 预期结果');
+      doc.push(`课标目标要求：${byId('standards').value || '-'}`);
+      doc.push(`学生将理解（U）：${byId('understandings').value || '-'}`);
+      doc.push('基本问题：');
+      lines(byId('essentialQuestions').value).forEach((q, i) => doc.push(`${i + 1}. ${q}`));
+      if (!lines(byId('essentialQuestions').value).length) doc.push('-');
+      doc.push(`学生将知道（K）：${byId('knowledge').value || '-'}`);
+      doc.push(`学生将能做（D）：${byId('doings').value || '-'}`);
+      doc.push('');
+      doc.push('阶段2 评估任务');
+      doc.push(`表现性任务：${byId('performanceTask').value || '-'}`);
+      doc.push(`主要标准：${byId('rubric').value || '-'}`);
+      doc.push(`其他证据：${byId('otherEvidence').value || '-'}`);
+      doc.push('');
+      doc.push('阶段3 学习计划');
+      doc.push(`总课时：${byId('totalHours').value || '-'}`);
+      unitPlans.forEach((p, i) => doc.push(`${i + 1}. ${p.title || '-'}（${p.hours || '-'}） ${p.desc || '-'}`));
+      if (!unitPlans.length) doc.push('-');
+
+      doc.push('');
+      doc.push('中附外国语学校教学评一致性学历案（课时）');
+      lessons.forEach((l) => {
+        doc.push('');
+        doc.push(`【课时${l.no || '-'}】课型：${l.type || '-'}  课题：${l.topic || '-'}  课时：${l.period || '-'}`);
+        doc.push('学习目标：');
+        lines(l.goals || '').forEach((v, i) => doc.push(`${i + 1}. ${v}`));
+        if (!lines(l.goals || '').length) doc.push('-');
+        doc.push('评估证据：');
+        lines(l.evidence || '').forEach((v, i) => doc.push(`${i + 1}. ${v}`));
+        if (!lines(l.evidence || '').length) doc.push('-');
+        doc.push(`教师导入：${l.leadin || '-'}`);
+        doc.push(`学习活动：${l.activities || '-'}`);
+        doc.push(`总结反思：${l.reflection || '-'}`);
+        doc.push(`作业设计（必做）：${l.mustDo || '-'}`);
+        doc.push(`作业设计（选做）：${l.optionalDo || '-'}`);
+      });
+      if (!lessons.length) doc.push('（暂无课时案）');
+
+      doc.push('');
+      doc.push('中附四单导学（英语）');
+      doc.push('一、单元预习单（KWL）');
+      doc.push(`K：${byId('unitK').value || '-'}`);
+      doc.push(`W：${byId('unitW').value || '-'}`);
+      doc.push(`L：${byId('unitL').value || '-'}`);
+      doc.push('');
+      doc.push('课时预习单（KWL）');
+      guideLessons.forEach((g, i) => {
+        doc.push(`【课时${i + 1} ${g.title || ''}】`);
+        doc.push(`K：${g.k || '-'}`);
+        doc.push(`W：${g.w || '-'}`);
+        doc.push(`L：${g.l || '-'}`);
+      });
+      if (!guideLessons.length) doc.push('（暂无课时预习单）');
+      doc.push('');
+      doc.push('二、学习任务单');
+      doc.push(byId('taskSheet').value || '-');
+
+      return doc.join('\n');
+    }
+
+    function generatePreview() {
+      const text = buildDoc();
+      byId('previewText').textContent = text;
+      navButtons.forEach((b) => b.classList.remove('active'));
+      document.querySelector('[data-tab="preview"]').classList.add('active');
+      [...document.querySelectorAll('.tab')].forEach((tab) => tab.classList.remove('active'));
+      byId('tab-preview').classList.add('active');
+    }
+
+    byId('addUnitPlan').addEventListener('click', () => addCard('unitPlanList', 'unitPlanTemplate'));
+    byId('addLesson').addEventListener('click', () => addCard('lessonList', 'lessonTemplate'));
+    byId('addGuideLesson').addEventListener('click', () => addCard('guideLessonList', 'guideLessonTemplate'));
+    byId('toPreview').addEventListener('click', generatePreview);
+    byId('uploadPdfBtn').addEventListener('click', () => byId('pdfInput').click());
+    byId('uploadImgsBtn').addEventListener('click', () => byId('imgInput').click());
+    byId('goPlanBtn').addEventListener('click', () => {
+      navButtons.forEach((b) => b.classList.remove('active'));
+      document.querySelector('[data-tab="plan"]').classList.add('active');
+      [...document.querySelectorAll('.tab')].forEach((tab) => tab.classList.remove('active'));
+      byId('tab-plan').classList.add('active');
+    });
+    byId('ocrFillBtn').addEventListener('click', () => {
+      ocrPdfAndFill().catch((err) => {
+        byId('pdfStatus').textContent = `OCR失败：${err && err.message ? err.message : '未知错误'}`;
+      });
+    });
+    byId('oneClickGenBtn').addEventListener('click', async () => {
+      try {
+        if (buildDraftFromImages()) {
+          generatePreview();
+          byId('pdfStatus').textContent = `一键生成完成：已按图片分组生成教案与四单导学（${imageLessonGroups.length}课时）。`;
+          return;
+        }
+        const raw = await ocrPdfAndFill();
+        if (raw) {
+          autoBuildFromOcr(raw);
+          byId('pdfStatus').textContent = '一键生成完成：已自动生成教案与四单导学草稿，请在预览页检查。';
+        } else {
+          buildFallbackDraftByFile();
+          byId('pdfStatus').textContent = 'OCR未取到有效文本，已按单元文件名自动生成可用草稿。';
+        }
+        generatePreview();
+      } catch (err) {
+        buildFallbackDraftByFile();
+        generatePreview();
+        byId('pdfStatus').textContent = `OCR异常，已启用兜底一键草稿：${err && err.message ? err.message : '未知错误'}`;
+      }
+    });
+
+    byId('pdfInput').addEventListener('change', (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      uploadedPdfFile = file;
+      ocrRawText = '';
+      uploadedPdfMeta = {
+        name: file.name,
+        sizeMB: (file.size / 1024 / 1024).toFixed(2)
+      };
+      byId('pdfStatus').textContent = `已上传：${uploadedPdfMeta.name}（${uploadedPdfMeta.sizeMB} MB）。点击“OCR并回填”开始自动抽取。`;
+    });
+    byId('imgInput').addEventListener('change', (e) => {
+      importedImages = [...(e.target.files || [])];
+      if (!importedImages.length) return;
+      const per = Math.max(1, parseInt(byId('pagesPerLesson').value || '2', 10) || 2);
+      const lessonCount = Math.ceil(importedImages.length / per);
+      byId('pdfStatus').textContent = `已导入课文图片 ${importedImages.length} 张，按每课 ${per} 张可生成 ${lessonCount} 课时。点击“一键生成教案”。`;
+    });
+
+    byId('downloadTxt').addEventListener('click', () => {
+      const blob = new Blob([buildDoc()], { type: 'text/plain;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'UbD_四单导学_生成稿.txt';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+
+    byId('printDoc').addEventListener('click', () => {
+      generatePreview();
+      setTimeout(() => window.print(), 50);
+    });
+
+    byId('loadSample').addEventListener('click', () => {
+      byId('grade').value = '五年级';
+      byId('subject').value = '英语';
+      byId('theme').value = 'Unit 4 What can you do?';
+      byId('totalHours').value = '5';
+      byId('owner').value = '五年级备课组';
+      byId('materialAnalysis').value = '围绕Activities主题，包含对话、语音、邮件和故事语篇。';
+      byId('learnerAnalysis').value = '学生已有活动词汇和can句式基础，需强化真实情境表达与迁移。';
+      byId('resources').value = 'PPT、视频、任务单、评价表。';
+      byId('standards').value = '在真实情境中理解并使用can/can’t句式，发展语言能力、文化意识、思维品质与学习能力。';
+      byId('understandings').value = '每个人都有独特能力，表达自己与欣赏他人能促进理解与友谊。';
+      byId('essentialQuestions').value = 'What can you do to show your talent?\nHow can we use English to introduce ourselves?\nHow can we respect and help others with different strengths?';
+      byId('knowledge').value = 'sing, dance, play the pipa, do kung fu...';
+      byId('doings').value = '能在party、sports day、email等情境中介绍能力并进行交流。';
+      byId('performanceTask').value = 'My Talent Show：口头介绍或表演展示个人特长。';
+      byId('rubric').value = '语言运用、内容表达、合作态度三维评价。';
+      byId('otherEvidence').value = 'pair work、小组对话、任务单、邮件写作、自评互评。';
+      byId('unitK').value = '我知道一些活动词汇和can句型。';
+      byId('unitW').value = '如何更自然地介绍自己和同伴的特长？';
+      byId('unitL').value = '我能在真实场景用英语表达能力并欣赏同伴。';
+      byId('taskSheet').value = '任务地图：预习词汇 -> 对话操练 -> 才艺展示 -> 反思改进。';
+
+      byId('unitPlanList').innerHTML = '';
+      byId('lessonList').innerHTML = '';
+      byId('guideLessonList').innerHTML = '';
+
+      addCard('unitPlanList', 'unitPlanTemplate', { title: 'The talent show', hours: '1课时', desc: '获取词汇句型并进行角色扮演。' });
+      addCard('unitPlanList', 'unitPlanTemplate', { title: 'Talk about more talent', hours: '1课时', desc: '运用Can you...?进行问答。' });
+      addCard('lessonList', 'lessonTemplate', {
+        no: '1', type: '听说课', topic: 'Part A Let\'s learn & Let\'s talk', period: '第1课时',
+        goals: '获取才艺词汇\n运用核心句型描述他人才能\n小组创编对话',
+        evidence: '正确使用词汇句型\n小组对话输出\n任务单完成度',
+        leadin: 'I say you do + Party情境导入',
+        activities: '听看回答 -> 词汇操练 -> 小组调查 -> 对话创编',
+        reflection: '学生反思表达准确性，教师总结迁移场景。',
+        mustDo: 'Copy and recite new words.',
+        optionalDo: 'Survey family members for a family party.'
+      });
+      addCard('guideLessonList', 'guideLessonTemplate', {
+        title: '课时一',
+        k: '我认识sing, dance等词。',
+        w: '怎么问别人会不会做某事？',
+        l: '我会用Can you...? Yes, I can./No, I can\'t.'
+      });
+    });
+
+    addCard('unitPlanList', 'unitPlanTemplate');
+    addCard('lessonList', 'lessonTemplate');
+    addCard('guideLessonList', 'guideLessonTemplate');
+  </script>
+</body>
+</html>

@@ -266,6 +266,19 @@
         .medal-item.unlocked .medal-name {
             color: #d9480f;
         }
+
+        .quick-entry {
+            background: #ffffff;
+            border: 1px solid #dbe8d3;
+            border-radius: 16px;
+            padding: 0.9rem 1rem;
+            margin-top: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .quick-entry a {
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -299,6 +312,16 @@
                             <button id="checkin-btn" onclick="handleCheckIn()" class="btn btn-primary rounded-pill px-4">每日打卡 (+10 积分)</button>
                             <p class="text-muted small mt-2 mb-0" id="checkin-status">准备好开始今天的阅读了吗？</p>
                         </div>
+                    </div>
+                </div>
+
+                <div class="quick-entry animate__animated animate__fadeInUp animate__delay-1s">
+                    <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2">
+                        <div>
+                            <div class="fw-bold">🗣️ 英语口语训练入口</div>
+                            <div class="text-muted small">新项目已上线：可直接做语块学习、跟读打分、任务打卡。</div>
+                        </div>
+                        <a class="btn btn-sm btn-success rounded-pill px-3" href="english_speaking_mvp_prototype_v0.1.html">进入英语口语原型</a>
                     </div>
                 </div>
 
