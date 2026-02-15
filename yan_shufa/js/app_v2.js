@@ -10,13 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchBtn = document.getElementById('searchBtn');
     const clearBtn = document.getElementById('clearBtn');
     const copyMissingBtn = document.getElementById('copyMissingBtn');
-    const autoGenMissingBtn = document.getElementById('autoGenMissingBtn');
     const importGlyphBtn = document.getElementById('importGlyphBtn');
     const clearGlyphBtn = document.getElementById('clearGlyphBtn');
     const glyphFileInput = document.getElementById('glyphFileInput');
-    const aiBaseUrlInput = document.getElementById('aiBaseUrl');
-    const aiModelInput = document.getElementById('aiModel');
-    const aiApiKeyInput = document.getElementById('aiApiKey');
     const fontPreset = document.getElementById('fontPreset');
     const resultMeta = document.getElementById('resultMeta');
     const fontStatus = document.getElementById('fontStatus');
@@ -38,9 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedFontId = 'XinDiZhaoMengFu';
     const glyphCache = new Map();
     const AI_GLYPH_CACHE_KEY = 'zhaoti_ai_glyph_cache_v1';
-    const AI_CONFIG_KEY = 'zhaoti_ai_config_v1';
     let aiGlyphCache = loadAiGlyphCache();
-    let aiConfig = loadAiConfig();
     const FONT_PRESETS = {
         XinDiZhaoMengFu: { label: '新蒂赵孟頫（覆盖优先）', family: "'XinDiZhaoMengFu', serif", probe: '趙體練習' },
         ZhaoMengFuKai: { label: '赵孟頫楷书', family: "'ZhaoMengFuKai', serif", probe: '趙孟頫' },
@@ -49,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
         LiShouShuHaoZiJF: { label: '励手书昊仔简繁', family: "'LiShouShuHaoZiJF', serif", probe: '簡繁共用' }
     };
     const toTraditional = createTraditionalConverter();
-    hydrateAiConfigInputs();
     ensureActiveFont();
 
     // 搜索逻辑
@@ -82,8 +75,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return {
                 char,
                 missing,
-                source: missing ? 'fallback' : 'font',
-                fontFamily: missing ? "'Noto Serif SC', 'Songti SC', serif" : FONT_PRESETS[selectedFontId].family
+                source: missing ? 'missing' : 'font',
+                fontFamily: missing ? '' : FONT_PRESETS[selectedFontId].family
             };
         });
 
@@ -139,40 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
             missingMeta.textContent = `缺字：${missingChars.join(' ')}`;
         }
     });
-    autoGenMissingBtn.addEventListener('click', async () => {
-        const missingChars = [...new Set(currentEntries.filter((x) => x.missing).map((x) => x.char))];
-        if (!missingChars.length) {
-            missingMeta.textContent = '当前没有缺字，无需自动补字。';
-            return;
-        }
-        aiConfig = readAiConfigFromInputs();
-        saveAiConfig(aiConfig);
-        if (!aiConfig.baseUrl || !aiConfig.model || !aiConfig.apiKey) {
-            missingMeta.textContent = '请先在“AI补字配置”里填写 Base URL / 模型 / API Key。';
-            return;
-        }
-        autoGenMissingBtn.disabled = true;
-        missingMeta.textContent = `正在自动补字：0 / ${missingChars.length}`;
-        let success = 0;
-        for (let i = 0; i < missingChars.length; i += 1) {
-            const ch = missingChars[i];
-            try {
-                const path = await generateGlyphPathByAI(ch, aiConfig);
-                if (path) {
-                    aiGlyphCache[ch] = path;
-                    success += 1;
-                }
-            } catch (_) {
-                // skip failed chars
-            }
-            missingMeta.textContent = `正在自动补字：${i + 1} / ${missingChars.length}（成功 ${success}）`;
-        }
-        saveAiGlyphCache(aiGlyphCache);
-        autoGenMissingBtn.disabled = false;
-        missingMeta.textContent = `自动补字完成：成功 ${success} / ${missingChars.length}`;
-        glyphCache.clear();
-        if (searchInput.value.trim()) performSearch();
-    });
     importGlyphBtn.addEventListener('click', () => glyphFileInput.click());
     glyphFileInput.addEventListener('change', async (event) => {
         const file = event.target.files?.[0];
@@ -224,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (entry.missing) {
             const warn = document.createElement('div');
             warn.className = 'mt-2 text-center';
-            warn.innerHTML = '<span class="warn-badge">缺字-后备字形</span>';
+            warn.innerHTML = '<span class="warn-badge">待补全</span>';
             card.appendChild(warn);
         }
         
@@ -273,6 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     stroke-linejoin="round"
                     stroke-linecap="round" />
                 ` : `
+                ${fontFamily ? `
                 <text x="${center}" y="${center}" 
                     text-anchor="middle" 
                     dominant-baseline="central"
@@ -293,6 +253,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     style="font-family: ${fontFamily}; font-size: ${fontSize}px; font-weight: normal;">
                     ${char}
                 </text>
+                ` : `
+                <text x="${center}" y="${center}" text-anchor="middle" dominant-baseline="central" fill="${charColor}" fill-opacity="0.35" style="font-size: 76px; font-family: 'Noto Serif SC', serif;">
+                    待补全
+                </text>
+                `}
                 `}
             </svg>
         `;
@@ -310,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (entry.source === 'ai') {
             fullscreenIndex.innerText = `${currentIndex + 1} / ${currentChars.length} · AI补字`;
         } else if (entry.missing) {
-            fullscreenIndex.innerText = `${currentIndex + 1} / ${currentChars.length} · 缺字后备`;
+            fullscreenIndex.innerText = `${currentIndex + 1} / ${currentChars.length} · 待补全`;
         } else {
             fullscreenIndex.innerText = `${currentIndex + 1} / ${currentChars.length}`;
         }
@@ -367,77 +332,6 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem(AI_GLYPH_CACHE_KEY, JSON.stringify(cache));
     }
 
-    function loadAiConfig() {
-        try {
-            const text = localStorage.getItem(AI_CONFIG_KEY);
-            if (!text) return { baseUrl: '', model: '', apiKey: '' };
-            const obj = JSON.parse(text);
-            return {
-                baseUrl: typeof obj.baseUrl === 'string' ? obj.baseUrl : '',
-                model: typeof obj.model === 'string' ? obj.model : '',
-                apiKey: typeof obj.apiKey === 'string' ? obj.apiKey : ''
-            };
-        } catch (_) {
-            return { baseUrl: '', model: '', apiKey: '' };
-        }
-    }
-
-    function saveAiConfig(cfg) {
-        localStorage.setItem(AI_CONFIG_KEY, JSON.stringify(cfg));
-    }
-
-    function hydrateAiConfigInputs() {
-        aiBaseUrlInput.value = aiConfig.baseUrl || '';
-        aiModelInput.value = aiConfig.model || '';
-        aiApiKeyInput.value = aiConfig.apiKey || '';
-    }
-
-    function readAiConfigFromInputs() {
-        return {
-            baseUrl: aiBaseUrlInput.value.trim().replace(/\/+$/, ''),
-            model: aiModelInput.value.trim(),
-            apiKey: aiApiKeyInput.value.trim()
-        };
-    }
-
-    async function generateGlyphPathByAI(char, cfg) {
-        const endpoint = `${cfg.baseUrl}/chat/completions`;
-        const prompt = `你是书法字形生成器。请为汉字“${char}”输出一个单一 SVG path 的 d 字符串，要求在 1000x1000 画布内，风格接近赵体楷书。只返回 d 字符串本身，不要任何解释。`;
-        const body = {
-            model: cfg.model,
-            temperature: 0.2,
-            messages: [
-                { role: 'system', content: 'Only output ONE SVG path d string. No markdown, no explanation.' },
-                { role: 'user', content: prompt }
-            ]
-        };
-        const resp = await fetch(endpoint, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${cfg.apiKey}`
-            },
-            body: JSON.stringify(body)
-        });
-        if (!resp.ok) throw new Error('api error');
-        const data = await resp.json();
-        const text = data?.choices?.[0]?.message?.content?.trim() || '';
-        const d = sanitizePath(text);
-        if (!d) throw new Error('invalid path');
-        return d;
-    }
-
-    function sanitizePath(text) {
-        if (!text) return '';
-        let d = text;
-        d = d.replace(/```[\s\S]*?```/g, (m) => m.replace(/```/g, ''));
-        d = d.replace(/^[\s"'`]+|[\s"'`]+$/g, '');
-        const match = d.match(/[Mm][^<>{}\n\r]*/);
-        const raw = match ? match[0] : d;
-        if (!/[Mm].*[Zz]/.test(raw)) return '';
-        if (raw.length < 20) return '';
-        return raw;
-    }
 
     function createTraditionalConverter() {
         if (window.OpenCC && typeof window.OpenCC.Converter === 'function') {

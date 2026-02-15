@@ -415,23 +415,12 @@
                             <p id="missingMeta" class="text-xs text-amber-900/70"></p>
                             <div class="flex items-center gap-2">
                                 <button id="copyMissingBtn" class="ghost-btn">复制缺字</button>
-                                <button id="autoGenMissingBtn" class="ghost-btn">自动补字</button>
                                 <button id="importGlyphBtn" class="ghost-btn">导入补字</button>
                                 <button id="clearGlyphBtn" class="ghost-btn">清空补字</button>
                             </div>
                         </div>
                     </div>
                     <input type="file" id="glyphFileInput" accept=".json,application/json" class="hidden">
-                    <div class="mt-2 text-left text-xs text-amber-900/65">
-                        <details>
-                            <summary class="cursor-pointer">AI补字配置（可选）</summary>
-                            <div class="mt-2 grid gap-2">
-                                <input id="aiBaseUrl" class="font-select w-full" placeholder="Base URL，例如 http://host.docker.internal:3000/k9x2m/v1">
-                                <input id="aiModel" class="font-select w-full" placeholder="模型名，例如 gpt-4.1-mini">
-                                <input id="aiApiKey" class="font-select w-full" type="password" placeholder="API Key（仅保存在本地浏览器）">
-                            </div>
-                        </details>
-                    </div>
                 </div>
             </details>
         </div>
