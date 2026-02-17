@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentEntries = [];
     let currentIndex = -1;
     let activeFontReady = false;
-    let selectedFontId = 'XinDiZhaoMengFu';
+    let selectedFontId = 'FZYanZhenQingKaiJF';
     const glyphCache = new Map();
     const AI_GLYPH_CACHE_KEY = 'zhaoti_ai_glyph_cache_v1';
     let aiGlyphCache = loadAiGlyphCache();
@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         FZGuanJunKaiFan: { label: '方正管峻楷书繁体', family: "'FZGuanJunKaiFan', serif", probe: '繁體字庫' }
     };
     const toTraditional = createTraditionalConverter();
+    fontPreset.value = selectedFontId;
     ensureActiveFont();
 
     // 搜索逻辑
