@@ -1,4 +1,16 @@
 {
+  "redirects": [
+    {
+      "source": "/yz",
+      "destination": "/yan_shufa/index.html",
+      "permanent": false
+    },
+    {
+      "source": "/yz/",
+      "destination": "/yan_shufa/index.html",
+      "permanent": false
+    }
+  ],
   "headers": [
     {
       "source": "/yan_shufa/index.html",
