@@ -34,6 +34,12 @@
         }
 
         @font-face {
+            font-family: 'FZYanZhenQingKaiJF';
+            src: url('./assets/fonts/fz-yanzhenqing-kaishu-jf.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        @font-face {
             font-family: 'TXTieShanKaiFan';
             src: url('./assets/fonts/tengxiang-tieshan-kaishu-fan.ttf') format('truetype');
             font-display: swap;
@@ -373,7 +379,7 @@
             </h1>
             <div class="flex items-center gap-2">
                 <span class="seal-badge">雅集印</span>
-                <div class="text-xs text-amber-900/60 font-mono">Build: 20260213_v2.8_FULLSET</div>
+                <div class="text-xs text-amber-900/60 font-mono">Build: 20260215_v2.9_YANSET</div>
             </div>
         </div>
     </nav>
@@ -403,6 +409,7 @@
                     <div class="font-picker justify-start">
                         <label for="fontPreset" class="text-xs text-amber-900/70">字帖字体：</label>
                         <select id="fontPreset" class="font-select">
+                            <option value="FZYanZhenQingKaiJF">方正颜真卿楷书简繁（新）</option>
                             <option value="XinDiZhaoMengFu">新蒂赵孟頫（覆盖优先）</option>
                             <option value="ZhaoMengFuKai">赵孟頫楷书</option>
                             <option value="TXTieShanKaiFan">腾祥铁山楷书繁</option>

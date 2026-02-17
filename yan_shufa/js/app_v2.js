@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const AI_GLYPH_CACHE_KEY = 'zhaoti_ai_glyph_cache_v1';
     let aiGlyphCache = loadAiGlyphCache();
     const FONT_PRESETS = {
+        FZYanZhenQingKaiJF: { label: '方正颜真卿楷书简繁', family: "'FZYanZhenQingKaiJF', serif", probe: '顏楷簡繁' },
         XinDiZhaoMengFu: { label: '新蒂赵孟頫（覆盖优先）', family: "'XinDiZhaoMengFu', serif", probe: '趙體練習' },
         ZhaoMengFuKai: { label: '赵孟頫楷书', family: "'ZhaoMengFuKai', serif", probe: '趙孟頫' },
         TXTieShanKaiFan: { label: '腾祥铁山楷书繁', family: "'TXTieShanKaiFan', serif", probe: '書法練習' },
