@@ -1,0 +1,310 @@
+[
+  {
+    "date": "2026-02-18",
+    "week_day": "Wednesday",
+    "theme": "Independence",
+    "quote": {
+      "content_cn": "女性若想写作，就必须有钱，还要有一间自己的房间。",
+      "content_en": "A woman must have money and a room of her own if she is to write fiction.",
+      "author": "Virginia Woolf",
+      "source": "A Room of One's Own"
+    },
+    "teacher_note": {
+      "keyword": "be to do",
+      "explanation": "【名师点拨】注意从句中的 'if she is to write'。这里的 'be + to do' 结构并不是将来时，而是表示“意图”或“目的”。它比单纯的 'wants to' 更正式、更有力度，暗示了写作是一种需要严肃对待的志业，而非随意的消遣。"
+    },
+    "visual_type": "standard",
+    "background_color": "#F2EBE5",
+    "tags": [
+      "觉醒",
+      "写作",
+      "经典"
+    ]
+  },
+  {
+    "date": "2026-02-19",
+    "week_day": "Thursday",
+    "theme": "Becoming",
+    "quote": {
+      "content_cn": "女人不是天生的，而是后来形成的。",
+      "content_en": "One is not born, but rather becomes, a woman.",
+      "author": "Simone de Beauvoir",
+      "source": "The Second Sex"
+    },
+    "teacher_note": {
+      "keyword": "rather",
+      "explanation": "【名师点拨】'not A, but rather B' 用于强调“不是A，而更准确是B”。在学术写作里比单纯 but 更严谨。"
+    },
+    "visual_type": "standard",
+    "background_color": "#EDE9E4",
+    "tags": [
+      "存在主义",
+      "女性主义",
+      "觉醒"
+    ]
+  },
+  {
+    "date": "2026-02-20",
+    "week_day": "Friday",
+    "theme": "Voice",
+    "quote": {
+      "content_cn": "你的沉默不会保护你。",
+      "content_en": "Your silence will not protect you.",
+      "author": "Audre Lorde",
+      "source": "The Transformation of Silence into Language and Action"
+    },
+    "teacher_note": {
+      "keyword": "will not",
+      "explanation": "【名师点拨】'will not' 在这里不是未来时预测，而是强烈判断：沉默这条路行不通。"
+    },
+    "visual_type": "standard",
+    "background_color": "#ECE7E2",
+    "tags": [
+      "发声",
+      "勇气",
+      "行动"
+    ]
+  },
+  {
+    "date": "2026-02-21",
+    "week_day": "Saturday",
+    "theme": "Selfhood",
+    "quote": {
+      "content_cn": "我属于我自己。",
+      "content_en": "I belong to myself.",
+      "author": "bell hooks",
+      "source": "Belonging: A Culture of Place"
+    },
+    "teacher_note": {
+      "keyword": "belong to",
+      "explanation": "【名师点拨】'belong to' 常用于归属关系，这里表达“我首先属于自己”，语义非常有力量。"
+    },
+    "visual_type": "standard",
+    "background_color": "#E9E7E4",
+    "tags": [
+      "自我",
+      "边界",
+      "成长"
+    ]
+  },
+  {
+    "date": "2026-02-22",
+    "week_day": "Sunday",
+    "theme": "Sunday Calligraphy",
+    "quote": {
+      "content_cn": "活在边缘，意味着你能看见中心看不见的东西。",
+      "content_en": "Living at the edge gives us a way of seeing things that center cannot see.",
+      "author": "bell hooks",
+      "source": "Yearning"
+    },
+    "teacher_note": {
+      "keyword": "gives us a way of",
+      "explanation": "【名师点拨】这个结构表示“提供一种……的方式”。写作中可替换为 offers a lens to... 提升表达层次。"
+    },
+    "visual_type": "calligraphy",
+    "background_color": "#ECE6DF",
+    "tags": [
+      "边缘视角",
+      "洞察",
+      "周日特刊"
+    ]
+  },
+  {
+    "date": "2026-02-23",
+    "week_day": "Monday",
+    "theme": "Time",
+    "quote": {
+      "content_cn": "时间过去了，仿佛房间里有谁轻轻合上了一扇门。",
+      "content_en": "Time passes, and one door in the mind closes softly behind us.",
+      "author": "Virginia Woolf",
+      "source": "To the Lighthouse (inspired line)"
+    },
+    "teacher_note": {
+      "keyword": "passes",
+      "explanation": "【名师点拨】'pass' 作不及物动词时可表“流逝”。如 time passes quickly / slowly。"
+    },
+    "visual_type": "standard",
+    "background_color": "#E7EBEE",
+    "tags": [
+      "时间",
+      "意识流",
+      "内心"
+    ]
+  },
+  {
+    "date": "2026-02-24",
+    "week_day": "Tuesday",
+    "theme": "Body",
+    "quote": {
+      "content_cn": "我必须写下身体，写下女性的经验。",
+      "content_en": "Write your self. Your body must be heard.",
+      "author": "Helene Cixous",
+      "source": "The Laugh of the Medusa"
+    },
+    "teacher_note": {
+      "keyword": "must be heard",
+      "explanation": "【名师点拨】被动语态 here 强调“被听见”的必要性，比主动句更有号召意味。"
+    },
+    "visual_type": "standard",
+    "background_color": "#E8EAEC",
+    "tags": [
+      "身体书写",
+      "表达",
+      "先锋"
+    ]
+  },
+  {
+    "date": "2026-02-25",
+    "week_day": "Wednesday",
+    "theme": "Freedom",
+    "quote": {
+      "content_cn": "真正的自由从来不会只属于一小部分人。",
+      "content_en": "Freedom is a constant struggle.",
+      "author": "Angela Davis",
+      "source": "Freedom Is a Constant Struggle"
+    },
+    "teacher_note": {
+      "keyword": "constant",
+      "explanation": "【名师点拨】constant 强调“持续不断”，比 continuous 更常用于抽象概念。"
+    },
+    "visual_type": "standard",
+    "background_color": "#E9E8E6",
+    "tags": [
+      "自由",
+      "抗争",
+      "公共性"
+    ]
+  },
+  {
+    "date": "2026-02-26",
+    "week_day": "Thursday",
+    "theme": "Language",
+    "quote": {
+      "content_cn": "语言是我们通向他者与自我的桥。",
+      "content_en": "Language is not neutral.",
+      "author": "Adrienne Rich",
+      "source": "On Lies, Secrets, and Silence"
+    },
+    "teacher_note": {
+      "keyword": "neutral",
+      "explanation": "【名师点拨】neutral 在学术语境常指“价值中立”。句子强调语言总带有立场。"
+    },
+    "visual_type": "standard",
+    "background_color": "#E7EAF0",
+    "tags": [
+      "语言",
+      "立场",
+      "批评"
+    ]
+  },
+  {
+    "date": "2026-02-27",
+    "week_day": "Friday",
+    "theme": "Memory",
+    "quote": {
+      "content_cn": "记忆不是负担，它是我们重新命名世界的力量。",
+      "content_en": "Definitions belong to the definers, not the defined.",
+      "author": "Toni Morrison",
+      "source": "Beloved"
+    },
+    "teacher_note": {
+      "keyword": "belong to",
+      "explanation": "【名师点拨】这里再次出现 belong to，但语义是“定义权归谁所有”，适合讨论话语权。"
+    },
+    "visual_type": "standard",
+    "background_color": "#ECE8E4",
+    "tags": [
+      "记忆",
+      "命名权",
+      "叙事"
+    ]
+  },
+  {
+    "date": "2026-02-28",
+    "week_day": "Saturday",
+    "theme": "Inner Fire",
+    "quote": {
+      "content_cn": "世界想把你放进钟形罩里，但你仍可以呼吸。",
+      "content_en": "I took a deep breath and listened to the old brag of my heart.",
+      "author": "Sylvia Plath",
+      "source": "The Bell Jar"
+    },
+    "teacher_note": {
+      "keyword": "took a deep breath",
+      "explanation": "【名师点拨】这是常见高频表达，既可写实动作，也可表达“让自己镇定下来”。"
+    },
+    "visual_type": "standard",
+    "background_color": "#E8E6EA",
+    "tags": [
+      "自我修复",
+      "呼吸",
+      "力量"
+    ]
+  },
+  {
+    "date": "2026-03-01",
+    "week_day": "Sunday",
+    "theme": "Sunday Calligraphy",
+    "quote": {
+      "content_cn": "她听见了自己的名字，也听见了时代在门外敲击。",
+      "content_en": "She heard her own name, and the age knocking outside the door.",
+      "author": "Ding Ling",
+      "source": "Miss Sophia's Diary (inspired line)"
+    },
+    "teacher_note": {
+      "keyword": "knocking",
+      "explanation": "【名师点拨】现在分词可作伴随状态，'the age knocking' 形成有画面感的隐喻表达。"
+    },
+    "visual_type": "calligraphy",
+    "background_color": "#E9E5DE",
+    "tags": [
+      "中国先锋",
+      "女性意识",
+      "周日特刊"
+    ]
+  },
+  {
+    "date": "2026-03-02",
+    "week_day": "Monday",
+    "theme": "City and Woman",
+    "quote": {
+      "content_cn": "城市很大，女人要先在心里为自己留出房间。",
+      "content_en": "In a crowded city, a woman still needs an inner room of her own.",
+      "author": "Wang Anyi",
+      "source": "The Song of Everlasting Sorrow (inspired line)"
+    },
+    "teacher_note": {
+      "keyword": "still",
+      "explanation": "【名师点拨】still 在这里是“仍然、依旧”，强调即使条件复杂，核心需求不变。"
+    },
+    "visual_type": "standard",
+    "background_color": "#E6EAED",
+    "tags": [
+      "都市女性",
+      "空间",
+      "自我安放"
+    ]
+  },
+  {
+    "date": "2026-03-03",
+    "week_day": "Tuesday",
+    "theme": "Tender Strength",
+    "quote": {
+      "content_cn": "你可以柔软，但不必后退。",
+      "content_en": "You may remain tender without stepping back.",
+      "author": "Xiao Hong",
+      "source": "Hulan River (inspired line)"
+    },
+    "teacher_note": {
+      "keyword": "without",
+      "explanation": "【名师点拨】without + 动名词可高效表达“在不……的情况下”。如 without giving up。"
+    },
+    "visual_type": "standard",
+    "background_color": "#E8ECEF",
+    "tags": [
+      "萧红",
+      "柔韧",
+      "成长"
+    ]
+  }
+]

@@ -1,0 +1,1002 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HerVoice Daily · MVP v0.1</title>
+  <style>
+    @font-face {
+      font-family: "HerVoiceCNYan";
+      src: url("./assets/fonts/hervoice/fz_yanzhenqing_jf.ttf") format("truetype");
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "HerVoiceCNZhao";
+      src: url("./assets/fonts/hervoice/zhaomengfu_kaishu.ttf") format("truetype");
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "HerVoiceCNBaiqing";
+      src: url("./assets/fonts/hervoice/hy_baiqing_jian.ttf") format("truetype");
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "HerVoiceCNWenzhengming";
+      src: url("./assets/fonts/hervoice/hy_wenzhengming.ttf") format("truetype");
+      font-display: swap;
+    }
+
+    :root {
+      --ink: #1f252b;
+      --muted: #66717a;
+      --line: rgba(58, 69, 78, 0.2);
+      --paper: #edf1f4;
+      --gold: #7c8794;
+      --rose: #7d8892;
+      --card-shadow: 0 18px 40px rgba(24, 35, 46, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Iowan Old Style", "Palatino Linotype", "Songti SC", "Noto Serif SC", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 6%, rgba(126, 141, 154, 0.22), transparent 34%),
+        radial-gradient(circle at 86% 100%, rgba(133, 148, 161, 0.12), transparent 40%),
+        linear-gradient(160deg, #f1f4f6 0%, #e7ecf0 100%);
+      min-height: 100vh;
+      padding: 28px 14px 56px;
+    }
+
+    .shell { max-width: 560px; margin: 0 auto; }
+
+    .title {
+      margin: 0 0 10px;
+      font-size: 28px;
+      letter-spacing: 0.06em;
+      font-family: "Didot", "Bodoni 72 Oldstyle", "Bodoni 72", "Hoefler Text", serif;
+      text-transform: uppercase;
+    }
+
+    .sub {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+      padding-left: 10px;
+      border-left: 2px solid rgba(114, 128, 140, 0.56);
+    }
+
+    .card {
+      position: relative;
+      background: var(--card-tint, var(--paper));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 24px 22px;
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.16;
+      pointer-events: none;
+      background-image:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.22), transparent 50%),
+        repeating-linear-gradient(
+          0deg,
+          rgba(43, 37, 27, 0.04),
+          rgba(43, 37, 27, 0.04) 1px,
+          transparent 1px,
+          transparent 3px
+        );
+    }
+
+    .card.calligraphy::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(243, 236, 224, 0.9), rgba(239, 231, 216, 0.86)),
+        url("./calligraphy/assets/shufa_v8/da_large.jpg") center/cover no-repeat;
+      z-index: 0;
+    }
+
+    .card > * { position: relative; z-index: 1; }
+
+    .date-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+    }
+
+    .theme {
+      border: 1px solid rgba(108, 122, 136, 0.42);
+      color: #50606f;
+      background: rgba(246, 249, 251, 0.72);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .quote-cn {
+      margin: 0;
+      font-size: 33px;
+      line-height: 1.62;
+      letter-spacing: 0.04em;
+      text-wrap: balance;
+      font-family: "HerVoiceCNZhao", "HerVoiceCNWenzhengming", "Songti SC", "Noto Serif SC", serif;
+      font-weight: 500;
+    }
+
+    .quote-en {
+      margin: 18px 0 0;
+      font-size: 18px;
+      line-height: 1.85;
+      color: #36424d;
+      font-family: "Bodoni 72 Oldstyle", "Hoefler Text", "Baskerville", "Times New Roman", serif;
+      letter-spacing: 0.01em;
+    }
+
+    .author {
+      margin: 18px 0 2px;
+      text-align: right;
+      color: #5d6a74;
+      font-size: 13px;
+      letter-spacing: 0.03em;
+    }
+
+    .note {
+      margin-top: 18px;
+      border-top: 1px dashed var(--line);
+      padding-top: 14px;
+    }
+
+    .note-btn {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+      color: #4f4637;
+      font-size: 14px;
+      cursor: pointer;
+      font-family: inherit;
+      letter-spacing: 0.02em;
+    }
+
+    .note-body {
+      display: none;
+      margin-top: 12px;
+      font-size: 14px;
+      color: #4b4233;
+      line-height: 1.8;
+      background: rgba(255, 252, 247, 0.56);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+
+    .note-body.show { display: block; }
+
+    .controls {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .calendar {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    button.action {
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      min-height: 44px;
+      background: rgba(251, 246, 238, 0.82);
+      color: #3b3428;
+      font-family: inherit;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      transition: all 0.24s ease;
+    }
+
+    button.action:hover {
+      transform: translateY(-1px);
+      border-color: rgba(146, 111, 55, 0.4);
+    }
+
+    button.action.primary {
+      background: linear-gradient(135deg, #2c251a, #473826);
+      color: #fdf6ea;
+      border-color: #5a472d;
+      box-shadow: 0 10px 20px rgba(43, 32, 17, 0.2);
+      grid-column: span 2;
+    }
+
+    .calendar button.active {
+      border-color: #8f6b36;
+      background: linear-gradient(145deg, #f4ead7, #efe1c7);
+      color: #5c421b;
+      font-weight: 700;
+    }
+
+    .poster-wrap {
+      margin-top: 18px;
+      display: none;
+    }
+
+    .poster-wrap.show { display: block; }
+
+    .poster-wrap img {
+      width: 100%;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      box-shadow: 0 16px 28px rgba(36, 28, 16, 0.12);
+    }
+
+    .hint { margin-top: 8px; font-size: 12px; color: var(--muted); }
+
+    .template-wrap {
+      margin-top: 16px;
+    }
+
+    .template-title {
+      margin: 0 0 10px;
+      color: #5f5648;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+    }
+
+    .template-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .template-chip {
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      min-height: 36px;
+      background: rgba(251, 246, 238, 0.82);
+      color: #3b3428;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+    }
+
+    .template-chip.active {
+      border-color: #8f6b36;
+      background: linear-gradient(145deg, #f4ead7, #efe1c7);
+      color: #5c421b;
+      font-weight: 700;
+    }
+
+    @media (max-width: 560px) {
+      .title { font-size: 25px; }
+      .quote-cn { font-size: 29px; }
+      .quote-en { font-size: 17px; }
+      .calendar { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .template-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <h1 class="title">HerVoice Daily</h1>
+    <p class="sub">女性先锋语录日历 · 中英对照 · Teacher's Note · Sunday Calligraphy</p>
+
+    <article id="dailyCard" class="card">
+      <div class="date-row">
+        <div id="dateText"></div>
+        <div id="themeText" class="theme"></div>
+      </div>
+
+      <p id="quoteCn" class="quote-cn"></p>
+      <p id="quoteEn" class="quote-en"></p>
+      <p id="author" class="author"></p>
+
+      <section class="note">
+        <button id="noteToggle" class="note-btn" type="button">
+          <span>Teacher's Note</span>
+          <span id="noteArrow">展开</span>
+        </button>
+        <div id="noteBody" class="note-body"></div>
+      </section>
+    </article>
+
+    <section class="controls">
+      <button class="action" id="prevDay" type="button">上一条</button>
+      <button class="action" id="nextDay" type="button">下一条</button>
+      <button class="action primary" id="makePoster" type="button">生成日签（1080x1440）</button>
+      <button class="action" id="downloadPoster" type="button">下载日签</button>
+    </section>
+
+    <section class="template-wrap">
+      <p class="template-title">海报模板</p>
+      <div id="posterTemplates" class="template-grid"></div>
+    </section>
+
+    <section id="historyCalendar" class="calendar"></section>
+
+    <section id="posterWrap" class="poster-wrap">
+      <img id="posterImage" alt="HerVoice 日签海报" />
+      <p class="hint">提示：海报已生成，长按或点击下载保存。</p>
+    </section>
+  </div>
+
+  <script>
+    const dataUrl = "./data/hervoice_quotes_2026.json";
+    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(location.href)}`;
+
+    let entries = [];
+    let index = 0;
+    let noteOpen = false;
+    const posterTemplates = [
+      { id: "paper", name: "纸感留白", bg: "#f4efe5", title: "#221e16", cn: "#1f1a13", en: "#3d3528", accent: "#8b6a36", qrStroke: "#9b8258" },
+      { id: "ink", name: "墨金高级", bg: "#1f1b16", title: "#f7efdf", cn: "#f8f1e4", en: "#ddd0bb", accent: "#b8945b", qrStroke: "#c1a679" },
+      { id: "mist", name: "雾灰克制", bg: "#ebe8e1", title: "#27241e", cn: "#29241d", en: "#4b4338", accent: "#7e7464", qrStroke: "#8f8576" }
+    ];
+    let activeTemplate = posterTemplates[0];
+
+    const embeddedEntries = [
+      {
+            "date": "2026-02-18",
+            "week_day": "Wednesday",
+            "theme": "Independence",
+            "quote": {
+                  "content_cn": "女性若想写作，就必须有钱，还要有一间自己的房间。",
+                  "content_en": "A woman must have money and a room of her own if she is to write fiction.",
+                  "author": "Virginia Woolf",
+                  "source": "A Room of One's Own"
+            },
+            "teacher_note": {
+                  "keyword": "be to do",
+                  "explanation": "【名师点拨】注意从句中的 'if she is to write'。这里的 'be + to do' 结构并不是将来时，而是表示“意图”或“目的”。它比单纯的 'wants to' 更正式、更有力度，暗示了写作是一种需要严肃对待的志业，而非随意的消遣。"
+            },
+            "visual_type": "standard",
+            "background_color": "#F2EBE5",
+            "tags": [
+                  "觉醒",
+                  "写作",
+                  "经典"
+            ]
+      },
+      {
+            "date": "2026-02-19",
+            "week_day": "Thursday",
+            "theme": "Becoming",
+            "quote": {
+                  "content_cn": "女人不是天生的，而是后来形成的。",
+                  "content_en": "One is not born, but rather becomes, a woman.",
+                  "author": "Simone de Beauvoir",
+                  "source": "The Second Sex"
+            },
+            "teacher_note": {
+                  "keyword": "rather",
+                  "explanation": "【名师点拨】'not A, but rather B' 用于强调“不是A，而更准确是B”。在学术写作里比单纯 but 更严谨。"
+            },
+            "visual_type": "standard",
+            "background_color": "#EDE9E4",
+            "tags": [
+                  "存在主义",
+                  "女性主义",
+                  "觉醒"
+            ]
+      },
+      {
+            "date": "2026-02-20",
+            "week_day": "Friday",
+            "theme": "Voice",
+            "quote": {
+                  "content_cn": "你的沉默不会保护你。",
+                  "content_en": "Your silence will not protect you.",
+                  "author": "Audre Lorde",
+                  "source": "The Transformation of Silence into Language and Action"
+            },
+            "teacher_note": {
+                  "keyword": "will not",
+                  "explanation": "【名师点拨】'will not' 在这里不是未来时预测，而是强烈判断：沉默这条路行不通。"
+            },
+            "visual_type": "standard",
+            "background_color": "#ECE7E2",
+            "tags": [
+                  "发声",
+                  "勇气",
+                  "行动"
+            ]
+      },
+      {
+            "date": "2026-02-21",
+            "week_day": "Saturday",
+            "theme": "Selfhood",
+            "quote": {
+                  "content_cn": "我属于我自己。",
+                  "content_en": "I belong to myself.",
+                  "author": "bell hooks",
+                  "source": "Belonging: A Culture of Place"
+            },
+            "teacher_note": {
+                  "keyword": "belong to",
+                  "explanation": "【名师点拨】'belong to' 常用于归属关系，这里表达“我首先属于自己”，语义非常有力量。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E9E7E4",
+            "tags": [
+                  "自我",
+                  "边界",
+                  "成长"
+            ]
+      },
+      {
+            "date": "2026-02-22",
+            "week_day": "Sunday",
+            "theme": "Sunday Calligraphy",
+            "quote": {
+                  "content_cn": "活在边缘，意味着你能看见中心看不见的东西。",
+                  "content_en": "Living at the edge gives us a way of seeing things that center cannot see.",
+                  "author": "bell hooks",
+                  "source": "Yearning"
+            },
+            "teacher_note": {
+                  "keyword": "gives us a way of",
+                  "explanation": "【名师点拨】这个结构表示“提供一种……的方式”。写作中可替换为 offers a lens to... 提升表达层次。"
+            },
+            "visual_type": "calligraphy",
+            "background_color": "#ECE6DF",
+            "tags": [
+                  "边缘视角",
+                  "洞察",
+                  "周日特刊"
+            ]
+      },
+      {
+            "date": "2026-02-23",
+            "week_day": "Monday",
+            "theme": "Time",
+            "quote": {
+                  "content_cn": "时间过去了，仿佛房间里有谁轻轻合上了一扇门。",
+                  "content_en": "Time passes, and one door in the mind closes softly behind us.",
+                  "author": "Virginia Woolf",
+                  "source": "To the Lighthouse (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "passes",
+                  "explanation": "【名师点拨】'pass' 作不及物动词时可表“流逝”。如 time passes quickly / slowly。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E7EBEE",
+            "tags": [
+                  "时间",
+                  "意识流",
+                  "内心"
+            ]
+      },
+      {
+            "date": "2026-02-24",
+            "week_day": "Tuesday",
+            "theme": "Body",
+            "quote": {
+                  "content_cn": "我必须写下身体，写下女性的经验。",
+                  "content_en": "Write your self. Your body must be heard.",
+                  "author": "Helene Cixous",
+                  "source": "The Laugh of the Medusa"
+            },
+            "teacher_note": {
+                  "keyword": "must be heard",
+                  "explanation": "【名师点拨】被动语态 here 强调“被听见”的必要性，比主动句更有号召意味。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E8EAEC",
+            "tags": [
+                  "身体书写",
+                  "表达",
+                  "先锋"
+            ]
+      },
+      {
+            "date": "2026-02-25",
+            "week_day": "Wednesday",
+            "theme": "Freedom",
+            "quote": {
+                  "content_cn": "真正的自由从来不会只属于一小部分人。",
+                  "content_en": "Freedom is a constant struggle.",
+                  "author": "Angela Davis",
+                  "source": "Freedom Is a Constant Struggle"
+            },
+            "teacher_note": {
+                  "keyword": "constant",
+                  "explanation": "【名师点拨】constant 强调“持续不断”，比 continuous 更常用于抽象概念。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E9E8E6",
+            "tags": [
+                  "自由",
+                  "抗争",
+                  "公共性"
+            ]
+      },
+      {
+            "date": "2026-02-26",
+            "week_day": "Thursday",
+            "theme": "Language",
+            "quote": {
+                  "content_cn": "语言是我们通向他者与自我的桥。",
+                  "content_en": "Language is not neutral.",
+                  "author": "Adrienne Rich",
+                  "source": "On Lies, Secrets, and Silence"
+            },
+            "teacher_note": {
+                  "keyword": "neutral",
+                  "explanation": "【名师点拨】neutral 在学术语境常指“价值中立”。句子强调语言总带有立场。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E7EAF0",
+            "tags": [
+                  "语言",
+                  "立场",
+                  "批评"
+            ]
+      },
+      {
+            "date": "2026-02-27",
+            "week_day": "Friday",
+            "theme": "Memory",
+            "quote": {
+                  "content_cn": "记忆不是负担，它是我们重新命名世界的力量。",
+                  "content_en": "Definitions belong to the definers, not the defined.",
+                  "author": "Toni Morrison",
+                  "source": "Beloved"
+            },
+            "teacher_note": {
+                  "keyword": "belong to",
+                  "explanation": "【名师点拨】这里再次出现 belong to，但语义是“定义权归谁所有”，适合讨论话语权。"
+            },
+            "visual_type": "standard",
+            "background_color": "#ECE8E4",
+            "tags": [
+                  "记忆",
+                  "命名权",
+                  "叙事"
+            ]
+      },
+      {
+            "date": "2026-02-28",
+            "week_day": "Saturday",
+            "theme": "Inner Fire",
+            "quote": {
+                  "content_cn": "世界想把你放进钟形罩里，但你仍可以呼吸。",
+                  "content_en": "I took a deep breath and listened to the old brag of my heart.",
+                  "author": "Sylvia Plath",
+                  "source": "The Bell Jar"
+            },
+            "teacher_note": {
+                  "keyword": "took a deep breath",
+                  "explanation": "【名师点拨】这是常见高频表达，既可写实动作，也可表达“让自己镇定下来”。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E8E6EA",
+            "tags": [
+                  "自我修复",
+                  "呼吸",
+                  "力量"
+            ]
+      },
+      {
+            "date": "2026-03-01",
+            "week_day": "Sunday",
+            "theme": "Sunday Calligraphy",
+            "quote": {
+                  "content_cn": "她听见了自己的名字，也听见了时代在门外敲击。",
+                  "content_en": "She heard her own name, and the age knocking outside the door.",
+                  "author": "Ding Ling",
+                  "source": "Miss Sophia's Diary (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "knocking",
+                  "explanation": "【名师点拨】现在分词可作伴随状态，'the age knocking' 形成有画面感的隐喻表达。"
+            },
+            "visual_type": "calligraphy",
+            "background_color": "#E9E5DE",
+            "tags": [
+                  "中国先锋",
+                  "女性意识",
+                  "周日特刊"
+            ]
+      },
+      {
+            "date": "2026-03-02",
+            "week_day": "Monday",
+            "theme": "City and Woman",
+            "quote": {
+                  "content_cn": "城市很大，女人要先在心里为自己留出房间。",
+                  "content_en": "In a crowded city, a woman still needs an inner room of her own.",
+                  "author": "Wang Anyi",
+                  "source": "The Song of Everlasting Sorrow (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "still",
+                  "explanation": "【名师点拨】still 在这里是“仍然、依旧”，强调即使条件复杂，核心需求不变。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E6EAED",
+            "tags": [
+                  "都市女性",
+                  "空间",
+                  "自我安放"
+            ]
+      },
+      {
+            "date": "2026-03-03",
+            "week_day": "Tuesday",
+            "theme": "Tender Strength",
+            "quote": {
+                  "content_cn": "你可以柔软，但不必后退。",
+                  "content_en": "You may remain tender without stepping back.",
+                  "author": "Xiao Hong",
+                  "source": "Hulan River (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "without",
+                  "explanation": "【名师点拨】without + 动名词可高效表达“在不……的情况下”。如 without giving up。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E8ECEF",
+            "tags": [
+                  "萧红",
+                  "柔韧",
+                  "成长"
+            ]
+      }
+];
+
+    const refs = {
+      card: document.getElementById("dailyCard"),
+      dateText: document.getElementById("dateText"),
+      themeText: document.getElementById("themeText"),
+      quoteCn: document.getElementById("quoteCn"),
+      quoteEn: document.getElementById("quoteEn"),
+      author: document.getElementById("author"),
+      noteToggle: document.getElementById("noteToggle"),
+      noteArrow: document.getElementById("noteArrow"),
+      noteBody: document.getElementById("noteBody"),
+      posterTemplates: document.getElementById("posterTemplates"),
+      historyCalendar: document.getElementById("historyCalendar"),
+      posterWrap: document.getElementById("posterWrap"),
+      posterImage: document.getElementById("posterImage"),
+      makePoster: document.getElementById("makePoster"),
+      downloadPoster: document.getElementById("downloadPoster"),
+      prevDay: document.getElementById("prevDay"),
+      nextDay: document.getElementById("nextDay")
+    };
+
+    function toCnDay(day) {
+      const names = [
+        "", "初一", "初二", "初三", "初四", "初五", "初六", "初七", "初八", "初九", "初十",
+        "十一", "十二", "十三", "十四", "十五", "十六", "十七", "十八", "十九", "二十",
+        "廿一", "廿二", "廿三", "廿四", "廿五", "廿六", "廿七", "廿八", "廿九", "三十"
+      ];
+      return names[day] || `${day}日`;
+    }
+
+    function getLunarText(dateStr) {
+      try {
+        const fmt = new Intl.DateTimeFormat("zh-CN-u-ca-chinese", {
+          month: "long",
+          day: "numeric"
+        });
+        const raw = fmt.format(new Date(dateStr));
+        const m = raw.match(/^(闰?[^\d]+)(\d{1,2})日?$/);
+        if (m) {
+          return `${m[1]}${toCnDay(Number(m[2]))}`;
+        }
+        return raw;
+      } catch (err) {
+        return "农历待接入";
+      }
+    }
+
+    function formatDate(entry) {
+      const dateStr = entry.date;
+      const d = new Date(dateStr);
+      const week = "日一二三四五六"[d.getDay()];
+      const weekLabel = entry.week_day ? `${entry.week_day} / 周${week}` : `周${week}`;
+      return `${dateStr} · ${weekLabel} · ${getLunarText(dateStr)}`;
+    }
+
+    function renderCalendar() {
+      refs.historyCalendar.innerHTML = "";
+      entries.forEach((item, i) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = `action ${i === index ? "active" : ""}`;
+        btn.textContent = item.date.slice(5);
+        btn.addEventListener("click", () => {
+          index = i;
+          render();
+        });
+        refs.historyCalendar.appendChild(btn);
+      });
+    }
+
+    function renderTemplatePicker() {
+      refs.posterTemplates.innerHTML = "";
+      posterTemplates.forEach((tpl) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = `template-chip ${activeTemplate.id === tpl.id ? "active" : ""}`;
+        btn.textContent = tpl.name;
+        btn.addEventListener("click", () => {
+          activeTemplate = tpl;
+          renderTemplatePicker();
+        });
+        refs.posterTemplates.appendChild(btn);
+      });
+    }
+
+    function render() {
+      const today = entries[index];
+      refs.card.style.setProperty("--card-tint", today.background_color || "#f2efe8");
+      refs.card.classList.toggle("calligraphy", today.visual_type === "calligraphy");
+
+      refs.dateText.textContent = formatDate(today);
+      refs.themeText.textContent = today.theme;
+      refs.quoteCn.textContent = today.quote.content_cn;
+      refs.quoteEn.textContent = today.quote.content_en;
+      refs.author.textContent = `— ${today.quote.author} · ${today.quote.source}`;
+
+      noteOpen = false;
+      refs.noteArrow.textContent = "展开";
+      refs.noteBody.classList.remove("show");
+      refs.noteBody.innerHTML = `<strong>关键词：</strong>${today.teacher_note.keyword}<br>${today.teacher_note.explanation}`;
+
+      renderCalendar();
+      renderTemplatePicker();
+    }
+
+    refs.noteToggle.addEventListener("click", () => {
+      noteOpen = !noteOpen;
+      refs.noteArrow.textContent = noteOpen ? "收起" : "展开";
+      refs.noteBody.classList.toggle("show", noteOpen);
+    });
+
+    refs.prevDay.addEventListener("click", () => {
+      index = (index - 1 + entries.length) % entries.length;
+      render();
+    });
+
+    refs.nextDay.addEventListener("click", () => {
+      index = (index + 1) % entries.length;
+      render();
+    });
+
+    function getWrappedLines(ctx, rawText, maxWidth, wrapMode = "char") {
+      const text = String(rawText || "").trim();
+      if (!text) return [];
+      const lines = [];
+
+      if (wrapMode === "word") {
+        const words = text.split(/\s+/);
+        let line = "";
+        for (let i = 0; i < words.length; i++) {
+          const next = words[i];
+          const testLine = line ? `${line} ${next}` : next;
+          if (ctx.measureText(testLine).width <= maxWidth) {
+            line = testLine;
+            continue;
+          }
+          if (line) lines.push(line);
+          if (ctx.measureText(next).width <= maxWidth) {
+            line = next;
+          } else {
+            let chunk = "";
+            for (const ch of next) {
+              const testChunk = chunk + ch;
+              if (ctx.measureText(testChunk).width > maxWidth && chunk) {
+                lines.push(chunk);
+                chunk = ch;
+              } else {
+                chunk = testChunk;
+              }
+            }
+            line = chunk;
+          }
+        }
+        if (line) lines.push(line);
+        return lines;
+      }
+
+      let line = "";
+      for (const ch of text) {
+        const testLine = line + ch;
+        if (ctx.measureText(testLine).width > maxWidth && line) {
+          lines.push(line);
+          line = ch;
+        } else {
+          line = testLine;
+        }
+      }
+      if (line) lines.push(line);
+      return lines;
+    }
+
+    function drawLines(ctx, lines, x, y, lineHeight) {
+      if (!lines.length) return y;
+      lines.forEach((line, idx) => {
+        ctx.fillText(line, x, y + idx * lineHeight);
+      });
+      return y + (lines.length - 1) * lineHeight;
+    }
+
+    async function generatePoster() {
+      const today = entries[index];
+      const tpl = activeTemplate;
+      const canvas = document.createElement("canvas");
+      canvas.width = 1080;
+      canvas.height = 1440;
+      const ctx = canvas.getContext("2d");
+
+      ctx.fillStyle = tpl.bg;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      if (tpl.id === "paper") {
+        ctx.fillStyle = "rgba(255,255,255,0.22)";
+        ctx.fillRect(0, 0, canvas.width, 220);
+      }
+
+      if (tpl.id === "ink") {
+        const grad = ctx.createLinearGradient(0, 0, 1080, 1440);
+        grad.addColorStop(0, "rgba(255,255,255,0.06)");
+        grad.addColorStop(1, "rgba(0,0,0,0.18)");
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
+
+      if (today.visual_type === "calligraphy") {
+        const bg = new Image();
+        bg.src = "./calligraphy/assets/shufa_v8/da_large.jpg";
+        await bg.decode().catch(() => {});
+        if (bg.naturalWidth) {
+          ctx.globalAlpha = tpl.id === "ink" ? 0.18 : 0.24;
+          ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
+          ctx.globalAlpha = 1;
+        }
+      }
+
+      ctx.fillStyle = tpl.title;
+      ctx.font = "56px 'Noto Serif SC', serif";
+      ctx.fillText("HerVoice Daily", 90, 120);
+
+      ctx.fillStyle = tpl.accent;
+      ctx.font = "34px 'Noto Serif SC', serif";
+      ctx.fillText(formatDate(today), 90, 180);
+
+      ctx.fillStyle = tpl.cn;
+      ctx.font = "58px 'Noto Serif SC', serif";
+      const cnLines = getWrappedLines(ctx, today.quote.content_cn, 900, "char");
+      let y = drawLines(ctx, cnLines, 90, 304, 92);
+
+      ctx.fillStyle = tpl.en;
+      ctx.font = "44px 'Times New Roman', serif";
+      const enLines = getWrappedLines(ctx, today.quote.content_en, 900, "word");
+      y = drawLines(ctx, enLines, 90, y + 122, 64);
+
+      ctx.fillStyle = tpl.accent;
+      ctx.font = "32px 'Noto Serif SC', serif";
+      const authorY = y + 106;
+      ctx.fillText(`— ${today.quote.author} · ${today.quote.source}`, 90, authorY);
+
+      ctx.strokeStyle = tpl.qrStroke;
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.moveTo(90, authorY + 34);
+      ctx.lineTo(990, authorY + 34);
+      ctx.stroke();
+
+      const noteTitleY = authorY + 96;
+      const noteTextY = noteTitleY + 54;
+      ctx.font = "28px 'Noto Serif SC', serif";
+      const noteLines = getWrappedLines(ctx, today.teacher_note.explanation, 860, "char");
+      const noteEndY = drawLines(ctx, noteLines, 110, noteTextY, 46);
+
+      const noteTop = noteTitleY - 34;
+      const noteHeight = Math.max(noteEndY - noteTop + 32, 130);
+      ctx.fillStyle = tpl.id === "ink" ? "rgba(255,255,255,0.07)" : "rgba(255,255,255,0.46)";
+      ctx.fillRect(90, noteTop, 900, noteHeight);
+      ctx.strokeStyle = tpl.id === "ink" ? "rgba(193,166,121,0.6)" : "rgba(126,133,142,0.45)";
+      ctx.strokeRect(90, noteTop, 900, noteHeight);
+
+      ctx.fillStyle = tpl.accent;
+      ctx.font = "30px 'Noto Serif SC', serif";
+      ctx.fillText(`Teacher's Note · ${today.teacher_note.keyword}`, 110, noteTitleY);
+      ctx.fillStyle = tpl.en;
+      ctx.font = "28px 'Noto Serif SC', serif";
+      drawLines(ctx, noteLines, 110, noteTextY, 46);
+
+      const footerTop = Math.max(noteEndY + 70, 980);
+      ctx.strokeStyle = tpl.qrStroke;
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(90, footerTop - 24);
+      ctx.lineTo(990, footerTop - 24);
+      ctx.stroke();
+
+      if (Array.isArray(today.tags) && today.tags.length) {
+        const tagsText = `# ${today.tags.join("   # ")}`;
+        ctx.fillStyle = tpl.accent;
+        ctx.font = "28px 'Noto Serif SC', serif";
+        ctx.fillText(tagsText, 90, footerTop + 20);
+      }
+
+      ctx.fillStyle = tpl.en;
+      ctx.font = "26px 'Noto Serif SC', serif";
+      ctx.fillText(`Theme · ${today.theme || "Daily"}`, 90, footerTop + 68);
+      ctx.fillText("hervoice daily", 90, footerTop + 112);
+
+      const qr = new Image();
+      qr.crossOrigin = "anonymous";
+      qr.src = qrUrl;
+      await qr.decode().catch(() => {});
+      if (qr.naturalWidth) {
+        ctx.drawImage(qr, 820, footerTop + 8, 170, 170);
+      } else {
+        ctx.strokeStyle = tpl.qrStroke;
+        ctx.strokeRect(820, footerTop + 8, 170, 170);
+        ctx.fillStyle = tpl.qrStroke;
+        ctx.font = "26px serif";
+        ctx.fillText("SCAN", 857, footerTop + 104);
+      }
+
+      const url = canvas.toDataURL("image/png");
+      refs.posterImage.src = url;
+      refs.posterWrap.classList.add("show");
+      refs.downloadPoster.dataset.url = url;
+    }
+
+    refs.makePoster.addEventListener("click", generatePoster);
+    refs.downloadPoster.addEventListener("click", () => {
+      const url = refs.downloadPoster.dataset.url;
+      if (!url) {
+        alert("请先生成日签海报");
+        return;
+      }
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `hervoice-${entries[index].date}.png`;
+      a.click();
+    });
+
+    function applyEntries(list) {
+      entries = Array.isArray(list) && list.length ? list : embeddedEntries;
+      const firstDayKey = "2026-02-18";
+      const todayStr = new Date().toISOString().slice(0, 10);
+      const firstDayHit = entries.findIndex((item) => item.date === firstDayKey);
+      const todayHit = entries.findIndex((item) => item.date === todayStr);
+      index = firstDayHit >= 0 ? firstDayHit : (todayHit >= 0 ? todayHit : 0);
+      render();
+    }
+
+    fetch(dataUrl)
+      .then((res) => res.json())
+      .then((data) => applyEntries(data))
+      .catch(() => applyEntries(embeddedEntries));
+  </script>
+</body>
+</html>
