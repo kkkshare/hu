@@ -371,6 +371,12 @@ document.addEventListener('DOMContentLoaded', () => {
         renderSearchHistory();
     }
 
+    function removeSearchHistory(text) {
+        searchHistory = searchHistory.filter((item) => item !== text);
+        saveSearchHistory(searchHistory);
+        renderSearchHistory();
+    }
+
     function renderSearchHistory() {
         if (!searchHistoryWrap || !searchHistoryList || !clearHistoryBtn) return;
         searchHistoryList.innerHTML = '';
@@ -380,6 +386,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         searchHistoryWrap.style.display = 'block';
         searchHistory.forEach((item) => {
+            const wrap = document.createElement('div');
+            wrap.className = 'history-chip-wrap';
+
             const chip = document.createElement('button');
             chip.type = 'button';
             chip.className = 'history-chip';
@@ -388,7 +397,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 searchInput.value = item;
                 performSearch();
             });
-            searchHistoryList.appendChild(chip);
+
+            const removeBtn = document.createElement('button');
+            removeBtn.type = 'button';
+            removeBtn.className = 'history-chip-remove';
+            removeBtn.textContent = '✕';
+            removeBtn.setAttribute('aria-label', `删除记录 ${item}`);
+            removeBtn.addEventListener('click', (event) => {
+                event.stopPropagation();
+                removeSearchHistory(item);
+            });
+
+            wrap.appendChild(chip);
+            wrap.appendChild(removeBtn);
+            searchHistoryList.appendChild(wrap);
         });
     }
 
