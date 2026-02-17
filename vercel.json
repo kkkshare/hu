@@ -1,6 +1,16 @@
 {
   "redirects": [
     {
+      "source": "/hv",
+      "destination": "/hervoice_daily_mvp_v0.1.html",
+      "permanent": false
+    },
+    {
+      "source": "/hv/",
+      "destination": "/hervoice_daily_mvp_v0.1.html",
+      "permanent": false
+    },
+    {
       "source": "/yz",
       "destination": "/yan_shufa/index.html",
       "permanent": false
