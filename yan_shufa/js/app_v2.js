@@ -40,8 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         XinDiZhaoMengFu: { label: '新蒂赵孟頫（覆盖优先）', family: "'XinDiZhaoMengFu', serif", probe: '趙體練習' },
         ZhaoMengFuKai: { label: '赵孟頫楷书', family: "'ZhaoMengFuKai', serif", probe: '趙孟頫' },
         TXTieShanKaiFan: { label: '腾祥铁山楷书繁', family: "'TXTieShanKaiFan', serif", probe: '書法練習' },
-        FZGuanJunKaiFan: { label: '方正管峻楷书繁体', family: "'FZGuanJunKaiFan', serif", probe: '繁體字庫' },
-        LiShouShuHaoZiJF: { label: '励手书昊仔简繁', family: "'LiShouShuHaoZiJF', serif", probe: '簡繁共用' }
+        FZGuanJunKaiFan: { label: '方正管峻楷书繁体', family: "'FZGuanJunKaiFan', serif", probe: '繁體字庫' }
     };
     const toTraditional = createTraditionalConverter();
     ensureActiveFont();
