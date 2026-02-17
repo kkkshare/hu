@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function generateMiZiGeSVG(char, isFull = false, fontFamily = "'ZhaoMengFuKai', serif", aiPath = '') {
         const size = 1000;
         const center = size / 2;
-        const textY = center + (isFull ? 18 : 16);
+        const textY = center + (isFull ? 22 : 20);
         const color = 'var(--mi-color)';
         const charColor = 'var(--char-color)';
         const fontSize = isFull ? 760 : 700;
