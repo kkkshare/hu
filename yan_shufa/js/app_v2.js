@@ -202,6 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function generateMiZiGeSVG(char, isFull = false, fontFamily = "'ZhaoMengFuKai', serif", aiPath = '') {
         const size = 1000;
         const center = size / 2;
+        const textY = center + (isFull ? 18 : 16);
         const color = 'var(--mi-color)';
         const charColor = 'var(--char-color)';
         const fontSize = isFull ? 760 : 700;
@@ -234,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     stroke-linecap="round" />
                 ` : `
                 ${fontFamily ? `
-                <text x="${center}" y="${center}" 
+                <text x="${center}" y="${textY}" 
                     text-anchor="middle" 
                     dominant-baseline="central"
                     fill="${charColor}" 
@@ -243,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     style="font-family: ${fontFamily}; font-size: ${fontSize}px; font-weight: normal;">
                     ${char}
                 </text>
-                <text x="${center}" y="${center}" 
+                <text x="${center}" y="${textY}" 
                     text-anchor="middle" 
                     dominant-baseline="central"
                     fill="${charColor}"
