@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ${fontFamily ? `
                 <text x="${center}" y="${textY}" 
                     text-anchor="middle" 
-                    dominant-baseline="middle"
+                    dominant-baseline="central"
                     fill="${charColor}" 
                     fill-opacity="0.25"
                     filter="url(#inkBlur)"
@@ -259,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </text>
                 <text x="${center}" y="${textY}" 
                     text-anchor="middle" 
-                    dominant-baseline="middle"
+                    dominant-baseline="central"
                     fill="${charColor}"
                     stroke="${charColor}"
                     stroke-width="${outlineWidth}"
