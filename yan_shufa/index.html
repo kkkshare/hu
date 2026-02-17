@@ -233,6 +233,35 @@
             text-align: left;
         }
 
+        .history-wrap {
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        .history-list {
+            margin-top: 6px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .history-chip {
+            border: 1px solid rgba(122, 47, 29, 0.22);
+            background: rgba(255, 247, 233, 0.92);
+            color: var(--ink-soft);
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 12px;
+            line-height: 1;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .history-chip:hover {
+            border-color: rgba(122, 47, 29, 0.45);
+            color: var(--accent);
+        }
+
         .svg-container {
             width: 100%;
             aspect-ratio: 1 / 1;
@@ -337,6 +366,11 @@
                 font-size: 12px;
             }
 
+            .history-chip {
+                font-size: 11px;
+                padding: 5px 9px;
+            }
+
             #missingPanel .flex.items-center.justify-between.gap-3 {
                 flex-direction: column;
                 align-items: flex-start;
@@ -396,6 +430,13 @@
                 <button id="clearBtn" class="ghost-btn">清空</button>
             </div>
             <p id="resultMeta" class="mt-1 text-xs text-amber-900/60"></p>
+            <div id="searchHistoryWrap" class="history-wrap">
+                <div class="flex items-center justify-between gap-2">
+                    <p class="text-xs text-amber-900/65">最近搜索（10条）</p>
+                    <button id="clearHistoryBtn" class="ghost-btn">清空记录</button>
+                </div>
+                <div id="searchHistoryList" class="history-list"></div>
+            </div>
             <details class="mt-3 text-left">
                 <summary class="text-xs text-amber-900/65 cursor-pointer">高级设置</summary>
                 <div class="mt-3">

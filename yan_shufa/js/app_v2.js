@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const clearGlyphBtn = document.getElementById('clearGlyphBtn');
     const glyphFileInput = document.getElementById('glyphFileInput');
     const fontPreset = document.getElementById('fontPreset');
+    const searchHistoryWrap = document.getElementById('searchHistoryWrap');
+    const searchHistoryList = document.getElementById('searchHistoryList');
+    const clearHistoryBtn = document.getElementById('clearHistoryBtn');
     const resultMeta = document.getElementById('resultMeta');
     const fontStatus = document.getElementById('fontStatus');
     const missingPanel = document.getElementById('missingPanel');
@@ -34,7 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedFontId = 'FZYanZhenQingKaiJF';
     const glyphCache = new Map();
     const AI_GLYPH_CACHE_KEY = 'zhaoti_ai_glyph_cache_v1';
+    const SEARCH_HISTORY_KEY = 'zhaoti_recent_searches_v1';
+    const SEARCH_HISTORY_LIMIT = 10;
     let aiGlyphCache = loadAiGlyphCache();
+    let searchHistory = loadSearchHistory();
     const FONT_PRESETS = {
         FZYanZhenQingKaiJF: { label: '方正颜真卿楷书简繁', family: "'FZYanZhenQingKaiJF', serif", probe: '顏楷簡繁' },
         XinDiZhaoMengFu: { label: '新蒂赵孟頫（覆盖优先）', family: "'XinDiZhaoMengFu', serif", probe: '趙體練習' },
@@ -44,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     const toTraditional = createTraditionalConverter();
     fontPreset.value = selectedFontId;
+    renderSearchHistory();
     ensureActiveFont();
 
     // 搜索逻辑
@@ -60,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showEmptyState();
             return;
         }
+        addSearchHistory(text);
 
         currentEntries = currentChars.map((char) => {
             const aiPath = aiGlyphCache[char];
@@ -161,6 +169,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     searchInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') performSearch();
+    });
+    clearHistoryBtn.addEventListener('click', () => {
+        searchHistory = [];
+        saveSearchHistory(searchHistory);
+        renderSearchHistory();
     });
 
     /**
@@ -332,6 +345,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function saveAiGlyphCache(cache) {
         localStorage.setItem(AI_GLYPH_CACHE_KEY, JSON.stringify(cache));
+    }
+
+    function loadSearchHistory() {
+        try {
+            const text = localStorage.getItem(SEARCH_HISTORY_KEY);
+            if (!text) return [];
+            const parsed = JSON.parse(text);
+            if (!Array.isArray(parsed)) return [];
+            return parsed.filter((item) => typeof item === 'string' && item.trim()).slice(0, SEARCH_HISTORY_LIMIT);
+        } catch (_) {
+            return [];
+        }
+    }
+
+    function saveSearchHistory(list) {
+        localStorage.setItem(SEARCH_HISTORY_KEY, JSON.stringify(list.slice(0, SEARCH_HISTORY_LIMIT)));
+    }
+
+    function addSearchHistory(text) {
+        const normalized = text.trim();
+        if (!normalized) return;
+        searchHistory = [normalized, ...searchHistory.filter((item) => item !== normalized)].slice(0, SEARCH_HISTORY_LIMIT);
+        saveSearchHistory(searchHistory);
+        renderSearchHistory();
+    }
+
+    function renderSearchHistory() {
+        if (!searchHistoryWrap || !searchHistoryList || !clearHistoryBtn) return;
+        searchHistoryList.innerHTML = '';
+        if (!searchHistory.length) {
+            searchHistoryWrap.style.display = 'none';
+            return;
+        }
+        searchHistoryWrap.style.display = 'block';
+        searchHistory.forEach((item) => {
+            const chip = document.createElement('button');
+            chip.type = 'button';
+            chip.className = 'history-chip';
+            chip.textContent = item;
+            chip.addEventListener('click', () => {
+                searchInput.value = item;
+                performSearch();
+            });
+            searchHistoryList.appendChild(chip);
+        });
     }
 
 
