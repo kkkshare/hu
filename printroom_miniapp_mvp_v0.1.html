@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中附印务通 · 教学资料审批与文印平台</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --panel: #ffffff;
+      --ink: #243447;
+      --muted: #6b7f95;
+      --brand: #1f4e79;
+      --ok: #2f7a45;
+      --warn: #af6d2d;
+      --danger: #a13d3d;
+      --line: #d9e2ee;
+      --radius: 14px;
+      --shadow: 0 10px 26px rgba(20, 52, 89, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background: radial-gradient(circle at 8% 3%, #fff, #f4f7fb 35%);
+    }
+    .wrap { max-width: 1160px; margin: 0 auto; padding: 18px 14px 38px; }
+    .hero, .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .hero-top { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .logo { width: 220px; max-width: 100%; }
+    h1 { margin: 0 0 6px; font-size: 24px; }
+    .sub { font-size: 14px; color: var(--muted); }
+    .inline { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .role-switch { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .role-btn {
+      border: 1px solid #a8bdd4;
+      border-radius: 999px;
+      padding: 8px 14px;
+      background: #f2f7fc;
+      cursor: pointer;
+      color: #27496b;
+    }
+    .role-btn.active { background: var(--brand); color: #fff; border-color: var(--brand); }
+
+    .grid { display: grid; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field.full { grid-column: 1 / -1; }
+    label { font-size: 13px; color: #334a5f; font-weight: 600; }
+    input, select, textarea {
+      width: 100%; padding: 10px 11px; border-radius: 10px; border: 1px solid #cfdceb; background: #fff;
+    }
+    textarea { min-height: 72px; resize: vertical; }
+    .radio-line { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .btn {
+      border: none;
+      border-radius: 10px;
+      padding: 10px 14px;
+      cursor: pointer;
+      color: #fff;
+      background: var(--brand);
+    }
+    .btn.sec { background: #556b80; }
+    .btn.ok { background: var(--ok); }
+    .btn.warn { background: var(--warn); }
+    .btn.danger { background: var(--danger); }
+    .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .tip { color: var(--muted); font-size: 12px; }
+    .status-line { margin-top: 8px; color: #315578; font-weight: 600; }
+
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; border: 1px solid #e3eaf3; border-radius: 10px; overflow: hidden; }
+    th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid #edf2f8; font-size: 13px; vertical-align: top; }
+    th { background: #f5f9fd; }
+    .tag { display: inline-block; border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 700; }
+    .tag.submitted { color: #7a4b05; background: #ffecc9; }
+    .tag.rejected { color: #7c1f1f; background: #f7d4d4; }
+    .tag.approved { color: #1f5d33; background: #d8efde; }
+    .tag.received { color: #1f517f; background: #d8e9fb; }
+    .tag.done { color: #485462; background: #e5ebf1; }
+    .empty { color: var(--muted); text-align: center; padding: 16px 0; }
+
+    @media (max-width: 780px) {
+      .grid { grid-template-columns: 1fr; }
+      h1 { font-size: 20px; }
+      th:nth-child(7), td:nth-child(7) { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="hero-top">
+        <img class="logo" src="zhongfu_yinwu_miniapp/images/school_logo.png" alt="中附学校logo">
+        <div>
+          <h1>中附印务通 · 教学资料审批与文印平台</h1>
+          <div class="sub">佛山市南海区中附外国语学校 | 教师提交 -> 科组长审核 -> 文印室查收下载打印</div>
+        </div>
+      </div>
+      <div class="grid" style="margin-top:12px;">
+        <div class="field">
+          <label>后端地址</label>
+          <input id="base-url" value="" placeholder="留空=同域 / 或填 http://服务器IP:3007">
+        </div>
+        <div class="field">
+          <label>手机号登录（教师/科组长/文印室）</label>
+          <div class="inline">
+            <input id="mobile" value="13800000001" placeholder="手机号" style="max-width:180px;">
+            <input id="password" value="123456" type="password" placeholder="密码" style="max-width:180px;">
+            <button class="btn" id="login-btn">登录</button>
+            <button class="btn sec" id="logout-btn" type="button">退出</button>
+            <button class="btn warn" id="change-password-btn" type="button">修改密码</button>
+            <button class="btn danger" id="admin-reset-btn" type="button">管理员重置</button>
+          </div>
+          <div class="status-line" id="login-status">未登录</div>
+        </div>
+      </div>
+      <div class="role-switch">
+        <button class="role-btn active" data-role="teacher">教师端</button>
+        <button class="role-btn" data-role="leader">科组长端</button>
+        <button class="role-btn" data-role="printroom">文印室端</button>
+      </div>
+    </section>
+
+    <section class="panel active" id="panel-teacher">
+      <h2>教师提交打印单</h2>
+      <form id="order-form" class="grid">
+        <div class="field"><label>内容名称 *（格式建议：年级+科目+内容）</label><input name="contentName" required maxlength="120" placeholder="示例：五年级+英语+Unit4练习卷"></div>
+        <div class="field"><label>附件上传（Word/PDF）*</label><input name="file" type="file" accept=".doc,.docx,.pdf" required></div>
+        <div class="field"><label>纸张规格 *</label><select name="paperSize" required><option value="A4">A4</option><option value="8K">8K</option><option value="16K">16K</option></select></div>
+        <div class="field"><label>份数 *</label><input name="copies" type="number" min="1" max="5000" required value="1"></div>
+        <div class="field"><label>单双面 *</label><div class="radio-line"><label><input type="radio" name="printSide" value="single" checked> 单面</label><label><input type="radio" name="printSide" value="double"> 双面</label></div></div>
+        <div class="field"><label>纸张类型 *</label><div class="radio-line"><label><input type="radio" name="paperType" value="white" checked> 白纸</label><label><input type="radio" name="paperType" value="gray"> 灰纸</label></div></div>
+        <div class="field"><label>截止时间 *</label><input name="deadlineAt" type="datetime-local" required></div>
+        <div class="field full"><label>备注</label><textarea name="remark" maxlength="200"></textarea></div>
+        <div class="field full inline"><button class="btn" type="submit" id="submit-btn">提交打印单</button><span class="tip">真实调用后端接口，数据会进入数据库。</span></div>
+      </form>
+      <div class="inline" style="margin-top:12px;"><strong>我的打印单</strong><select id="teacher-status-filter"><option value="all">全部状态</option><option value="submitted">待审核</option><option value="rejected">已驳回</option><option value="approved">待文印室查收</option><option value="received">打印中</option><option value="done">已完成</option></select><button class="btn sec" id="teacher-refresh" type="button">刷新</button></div>
+      <div id="teacher-table-wrap"></div>
+    </section>
+
+    <section class="panel" id="panel-leader">
+      <h2>科组长审核</h2>
+      <div class="inline"><p class="tip">仅显示状态为“待审核”的打印单。</p><button class="btn sec" id="leader-refresh" type="button">刷新</button></div>
+      <div id="leader-table-wrap"></div>
+    </section>
+
+    <section class="panel" id="panel-printroom">
+      <h2>文印室处理</h2>
+      <div class="inline"><p class="tip">审核通过后，先查收再下载打印完成。</p><button class="btn sec" id="printroom-refresh" type="button">刷新</button></div>
+      <div id="printroom-table-wrap"></div>
+    </section>
+  </div>
+
+  <script>
+    const STORE_KEY = "printroom_auth_v1";
+    const STATUS_TEXT = {
+      submitted: "待审核",
+      rejected: "已驳回",
+      approved: "待文印室查收",
+      received: "打印中",
+      done: "已完成"
+    };
+
+    const state = {
+      role: "teacher",
+      token: "",
+      userInfo: null,
+      baseUrl: ""
+    };
+
+    const esc = (v) => String(v || "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const statusTag = (status) => `<span class="tag ${status}">${STATUS_TEXT[status] || status}</span>`;
+
+    function saveAuth() {
+      localStorage.setItem(STORE_KEY, JSON.stringify({ token: state.token, userInfo: state.userInfo, baseUrl: state.baseUrl }));
+    }
+
+    function loadAuth() {
+      const data = JSON.parse(localStorage.getItem(STORE_KEY) || "{}");
+      state.token = data.token || "";
+      state.userInfo = data.userInfo || null;
+      state.baseUrl = data.baseUrl || window.location.origin;
+      document.getElementById("base-url").value = state.baseUrl;
+      updateLoginStatus();
+    }
+
+    function setRole(role) {
+      state.role = role;
+      document.querySelectorAll(".role-btn").forEach((b) => b.classList.toggle("active", b.dataset.role === role));
+      document.querySelectorAll(".panel").forEach((p) => p.classList.remove("active"));
+      document.getElementById(`panel-${role}`).classList.add("active");
+      renderAll();
+    }
+
+    function updateLoginStatus() {
+      const el = document.getElementById("login-status");
+      if (!state.token || !state.userInfo) {
+        el.textContent = "未登录";
+        return;
+      }
+      const roleMap = { teacher: "教师", group_leader: "科组长", print_staff: "文印室", admin: "管理员" };
+      const forceTip = state.userInfo.mustChangePassword ? "｜需先修改密码" : "";
+      el.textContent = `已登录：${state.userInfo.name}（${roleMap[state.userInfo.role] || state.userInfo.role}）${forceTip}`;
+    }
+
+    async function forceChangePasswordIfNeeded() {
+      if (!state.userInfo?.mustChangePassword) return true;
+      alert("首次登录需先修改密码，修改后请重新登录。");
+      const oldPassword = prompt("请输入当前密码");
+      if (!oldPassword) return false;
+      const newPassword = prompt("请输入新密码（8-20位，含字母+数字）");
+      if (!newPassword) return false;
+      await api("/api/auth/change-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ oldPassword, newPassword })
+      });
+      alert("密码修改成功，请重新登录。");
+      logout();
+      return false;
+    }
+
+    async function api(path, opts = {}) {
+      state.baseUrl = document.getElementById("base-url").value.trim() || state.baseUrl || window.location.origin;
+      const headers = opts.headers ? { ...opts.headers } : {};
+      if (state.token) headers.Authorization = `Bearer ${state.token}`;
+      const res = await fetch(`${state.baseUrl}${path}`, {
+        method: opts.method || "GET",
+        headers,
+        body: opts.body
+      });
+      const ct = res.headers.get("content-type") || "";
+      const data = ct.includes("application/json") ? await res.json() : await res.text();
+      if (!res.ok) throw new Error(data.message || data || `请求失败(${res.status})`);
+      return data;
+    }
+
+    async function login() {
+      const mobile = document.getElementById("mobile").value.trim();
+      const password = document.getElementById("password").value;
+      if (!mobile || !password) return alert("请输入手机号和密码");
+      if (!/^1\\d{10}$/.test(mobile)) return alert("手机号格式不正确");
+      try {
+        state.baseUrl = document.getElementById("base-url").value.trim() || state.baseUrl;
+        const data = await api("/api/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ mobile, password })
+        });
+        state.token = data.token;
+        state.userInfo = data.userInfo;
+        saveAuth();
+        updateLoginStatus();
+        const passed = await forceChangePasswordIfNeeded();
+        if (!passed) return;
+
+        if (data.userInfo.role === "teacher") setRole("teacher");
+        else if (data.userInfo.role === "group_leader") setRole("leader");
+        else setRole("printroom");
+        await renderAll();
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+
+    function logout() {
+      state.token = "";
+      state.userInfo = null;
+      saveAuth();
+      updateLoginStatus();
+      renderAll();
+    }
+
+    async function uploadFile(file) {
+      const fd = new FormData();
+      fd.append("file", file);
+      return api("/api/files/upload", { method: "POST", body: fd });
+    }
+
+    async function renderTeacher() {
+      const wrap = document.getElementById("teacher-table-wrap");
+      if (!state.token) return (wrap.innerHTML = `<div class="empty">请先登录教师账号。</div>`);
+      if (state.userInfo?.mustChangePassword) return (wrap.innerHTML = `<div class="empty">请先修改密码后再使用系统。</div>`);
+      if (!["teacher", "admin"].includes(state.userInfo?.role)) return (wrap.innerHTML = `<div class="empty">当前账号不是教师角色。</div>`);
+
+      const filter = document.getElementById("teacher-status-filter").value;
+      let path = "/api/orders/my";
+      if (filter !== "all") path += `?status=${encodeURIComponent(filter)}`;
+      try {
+        const list = await api(path);
+        if (!list.length) return (wrap.innerHTML = `<div class="empty">暂无记录。</div>`);
+        wrap.innerHTML = `<table><thead><tr><th>单号</th><th>内容名称</th><th>规格</th><th>份数</th><th>截止时间</th><th>状态</th><th>备注</th></tr></thead><tbody>${list.map((o) => `<tr><td>${esc(o.order_no)}</td><td>${esc(o.content_name)}<div class="tip">${esc(o.file_name)}</div></td><td>${esc(o.paper_size)} / ${o.print_side === "single" ? "单面" : "双面"} / ${o.paper_type === "white" ? "白纸" : "灰纸"}</td><td>${o.copies}</td><td>${esc(o.deadline_at)}</td><td>${statusTag(o.status)}</td><td>${esc(o.remark || "-")}</td></tr>`).join("")}</tbody></table>`;
+      } catch (err) {
+        wrap.innerHTML = `<div class="empty">${esc(err.message)}</div>`;
+      }
+    }
+
+    async function renderLeader() {
+      const wrap = document.getElementById("leader-table-wrap");
+      if (!state.token) return (wrap.innerHTML = `<div class="empty">请先登录科组长账号。</div>`);
+      if (state.userInfo?.mustChangePassword) return (wrap.innerHTML = `<div class="empty">请先修改密码后再使用系统。</div>`);
+      if (!["group_leader", "admin"].includes(state.userInfo?.role)) return (wrap.innerHTML = `<div class="empty">当前账号不是科组长角色。</div>`);
+      try {
+        const list = await api("/api/reviews/pending");
+        if (!list.length) return (wrap.innerHTML = `<div class="empty">当前没有待审核打印单。</div>`);
+        wrap.innerHTML = `<table><thead><tr><th>单号</th><th>内容</th><th>参数</th><th>截止时间</th><th>附件</th><th>操作</th></tr></thead><tbody>${list.map((o) => `<tr><td>${esc(o.order_no)}</td><td>${esc(o.content_name)}</td><td>${o.paper_size} / ${o.copies}份 / ${o.print_side === "single" ? "单面" : "双面"} / ${o.paper_type === "white" ? "白纸" : "灰纸"}</td><td>${esc(o.deadline_at)}</td><td>${esc(o.file_name)}</td><td class="inline"><button class="btn ok" data-act="approve" data-id="${o.id}">通过</button><button class="btn danger" data-act="reject" data-id="${o.id}">驳回</button></td></tr>`).join("")}</tbody></table>`;
+      } catch (err) {
+        wrap.innerHTML = `<div class="empty">${esc(err.message)}</div>`;
+      }
+    }
+
+    async function renderPrintroom() {
+      const wrap = document.getElementById("printroom-table-wrap");
+      if (!state.token) return (wrap.innerHTML = `<div class="empty">请先登录文印室账号。</div>`);
+      if (state.userInfo?.mustChangePassword) return (wrap.innerHTML = `<div class="empty">请先修改密码后再使用系统。</div>`);
+      if (!["print_staff", "admin"].includes(state.userInfo?.role)) return (wrap.innerHTML = `<div class="empty">当前账号不是文印室角色。</div>`);
+      try {
+        const list = await api("/api/print-room/orders");
+        if (!list.length) return (wrap.innerHTML = `<div class="empty">暂无可处理任务。</div>`);
+        wrap.innerHTML = `<table><thead><tr><th>单号</th><th>内容</th><th>参数</th><th>附件</th><th>状态</th><th>操作</th></tr></thead><tbody>${list.map((o) => `<tr><td>${esc(o.order_no)}</td><td>${esc(o.content_name)}<div class="tip">截止：${esc(o.deadline_at)}</div></td><td>${o.paper_size} / ${o.copies}份 / ${o.print_side === "single" ? "单面" : "双面"} / ${o.paper_type === "white" ? "白纸" : "灰纸"}</td><td>${esc(o.file_name)}</td><td>${statusTag(o.status)}</td><td class="inline"><button class="btn sec" data-act="download" data-id="${o.id}">下载</button>${o.status === "approved" ? `<button class="btn warn" data-act="receive" data-id="${o.id}">查收</button>` : ""}${o.status === "received" ? `<button class="btn ok" data-act="done" data-id="${o.id}">完成</button>` : ""}</td></tr>`).join("")}</tbody></table>`;
+      } catch (err) {
+        wrap.innerHTML = `<div class="empty">${esc(err.message)}</div>`;
+      }
+    }
+
+    async function renderAll() {
+      await Promise.all([renderTeacher(), renderLeader(), renderPrintroom()]);
+    }
+
+    document.querySelectorAll(".role-btn").forEach((btn) => btn.addEventListener("click", () => setRole(btn.dataset.role)));
+    document.getElementById("teacher-status-filter").addEventListener("change", renderTeacher);
+    document.getElementById("teacher-refresh").addEventListener("click", renderTeacher);
+    document.getElementById("leader-refresh").addEventListener("click", renderLeader);
+    document.getElementById("printroom-refresh").addEventListener("click", renderPrintroom);
+    document.getElementById("login-btn").addEventListener("click", login);
+    document.getElementById("logout-btn").addEventListener("click", logout);
+    document.getElementById("change-password-btn").addEventListener("click", async () => {
+      if (!state.token) return alert("请先登录。");
+      const oldPassword = prompt("请输入旧密码");
+      if (!oldPassword) return;
+      const newPassword = prompt("请输入新密码（8-20位，含字母+数字）");
+      if (!newPassword) return;
+      try {
+        await api("/api/auth/change-password", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ oldPassword, newPassword })
+        });
+        alert("密码已更新，下次请用新密码登录。");
+      } catch (err) {
+        alert(err.message);
+      }
+    });
+    document.getElementById("admin-reset-btn").addEventListener("click", async () => {
+      if (!state.token || state.userInfo?.role !== "admin") return alert("仅管理员可重置密码。");
+      const mobile = prompt("请输入要重置的手机号");
+      if (!mobile) return;
+      const newPassword = prompt("请输入新密码（8-20位，含字母+数字）");
+      if (!newPassword) return;
+      try {
+        await api("/api/auth/admin-reset-password", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ mobile, newPassword })
+        });
+        alert("已重置成功。");
+      } catch (err) {
+        alert(err.message);
+      }
+    });
+
+    document.getElementById("order-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!state.token || !["teacher", "admin"].includes(state.userInfo?.role)) return alert("请先登录教师账号。\n测试手机号：13800000001 密码：123456");
+
+      const fd = new FormData(e.currentTarget);
+      const file = fd.get("file");
+      const deadlineRaw = fd.get("deadlineAt");
+      const deadline = new Date(deadlineRaw);
+      if (!file || !file.name) return alert("请上传 Word/PDF 文件。");
+      if (!/\.(doc|docx|pdf)$/i.test(file.name)) return alert("文件格式仅支持 Word/PDF。");
+      if (!(deadline instanceof Date) || Number.isNaN(deadline.getTime()) || deadline <= new Date()) return alert("截止时间必须晚于当前时间。");
+      const copies = Number(fd.get("copies"));
+      if (!Number.isInteger(copies) || copies < 1 || copies > 5000) return alert("份数需在 1~5000。");
+
+      const submitBtn = document.getElementById("submit-btn");
+      submitBtn.disabled = true;
+      submitBtn.textContent = "提交中...";
+      try {
+        const upload = await uploadFile(file);
+        await api("/api/orders", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            contentName: String(fd.get("contentName") || "").trim(),
+            paperSize: fd.get("paperSize"),
+            copies,
+            printSide: fd.get("printSide"),
+            paperType: fd.get("paperType"),
+            deadlineAt: deadline.toISOString().slice(0, 19),
+            remark: String(fd.get("remark") || "").trim(),
+            fileUrl: upload.fileUrl,
+            fileName: upload.fileName,
+            fileExt: upload.fileExt,
+            fileSizeBytes: upload.fileSizeBytes
+          })
+        });
+        alert("提交成功");
+        e.currentTarget.reset();
+        await renderTeacher();
+      } catch (err) {
+        alert(err.message);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "提交打印单";
+      }
+    });
+
+    document.getElementById("leader-table-wrap").addEventListener("click", async (e) => {
+      const btn = e.target.closest("button[data-id]");
+      if (!btn) return;
+      const id = btn.dataset.id;
+      try {
+        if (btn.dataset.act === "approve") {
+          const opinion = prompt("可选：填写审核意见", "同意打印") || "";
+          await api(`/api/reviews/${id}/approve`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ opinion }) });
+        } else {
+          const opinion = prompt("请输入驳回原因（必填）", "请修改后重提");
+          if (!opinion || !opinion.trim()) return alert("驳回必须填写意见。");
+          await api(`/api/reviews/${id}/reject`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ opinion: opinion.trim() }) });
+        }
+        await renderLeader();
+      } catch (err) {
+        alert(err.message);
+      }
+    });
+
+    document.getElementById("printroom-table-wrap").addEventListener("click", async (e) => {
+      const btn = e.target.closest("button[data-id]");
+      if (!btn) return;
+      const id = btn.dataset.id;
+      const act = btn.dataset.act;
+      try {
+        if (act === "download") {
+          const data = await api(`/api/print-room/orders/${id}/download`);
+          const rawUrl = `${data.downloadUrl}${data.downloadUrl.includes("?") ? "&" : "?"}token=${encodeURIComponent(state.token)}&original=${encodeURIComponent(data.fileName)}`;
+          window.open(rawUrl, "_blank");
+          return;
+        }
+        if (act === "receive") await api(`/api/print-room/orders/${id}/receive`, { method: "POST" });
+        if (act === "done") await api(`/api/print-room/orders/${id}/complete`, { method: "POST" });
+        await renderPrintroom();
+      } catch (err) {
+        alert(err.message);
+      }
+    });
+
+    loadAuth();
+    renderAll();
+  </script>
+</body>
+</html>
