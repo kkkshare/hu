@@ -19,6 +19,16 @@
       "source": "/yz/",
       "destination": "/yan_shufa/index.html",
       "permanent": false
+    },
+    {
+      "source": "/snake",
+      "destination": "/classic_snake.html",
+      "permanent": false
+    },
+    {
+      "source": "/snake/",
+      "destination": "/classic_snake.html",
+      "permanent": false
     }
   ],
   "headers": [

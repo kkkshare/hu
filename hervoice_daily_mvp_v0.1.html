@@ -30,13 +30,16 @@
     }
 
     :root {
-      --ink: #1f252b;
-      --muted: #66717a;
-      --line: rgba(58, 69, 78, 0.2);
-      --paper: #edf1f4;
-      --gold: #7c8794;
-      --rose: #7d8892;
-      --card-shadow: 0 18px 40px rgba(24, 35, 46, 0.12);
+      --ink: #2f2a24;
+      --ink-soft: #5e5449;
+      --muted: #847869;
+      --line: rgba(97, 83, 67, 0.24);
+      --paper: #ebe2d6;
+      --paper-deep: #dbcfbf;
+      --wash: #d6cab8;
+      --soil: #796753;
+      --moss: #918776;
+      --card-shadow: 0 26px 48px rgba(78, 67, 53, 0.12);
     }
 
     * { box-sizing: border-box; }
@@ -46,40 +49,194 @@
       font-family: "Iowan Old Style", "Palatino Linotype", "Songti SC", "Noto Serif SC", serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at 8% 6%, rgba(126, 141, 154, 0.22), transparent 34%),
-        radial-gradient(circle at 86% 100%, rgba(133, 148, 161, 0.12), transparent 40%),
-        linear-gradient(160deg, #f1f4f6 0%, #e7ecf0 100%);
+        radial-gradient(circle at 14% 12%, rgba(130, 114, 92, 0.1), transparent 28%),
+        radial-gradient(circle at 82% 18%, rgba(173, 159, 140, 0.16), transparent 34%),
+        radial-gradient(circle at 76% 84%, rgba(137, 120, 100, 0.08), transparent 28%),
+        linear-gradient(180deg, #f4efe7 0%, #eee7dc 42%, #e4dbcf 100%);
       min-height: 100vh;
-      padding: 28px 14px 56px;
+      padding: 36px 16px 72px;
+      position: relative;
+      overflow-x: hidden;
     }
 
-    .shell { max-width: 560px; margin: 0 auto; }
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
 
-    .title {
-      margin: 0 0 10px;
-      font-size: 28px;
-      letter-spacing: 0.06em;
-      font-family: "Didot", "Bodoni 72 Oldstyle", "Bodoni 72", "Hoefler Text", serif;
+    body::before {
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          115deg,
+          rgba(92, 76, 57, 0.018) 0,
+          rgba(92, 76, 57, 0.018) 2px,
+          transparent 2px,
+          transparent 17px
+        ),
+        repeating-linear-gradient(
+          12deg,
+          rgba(255, 255, 255, 0.16) 0,
+          rgba(255, 255, 255, 0.16) 1px,
+          transparent 1px,
+          transparent 26px
+        );
+    }
+
+    body::after {
+      width: 360px;
+      height: 360px;
+      right: -110px;
+      top: 52px;
+      border-radius: 46% 54% 61% 39% / 42% 48% 52% 58%;
+      background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.42), rgba(181, 163, 141, 0.12) 58%, transparent 70%);
+      filter: blur(3px);
+      transform: rotate(-10deg);
+    }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+      padding-top: 8px;
+    }
+
+    .shell::before,
+    .shell::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      border-radius: 999px;
+      background: rgba(123, 105, 85, 0.12);
+      filter: blur(0.2px);
+    }
+
+    .shell::before {
+      width: 72px;
+      height: 10px;
+      left: -18px;
+      top: 22px;
+      transform: rotate(-12deg);
+    }
+
+    .shell::after {
+      width: 12px;
+      height: 12px;
+      right: 56px;
+      top: 92px;
+      box-shadow: 20px -16px 0 rgba(123, 105, 85, 0.1), -22px 30px 0 rgba(123, 105, 85, 0.08);
+    }
+
+    .masthead {
+      position: relative;
+      max-width: 520px;
+      margin: 0 0 34px;
+      padding: 0 12px 0 2px;
+    }
+
+    .eyebrow {
+      margin: 0;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
     }
 
+    .title {
+      margin: 18px 0 14px;
+      font-size: 33px;
+      line-height: 1.08;
+      letter-spacing: 0.07em;
+      font-weight: 500;
+      font-family: "Didot", "Bodoni 72 Oldstyle", "Hoefler Text", serif;
+      text-transform: uppercase;
+      max-width: 340px;
+    }
+
     .sub {
-      margin: 0 0 20px;
-      color: var(--muted);
+      margin: 0;
+      max-width: 430px;
+      color: var(--ink-soft);
       font-size: 13px;
-      line-height: 1.7;
-      padding-left: 10px;
-      border-left: 2px solid rgba(114, 128, 140, 0.56);
+      line-height: 1.9;
+      padding-left: 18px;
+      border-left: 1px solid rgba(112, 97, 79, 0.36);
+    }
+
+    .doodles {
+      position: absolute;
+      right: 2px;
+      top: 2px;
+      width: 124px;
+      height: 90px;
+      pointer-events: none;
+      opacity: 0.85;
+    }
+
+    .doodle-circle,
+    .doodle-stroke,
+    .doodle-dot {
+      position: absolute;
+      border: 1px solid rgba(105, 88, 70, 0.28);
+    }
+
+    .doodle-circle {
+      width: 58px;
+      height: 58px;
+      right: 10px;
+      top: 8px;
+      border-radius: 58% 42% 51% 49% / 44% 59% 41% 56%;
+      background: rgba(255, 255, 255, 0.08);
+      transform: rotate(11deg);
+    }
+
+    .doodle-stroke {
+      width: 54px;
+      height: 16px;
+      left: 10px;
+      bottom: 18px;
+      border-radius: 999px;
+      background: rgba(118, 97, 73, 0.08);
+      transform: rotate(-18deg);
+    }
+
+    .doodle-dot {
+      width: 11px;
+      height: 11px;
+      right: 2px;
+      bottom: 16px;
+      border-radius: 50%;
+      background: rgba(121, 103, 83, 0.13);
     }
 
     .card {
       position: relative;
-      background: var(--card-tint, var(--paper));
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.05)),
+        var(--card-tint, var(--paper));
       border: 1px solid var(--line);
-      border-radius: 28px;
-      padding: 24px 22px;
+      border-radius: 30px 36px 28px 40px;
+      padding: 30px 26px 28px;
       box-shadow: var(--card-shadow);
       overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.52;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 16% 18%, rgba(255, 255, 255, 0.32), transparent 22%),
+        radial-gradient(circle at 88% 22%, rgba(126, 106, 84, 0.08), transparent 24%),
+        radial-gradient(circle at 28% 88%, rgba(126, 106, 84, 0.07), transparent 26%);
     }
 
     .card::after {
@@ -87,182 +244,314 @@
       position: absolute;
       inset: 0;
       z-index: 0;
-      opacity: 0.16;
+      opacity: 0.18;
       pointer-events: none;
       background-image:
-        linear-gradient(120deg, rgba(255, 255, 255, 0.22), transparent 50%),
+        linear-gradient(128deg, rgba(255, 255, 255, 0.22), transparent 54%),
         repeating-linear-gradient(
           0deg,
-          rgba(43, 37, 27, 0.04),
-          rgba(43, 37, 27, 0.04) 1px,
+          rgba(66, 54, 41, 0.05),
+          rgba(66, 54, 41, 0.05) 1px,
           transparent 1px,
-          transparent 3px
+          transparent 4px
         );
     }
 
     .card.calligraphy::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(rgba(243, 236, 224, 0.9), rgba(239, 231, 216, 0.86)),
+      background:
+        linear-gradient(rgba(241, 232, 219, 0.76), rgba(234, 225, 212, 0.68)),
         url("./calligraphy/assets/shufa_v8/da_large.jpg") center/cover no-repeat;
-      z-index: 0;
+      opacity: 0.7;
     }
 
     .card > * { position: relative; z-index: 1; }
 
     .date-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 22px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: start;
+      margin-bottom: 26px;
       font-size: 12px;
       color: var(--muted);
-      letter-spacing: 0.03em;
+      letter-spacing: 0.04em;
+    }
+
+    .date-row > :first-child {
+      max-width: 300px;
+      line-height: 1.7;
     }
 
     .theme {
-      border: 1px solid rgba(108, 122, 136, 0.42);
-      color: #50606f;
-      background: rgba(246, 249, 251, 0.72);
-      padding: 4px 12px;
-      border-radius: 999px;
+      justify-self: end;
+      border: 1px solid rgba(109, 93, 75, 0.34);
+      color: #665846;
+      background: rgba(245, 239, 230, 0.8);
+      padding: 6px 13px;
+      border-radius: 19px 23px 17px 21px;
       font-size: 11px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
+      transform: translateY(6px) rotate(-3deg);
+      box-shadow: 0 8px 16px rgba(105, 88, 70, 0.08);
     }
 
     .quote-cn {
       margin: 0;
-      font-size: 33px;
-      line-height: 1.62;
-      letter-spacing: 0.04em;
+      max-width: 92%;
+      font-size: 29px;
+      line-height: 1.82;
+      letter-spacing: 0.05em;
       text-wrap: balance;
-      font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+      font-family: "HerVoiceCNZhao", "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
       font-weight: 500;
     }
 
     .quote-en {
-      margin: 18px 0 0;
+      margin: 24px 0 0;
+      max-width: 88%;
+      padding-left: 22px;
       font-size: 18px;
-      line-height: 1.85;
-      color: #36424d;
+      line-height: 1.95;
+      color: #51483f;
       font-family: "Bodoni 72 Oldstyle", "Hoefler Text", "Baskerville", "Times New Roman", serif;
       letter-spacing: 0.01em;
+      position: relative;
+    }
+
+    .quote-en::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 10px;
+      height: calc(100% - 14px);
+      border-left: 1px solid rgba(109, 93, 75, 0.32);
+      border-radius: 999px;
+      opacity: 0.9;
     }
 
     .author {
-      margin: 18px 0 2px;
+      margin: 24px 4px 2px auto;
+      width: fit-content;
+      max-width: 86%;
       text-align: right;
-      color: #5d6a74;
+      color: #6a5f52;
       font-size: 13px;
       letter-spacing: 0.03em;
+      line-height: 1.7;
+      padding-top: 10px;
+      border-top: 1px solid rgba(109, 93, 75, 0.24);
+      transform: translateX(-4px);
     }
 
     .note {
-      margin-top: 18px;
-      border-top: 1px dashed var(--line);
-      padding-top: 14px;
+      margin-top: 28px;
+      padding-top: 18px;
+      position: relative;
+    }
+
+    .note::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 92px;
+      height: 1px;
+      background: rgba(109, 93, 75, 0.36);
     }
 
     .note-btn {
       width: 100%;
       border: 0;
       background: transparent;
-      padding: 0;
+      padding: 0 2px;
       display: flex;
       justify-content: space-between;
-      color: #4f4637;
+      align-items: center;
+      color: #564b40;
       font-size: 14px;
       cursor: pointer;
       font-family: inherit;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .note-body {
       display: none;
-      margin-top: 12px;
+      margin-top: 14px;
       font-size: 14px;
-      color: #4b4233;
-      line-height: 1.8;
-      background: rgba(255, 252, 247, 0.56);
-      border-radius: 14px;
-      padding: 10px 12px;
+      color: #4f453a;
+      line-height: 1.9;
+      background: rgba(250, 245, 237, 0.52);
+      border: 1px solid rgba(118, 99, 80, 0.16);
+      border-radius: 16px 22px 18px 14px;
+      padding: 14px 15px;
     }
 
     .note-body.show { display: block; }
 
     .controls {
-      margin-top: 16px;
+      margin-top: 22px;
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .controls .action:nth-child(2),
+    .controls .action:nth-child(4) {
+      transform: translateY(10px);
     }
 
     .calendar {
-      margin-top: 16px;
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
+      margin-top: 28px;
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .calendar::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 1px;
+      height: 58px;
+      background: linear-gradient(rgba(109, 93, 75, 0.42), rgba(109, 93, 75, 0));
+    }
+
+    .calendar-label {
+      margin: 0 0 12px;
+      color: #675b4d;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .history-select {
+      width: 100%;
+      min-height: 50px;
+      padding: 0 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px 22px 17px 23px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.08)),
+        rgba(242, 234, 224, 0.96);
+      color: #43392f;
+      font-family: inherit;
+      font-size: 14px;
+      letter-spacing: 0.03em;
+      box-shadow: 0 10px 20px rgba(85, 71, 55, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+    }
+
+    .calendar-shell {
+      position: relative;
+      max-width: 320px;
+    }
+
+    .calendar-shell::after {
+      content: "⌄";
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-size: 18px;
+      pointer-events: none;
+    }
+
+    button.action,
+    .template-chip {
+      border: 1px solid var(--line);
+      color: #43392f;
+      font-family: inherit;
+      cursor: pointer;
+      transition: transform 0.24s ease, border-color 0.24s ease, background 0.24s ease, box-shadow 0.24s ease;
+      box-shadow: 0 10px 20px rgba(85, 71, 55, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.28);
     }
 
     button.action {
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      min-height: 44px;
-      background: rgba(251, 246, 238, 0.82);
-      color: #3b3428;
-      font-family: inherit;
-      cursor: pointer;
-      letter-spacing: 0.03em;
-      transition: all 0.24s ease;
+      min-height: 48px;
+      padding: 0 16px;
+      border-radius: 15px 19px 14px 18px;
+      background: rgba(242, 234, 224, 0.9);
+      letter-spacing: 0.04em;
     }
 
-    button.action:hover {
-      transform: translateY(-1px);
-      border-color: rgba(146, 111, 55, 0.4);
+    button.action:hover,
+    .template-chip:hover {
+      transform: translateY(-1px) rotate(-0.4deg);
+      border-color: rgba(120, 98, 74, 0.42);
     }
 
     button.action.primary {
-      background: linear-gradient(135deg, #2c251a, #473826);
-      color: #fdf6ea;
-      border-color: #5a472d;
-      box-shadow: 0 10px 20px rgba(43, 32, 17, 0.2);
       grid-column: span 2;
-    }
-
-    .calendar button.active {
-      border-color: #8f6b36;
-      background: linear-gradient(145deg, #f4ead7, #efe1c7);
-      color: #5c421b;
-      font-weight: 700;
+      background: linear-gradient(135deg, #5f5041, #776352);
+      color: #f7f1e7;
+      border-color: rgba(95, 80, 65, 0.8);
+      box-shadow: 0 16px 28px rgba(70, 58, 44, 0.18);
     }
 
     .poster-wrap {
-      margin-top: 18px;
+      margin-top: 34px;
       display: none;
+      padding-top: 8px;
     }
 
     .poster-wrap.show { display: block; }
 
     .poster-wrap img {
       width: 100%;
-      border-radius: 20px;
+      border-radius: 24px 18px 26px 20px;
       border: 1px solid var(--line);
-      box-shadow: 0 16px 28px rgba(36, 28, 16, 0.12);
+      box-shadow: 0 18px 34px rgba(65, 53, 39, 0.12);
+      background: rgba(255, 255, 255, 0.28);
     }
 
-    .hint { margin-top: 8px; font-size: 12px; color: var(--muted); }
+    .hint {
+      margin-top: 10px;
+      padding-left: 14px;
+      font-size: 12px;
+      color: var(--muted);
+      position: relative;
+    }
+
+    .hint::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(121, 103, 83, 0.5);
+    }
 
     .template-wrap {
-      margin-top: 16px;
+      position: relative;
+      margin-top: 30px;
+      padding-left: 24px;
+    }
+
+    .template-wrap::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 1px;
+      height: 54px;
+      background: linear-gradient(rgba(109, 93, 75, 0.42), rgba(109, 93, 75, 0));
     }
 
     .template-title {
-      margin: 0 0 10px;
-      color: #5f5648;
+      margin: 0 0 12px;
+      color: #675b4d;
       font-size: 12px;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
 
     .template-grid {
@@ -272,36 +561,61 @@
     }
 
     .template-chip {
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      min-height: 36px;
-      background: rgba(251, 246, 238, 0.82);
-      color: #3b3428;
+      min-height: 40px;
+      padding: 0 12px;
+      border-radius: 18px 21px 17px 22px;
+      background: rgba(245, 238, 229, 0.92);
       font-size: 12px;
       letter-spacing: 0.04em;
-      cursor: pointer;
+    }
+
+    .template-chip:nth-child(2) {
+      transform: translateY(7px);
     }
 
     .template-chip.active {
-      border-color: #8f6b36;
-      background: linear-gradient(145deg, #f4ead7, #efe1c7);
-      color: #5c421b;
+      border-color: rgba(103, 84, 61, 0.48);
+      background: linear-gradient(135deg, #d9cab8, #ccb8a1);
+      color: #554736;
       font-weight: 700;
     }
 
     @media (max-width: 560px) {
-      .title { font-size: 25px; }
-      .quote-cn { font-size: 29px; }
-      .quote-en { font-size: 17px; }
-      .calendar { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      body { padding: 26px 14px 56px; }
+      .shell { max-width: 100%; }
+      .masthead { margin-bottom: 28px; padding-right: 0; }
+      .title { max-width: 280px; font-size: 28px; }
+      .sub { max-width: 100%; font-size: 12px; line-height: 1.8; }
+      .doodles { right: -6px; top: -4px; transform: scale(0.84); }
+      .card { padding: 24px 20px 24px; border-radius: 26px 30px 24px 32px; }
+      .date-row { grid-template-columns: 1fr; gap: 10px; }
+      .theme { justify-self: start; transform: rotate(-2deg); }
+      .quote-cn { max-width: 100%; font-size: 25px; line-height: 1.74; }
+      .quote-en { max-width: 100%; padding-left: 18px; font-size: 16px; line-height: 1.85; }
+      .author { max-width: 100%; }
+      .controls { grid-template-columns: 1fr; }
+      .controls .action:nth-child(2),
+      .controls .action:nth-child(4) { transform: none; }
+      button.action.primary { grid-column: span 1; }
+      .calendar { padding-left: 18px; }
+      .template-wrap { padding-left: 18px; }
       .template-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .template-chip:nth-child(2) { transform: translateY(4px); }
     }
   </style>
 </head>
 <body>
   <div class="shell">
-    <h1 class="title">HerVoice Daily</h1>
-    <p class="sub">女性先锋语录日历 · 中英对照 · Teacher's Note · Sunday Calligraphy</p>
+    <header class="masthead">
+      <p class="eyebrow">imperfect beauty / becoming slowly</p>
+      <div class="doodles" aria-hidden="true">
+        <span class="doodle-circle"></span>
+        <span class="doodle-stroke"></span>
+        <span class="doodle-dot"></span>
+      </div>
+      <h1 class="title">HerVoice Daily</h1>
+      <p class="sub">一页一语，慢慢展开。中英对照、静读批注、周日手写。</p>
+    </header>
 
     <article id="dailyCard" class="card">
       <div class="date-row">
@@ -315,7 +629,7 @@
 
       <section class="note">
         <button id="noteToggle" class="note-btn" type="button">
-          <span>Teacher's Note</span>
+          <span>Quiet Note</span>
           <span id="noteArrow">展开</span>
         </button>
         <div id="noteBody" class="note-body"></div>
@@ -323,22 +637,27 @@
     </article>
 
     <section class="controls">
-      <button class="action" id="prevDay" type="button">上一条</button>
-      <button class="action" id="nextDay" type="button">下一条</button>
-      <button class="action primary" id="makePoster" type="button">生成日签（1080x1440）</button>
-      <button class="action" id="downloadPoster" type="button">下载日签</button>
+      <button class="action" id="prevDay" type="button">前一页</button>
+      <button class="action" id="nextDay" type="button">后一页</button>
+      <button class="action primary" id="makePoster" type="button">生成留白海报</button>
+      <button class="action" id="downloadPoster" type="button">下载这一页</button>
     </section>
 
     <section class="template-wrap">
-      <p class="template-title">海报模板</p>
+      <p class="template-title">海报纸感</p>
       <div id="posterTemplates" class="template-grid"></div>
     </section>
 
-    <section id="historyCalendar" class="calendar"></section>
+    <section class="calendar">
+      <p class="calendar-label">翻看日期</p>
+      <div class="calendar-shell">
+        <select id="historyCalendar" class="history-select" aria-label="选择 HerVoice 日期"></select>
+      </div>
+    </section>
 
     <section id="posterWrap" class="poster-wrap">
       <img id="posterImage" alt="HerVoice 日签海报" />
-      <p class="hint">提示：海报已生成，长按或点击下载保存。</p>
+      <p class="hint">这一页已经落下，轻点即可保存。</p>
     </section>
   </div>
 
@@ -350,16 +669,16 @@
     let index = 0;
     let noteOpen = false;
     const posterTemplates = [
-      { id: "paper", name: "纸感留白", bg: "#f4efe5", title: "#221e16", cn: "#1f1a13", en: "#3d3528", accent: "#8b6a36", qrStroke: "#9b8258" },
-      { id: "ink", name: "墨金高级", bg: "#1f1b16", title: "#f7efdf", cn: "#f8f1e4", en: "#ddd0bb", accent: "#b8945b", qrStroke: "#c1a679" },
-      { id: "mist", name: "雾灰克制", bg: "#ebe8e1", title: "#27241e", cn: "#29241d", en: "#4b4338", accent: "#7e7464", qrStroke: "#8f8576" }
+      { id: "earth", name: "晨纸", bg: "#efe6d8", paper: "#f6efe3", title: "#2f2720", cn: "#2c241d", en: "#54473c", accent: "#8b7763", line: "#bba78f", qrStroke: "#9b866f", noteFill: "rgba(252,248,241,0.58)", noteStroke: "rgba(126,105,82,0.22)", texture: "warm" },
+      { id: "char", name: "炭墨", bg: "#ddd1c2", paper: "#e9ded0", title: "#312922", cn: "#28211a", en: "#504539", accent: "#7f6b57", line: "#aa947d", qrStroke: "#8f7a64", noteFill: "rgba(247,242,236,0.48)", noteStroke: "rgba(116,96,74,0.22)", texture: "charcoal" },
+      { id: "stone", name: "雾石", bg: "#e3dcd1", paper: "#eee7dc", title: "#302a24", cn: "#2d2721", en: "#5c5246", accent: "#867a6c", line: "#b3a493", qrStroke: "#988978", noteFill: "rgba(255,252,248,0.42)", noteStroke: "rgba(120,106,88,0.2)", texture: "mist" }
     ];
     let activeTemplate = posterTemplates[0];
 
     const embeddedEntries = [
       {
-            "date": "2026-02-18",
-            "week_day": "Wednesday",
+            "date": "2026-03-15",
+            "week_day": "Sunday",
             "theme": "Independence",
             "quote": {
                   "content_cn": "女性若想写作，就必须有钱，还要有一间自己的房间。",
@@ -374,14 +693,14 @@
             "visual_type": "standard",
             "background_color": "#F2EBE5",
             "tags": [
+                  "西方文本",
                   "觉醒",
-                  "写作",
-                  "经典"
+                  "原句摘录"
             ]
       },
       {
-            "date": "2026-02-19",
-            "week_day": "Thursday",
+            "date": "2026-03-16",
+            "week_day": "Monday",
             "theme": "Becoming",
             "quote": {
                   "content_cn": "女人不是天生的，而是后来形成的。",
@@ -396,14 +715,14 @@
             "visual_type": "standard",
             "background_color": "#EDE9E4",
             "tags": [
+                  "西方文本",
                   "存在主义",
-                  "女性主义",
-                  "觉醒"
+                  "原句摘录"
             ]
       },
       {
-            "date": "2026-02-20",
-            "week_day": "Friday",
+            "date": "2026-03-17",
+            "week_day": "Tuesday",
             "theme": "Voice",
             "quote": {
                   "content_cn": "你的沉默不会保护你。",
@@ -418,14 +737,14 @@
             "visual_type": "standard",
             "background_color": "#ECE7E2",
             "tags": [
+                  "西方文本",
                   "发声",
-                  "勇气",
-                  "行动"
+                  "原句摘录"
             ]
       },
       {
-            "date": "2026-02-21",
-            "week_day": "Saturday",
+            "date": "2026-03-18",
+            "week_day": "Wednesday",
             "theme": "Selfhood",
             "quote": {
                   "content_cn": "我属于我自己。",
@@ -440,14 +759,14 @@
             "visual_type": "standard",
             "background_color": "#E9E7E4",
             "tags": [
+                  "西方文本",
                   "自我",
-                  "边界",
-                  "成长"
+                  "原句摘录"
             ]
       },
       {
-            "date": "2026-02-22",
-            "week_day": "Sunday",
+            "date": "2026-03-19",
+            "week_day": "Thursday",
             "theme": "Sunday Calligraphy",
             "quote": {
                   "content_cn": "活在边缘，意味着你能看见中心看不见的东西。",
@@ -462,14 +781,14 @@
             "visual_type": "calligraphy",
             "background_color": "#ECE6DF",
             "tags": [
+                  "西方文本",
                   "边缘视角",
-                  "洞察",
-                  "周日特刊"
+                  "周日手写"
             ]
       },
       {
-            "date": "2026-02-23",
-            "week_day": "Monday",
+            "date": "2026-03-20",
+            "week_day": "Friday",
             "theme": "Time",
             "quote": {
                   "content_cn": "时间过去了，仿佛房间里有谁轻轻合上了一扇门。",
@@ -484,14 +803,14 @@
             "visual_type": "standard",
             "background_color": "#E7EBEE",
             "tags": [
+                  "西方文本",
                   "时间",
-                  "意识流",
-                  "内心"
+                  "灵感转写"
             ]
       },
       {
-            "date": "2026-02-24",
-            "week_day": "Tuesday",
+            "date": "2026-03-21",
+            "week_day": "Saturday",
             "theme": "Body",
             "quote": {
                   "content_cn": "我必须写下身体，写下女性的经验。",
@@ -506,14 +825,14 @@
             "visual_type": "standard",
             "background_color": "#E8EAEC",
             "tags": [
+                  "西方文本",
                   "身体书写",
-                  "表达",
-                  "先锋"
+                  "原句摘录"
             ]
       },
       {
-            "date": "2026-02-25",
-            "week_day": "Wednesday",
+            "date": "2026-03-22",
+            "week_day": "Sunday",
             "theme": "Freedom",
             "quote": {
                   "content_cn": "真正的自由从来不会只属于一小部分人。",
@@ -528,14 +847,14 @@
             "visual_type": "standard",
             "background_color": "#E9E8E6",
             "tags": [
+                  "西方文本",
                   "自由",
-                  "抗争",
-                  "公共性"
+                  "原句摘录"
             ]
       },
       {
-            "date": "2026-02-26",
-            "week_day": "Thursday",
+            "date": "2026-03-23",
+            "week_day": "Monday",
             "theme": "Language",
             "quote": {
                   "content_cn": "语言是我们通向他者与自我的桥。",
@@ -550,14 +869,14 @@
             "visual_type": "standard",
             "background_color": "#E7EAF0",
             "tags": [
+                  "西方文本",
                   "语言",
-                  "立场",
-                  "批评"
+                  "原句摘录"
             ]
       },
       {
-            "date": "2026-02-27",
-            "week_day": "Friday",
+            "date": "2026-03-24",
+            "week_day": "Tuesday",
             "theme": "Memory",
             "quote": {
                   "content_cn": "记忆不是负担，它是我们重新命名世界的力量。",
@@ -572,14 +891,14 @@
             "visual_type": "standard",
             "background_color": "#ECE8E4",
             "tags": [
+                  "西方文本",
                   "记忆",
-                  "命名权",
-                  "叙事"
+                  "原句摘录"
             ]
       },
       {
-            "date": "2026-02-28",
-            "week_day": "Saturday",
+            "date": "2026-03-25",
+            "week_day": "Wednesday",
             "theme": "Inner Fire",
             "quote": {
                   "content_cn": "世界想把你放进钟形罩里，但你仍可以呼吸。",
@@ -594,14 +913,14 @@
             "visual_type": "standard",
             "background_color": "#E8E6EA",
             "tags": [
+                  "西方文本",
                   "自我修复",
-                  "呼吸",
-                  "力量"
+                  "原句摘录"
             ]
       },
       {
-            "date": "2026-03-01",
-            "week_day": "Sunday",
+            "date": "2026-03-26",
+            "week_day": "Thursday",
             "theme": "Sunday Calligraphy",
             "quote": {
                   "content_cn": "她听见了自己的名字，也听见了时代在门外敲击。",
@@ -616,14 +935,14 @@
             "visual_type": "calligraphy",
             "background_color": "#E9E5DE",
             "tags": [
+                  "中文文本",
                   "中国先锋",
-                  "女性意识",
-                  "周日特刊"
+                  "周日手写"
             ]
       },
       {
-            "date": "2026-03-02",
-            "week_day": "Monday",
+            "date": "2026-03-27",
+            "week_day": "Friday",
             "theme": "City and Woman",
             "quote": {
                   "content_cn": "城市很大，女人要先在心里为自己留出房间。",
@@ -638,14 +957,14 @@
             "visual_type": "standard",
             "background_color": "#E6EAED",
             "tags": [
+                  "中文文本",
                   "都市女性",
-                  "空间",
-                  "自我安放"
+                  "灵感转写"
             ]
       },
       {
-            "date": "2026-03-03",
-            "week_day": "Tuesday",
+            "date": "2026-03-28",
+            "week_day": "Saturday",
             "theme": "Tender Strength",
             "quote": {
                   "content_cn": "你可以柔软，但不必后退。",
@@ -660,10 +979,1022 @@
             "visual_type": "standard",
             "background_color": "#E8ECEF",
             "tags": [
+                  "中文文本",
                   "萧红",
-                  "柔韧",
-                  "成长"
+                  "灵感转写"
             ]
+      },
+      {
+            "date": "2026-03-29",
+            "theme": "Gaze",
+            "quote": {
+                  "content_cn": "看得更清楚，并不只是在观察世界，也是把自己从麻木里唤醒。",
+                  "content_en": "To see more clearly is also to wake oneself from numbness.",
+                  "author": "Susan Sontag",
+                  "source": "Against Interpretation (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "more clearly",
+                  "explanation": "【名师点拨】more clearly 是副词比较级，表示“更清楚地”。放在动词 see 后面时，能自然表达“看得更透、更明白”。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E7EAEE",
+            "tags": [
+                  "西方文本",
+                  "观看",
+                  "灵感转写"
+            ],
+            "week_day": "Sunday"
+      },
+      {
+            "date": "2026-03-30",
+            "theme": "Desire",
+            "quote": {
+                  "content_cn": "写作不是为了整理秩序，而是为了把心里那片涨潮的海说出来。",
+                  "content_en": "Writing is not to tidy life up, but to speak the tide inside.",
+                  "author": "Marguerite Duras",
+                  "source": "Writing (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "not to..., but to...",
+                  "explanation": "【名师点拨】not to A, but to B 是很利落的对照结构，适合写“做某事不是为了X，而是为了Y”的观点句。"
+            },
+            "visual_type": "standard",
+            "background_color": "#EAE6E1",
+            "tags": [
+                  "西方文本",
+                  "写作",
+                  "灵感转写"
+            ],
+            "week_day": "Monday"
+      },
+      {
+            "date": "2026-03-31",
+            "theme": "Learning",
+            "quote": {
+                  "content_cn": "真正的学习，是旧的真理忽然以新的方式向你打开。",
+                  "content_en": "Real learning begins when an old truth opens in a new way.",
+                  "author": "Doris Lessing",
+                  "source": "The Golden Notebook (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "in a new way",
+                  "explanation": "【名师点拨】in a new way 表示“以一种新的方式”。放在句尾很自然，常用来强调认知角度发生变化。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E8E6E3",
+            "tags": [
+                  "西方文本",
+                  "学习",
+                  "灵感转写"
+            ],
+            "week_day": "Tuesday"
+      },
+      {
+            "date": "2026-04-01",
+            "theme": "Simplicity",
+            "quote": {
+                  "content_cn": "真正的简单，从来都不是轻轻松松得来的。",
+                  "content_en": "I only achieve simplicity with enormous effort.",
+                  "author": "Clarice Lispector",
+                  "source": "The Stream of Life"
+            },
+            "teacher_note": {
+                  "keyword": "achieve",
+                  "explanation": "【名师点拨】achieve 常搭配 result, goal, simplicity 等抽象名词，表达“经过努力达到某种状态”，语气比 get 更高级。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E8E7EB",
+            "tags": [
+                  "西方文本",
+                  "简洁",
+                  "原句摘录"
+            ],
+            "week_day": "Wednesday"
+      },
+      {
+            "date": "2026-04-02",
+            "theme": "Sunday Calligraphy",
+            "quote": {
+                  "content_cn": "在喧哗的尘世里，清醒的人也要替自己留一点华丽的孤独。",
+                  "content_en": "In a noisy world, one still keeps a little splendid solitude.",
+                  "author": "Eileen Chang",
+                  "source": "Love in a Fallen City (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "still keeps",
+                  "explanation": "【名师点拨】still 在这里不是“还在做某动作”，而是强调“即使如此，仍然”。和 keeps 连用，很适合写坚持保有某种品质。"
+            },
+            "visual_type": "calligraphy",
+            "background_color": "#E9E4DC",
+            "tags": [
+                  "中文文本",
+                  "张爱玲",
+                  "周日手写"
+            ],
+            "week_day": "Thursday"
+      },
+      {
+            "date": "2026-04-03",
+            "theme": "Story",
+            "quote": {
+                  "content_cn": "没有什么比把一个没讲出的故事一直藏在心里更痛苦。",
+                  "content_en": "There is no greater agony than bearing an untold story inside you.",
+                  "author": "Maya Angelou",
+                  "source": "I Know Why the Caged Bird Sings"
+            },
+            "teacher_note": {
+                  "keyword": "bearing",
+                  "explanation": "【名师点拨】bearing 在这里不是“忍受”那么简单，更像“长期背负着”。用它能让情绪重量一下子出来。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E7EAED",
+            "tags": [
+                  "西方文本",
+                  "讲述",
+                  "原句摘录"
+            ],
+            "week_day": "Friday"
+      },
+      {
+            "date": "2026-04-04",
+            "theme": "Language",
+            "quote": {
+                  "content_cn": "一个词接着一个词，就是力量。",
+                  "content_en": "A word after a word after a word is power.",
+                  "author": "Margaret Atwood",
+                  "source": "Spelling"
+            },
+            "teacher_note": {
+                  "keyword": "after",
+                  "explanation": "【名师点拨】这里连续重复 after a word 形成节奏感。写作时重复关键词，有时比换同义词更有力量。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E6E9ED",
+            "tags": [
+                  "西方文本",
+                  "语言",
+                  "原句摘录"
+            ],
+            "week_day": "Saturday"
+      },
+      {
+            "date": "2026-04-05",
+            "theme": "Tongue",
+            "quote": {
+                  "content_cn": "野性的舌头驯不服，除非被粗暴地割掉。",
+                  "content_en": "Wild tongues can't be tamed, they can only be cut out.",
+                  "author": "Gloria Anzaldua",
+                  "source": "Borderlands / La Frontera"
+            },
+            "teacher_note": {
+                  "keyword": "can't be tamed",
+                  "explanation": "【名师点拨】can't be tamed 是被动语态，强调“无法被驯服”。比 cannot tame them 更突出“野性本身不会轻易被消除”。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E9E5E0",
+            "tags": [
+                  "离散书写",
+                  "边界",
+                  "原句摘录"
+            ],
+            "week_day": "Sunday"
+      },
+      {
+            "date": "2026-04-06",
+            "theme": "Dream Logic",
+            "quote": {
+                  "content_cn": "想象不是逃走，它是把另一扇现实的门推开。",
+                  "content_en": "Imagination is not escape; it opens another door of reality.",
+                  "author": "Can Xue",
+                  "source": "Frontier (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "another door of",
+                  "explanation": "【名师点拨】another + 名词 很适合表达“另一种可能”。another door of reality 这种说法带文学感，适合 HerVoice 语境。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E8EBEF",
+            "tags": [
+                  "中文文本",
+                  "残雪",
+                  "灵感转写"
+            ],
+            "week_day": "Monday"
+      },
+      {
+            "date": "2026-04-07",
+            "theme": "Witness",
+            "quote": {
+                  "content_cn": "写下生活，并不是为了装饰它，而是为了不让它无声地消失。",
+                  "content_en": "To write life down is to keep it from vanishing in silence.",
+                  "author": "Annie Ernaux",
+                  "source": "The Years (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "keep ... from",
+                  "explanation": "【名师点拨】keep A from doing B 表示“阻止A去做B”。这里 it 指生活经验本身，句子很适合讲“写作 = 留住经验”。"
+            },
+            "visual_type": "standard",
+            "background_color": "#EAE7E2",
+            "tags": [
+                  "西方文本",
+                  "见证",
+                  "灵感转写"
+            ],
+            "week_day": "Tuesday"
+      },
+      {
+            "date": "2026-04-08",
+            "theme": "Tenderness",
+            "quote": {
+                  "content_cn": "温柔是爱最谦逊的模样，也是理解世界的一种能力。",
+                  "content_en": "Tenderness is the most modest form of love.",
+                  "author": "Olga Tokarczuk",
+                  "source": "Nobel Lecture"
+            },
+            "teacher_note": {
+                  "keyword": "the most",
+                  "explanation": "【名师点拨】the most + 形容词 是最高级结构。这里 the most modest 不是“最弱”，而是“最克制、最不张扬”。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E6EAEC",
+            "tags": [
+                  "西方文本",
+                  "温柔",
+                  "原句摘录"
+            ],
+            "week_day": "Wednesday"
+      },
+      {
+            "date": "2026-04-09",
+            "theme": "Sunday Calligraphy",
+            "quote": {
+                  "content_cn": "在城市的缝隙里，也要替自己养一盏不肯熄灭的小灯。",
+                  "content_en": "In the cracks of the city, keep a small light that refuses to go out.",
+                  "author": "Xi Xi",
+                  "source": "My City (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "refuses to",
+                  "explanation": "【名师点拨】refuse to do 不只是“拒绝做”，还常带拟人意味。这里写灯 refuses to go out，会让句子更有生命感。"
+            },
+            "visual_type": "calligraphy",
+            "background_color": "#E8E3DB",
+            "tags": [
+                  "中文文本",
+                  "西西",
+                  "周日手写"
+            ],
+            "week_day": "Thursday"
+      },
+      {
+            "date": "2026-04-10",
+            "theme": "Naming",
+            "quote": {
+                  "content_cn": "当你把故事说出来，沉默就不再替别人保管你的名字。",
+                  "content_en": "When you tell the story, silence no longer keeps your name for others.",
+                  "author": "Maxine Hong Kingston",
+                  "source": "The Woman Warrior (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "no longer",
+                  "explanation": "【名师点拨】no longer 表示“不再”，比 not... anymore 更书面，放在动词前面很适合这种克制有力的句子。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E7EAEE",
+            "tags": [
+                  "离散书写",
+                  "华裔写作",
+                  "灵感转写"
+            ],
+            "week_day": "Friday"
+      },
+      {
+            "date": "2026-04-11",
+            "theme": "Becoming Again",
+            "quote": {
+                  "content_cn": "破碎并不等于结束，有时它只是另一种更诚实的开始。",
+                  "content_en": "Brokenness is not always an ending; sometimes it is a more honest beginning.",
+                  "author": "Qiu Miaojin",
+                  "source": "Notes of a Crocodile (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "not always",
+                  "explanation": "【名师点拨】not always 很适合表达“并非总是如此”，能让判断更有分寸，也更适合写有层次的观点句。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E9E7EA",
+            "tags": [
+                  "中文文本",
+                  "邱妙津",
+                  "灵感转写"
+            ],
+            "week_day": "Saturday"
+      },
+      {
+            "date": "2026-04-12",
+            "theme": "Threshold",
+            "quote": {
+                  "content_cn": "每跨过一道门槛，旧日的自己都会轻轻掉下一层壳。",
+                  "content_en": "Each threshold asks us to leave one shell of the self behind.",
+                  "author": "Ingeborg Bachmann",
+                  "source": "Collected Poems (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "leave behind",
+                  "explanation": "【名师点拨】leave behind 常表示“把……留在身后”，既可写真实动作，也可写心理上的告别。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E7E2D8",
+            "tags": [
+                  "西方文本",
+                  "门槛",
+                  "灵感转写"
+            ],
+            "week_day": "Sunday"
+      },
+      {
+            "date": "2026-04-13",
+            "theme": "Orientation",
+            "quote": {
+                  "content_cn": "方向感不是天生的，它常常是在偏离之后才慢慢长出来。",
+                  "content_en": "Orientation is often born after we have drifted off course.",
+                  "author": "Sara Ahmed",
+                  "source": "Queer Phenomenology (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "drifted off course",
+                  "explanation": "【名师点拨】drift off course 字面是“偏离航线”，引申可写人生、思想或关系慢慢偏离原轨道。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E6DED3",
+            "tags": [
+                  "西方文本",
+                  "方向",
+                  "灵感转写"
+            ],
+            "week_day": "Monday"
+      },
+      {
+            "date": "2026-04-14",
+            "theme": "Listening",
+            "quote": {
+                  "content_cn": "真正的倾听，不是急着回应，而是让沉默先把话语托住。",
+                  "content_en": "Real listening lets silence hold the words before response arrives.",
+                  "author": "Anne Carson",
+                  "source": "Plainwater (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "before response arrives",
+                  "explanation": "【名师点拨】before 引导时间状语从句时，不一定强调“很久之前”，也可以只表达“回应到来之前那一刻”。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E5DDD2",
+            "tags": [
+                  "西方文本",
+                  "倾听",
+                  "灵感转写"
+            ],
+            "week_day": "Tuesday"
+      },
+      {
+            "date": "2026-04-15",
+            "theme": "Patience",
+            "quote": {
+                  "content_cn": "耐心不是停着不动，而是在看不清时仍肯把灯留着。",
+                  "content_en": "Patience is keeping the lamp lit even when the road is unclear.",
+                  "author": "Marina Tsvetaeva",
+                  "source": "Earthly Signs (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "keep ... lit",
+                  "explanation": "【名师点拨】keep + 宾语 + 形容词/过去分词 可表示“让……保持某种状态”，如 keep the door closed。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E6E0D7",
+            "tags": [
+                  "西方文本",
+                  "耐心",
+                  "灵感转写"
+            ],
+            "week_day": "Wednesday"
+      },
+      {
+            "date": "2026-04-16",
+            "theme": "Sunday Calligraphy",
+            "quote": {
+                  "content_cn": "路远的时候，人更要把自己的心安顿成一间明亮的小屋。",
+                  "content_en": "When the road is long, settle the heart into a small bright room.",
+                  "author": "Sanmao",
+                  "source": "Stories of the Sahara (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "settle into",
+                  "explanation": "【名师点拨】settle into 表示“安顿进、慢慢进入某种状态”。既可写身体进入空间，也可写情绪慢慢稳定。"
+            },
+            "visual_type": "calligraphy",
+            "background_color": "#E7DED1",
+            "tags": [
+                  "中文文本",
+                  "安顿",
+                  "周日手写"
+            ],
+            "week_day": "Thursday"
+      },
+      {
+            "date": "2026-04-17",
+            "theme": "Walking",
+            "quote": {
+                  "content_cn": "一步一步走出去，世界会把新的比例慢慢还给你。",
+                  "content_en": "Walking reshapes the scale of the world around a tired mind.",
+                  "author": "Rebecca Solnit",
+                  "source": "Wanderlust (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "reshape",
+                  "explanation": "【名师点拨】reshape 表示“重塑、重新改变形状”。用于抽象名词时，很适合表达认知和关系被重新调整。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E4DBCF",
+            "tags": [
+                  "西方文本",
+                  "行走",
+                  "灵感转写"
+            ],
+            "week_day": "Friday"
+      },
+      {
+            "date": "2026-04-18",
+            "theme": "Shadow",
+            "quote": {
+                  "content_cn": "点亮一盏灯，也会同时承认阴影的存在。",
+                  "content_en": "To light a lamp is also to admit the shape of shadow.",
+                  "author": "Ursula K. Le Guin",
+                  "source": "The Left Hand of Darkness (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "to admit",
+                  "explanation": "【名师点拨】admit 除了“承认错误”，也常用于承认事实、情绪或复杂性，语气比 accept 更有思辨感。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E7E0D5",
+            "tags": [
+                  "西方文本",
+                  "阴影",
+                  "灵感转写"
+            ],
+            "week_day": "Saturday"
+      },
+      {
+            "date": "2026-04-19",
+            "theme": "Attention",
+            "quote": {
+                  "content_cn": "注意力是灵魂最安静的一种慷慨。",
+                  "content_en": "Attention is the quietest generosity of the soul.",
+                  "author": "Simone Weil",
+                  "source": "Waiting for God (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "the quietest",
+                  "explanation": "【名师点拨】最高级 the quietest 不一定表示声音最小，也常表示最克制、最不张扬的品质。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E8E1D7",
+            "tags": [
+                  "西方文本",
+                  "专注",
+                  "灵感转写"
+            ],
+            "week_day": "Sunday"
+      },
+      {
+            "date": "2026-04-20",
+            "theme": "Clarity",
+            "quote": {
+                  "content_cn": "写下来的那一刻，模糊的东西才终于有了边缘。",
+                  "content_en": "Writing gives the blurred parts of life a visible edge.",
+                  "author": "Joan Didion",
+                  "source": "On Keeping a Notebook (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "blurred parts",
+                  "explanation": "【名师点拨】parts 在这里不是“零件”，而是“部分、层面”。blurred parts of life 可译为“生活里那些模糊的部分”。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E3DBD0",
+            "tags": [
+                  "西方文本",
+                  "清明",
+                  "灵感转写"
+            ],
+            "week_day": "Monday"
+      },
+      {
+            "date": "2026-04-21",
+            "theme": "Community",
+            "quote": {
+                  "content_cn": "真正的社区，不是彼此相同，而是彼此都被允许完整地出现。",
+                  "content_en": "Community begins where people are allowed to arrive whole.",
+                  "author": "Toni Cade Bambara",
+                  "source": "The Salt Eaters (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "arrive whole",
+                  "explanation": "【名师点拨】whole 在这里是形容词，表示“完整的”。arrive whole 带一点文学意味，适合写心理修复主题。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E6DDD0",
+            "tags": [
+                  "西方文本",
+                  "共同体",
+                  "灵感转写"
+            ],
+            "week_day": "Tuesday"
+      },
+      {
+            "date": "2026-04-22",
+            "theme": "Winter Light",
+            "quote": {
+                  "content_cn": "最柔的光，常常出现在人以为天色已经晚了的时候。",
+                  "content_en": "The gentlest light often appears after we think the day is done.",
+                  "author": "Louise Glück",
+                  "source": "Winter Recipes from the Collective (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "is done",
+                  "explanation": "【名师点拨】be done 不只是“完成”，也常表示“结束了”。口语和写作里都很常见。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E5DDD4",
+            "tags": [
+                  "西方文本",
+                  "微光",
+                  "灵感转写"
+            ],
+            "week_day": "Wednesday"
+      },
+      {
+            "date": "2026-04-23",
+            "theme": "Sunday Calligraphy",
+            "quote": {
+                  "content_cn": "风从很远的地方来，也替沉默的人带来尚未说出的春天。",
+                  "content_en": "Wind arrives from afar, carrying a spring not yet spoken.",
+                  "author": "Shu Ting",
+                  "source": "To the Oak Tree (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "not yet spoken",
+                  "explanation": "【名师点拨】not yet + 过去分词/形容词，可表达“尚未被……”。很适合营造含而未发的感觉。"
+            },
+            "visual_type": "calligraphy",
+            "background_color": "#E7DED2",
+            "tags": [
+                  "中文文本",
+                  "风与春",
+                  "周日手写"
+            ],
+            "week_day": "Thursday"
+      },
+      {
+            "date": "2026-04-24",
+            "theme": "Repetition",
+            "quote": {
+                  "content_cn": "重复并不总是停滞，有时它是在把真相磨得更亮。",
+                  "content_en": "Repetition can polish a truth until it begins to shine.",
+                  "author": "Gertrude Stein",
+                  "source": "Lectures in America (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "until",
+                  "explanation": "【名师点拨】until 表示“直到……为止”。在这句里，它把“不断打磨”与“最终发亮”连成了一个过程。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E2D9CE",
+            "tags": [
+                  "西方文本",
+                  "重复",
+                  "灵感转写"
+            ],
+            "week_day": "Friday"
+      },
+      {
+            "date": "2026-04-25",
+            "theme": "Courage",
+            "quote": {
+                  "content_cn": "勇气不是不害怕，而是明知疼痛仍拒绝向沉默归顺。",
+                  "content_en": "Courage is refusing silence even while fear remains.",
+                  "author": "Nawal El Saadawi",
+                  "source": "Memoirs from the Women's Prison (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "while fear remains",
+                  "explanation": "【名师点拨】while 在这里不是“当……时候”而是“尽管同时存在”。能让句子更有张力。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E5DCD1",
+            "tags": [
+                  "西方文本",
+                  "勇气",
+                  "灵感转写"
+            ],
+            "week_day": "Saturday"
+      },
+      {
+            "date": "2026-04-26",
+            "theme": "Recovery",
+            "quote": {
+                  "content_cn": "人不是一下子好起来的，而是在一小块一小块的日常里慢慢复原。",
+                  "content_en": "We recover in fragments of ordinary days, not all at once.",
+                  "author": "Anne Sexton",
+                  "source": "The Awful Rowing Toward God (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "not all at once",
+                  "explanation": "【名师点拨】not all at once 表示“不是一下子全部完成”，很适合写修复、成长这类渐进过程。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E6DDD2",
+            "tags": [
+                  "西方文本",
+                  "复原",
+                  "灵感转写"
+            ],
+            "week_day": "Sunday"
+      },
+      {
+            "date": "2026-04-27",
+            "theme": "Distance",
+            "quote": {
+                  "content_cn": "有时候，拉开一点距离，人才看见自己不是困局本身。",
+                  "content_en": "Distance sometimes reveals that the self is not the trap it inhabits.",
+                  "author": "Rachel Cusk",
+                  "source": "Outline (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "inhabits",
+                  "explanation": "【名师点拨】inhabit 比 live in 更书面，常用于“居住于某空间/处境之中”，有一种深陷其中的感觉。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E4DCCF",
+            "tags": [
+                  "西方文本",
+                  "距离",
+                  "灵感转写"
+            ],
+            "week_day": "Monday"
+      },
+      {
+            "date": "2026-04-28",
+            "theme": "Wonder",
+            "quote": {
+                  "content_cn": "惊奇不是幼稚，它是心灵对世界仍旧保留的一点空位。",
+                  "content_en": "Wonder is the space the mind still leaves open for the world.",
+                  "author": "Wislawa Szymborska",
+                  "source": "Nonrequired Reading (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "leave open",
+                  "explanation": "【名师点拨】leave + 宾语 + 形容词 可表示“让……保持某种状态”。leave open 在抽象语境里也很常用。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E8E0D6",
+            "tags": [
+                  "西方文本",
+                  "惊奇",
+                  "灵感转写"
+            ],
+            "week_day": "Tuesday"
+      },
+      {
+            "date": "2026-04-29",
+            "theme": "Inner Country",
+            "quote": {
+                  "content_cn": "真正的故乡，有时是一个人终于学会同自己相处的那块心地。",
+                  "content_en": "Sometimes the truest homeland is the inner ground where one can finally stay.",
+                  "author": "Maria Zambrano",
+                  "source": "Claros del Bosque (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "inner ground",
+                  "explanation": "【名师点拨】ground 除了“地面”，还可指心理上的立足处。inner ground 适合写内在空间。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E6DDD1",
+            "tags": [
+                  "西方文本",
+                  "内在故乡",
+                  "灵感转写"
+            ],
+            "week_day": "Wednesday"
+      },
+      {
+            "date": "2026-04-30",
+            "theme": "Sunday Calligraphy",
+            "quote": {
+                  "content_cn": "屋檐下的光一寸寸落下来，也教人把生活过得更有分寸。",
+                  "content_en": "Light under the eaves teaches a life of measure and grace.",
+                  "author": "Lin Huiyin",
+                  "source": "You Are April in This World (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "a life of",
+                  "explanation": "【名师点拨】a life of... 可表示“某种样态的人生”。如 a life of study / a life of grace。"
+            },
+            "visual_type": "calligraphy",
+            "background_color": "#E8DED2",
+            "tags": [
+                  "中文文本",
+                  "屋檐之光",
+                  "周日手写"
+            ],
+            "week_day": "Thursday"
+      },
+      {
+            "date": "2026-05-01",
+            "theme": "Repair",
+            "quote": {
+                  "content_cn": "修补并不让裂痕消失，但它会教你怎样继续盛水。",
+                  "content_en": "Repair does not erase the crack; it teaches the vessel to hold again.",
+                  "author": "Alice Walker",
+                  "source": "In Search of Our Mothers' Gardens (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "hold again",
+                  "explanation": "【名师点拨】again 放在句末时很轻，却很有力量。hold again 有“重新承载起来”的感觉。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E5DCCF",
+            "tags": [
+                  "西方文本",
+                  "修补",
+                  "灵感转写"
+            ],
+            "week_day": "Friday"
+      },
+      {
+            "date": "2026-05-02",
+            "theme": "Sea Change",
+            "quote": {
+                  "content_cn": "当海风把旧盐吹掉，皮肤才知道自己还可以重新呼吸。",
+                  "content_en": "After the old salt is blown away, the skin remembers how to breathe again.",
+                  "author": "Jamaica Kincaid",
+                  "source": "At the Bottom of the River (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "remember how to",
+                  "explanation": "【名师点拨】remember how to do sth 表示“重新想起怎样去做某事”，很适合写身体或情绪的恢复。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E3DBCF",
+            "tags": [
+                  "西方文本",
+                  "海风",
+                  "灵感转写"
+            ],
+            "week_day": "Saturday"
+      },
+      {
+            "date": "2026-05-03",
+            "theme": "Exile",
+            "quote": {
+                  "content_cn": "离散并不只意味着失去，也会迫使语言替你重新安家。",
+                  "content_en": "Exile teaches language to become a second home.",
+                  "author": "Yiyun Li",
+                  "source": "Dear Friend, from My Life I Write to You in Your Life (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "become a second home",
+                  "explanation": "【名师点拨】become 后面接名词时，可表示“变成一种身份/归宿”。a second home 是很温柔的表达。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E7DED4",
+            "tags": [
+                  "离散书写",
+                  "离散",
+                  "灵感转写"
+            ],
+            "week_day": "Sunday"
+      },
+      {
+            "date": "2026-05-04",
+            "theme": "Plurality",
+            "quote": {
+                  "content_cn": "更宽的世界，不是把差异磨平，而是让差异彼此有位置。",
+                  "content_en": "A wider world makes room for difference instead of smoothing it away.",
+                  "author": "Maria Lugones",
+                  "source": "Pilgrimages/Peregrinajes (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "make room for",
+                  "explanation": "【名师点拨】make room for 是很高频的表达，字面是“腾出空间给……”，引申可写接纳与包容。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E6DDD1",
+            "tags": [
+                  "西方文本",
+                  "差异",
+                  "灵感转写"
+            ],
+            "week_day": "Monday"
+      },
+      {
+            "date": "2026-05-05",
+            "theme": "Interval",
+            "quote": {
+                  "content_cn": "生活真正改变人的，不总是大事件，常常是那些无人喝彩的间隙。",
+                  "content_en": "Lives are changed as much by the quiet intervals as by the dramatic scenes.",
+                  "author": "Elena Ferrante",
+                  "source": "The Days of Abandonment (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "as much by ... as by ...",
+                  "explanation": "【名师点拨】as much by A as by B 表示“同样受到A与B的影响”。适合比较两个因素的分量。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E4DBCF",
+            "tags": [
+                  "西方文本",
+                  "间隙",
+                  "灵感转写"
+            ],
+            "week_day": "Tuesday"
+      },
+      {
+            "date": "2026-05-06",
+            "theme": "Naming Pain",
+            "quote": {
+                  "content_cn": "把疼痛叫出名字，并不是夸大它，而是终于不再替它隐身。",
+                  "content_en": "Naming pain does not enlarge it; it refuses to let it hide.",
+                  "author": "Natalie Diaz",
+                  "source": "Postcolonial Love Poem (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "refuses to let",
+                  "explanation": "【名师点拨】refuse to let... 语气很坚决，适合表达“拒绝再让某事继续发生”。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E7DED2",
+            "tags": [
+                  "西方文本",
+                  "命名疼痛",
+                  "灵感转写"
+            ],
+            "week_day": "Wednesday"
+      },
+      {
+            "date": "2026-05-07",
+            "theme": "Sunday Calligraphy",
+            "quote": {
+                  "content_cn": "夜色越深，越该把火种护在掌心里，像护住一句还没写完的诗。",
+                  "content_en": "The darker the night, the more gently we shelter the unfinished spark.",
+                  "author": "Zhai Yongming",
+                  "source": "Woman (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "the more ...",
+                  "explanation": "【名师点拨】the + 比较级, the + 比较级 是经典比较结构，表示“越……，就越……”。"
+            },
+            "visual_type": "calligraphy",
+            "background_color": "#E6DDD0",
+            "tags": [
+                  "中文文本",
+                  "火种",
+                  "周日手写"
+            ],
+            "week_day": "Thursday"
+      },
+      {
+            "date": "2026-05-08",
+            "theme": "Devotion",
+            "quote": {
+                  "content_cn": "一个人认真地做一件小事，也是在替自己的灵魂留灯。",
+                  "content_en": "To attend faithfully to one small thing is to keep a light for the soul.",
+                  "author": "Annie Dillard",
+                  "source": "The Writing Life (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "attend to",
+                  "explanation": "【名师点拨】attend to 表示“照料、专注于”。比 focus on 更柔和，也更有持续性。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E7DED2",
+            "tags": [
+                  "西方文本",
+                  "专心",
+                  "灵感转写"
+            ],
+            "week_day": "Friday"
+      },
+      {
+            "date": "2026-05-09",
+            "theme": "Ordinary Song",
+            "quote": {
+                  "content_cn": "日常并不卑微，它只是总在轻声里完成自己的光亮。",
+                  "content_en": "The ordinary keeps making light in a voice so low we almost miss it.",
+                  "author": "Gwendolyn Brooks",
+                  "source": "Selected Poems (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "almost miss",
+                  "explanation": "【名师点拨】almost 表示“几乎”。almost miss it 的意思不是“真的错过了”，而是“差一点就错过”。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E3DACD",
+            "tags": [
+                  "西方文本",
+                  "日常之歌",
+                  "灵感转写"
+            ],
+            "week_day": "Saturday"
+      },
+      {
+            "date": "2026-05-10",
+            "theme": "Revision",
+            "quote": {
+                  "content_cn": "改写自己，并不是背叛过去，而是终于允许生命拥有第二稿。",
+                  "content_en": "Revision is not betrayal; it is life allowing itself a second draft.",
+                  "author": "Jeanette Winterson",
+                  "source": "Why Be Happy When You Could Be Normal? (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "allow itself",
+                  "explanation": "【名师点拨】allow oneself / itself to do sth 表示“允许自己去……”。在这句里 it 指 life，本身带一点拟人。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E6DDD1",
+            "tags": [
+                  "西方文本",
+                  "重写",
+                  "灵感转写"
+            ],
+            "week_day": "Sunday"
+      },
+      {
+            "date": "2026-05-11",
+            "theme": "Earth Memory",
+            "quote": {
+                  "content_cn": "土地记得人曾怎样走过，人也该记得自己从哪里学会了温柔。",
+                  "content_en": "The earth remembers our steps, and asks us to remember tenderness in return.",
+                  "author": "Susan Griffin",
+                  "source": "Woman and Nature (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "in return",
+                  "explanation": "【名师点拨】in return 表示“作为回报/回应”。放句尾非常自然，能让语气更完整。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E5DCCF",
+            "tags": [
+                  "西方文本",
+                  "土地记忆",
+                  "灵感转写"
+            ],
+            "week_day": "Monday"
+      },
+      {
+            "date": "2026-05-12",
+            "theme": "Flame",
+            "quote": {
+                  "content_cn": "火焰真正照亮人的地方，不在高处，而在心里那块拒绝熄灭的暗处。",
+                  "content_en": "A flame proves itself in the darkness it refuses to leave.",
+                  "author": "Forugh Farrokhzad",
+                  "source": "Another Birth (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "refuses to leave",
+                  "explanation": "【名师点拨】refuse to leave 表示“拒绝离开”，放在抽象主语后面，会让意象更鲜活。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E7DDD0",
+            "tags": [
+                  "西方文本",
+                  "火焰",
+                  "灵感转写"
+            ],
+            "week_day": "Tuesday"
+      },
+      {
+            "date": "2026-05-13",
+            "theme": "Witnessing",
+            "quote": {
+                  "content_cn": "见证不是站在远处旁观，而是让自己的声音也承担那一份真实。",
+                  "content_en": "To witness is not to stand aside, but to lend one's voice to what is true.",
+                  "author": "Muriel Rukeyser",
+                  "source": "The Life of Poetry (inspired line)"
+            },
+            "teacher_note": {
+                  "keyword": "lend one's voice to",
+                  "explanation": "【名师点拨】lend one's voice to... 表示“为……发声、把自己的声音给……”。非常适合公共表达主题。"
+            },
+            "visual_type": "standard",
+            "background_color": "#E4DBCE",
+            "tags": [
+                  "西方文本",
+                  "见证",
+                  "灵感转写"
+            ],
+            "week_day": "Wednesday"
       }
 ];
 
@@ -724,15 +2055,11 @@
     function renderCalendar() {
       refs.historyCalendar.innerHTML = "";
       entries.forEach((item, i) => {
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = `action ${i === index ? "active" : ""}`;
-        btn.textContent = item.date.slice(5);
-        btn.addEventListener("click", () => {
-          index = i;
-          render();
-        });
-        refs.historyCalendar.appendChild(btn);
+        const option = document.createElement("option");
+        option.value = String(i);
+        option.textContent = `${item.date} · ${item.theme}`;
+        option.selected = i === index;
+        refs.historyCalendar.appendChild(option);
       });
     }
 
@@ -775,6 +2102,11 @@
       noteOpen = !noteOpen;
       refs.noteArrow.textContent = noteOpen ? "收起" : "展开";
       refs.noteBody.classList.toggle("show", noteOpen);
+    });
+
+    refs.historyCalendar.addEventListener("change", (event) => {
+      index = Number(event.target.value) || 0;
+      render();
     });
 
     refs.prevDay.addEventListener("click", () => {
@@ -845,6 +2177,95 @@
       return y + (lines.length - 1) * lineHeight;
     }
 
+    function drawRoundedRect(ctx, x, y, width, height, radius) {
+      const r = typeof radius === "number"
+        ? { tl: radius, tr: radius, br: radius, bl: radius }
+        : {
+            tl: radius.tl || 0,
+            tr: radius.tr || 0,
+            br: radius.br || 0,
+            bl: radius.bl || 0
+          };
+      ctx.beginPath();
+      ctx.moveTo(x + r.tl, y);
+      ctx.lineTo(x + width - r.tr, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + r.tr);
+      ctx.lineTo(x + width, y + height - r.br);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - r.br, y + height);
+      ctx.lineTo(x + r.bl, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - r.bl);
+      ctx.lineTo(x, y + r.tl);
+      ctx.quadraticCurveTo(x, y, x + r.tl, y);
+      ctx.closePath();
+    }
+
+    function fillRoundedRect(ctx, x, y, width, height, radius) {
+      drawRoundedRect(ctx, x, y, width, height, radius);
+      ctx.fill();
+    }
+
+    function strokeRoundedRect(ctx, x, y, width, height, radius) {
+      drawRoundedRect(ctx, x, y, width, height, radius);
+      ctx.stroke();
+    }
+
+    function drawAlignedLines(ctx, lines, x, y, lineHeight, align = "left") {
+      if (!lines.length) return y;
+      const previousAlign = ctx.textAlign;
+      ctx.textAlign = align;
+      lines.forEach((line, idx) => {
+        ctx.fillText(line, x, y + idx * lineHeight);
+      });
+      ctx.textAlign = previousAlign;
+      return y + (lines.length - 1) * lineHeight;
+    }
+
+    function drawBrushMark(ctx, x, y, width, height, color, rotate = 0) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rotate);
+      ctx.fillStyle = color;
+      fillRoundedRect(ctx, -width / 2, -height / 2, width, height, { tl: height / 2, tr: height * 0.3, br: height / 2, bl: height * 0.4 });
+      ctx.restore();
+    }
+
+    function drawPosterTexture(ctx, canvas, tpl) {
+      const glow = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      glow.addColorStop(0, tpl.paper);
+      glow.addColorStop(0.45, "rgba(255,255,255,0.12)");
+      glow.addColorStop(1, tpl.bg);
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.save();
+      ctx.globalAlpha = 0.14;
+      ctx.strokeStyle = tpl.line;
+      for (let i = 0; i < 28; i++) {
+        const y = 84 + i * 46;
+        const offset = (i % 3) * 24;
+        ctx.lineWidth = i % 5 === 0 ? 1.4 : 0.8;
+        ctx.beginPath();
+        ctx.moveTo(54 + offset, y);
+        ctx.lineTo(canvas.width - 70 - offset * 0.6, y + ((i % 4) - 1.5) * 2);
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = 0.1;
+      for (let i = 0; i < 90; i++) {
+        const x = 58 + (i * 107) % (canvas.width - 120);
+        const y = 42 + (i * 173) % (canvas.height - 84);
+        const size = 1 + (i % 3);
+        ctx.fillStyle = i % 2 === 0 ? tpl.line : "rgba(255,255,255,0.45)";
+        ctx.fillRect(x, y, size, size);
+      }
+      ctx.restore();
+
+      drawBrushMark(ctx, 886, 128, 174, 26, "rgba(126, 105, 82, 0.14)", -0.12);
+      drawBrushMark(ctx, 188, 1180, 146, 18, "rgba(126, 105, 82, 0.1)", 0.08);
+    }
+
     async function generatePoster() {
       const today = entries[index];
       const tpl = activeTemplate;
@@ -855,113 +2276,134 @@
 
       ctx.fillStyle = tpl.bg;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      if (tpl.id === "paper") {
-        ctx.fillStyle = "rgba(255,255,255,0.22)";
-        ctx.fillRect(0, 0, canvas.width, 220);
-      }
-
-      if (tpl.id === "ink") {
-        const grad = ctx.createLinearGradient(0, 0, 1080, 1440);
-        grad.addColorStop(0, "rgba(255,255,255,0.06)");
-        grad.addColorStop(1, "rgba(0,0,0,0.18)");
-        ctx.fillStyle = grad;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-      }
+      drawPosterTexture(ctx, canvas, tpl);
 
       if (today.visual_type === "calligraphy") {
         const bg = new Image();
         bg.src = "./calligraphy/assets/shufa_v8/da_large.jpg";
         await bg.decode().catch(() => {});
         if (bg.naturalWidth) {
-          ctx.globalAlpha = tpl.id === "ink" ? 0.18 : 0.24;
+          ctx.save();
+          ctx.globalAlpha = 0.14;
           ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
-          ctx.globalAlpha = 1;
+          ctx.restore();
         }
       }
 
+      ctx.fillStyle = tpl.accent;
+      ctx.font = "22px 'Bodoni 72 Oldstyle', 'Times New Roman', serif";
+      ctx.fillText("quiet lines for becoming", 110, 110);
+
       ctx.fillStyle = tpl.title;
-      ctx.font = "56px 'Noto Serif SC', serif";
-      ctx.fillText("HerVoice Daily", 90, 120);
+      ctx.font = "58px 'Bodoni 72 Oldstyle', 'Hoefler Text', serif";
+      ctx.fillText("HerVoice Daily", 110, 168);
 
-      ctx.fillStyle = tpl.accent;
-      ctx.font = "34px 'Noto Serif SC', serif";
-      ctx.fillText(formatDate(today), 90, 180);
-
-      ctx.fillStyle = tpl.cn;
-      ctx.font = "58px 'Noto Serif SC', serif";
-      const cnLines = getWrappedLines(ctx, today.quote.content_cn, 900, "char");
-      let y = drawLines(ctx, cnLines, 90, 304, 92);
-
-      ctx.fillStyle = tpl.en;
-      ctx.font = "44px 'Times New Roman', serif";
-      const enLines = getWrappedLines(ctx, today.quote.content_en, 900, "word");
-      y = drawLines(ctx, enLines, 90, y + 122, 64);
-
-      ctx.fillStyle = tpl.accent;
-      ctx.font = "32px 'Noto Serif SC', serif";
-      const authorY = y + 106;
-      ctx.fillText(`— ${today.quote.author} · ${today.quote.source}`, 90, authorY);
-
-      ctx.strokeStyle = tpl.qrStroke;
+      ctx.strokeStyle = tpl.line;
       ctx.lineWidth = 1.2;
       ctx.beginPath();
-      ctx.moveTo(90, authorY + 34);
-      ctx.lineTo(990, authorY + 34);
+      ctx.moveTo(110, 198);
+      ctx.lineTo(314, 198);
       ctx.stroke();
-
-      const noteTitleY = authorY + 96;
-      const noteTextY = noteTitleY + 54;
-      ctx.font = "28px 'Noto Serif SC', serif";
-      const noteLines = getWrappedLines(ctx, today.teacher_note.explanation, 860, "char");
-      const noteEndY = drawLines(ctx, noteLines, 110, noteTextY, 46);
-
-      const noteTop = noteTitleY - 34;
-      const noteHeight = Math.max(noteEndY - noteTop + 32, 130);
-      ctx.fillStyle = tpl.id === "ink" ? "rgba(255,255,255,0.07)" : "rgba(255,255,255,0.46)";
-      ctx.fillRect(90, noteTop, 900, noteHeight);
-      ctx.strokeStyle = tpl.id === "ink" ? "rgba(193,166,121,0.6)" : "rgba(126,133,142,0.45)";
-      ctx.strokeRect(90, noteTop, 900, noteHeight);
 
       ctx.fillStyle = tpl.accent;
       ctx.font = "30px 'Noto Serif SC', serif";
-      ctx.fillText(`Teacher's Note · ${today.teacher_note.keyword}`, 110, noteTitleY);
-      ctx.fillStyle = tpl.en;
-      ctx.font = "28px 'Noto Serif SC', serif";
-      drawLines(ctx, noteLines, 110, noteTextY, 46);
+      ctx.fillText(formatDate(today), 110, 240);
 
-      const footerTop = Math.max(noteEndY + 70, 980);
-      ctx.strokeStyle = tpl.qrStroke;
-      ctx.lineWidth = 1.5;
+      ctx.fillStyle = tpl.en;
+      ctx.font = "25px 'Noto Serif SC', serif";
+      ctx.fillText(`Theme · ${today.theme || 'Daily'}`, 110, 284);
+
+      ctx.save();
+      ctx.translate(128, 410);
+      ctx.rotate(-0.04);
+      ctx.fillStyle = tpl.line;
+      fillRoundedRect(ctx, -4, -112, 8, 224, { tl: 8, tr: 5, br: 10, bl: 7 });
+      ctx.restore();
+
+      ctx.fillStyle = tpl.cn;
+      ctx.font = today.visual_type === "calligraphy"
+        ? "60px 'HerVoiceCNZhao', 'Noto Serif SC', serif"
+        : "56px 'HerVoiceCNZhao', 'Noto Serif SC', serif";
+      const cnLines = getWrappedLines(ctx, today.quote.content_cn, 760, "char");
+      let y = drawLines(ctx, cnLines, 172, 360, today.visual_type === "calligraphy" ? 90 : 84);
+
+      ctx.fillStyle = tpl.en;
+      ctx.font = "40px 'Baskerville', 'Times New Roman', serif";
+      const enLines = getWrappedLines(ctx, today.quote.content_en, 650, "word");
+      y = drawLines(ctx, enLines, 232, y + 110, 58);
+
+      ctx.fillStyle = tpl.accent;
+      ctx.font = "28px 'Noto Serif SC', serif";
+      const authorLines = getWrappedLines(ctx, `— ${today.quote.author} · ${today.quote.source}`, 520, "char");
+      const authorY = y + 96;
+      drawAlignedLines(ctx, authorLines, 870, authorY, 42, "right");
+
+      ctx.strokeStyle = tpl.line;
+      ctx.lineWidth = 1;
       ctx.beginPath();
-      ctx.moveTo(90, footerTop - 24);
-      ctx.lineTo(990, footerTop - 24);
+      ctx.moveTo(172, authorY + 28);
+      ctx.lineTo(876, authorY + 28);
+      ctx.stroke();
+
+      const noteTop = authorY + 68;
+      const noteWidth = 860;
+      const noteX = 110;
+      const noteTitleY = noteTop + 46;
+      const noteTextY = noteTitleY + 44;
+      ctx.font = "26px 'Noto Serif SC', serif";
+      const noteLines = getWrappedLines(ctx, today.teacher_note.explanation, 760, "char");
+      const noteHeight = Math.max(140, noteLines.length * 40 + 78);
+      ctx.fillStyle = tpl.noteFill;
+      fillRoundedRect(ctx, noteX, noteTop, noteWidth, noteHeight, { tl: 28, tr: 22, br: 30, bl: 18 });
+      ctx.strokeStyle = tpl.noteStroke;
+      ctx.lineWidth = 1.1;
+      strokeRoundedRect(ctx, noteX, noteTop, noteWidth, noteHeight, { tl: 28, tr: 22, br: 30, bl: 18 });
+
+      ctx.fillStyle = tpl.accent;
+      ctx.font = "28px 'Noto Serif SC', serif";
+      ctx.fillText(`Quiet Note · ${today.teacher_note.keyword}`, noteX + 28, noteTitleY);
+      ctx.fillStyle = tpl.en;
+      ctx.font = "26px 'Noto Serif SC', serif";
+      const noteEndY = drawLines(ctx, noteLines, noteX + 28, noteTextY, 40);
+
+      const footerTop = Math.max(noteTop + noteHeight + 76, 1120);
+      ctx.strokeStyle = tpl.line;
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.moveTo(110, footerTop - 24);
+      ctx.lineTo(970, footerTop - 24);
       ctx.stroke();
 
       if (Array.isArray(today.tags) && today.tags.length) {
-        const tagsText = `# ${today.tags.join("   # ")}`;
+        const tagLines = getWrappedLines(ctx, today.tags.join(' · '), 560, 'char');
         ctx.fillStyle = tpl.accent;
-        ctx.font = "28px 'Noto Serif SC', serif";
-        ctx.fillText(tagsText, 90, footerTop + 20);
+        ctx.font = "26px 'Noto Serif SC', serif";
+        drawLines(ctx, tagLines, 110, footerTop + 12, 38);
       }
 
       ctx.fillStyle = tpl.en;
-      ctx.font = "26px 'Noto Serif SC', serif";
-      ctx.fillText(`Theme · ${today.theme || "Daily"}`, 90, footerTop + 68);
-      ctx.fillText("hervoice daily", 90, footerTop + 112);
+      ctx.font = "24px 'Noto Serif SC', serif";
+      ctx.fillText("one page, one quiet becoming", 110, footerTop + 96);
+      ctx.fillText("hervoice daily", 110, footerTop + 134);
+
+      ctx.fillStyle = "rgba(255,255,255,0.32)";
+      fillRoundedRect(ctx, 772, footerTop - 8, 198, 198, { tl: 34, tr: 24, br: 30, bl: 20 });
+      ctx.strokeStyle = tpl.noteStroke;
+      ctx.lineWidth = 1;
+      strokeRoundedRect(ctx, 772, footerTop - 8, 198, 198, { tl: 34, tr: 24, br: 30, bl: 20 });
 
       const qr = new Image();
       qr.crossOrigin = "anonymous";
       qr.src = qrUrl;
       await qr.decode().catch(() => {});
       if (qr.naturalWidth) {
-        ctx.drawImage(qr, 820, footerTop + 8, 170, 170);
+        ctx.drawImage(qr, 788, footerTop + 8, 166, 166);
       } else {
         ctx.strokeStyle = tpl.qrStroke;
-        ctx.strokeRect(820, footerTop + 8, 170, 170);
+        ctx.strokeRect(788, footerTop + 8, 166, 166);
         ctx.fillStyle = tpl.qrStroke;
-        ctx.font = "26px serif";
-        ctx.fillText("SCAN", 857, footerTop + 104);
+        ctx.font = "24px serif";
+        ctx.fillText("SCAN", 842, footerTop + 98);
       }
 
       const url = canvas.toDataURL("image/png");
@@ -974,7 +2416,7 @@
     refs.downloadPoster.addEventListener("click", () => {
       const url = refs.downloadPoster.dataset.url;
       if (!url) {
-        alert("请先生成日签海报");
+        alert("先让这一页落成海报吧");
         return;
       }
       const a = document.createElement("a");
@@ -985,11 +2427,9 @@
 
     function applyEntries(list) {
       entries = Array.isArray(list) && list.length ? list : embeddedEntries;
-      const firstDayKey = "2026-02-18";
       const todayStr = new Date().toISOString().slice(0, 10);
-      const firstDayHit = entries.findIndex((item) => item.date === firstDayKey);
       const todayHit = entries.findIndex((item) => item.date === todayStr);
-      index = firstDayHit >= 0 ? firstDayHit : (todayHit >= 0 ? todayHit : 0);
+      index = todayHit >= 0 ? todayHit : 0;
       render();
     }
 
