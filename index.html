@@ -385,80 +385,6 @@
             border-top-right-radius: 27px;
         }
 
-        .readalong-card {
-            border-radius: 24px;
-            border: 2px solid rgba(159, 216, 244, 0.4);
-            background: linear-gradient(180deg, #ffffff 0%, #f6fbff 100%);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
-        }
-
-        .readalong-target {
-            font-size: 1.55rem;
-            line-height: 1.6;
-            color: #0f5688;
-        }
-
-        .readalong-meta {
-            color: #5f84a6;
-            font-size: 0.9rem;
-        }
-
-        .readalong-transcript,
-        .readalong-feedback {
-            border-radius: 18px;
-            background: rgba(255, 255, 255, 0.82);
-            border: 1px dashed rgba(159, 216, 244, 0.55);
-            padding: 0.9rem 1rem;
-            min-height: 72px;
-        }
-
-        .readalong-preview-panel {
-            border-radius: 22px;
-            background: linear-gradient(180deg, #fff6ea 0%, #ffffff 100%);
-            border: 1px solid rgba(243, 154, 34, 0.18);
-            padding: 0.9rem;
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92);
-        }
-
-        .readalong-preview-image {
-            width: 100%;
-            border-radius: 18px;
-            border: 2px solid rgba(255, 255, 255, 0.9);
-            box-shadow: 0 12px 24px rgba(15, 86, 136, 0.12);
-            background: #fff;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-        }
-
-        .readalong-page-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            padding: 0.35rem 0.8rem;
-            border-radius: 999px;
-            background: rgba(243, 154, 34, 0.12);
-            color: #b76800;
-            font-size: 0.85rem;
-            font-weight: 700;
-        }
-
-        .readalong-score {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 88px;
-            padding: 0.5rem 0.85rem;
-            border-radius: 999px;
-            background: linear-gradient(135deg, #0f5688, #f39a22);
-            color: white;
-            font-weight: 800;
-            box-shadow: 0 10px 20px rgba(15, 86, 136, 0.18);
-        }
-
-        .readalong-controls .btn {
-            min-width: 120px;
-        }
-
         .calendar-dot {
             width: 10px;
             height: 10px;
@@ -739,9 +665,6 @@
         #gradeTabsContent h4,
         .footer .container,
         .modal-content,
-        .readalong-card,
-        .readalong-transcript,
-        .readalong-feedback,
         .history-item {
             border: var(--clay-outline);
             box-shadow: var(--clay-shadow-soft), var(--clay-inset);
@@ -832,7 +755,6 @@
 
         .stats-label,
         .history-date,
-        .readalong-meta,
         .text-muted,
         .reading-library-intro .small {
             color: var(--text-soft) !important;
@@ -981,24 +903,6 @@
             border-top-left-radius: 31px;
             border-top-right-radius: 31px;
             border-bottom: none;
-        }
-
-        .readalong-card,
-        .readalong-transcript,
-        .readalong-feedback {
-            border-radius: 26px;
-            background: linear-gradient(145deg, rgba(251, 253, 255, 0.98), rgba(241, 245, 249, 0.94));
-            border: 1px solid rgba(220, 228, 236, 0.92);
-        }
-
-        .readalong-target {
-            color: #6a5c8b;
-        }
-
-        .readalong-score {
-            background: linear-gradient(145deg, #dde7f0 0%, #edf2f7 100%);
-            color: #3c5876;
-            box-shadow: 8px 8px 16px rgba(168, 182, 198, 0.1), -6px -6px 10px rgba(255, 255, 255, 0.9);
         }
 
         .calendar-dot {
@@ -1214,8 +1118,7 @@
         .btn-action,
         #checkin-btn,
         .btn-warning,
-        .book-badge,
-        .readalong-score {
+        .book-badge {
             transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
         }
 
@@ -1491,9 +1394,6 @@
         .medals-section,
         .footer .container,
         .modal-content,
-        .readalong-card,
-        .readalong-transcript,
-        .readalong-feedback,
         .book-card {
             background: var(--clay-surface);
             border: var(--clay-outline);
@@ -1756,11 +1656,6 @@
             background: linear-gradient(145deg, #ffd4e5 0%, #ddd1ff 52%, #c9f6e2 100%);
         }
 
-        .readalong-score {
-            background: linear-gradient(145deg, #ffcadf 0%, #cec1ff 52%, #bcf2da 100%);
-            color: #6b5b91;
-        }
-
         .calendar-dot {
             background: linear-gradient(145deg, #f0e7ff 0%, #fff5f9 100%);
             box-shadow: inset 4px 4px 8px rgba(217, 192, 232, 0.18), inset -4px -4px 8px rgba(255, 255, 255, 0.94);
@@ -1914,7 +1809,6 @@
             </h1>
             <div class="hero-bubbles animate__animated animate__fadeInUp animate__delay-1s">
                 <span class="hero-bubble">📖 故事阅读 Read</span>
-                <span class="hero-bubble">🎧 伴读跟读 Listen</span>
                 <span class="hero-bubble">🧠 单词闯关 Words</span>
                 <span class="hero-bubble">🏆 趣味挑战 Challenge</span>
             </div>
@@ -2089,7 +1983,6 @@
                                             <p class="book-subtitle text-muted small mb-3">怪物朋友 · Monster Fun</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'monster_toon', 7, 5)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('monster_toon')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('monster_toon')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('monster_toon')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2108,7 +2001,6 @@
                                             <p class="book-subtitle text-muted small mb-3">智斗狐狸 · Clever Hen</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'fox_hen', 5, 5)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('fox_hen')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('fox_hen')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('fox_hen')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2127,7 +2019,6 @@
                                             <p class="book-subtitle text-muted small mb-3">热闹书包 · Schoolbag Chat</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'schoolbag', 5, 5)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('schoolbag')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('schoolbag')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('schoolbag')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2146,7 +2037,6 @@
                                             <p class="book-subtitle text-muted small mb-3">老虎来了 · Tiger Alert</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'tiger_coming', 5, 5)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('tiger_coming')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('tiger_coming')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('tiger_coming')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2165,7 +2055,6 @@
                                             <p class="book-subtitle text-muted small mb-3">看看世界 · I Can See</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'i_can_see', 5, 5)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('i_can_see')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('i_can_see')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('i_can_see')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2184,7 +2073,6 @@
                                             <p class="book-subtitle text-muted small mb-3">一起画吧 · Draw With Me</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'drawing', 5, 5)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('drawing')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('drawing')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('drawing')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2208,7 +2096,6 @@
                                             <p class="book-subtitle text-muted small mb-3">一起玩吧 · Play With Me</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'play_with_me', 5, 6)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('play_with_me')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('play_with_me')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('play_with_me')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2227,7 +2114,6 @@
                                             <p class="book-subtitle text-muted small mb-3">毛虫安家 · Caterpillar Home</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'caterpillar_home', 5, 6)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('caterpillar_home')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('caterpillar_home')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('caterpillar_home')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2246,7 +2132,6 @@
                                             <p class="book-subtitle text-muted small mb-3">王子宠物 · Royal Pet</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'prince_seb_pet', 5, 6)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('prince_seb_pet')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('prince_seb_pet')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('prince_seb_pet')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2265,7 +2150,6 @@
                                             <p class="book-subtitle text-muted small mb-3">蜗牛旅行 · Snail Trip</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'snail_adventure', 5, 6)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('snail_adventure')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('snail_adventure')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('snail_adventure')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2284,7 +2168,6 @@
                                             <p class="book-subtitle text-muted small mb-3">国王乐师 · Royal Music</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'king_yu_player', 5, 6)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('king_yu_player')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('king_yu_player')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('king_yu_player')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2303,7 +2186,6 @@
                                             <p class="book-subtitle text-muted small mb-3">收获惊喜 · What You Get</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'what_did_get', 5, 6)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('what_did_get')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('what_did_get')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('what_did_get')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2331,7 +2213,6 @@
                                             <p class="book-subtitle text-muted small mb-3">校园一天 · At School</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'zob_school', 5, 16)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('zob_school')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('zob_school')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('zob_school')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2350,7 +2231,6 @@
                                             <p class="book-subtitle text-muted small mb-3">英雄米米 · Super Mimi</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'mimi_superhero', 5, 16)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('mimi_superhero')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('mimi_superhero')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('mimi_superhero')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2369,7 +2249,6 @@
                                             <p class="book-subtitle text-muted small mb-3">乌龟伙伴 · Tortoise Friends</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'tortoise_friends', 5, 16)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('tortoise_friends')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('tortoise_friends')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('tortoise_friends')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2388,7 +2267,6 @@
                                             <p class="book-subtitle text-muted small mb-3">安静小屋 · Quiet House</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'quiet_house', 5, 16)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('quiet_house')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('quiet_house')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('quiet_house')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2407,7 +2285,6 @@
                                             <p class="book-subtitle text-muted small mb-3">巨龙晚餐 · Dragon Dinner</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'dinner_dragon', 5, 16)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('dinner_dragon')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('dinner_dragon')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('dinner_dragon')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2426,7 +2303,6 @@
                                             <p class="book-subtitle text-muted small mb-3">盒中小狗 · Puppy in Box</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'puppy_box', 5, 16)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('puppy_box')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('puppy_box')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('puppy_box')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2450,7 +2326,6 @@
                                             <p class="book-subtitle text-muted small mb-3">Zob迷路了 · Lost Zob</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'lost_zob', 5, 16)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('lost_zob')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('lost_zob')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('lost_zob')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2469,7 +2344,6 @@
                                             <p class="book-subtitle text-muted small mb-3">生气巨龙 · Angry Dragon</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'angry_dragon', 5, 16)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('angry_dragon')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('angry_dragon')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('angry_dragon')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2488,7 +2362,6 @@
                                             <p class="book-subtitle text-muted small mb-3">蜘蛛来了 · Eek Spider</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'eek_spider', 5, 16)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('eek_spider')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('eek_spider')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('eek_spider')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2507,7 +2380,6 @@
                                             <p class="book-subtitle text-muted small mb-3">村庄秀场 · Village Show</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'village_show', 5, 16)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('village_show')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('village_show')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('village_show')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2526,7 +2398,6 @@
                                             <p class="book-subtitle text-muted small mb-3">世界读书日 · Book Day</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'world_book_day', 5, 16)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('world_book_day')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('world_book_day')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('world_book_day')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2545,7 +2416,6 @@
                                             <p class="book-subtitle text-muted small mb-3">Sara吃药记 · Sara Helps</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'sara_medicine', 5, 16)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('sara_medicine')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('sara_medicine')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('sara_medicine')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2572,7 +2442,6 @@
                                             <p class="book-subtitle text-muted small mb-3">新老师来了 · New Teacher</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'new_teacher', 5, 22)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('new_teacher')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('new_teacher')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('new_teacher')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2591,7 +2460,6 @@
                                             <p class="book-subtitle text-muted small mb-3">Zob有点闷 · Zob Is Bored</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'zob_bored', 5, 22)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('zob_bored')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('zob_bored')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('zob_bored')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2610,7 +2478,6 @@
                                             <p class="book-subtitle text-muted small mb-3">街头派对 · Street Party</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'street_party', 5, 22)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('street_party')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('street_party')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('street_party')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2629,7 +2496,6 @@
                                             <p class="book-subtitle text-muted small mb-3">Emma生日会 · Birthday Fun</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'emma_birthday', 5, 22)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('emma_birthday')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('emma_birthday')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('emma_birthday')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2648,7 +2514,6 @@
                                             <p class="book-subtitle text-muted small mb-3">空空房间 · Empty Room</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'empty_room', 5, 22)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('empty_room')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('empty_room')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('empty_room')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2667,7 +2532,6 @@
                                             <p class="book-subtitle text-muted small mb-3">Toby与老鹰 · Toby and Eagle</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'toby_eagle', 5, 22)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('toby_eagle')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('toby_eagle')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('toby_eagle')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2693,7 +2557,6 @@
                                             <p class="book-subtitle text-muted small mb-3">小鱼游游 · Little Fish</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'fish', 5, 22)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('fish')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('fish')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('fish')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2712,7 +2575,6 @@
                                             <p class="book-subtitle text-muted small mb-3">漫长等待 · Long Wait</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'long_wait', 5, 22)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('long_wait')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('long_wait')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('long_wait')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2731,7 +2593,6 @@
                                             <p class="book-subtitle text-muted small mb-3">最美时光 · Best Time</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'best_time', 5, 22)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('best_time')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('best_time')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('best_time')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2750,7 +2611,6 @@
                                             <p class="book-subtitle text-muted small mb-3">这是谁的狗 · Whose Dog</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'whose_dog', 5, 22)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('whose_dog')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('whose_dog')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('whose_dog')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2769,7 +2629,6 @@
                                             <p class="book-subtitle text-muted small mb-3">别忘作业 · Homework First</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'homework', 5, 22)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('homework')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('homework')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('homework')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2788,7 +2647,6 @@
                                             <p class="book-subtitle text-muted small mb-3">班级出游 · Class Trip</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'class_trip', 5, 22)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('class_trip')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('class_trip')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('class_trip')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2817,7 +2675,6 @@
                                             <p class="book-subtitle text-muted small mb-3">一箱图书 · Box of Books</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'box_books', 5, 22)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('box_books')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('box_books')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('box_books')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2836,7 +2693,6 @@
                                             <p class="book-subtitle text-muted small mb-3">Lorna不开心 · Upset Lorna</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'lorna_upset', 5, 22)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('lorna_upset')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('lorna_upset')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('lorna_upset')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2855,7 +2711,6 @@
                                             <p class="book-subtitle text-muted small mb-3">别忘了呀 · Do Not Forget</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'dont_forget', 5, 22)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('dont_forget')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('dont_forget')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('dont_forget')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2874,7 +2729,6 @@
                                             <p class="book-subtitle text-muted small mb-3">全都停下 · Stop Everyone</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'stop_everyone', 5, 22)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('stop_everyone')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('stop_everyone')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('stop_everyone')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2893,7 +2747,6 @@
                                             <p class="book-subtitle text-muted small mb-3">Zob忙工作 · Zob at Work</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'zob_work', 5, 22)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('zob_work')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('zob_work')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('zob_work')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2912,7 +2765,6 @@
                                             <p class="book-subtitle text-muted small mb-3">糟糕一天 · Bad Day</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'eliza_jane', 5, 22)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('eliza_jane')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('eliza_jane')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('eliza_jane')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2937,7 +2789,6 @@
                                             <p class="book-subtitle text-muted small mb-3">新国王登场 · New King</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'new_king', 5, 22)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('new_king')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('new_king')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('new_king')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2956,7 +2807,6 @@
                                             <p class="book-subtitle text-muted small mb-3">周末小熊 · Weekend Bear</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'weekend_bear', 5, 22)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('weekend_bear')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('weekend_bear')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('weekend_bear')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2975,7 +2825,6 @@
                                             <p class="book-subtitle text-muted small mb-3">去露营吧 · Camping Trip</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'camping_trip', 5, 22)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('camping_trip')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('camping_trip')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('camping_trip')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -2994,7 +2843,6 @@
                                             <p class="book-subtitle text-muted small mb-3">小小电视机 · Little TV</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'tiny_tv', 5, 22)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('tiny_tv')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('tiny_tv')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('tiny_tv')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -3013,7 +2861,6 @@
                                             <p class="book-subtitle text-muted small mb-3">和龙吃饭 · Dragon Dinner</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'dining_dragons', 5, 22)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('dining_dragons')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('dining_dragons')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('dining_dragons')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -3032,7 +2879,6 @@
                                             <p class="book-subtitle text-muted small mb-3">Bella的单车 · Bella Bike</p>
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-action btn-read" onclick="openResource('images', 'bellas_bike', 5, 22)">📖 开始阅读 Read</button>
-                                                <button class="btn btn-action btn-listen" onclick="startReadAlong('bellas_bike')">🎤 开口跟读 Speak</button>
                                                 <button class="btn btn-action btn-training" onclick="startTraining('bellas_bike')">🧠 单词练习 Words</button>
                                                 <button class="btn btn-action btn-challenge" onclick="startChallenge('bellas_bike')">🏆 趣味挑战 Quiz</button>
                                             </div>
@@ -3102,65 +2948,6 @@
         </div>
     </div>
 
-    <div class="modal fade" id="readAlongModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="readAlongTitle">一句句跟读</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-4">
-                    <div class="readalong-card p-4">
-                        <div class="alert alert-warning small py-2 px-3 mb-3 d-none" id="readAlongEnvNotice">
-                            当前不是稳定的录音环境。
-                            <button class="btn btn-sm btn-outline-warning rounded-pill ms-2" type="button" onclick="toggleReadAlongGuide()">查看说明</button>
-                        </div>
-                        <div class="alert alert-light small py-2 px-3 mb-3 d-none" id="readAlongGuideBox">
-                            建议在 `hu_project` 目录运行 `python3 -m http.server 8000`，再用浏览器打开 `http://localhost:8000/index.html`，并将麦克风权限设为“允许”。
-                        </div>
-                        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2 mb-3">
-                            <div>
-                                <div class="fw-bold" id="readAlongBookName">My Noisy Schoolbag</div>
-                                <div class="readalong-meta" id="readAlongProgress">第 1 句 / 共 1 句</div>
-                            </div>
-                            <div class="readalong-score" id="readAlongScore">-- 分</div>
-                        </div>
-                        <div class="readalong-meta mb-2" id="readAlongStatus">录音状态：等待开始</div>
-                        <div class="readalong-target fw-bold mb-3" id="readAlongSentence">点击“播放示范”开始本句跟读。</div>
-                        <div class="readalong-controls d-flex flex-wrap gap-2 mb-3">
-                            <button class="btn btn-action btn-read" type="button" onclick="speakCurrentReadAlongSentence()">🔊 播放示范</button>
-                            <button class="btn btn-action btn-listen" type="button" id="readAlongListenBtn" onclick="startReadAlongListening()">🎙️ 开始跟读</button>
-                            <button class="btn btn-action btn-training" type="button" id="readAlongStopBtn" onclick="stopReadAlongListening()" disabled>⏹️ 停止录音</button>
-                            <button class="btn btn-action btn-watch" type="button" id="readAlongSubmitBtn" onclick="submitReadAlongAttempt()" disabled>✅ 提交评分</button>
-                            <button class="btn btn-action btn-challenge" type="button" onclick="nextReadAlongSentence()">➡️ 下一句</button>
-                        </div>
-                        <div class="row g-3">
-                            <div class="col-lg-5">
-                                <div class="small text-muted fw-bold mb-2">当前画面</div>
-                                <div class="readalong-preview-panel">
-                                    <img class="readalong-preview-image mb-2" id="readAlongPreviewImage" src="assets/reading/images/g3_upper/schoolbag/page_01.jpg" alt="绘本当前页预览">
-                                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
-                                        <span class="readalong-page-badge" id="readAlongPageHint">📖 第 1 页</span>
-                                        <span class="readalong-meta" id="readAlongPreviewTip">边看图边开口，孩子会更愿意读出来。</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-7">
-                                <div class="small text-muted fw-bold mb-2">识别结果</div>
-                                <div class="readalong-transcript mb-3" id="readAlongTranscript">孩子开口后，这里会显示识别到的句子。</div>
-                                <div class="small text-muted fw-bold mb-2">老师小提示</div>
-                                <div class="readalong-feedback" id="readAlongFeedback">先听一遍示范，再跟读本句，系统会给出基础分数和鼓励语。</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="small text-muted mt-3">
-                        说明：本 demo 使用系统语音 + 浏览器语音识别做基础评分，更适合课堂练习与鼓励性反馈。
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // 初始化积分和打卡逻辑
@@ -3172,6 +2959,15 @@
             medals: []
         };
         if (!userStats.medals) userStats.medals = [];
+        if (!Array.isArray(userStats.history)) userStats.history = [];
+
+        const cleanedHistory = userStats.history.filter(item => typeof item === 'string' || item?.type !== 'readalong');
+        const hadReadAlongRecords = localStorage.getItem('readAlongPracticeRecords') !== null;
+        if (cleanedHistory.length !== userStats.history.length || hadReadAlongRecords) {
+            userStats.history = cleanedHistory;
+            localStorage.removeItem('readAlongPracticeRecords');
+            localStorage.setItem('readingStats', JSON.stringify(userStats));
+        }
 
         function updateUI() {
             document.getElementById('user-points').innerText = userStats.points;
@@ -3256,11 +3052,6 @@
                     iconClass = 'icon-training';
                     icon = '📝';
                     typeLabel = '闯关';
-                } else if (record.type === 'readalong') {
-                    iconClass = 'icon-training';
-                    icon = '🎤';
-                    typeLabel = '跟读';
-                    trailingValue = `${record.score || 0} 分`;
                 }
                 
                 return `
@@ -3302,626 +3093,6 @@
 
         function saveStats() {
             localStorage.setItem('readingStats', JSON.stringify(userStats));
-        }
-
-        let readAlongLibrary = {
-            'monster_toon': {
-                title: 'Monster Toon',
-                sentences: [
-                    'I am visiting Monster Toon.',
-                    'We play until lunchtime.',
-                    "It's lunchtime.",
-                    'Toon brings me some juice and some bread.',
-                    "They don't look nice.",
-                    'No, thanks.',
-                    'We play again after lunch.',
-                    'Toon brings me some water and some cakes.',
-                    "They don't look nice.",
-                    'Uh... no.',
-                    "Toon's mum gives us some fruit to eat.",
-                    'There are apples, bananas and oranges.',
-                    'They look nice, so I eat a lot.',
-                    'Do you like fruit the best?',
-                    'Yes, I do.',
-                    'Time to go home.',
-                    'Toon gives me a box of snacks.',
-                    'What have you got here?',
-                    'Arrrgh!'
-                ]
-            },
-            'fox_hen': {
-                title: 'Fox and Mother Hen',
-                sentences: [
-                    'Mother Hen is at home with her chicks.',
-                    'The fox is watching them behind the fence.',
-                    'The fox hides in the flowers.',
-                    'One, two, three, jump!',
-                    'The chicks jump up and down.',
-                    'The fox puts the chicks in a big bag.',
-                    'Mother Hen sees the fox.',
-                    'Oh, no!',
-                    'Let my chicks go!',
-                    'Mother Hen hits the fox with a stick.',
-                    'The chicks run back home.',
-                    'The fox runs away.'
-                ]
-            },
-            'schoolbag': {
-                title: 'My Noisy Schoolbag',
-                sentences: [
-                    'I have a new schoolbag.',
-                    "What's that noise?",
-                    'Tom, open your schoolbag.',
-                    'Books, crayons and a pencil case.',
-                    'Tom, you have a big pencil case.',
-                    "What's that noise?",
-                    'Tom, open your pencil case.',
-                    'Pencils and a ruler.',
-                    "Oh, what's that?",
-                    "Oh no! It's running away.",
-                    "It's my superduper pencil sharpener!"
-                ]
-            },
-            'tiger_coming': {
-                title: 'Tiger Is Coming',
-                sentences: [
-                    "Who's that?",
-                    "It's Tiger!",
-                    'The animals hide in the house.',
-                    'Fox hides under the chair.',
-                    'Dog hides under the bed.',
-                    'Monkey hides under the table.',
-                    'Panda hides behind the lamp.',
-                    'Giraffe hides by the door.',
-                    'Zebra hides behind the curtain.',
-                    'Tiger comes out of the dark room.',
-                    'The animals jump out and say,',
-                    'Happy birthday, Tiger!'
-                ]
-            },
-            'drawing': {
-                title: 'What Are You Drawing?',
-                sentences: [
-                    'I am drawing a picture with Mary.',
-                    'I use green and red.',
-                    'Mary uses yellow and orange.',
-                    'I use blue and purple.',
-                    'Mary uses pink and brown.',
-                    '"What are you drawing?" asks Mum.',
-                    '"Wait and see, Mum," we say.',
-                    '"It\'s for you, Mum."'
-                ]
-            },
-            'i_can_see': {
-                title: 'I Can See',
-                sentences: [
-                    'I can see a pair of eyes.',
-                    'The eyes move.',
-                    'I can see a mouth.',
-                    'The mouth has teeth.',
-                    'I can see a pair of ears.',
-                    'The ears move.',
-                    'I can see a face.',
-                    'It grins at me.',
-                    'I can see a head, two shoulders, two legs and two feet.',
-                    'Who can I see?',
-                    "It's Monty the monkey, my best friend."
-                ]
-            },
-            'play_with_me': {
-                title: 'Can You Play with Me?',
-                sentences: [
-                    'Liz wants to play hide-and-seek.',
-                    'She asks her sister.',
-                    'Can you play with me?',
-                    '"I\'m reading. Go and ask your brother," says Liz\'s sister.',
-                    'Liz asks her brother.',
-                    '"I\'m doing my homework. Go and ask Mum and Dad," says Liz\'s brother.',
-                    'Liz asks Mum and Dad.',
-                    '"I\'m cooking. Dad is working. Go and ask Grandma and Grandpa," says Mum.',
-                    'Liz asks Grandma and Grandpa.',
-                    '"I\'m knitting. Grandpa is gardening. Go and ask your sister," says Grandma.',
-                    '"Where is Liz?" ask her sister, brother, Mum, Dad, Grandma and Grandpa.',
-                    '"Shh ..." says Liz. "I am playing hide-and-seek with the cat."'
-                ]
-            }
-        };
-
-        const SpeechRecognitionClass = window.SpeechRecognition || window.webkitSpeechRecognition || null;
-        let sharedReadAlongRecognition = null;
-        let readAlongManualStop = false;
-        let readAlongFileModeHintShown = false;
-        let readAlongAutoAdvanceTimer = null;
-        let readAlongState = {
-            bookKey: null,
-            index: 0,
-            scores: [],
-            transcript: '',
-            recognition: null,
-            listening: false,
-            lastScoredKey: '',
-            previewMeta: null
-        };
-
-        function getEnglishVoice() {
-            const voices = window.speechSynthesis.getVoices();
-            return voices.find(voice => voice.lang && voice.lang.toLowerCase().startsWith('en')) || null;
-        }
-
-        function normalizeReadAlongText(text) {
-            return text
-                .toLowerCase()
-                .replace(/[^a-z'\s]/g, ' ')
-                .replace(/\s+/g, ' ')
-                .trim();
-        }
-
-        function tokenizeReadAlongText(text) {
-            const normalized = normalizeReadAlongText(text);
-            return normalized ? normalized.split(' ') : [];
-        }
-
-        function longestCommonSubsequenceLength(a, b) {
-            const dp = Array.from({ length: a.length + 1 }, () => Array(b.length + 1).fill(0));
-            for (let i = 1; i <= a.length; i++) {
-                for (let j = 1; j <= b.length; j++) {
-                    if (a[i - 1] === b[j - 1]) {
-                        dp[i][j] = dp[i - 1][j - 1] + 1;
-                    } else {
-                        dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
-                    }
-                }
-            }
-            return dp[a.length][b.length];
-        }
-
-        function scoreReadAlong(target, spoken) {
-            const targetWords = tokenizeReadAlongText(target);
-            const spokenWords = tokenizeReadAlongText(spoken);
-
-            if (!targetWords.length || !spokenWords.length) {
-                return 0;
-            }
-
-            const lcs = longestCommonSubsequenceLength(targetWords, spokenWords);
-            const targetSet = new Set(targetWords);
-            const matchedWords = spokenWords.filter(word => targetSet.has(word));
-            const coverage = matchedWords.length / targetWords.length;
-            const orderScore = lcs / targetWords.length;
-
-            return Math.max(0, Math.min(100, Math.round((coverage * 0.45 + orderScore * 0.55) * 100)));
-        }
-
-        function getReadAlongFeedback(score) {
-            if (score >= 90) return '太棒啦！这一句读得很完整，可以自信进入下一句。';
-            if (score >= 75) return '读得不错，再注意几个单词的连读，会更自然。';
-            if (score >= 60) return '已经读对了不少内容，先听示范，再慢一点试一次。';
-            return '别着急，先听老师示范一遍，再一词一词跟着读。';
-        }
-
-        function updateReadAlongScoreBadge(score) {
-            const badge = document.getElementById('readAlongScore');
-            badge.innerText = score === null ? '-- 分' : `${score} 分`;
-        }
-
-        function setReadAlongStatus(text) {
-            const status = document.getElementById('readAlongStatus');
-            if (status) {
-                status.innerText = text;
-            }
-        }
-
-        function setReadAlongButtons({ listening = false, canSubmit = false, finished = false } = {}) {
-            const listenBtn = document.getElementById('readAlongListenBtn');
-            const stopBtn = document.getElementById('readAlongStopBtn');
-            const submitBtn = document.getElementById('readAlongSubmitBtn');
-
-            if (listenBtn) listenBtn.disabled = finished ? true : listening;
-            if (stopBtn) stopBtn.disabled = !listening;
-            if (submitBtn) submitBtn.disabled = finished ? true : !canSubmit;
-        }
-
-        function isFileProtocolPreview() {
-            return window.location.protocol === 'file:';
-        }
-
-        function getReadAlongDefaultHint() {
-            if (isFileProtocolPreview()) {
-                return '当前是本地文件预览模式，麦克风可能反复弹窗。建议改用 localhost 打开本页，会更稳定。';
-            }
-            return '先听一遍示范，再跟读本句，系统会给出基础分数和鼓励语。';
-        }
-
-        function getReadAlongBookDisplayName(bookKey) {
-            const trigger = document.querySelector(`button[onclick="startReadAlong('${bookKey}')"]`);
-            const title = trigger ? trigger.closest('.book-card')?.querySelector('h5') : null;
-            return title ? title.innerText.trim() : '这本绘本';
-        }
-
-        function getReadAlongCard(bookKey) {
-            return document.querySelector(`button[onclick="startReadAlong('${bookKey}')"]`)?.closest('.book-card') || null;
-        }
-
-        function getReadAlongPreviewMeta(bookKey) {
-            const card = getReadAlongCard(bookKey);
-            if (!card) return null;
-
-            const cover = card.querySelector('.book-cover img');
-            const readBtn = card.querySelector('.btn-read');
-            const coverSrc = cover ? cover.getAttribute('src') : '';
-            const onclickText = readBtn ? readBtn.getAttribute('onclick') || '' : '';
-            const pageMatch = onclickText.match(/openResource\('images',\s*'[^']+',\s*\d+,\s*(\d+)\)/);
-            const totalPages = pageMatch ? Number(pageMatch[1]) : 1;
-
-            if (!coverSrc) return null;
-
-            return {
-                coverSrc,
-                totalPages
-            };
-        }
-
-        function getReadAlongPreviewSrc(bookKey, sentenceIndex, sentenceTotal) {
-            const meta = readAlongState.previewMeta || getReadAlongPreviewMeta(bookKey);
-            if (!meta?.coverSrc) return '';
-
-            const pageNumber = sentenceTotal > 1
-                ? Math.min(meta.totalPages, Math.max(1, Math.round((sentenceIndex / (sentenceTotal - 1)) * (meta.totalPages - 1)) + 1))
-                : 1;
-            const padded = String(pageNumber).padStart(2, '0');
-            return meta.coverSrc.replace(/page_\d+\.jpg$/, `page_${padded}.jpg`);
-        }
-
-        function updateReadAlongPreview() {
-            const config = readAlongLibrary[readAlongState.bookKey];
-            const previewImage = document.getElementById('readAlongPreviewImage');
-            const pageHint = document.getElementById('readAlongPageHint');
-            const previewTip = document.getElementById('readAlongPreviewTip');
-            if (!config || !previewImage || !pageHint || !previewTip) return;
-
-            const previewSrc = getReadAlongPreviewSrc(readAlongState.bookKey, readAlongState.index, config.sentences.length);
-            const meta = readAlongState.previewMeta;
-            const pageNumber = previewSrc.match(/page_(\d+)\.jpg$/)?.[1] || '01';
-
-            if (previewSrc) {
-                previewImage.src = previewSrc;
-            }
-            previewImage.alt = `${config.title} 当前页预览`;
-            pageHint.innerText = `📖 第 ${Number(pageNumber)} 页`;
-            previewTip.innerText = meta && meta.totalPages > 1
-                ? `一边看图一边说，整本共 ${meta.totalPages} 页，会更有故事感。`
-                : '边看图边开口，孩子会更愿意读出来。';
-        }
-
-        function toggleReadAlongGuide() {
-            const guide = document.getElementById('readAlongGuideBox');
-            guide.classList.toggle('d-none');
-        }
-
-        function updateReadAlongEnvironmentNotice() {
-            const notice = document.getElementById('readAlongEnvNotice');
-            const guide = document.getElementById('readAlongGuideBox');
-
-            notice.classList.add('d-none', 'alert-warning', 'alert-danger');
-            guide.classList.add('d-none');
-
-            if (!SpeechRecognitionClass) {
-                notice.classList.remove('d-none', 'alert-warning');
-                notice.classList.add('alert-danger');
-                notice.innerHTML = '当前浏览器不支持语音录入。建议使用最新版 Chrome 或 Edge。 <button class="btn btn-sm btn-outline-danger rounded-pill ms-2" type="button" onclick="toggleReadAlongGuide()">查看说明</button>';
-                return;
-            }
-
-            if (isFileProtocolPreview()) {
-                notice.classList.remove('d-none');
-                notice.classList.add('alert-warning');
-                notice.innerHTML = '当前不是 localhost，浏览器可能反复弹麦克风权限提示。 <button class="btn btn-sm btn-outline-warning rounded-pill ms-2" type="button" onclick="toggleReadAlongGuide()">查看说明</button>';
-            }
-        }
-
-        function clearReadAlongAutoAdvance() {
-            if (readAlongAutoAdvanceTimer) {
-                clearTimeout(readAlongAutoAdvanceTimer);
-                readAlongAutoAdvanceTimer = null;
-            }
-        }
-
-        function getReadAlongRecords() {
-            return JSON.parse(localStorage.getItem('readAlongPracticeRecords') || '[]');
-        }
-
-        function saveReadAlongSessionRecord(config, average, completedCount) {
-            const today = new Date().toLocaleDateString();
-            const now = new Date();
-            const timeStr = `${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
-            const record = {
-                type: 'readalong',
-                bookKey: readAlongState.bookKey,
-                title: config.title,
-                score: average,
-                completed: completedCount,
-                total: config.sentences.length,
-                date: `${today} ${timeStr}`
-            };
-
-            const records = getReadAlongRecords();
-            records.push(record);
-            localStorage.setItem('readAlongPracticeRecords', JSON.stringify(records));
-            userStats.history.push({
-                type: 'readalong',
-                name: `跟读：${config.title}`,
-                date: record.date,
-                points: 0,
-                score: average
-            });
-            saveStats();
-            updateUI();
-        }
-
-        function ensureReadAlongRecognition() {
-            if (!SpeechRecognitionClass) {
-                return null;
-            }
-
-            if (sharedReadAlongRecognition) {
-                return sharedReadAlongRecognition;
-            }
-
-            const recognition = new SpeechRecognitionClass();
-            recognition.lang = 'en-US';
-            recognition.continuous = false;
-            recognition.interimResults = true;
-            recognition.maxAlternatives = 1;
-
-            recognition.onresult = (event) => {
-                let finalText = '';
-                let interimText = '';
-                for (let i = event.resultIndex; i < event.results.length; i++) {
-                    const chunk = event.results[i][0].transcript;
-                    if (event.results[i].isFinal) {
-                        finalText += chunk + ' ';
-                    } else {
-                        interimText += chunk + ' ';
-                    }
-                }
-
-                readAlongState.transcript = (finalText || interimText).trim();
-                document.getElementById('readAlongTranscript').innerText = readAlongState.transcript || '正在识别，请继续读完整句。';
-
-                if (finalText.trim()) {
-                    applyReadAlongResult(finalText.trim(), true);
-                }
-            };
-
-            recognition.onerror = (event) => {
-                readAlongState.listening = false;
-                setReadAlongButtons({ listening: false, canSubmit: !!readAlongState.transcript, finished: false });
-
-                if (event.error === 'not-allowed' || event.error === 'service-not-allowed') {
-                    setReadAlongStatus('录音状态：麦克风权限未开启');
-                    document.getElementById('readAlongFeedback').innerText = '麦克风权限还没有稳定开启。请在浏览器里允许麦克风，并尽量用 localhost 打开本页。';
-                } else {
-                    setReadAlongStatus(`录音状态：${event.error}`);
-                    document.getElementById('readAlongFeedback').innerText = `识别提示：${event.error}。可以重新点“开始跟读”再试一次。`;
-                }
-            };
-
-            recognition.onend = () => {
-                readAlongState.listening = false;
-                setReadAlongButtons({ listening: false, canSubmit: !!readAlongState.transcript, finished: false });
-
-                if (readAlongManualStop) {
-                    readAlongManualStop = false;
-                    return;
-                }
-
-                if (readAlongState.transcript && !readAlongState.lastScoredKey) {
-                    setReadAlongStatus('录音状态：已识别到语音，正在评分');
-                    applyReadAlongResult(readAlongState.transcript, true);
-                } else if (!readAlongState.transcript) {
-                    setReadAlongStatus('录音状态：没有识别到语音');
-                    document.getElementById('readAlongFeedback').innerText = '这次没有识别到有效语音。请确认麦克风权限已允许，并尽量贴近麦克风清晰朗读。';
-                }
-            };
-
-            sharedReadAlongRecognition = recognition;
-            return recognition;
-        }
-
-        function renderReadAlongStep() {
-            const config = readAlongLibrary[readAlongState.bookKey];
-            if (!config) return;
-
-            clearReadAlongAutoAdvance();
-            const sentence = config.sentences[readAlongState.index];
-            document.getElementById('readAlongTitle').innerText = `一句句跟读 · ${config.title}`;
-            document.getElementById('readAlongBookName').innerText = config.title;
-            document.getElementById('readAlongProgress').innerText = `第 ${readAlongState.index + 1} 句 / 共 ${config.sentences.length} 句`;
-            document.getElementById('readAlongSentence').innerText = sentence;
-            document.getElementById('readAlongTranscript').innerText = '孩子开口后，这里会显示识别到的句子。';
-            document.getElementById('readAlongFeedback').innerText = getReadAlongDefaultHint();
-            setReadAlongStatus('录音状态：等待开始');
-            updateReadAlongScoreBadge(readAlongState.scores[readAlongState.index] ?? null);
-            setReadAlongButtons({ listening: false, canSubmit: false, finished: false });
-            readAlongState.lastScoredKey = '';
-            updateReadAlongPreview();
-            updateReadAlongEnvironmentNotice();
-        }
-
-        function speakCurrentReadAlongSentence() {
-            const config = readAlongLibrary[readAlongState.bookKey];
-            if (!config) return;
-
-            const utterance = new SpeechSynthesisUtterance(config.sentences[readAlongState.index]);
-            utterance.lang = 'en-US';
-            utterance.rate = 0.88;
-            utterance.pitch = 1.02;
-
-            const preferredVoice = getEnglishVoice();
-            if (preferredVoice) {
-                utterance.voice = preferredVoice;
-            }
-
-            window.speechSynthesis.cancel();
-            window.speechSynthesis.speak(utterance);
-        }
-
-        function applyReadAlongResult(transcript, shouldAutoAdvance = false) {
-            const config = readAlongLibrary[readAlongState.bookKey];
-            if (!config) return;
-
-            const cleanedTranscript = transcript ? transcript.trim() : '';
-            const score = scoreReadAlong(config.sentences[readAlongState.index], cleanedTranscript);
-            const scoreKey = `${readAlongState.index}:${cleanedTranscript}`;
-
-            readAlongState.transcript = cleanedTranscript;
-            readAlongState.scores[readAlongState.index] = score;
-            document.getElementById('readAlongTranscript').innerText = cleanedTranscript || '这次没有识别到内容，可以再试一次。';
-            document.getElementById('readAlongFeedback').innerText = shouldAutoAdvance
-                ? `${getReadAlongFeedback(score)} 1.5 秒后会自动进入下一句。`
-                : getReadAlongFeedback(score);
-            setReadAlongStatus('录音状态：已评分');
-            updateReadAlongScoreBadge(score);
-            setReadAlongButtons({ listening: false, canSubmit: true, finished: false });
-
-            if (shouldAutoAdvance && readAlongState.lastScoredKey !== scoreKey) {
-                readAlongState.lastScoredKey = scoreKey;
-                clearReadAlongAutoAdvance();
-                readAlongAutoAdvanceTimer = setTimeout(() => {
-                    nextReadAlongSentence();
-                }, 1500);
-            }
-        }
-
-        function buildReadAlongSummary() {
-            const config = readAlongLibrary[readAlongState.bookKey];
-            if (!config) return;
-
-            const finishedScores = readAlongState.scores.filter(score => typeof score === 'number');
-            const average = finishedScores.length
-                ? Math.round(finishedScores.reduce((sum, score) => sum + score, 0) / finishedScores.length)
-                : 0;
-
-            document.getElementById('readAlongSentence').innerText = '本次跟读完成啦！';
-            document.getElementById('readAlongProgress').innerText = `共完成 ${finishedScores.length} / ${config.sentences.length} 句`;
-            document.getElementById('readAlongTranscript').innerText = '可以点击“播放示范”重新练习，也可以关闭弹窗回到绘本馆。';
-            document.getElementById('readAlongFeedback').innerText = `本书平均分 ${average} 分。建议把 75 分以下的句子再听一遍示范，慢慢跟读。`;
-            setReadAlongStatus('录音状态：本书跟读完成');
-            updateReadAlongScoreBadge(average);
-            setReadAlongButtons({ listening: false, canSubmit: false, finished: true });
-            saveReadAlongSessionRecord(config, average, finishedScores.length);
-        }
-
-        function submitReadAlongAttempt(forceAutoAdvance = true) {
-            const transcript = (readAlongState.transcript || '').trim();
-
-            if (!transcript) {
-                setReadAlongStatus('录音状态：还没有可评分的语音');
-                document.getElementById('readAlongFeedback').innerText = '这次还没有识别到有效英文句子。请先点击“开始跟读”，说完整句，再点“提交评分”。';
-                setReadAlongButtons({ listening: false, canSubmit: false, finished: false });
-                return;
-            }
-
-            applyReadAlongResult(transcript, forceAutoAdvance);
-        }
-
-        function startReadAlong(bookKey) {
-            if (!readAlongLibrary[bookKey]) {
-                const bookTitle = getReadAlongBookDisplayName(bookKey);
-                alert(`${bookTitle} 的“句句跟读”板块已经先预留好啦，正在整理逐句文本和评分内容。现在可以先翻看绘本、做闯关和挑战，后面我再继续把它补齐。`);
-                return;
-            }
-
-            readAlongState = {
-                bookKey,
-                index: 0,
-                scores: [],
-                transcript: '',
-                recognition: sharedReadAlongRecognition,
-                listening: false,
-                lastScoredKey: '',
-                previewMeta: getReadAlongPreviewMeta(bookKey)
-            };
-
-            ensureReadAlongRecognition();
-            renderReadAlongStep();
-            const modal = new bootstrap.Modal(document.getElementById('readAlongModal'));
-            modal.show();
-        }
-
-        function startReadAlongListening() {
-            if (!SpeechRecognitionClass) {
-                alert('当前浏览器暂不支持语音识别。建议使用最新版 Chrome 或 Edge 进行跟读。');
-                return;
-            }
-
-            stopReadAlongListening(true);
-            const recognition = ensureReadAlongRecognition();
-            readAlongState.recognition = recognition;
-            readAlongState.listening = true;
-            readAlongState.transcript = '';
-            readAlongManualStop = false;
-
-            const transcriptBox = document.getElementById('readAlongTranscript');
-            transcriptBox.innerText = '正在听孩子读这一句，请读完后稍等片刻...';
-            setReadAlongStatus('录音状态：正在录音...');
-            document.getElementById('readAlongFeedback').innerText = isFileProtocolPreview()
-                ? '当前是本地文件模式，浏览器可能反复询问麦克风权限。建议改用 localhost 打开，再开始跟读。'
-                : '请尽量完整读出这一句，系统会自动给出基础分数。';
-            setReadAlongButtons({ listening: true, canSubmit: false, finished: false });
-
-            if (isFileProtocolPreview() && !readAlongFileModeHintShown) {
-                alert('当前如果是直接双击 HTML 打开的 file:// 页面，浏览器可能每次都弹麦克风提示。更稳的方式是用 localhost 打开这个网页。');
-                readAlongFileModeHintShown = true;
-            }
-
-            try {
-                recognition.start();
-            } catch (error) {
-                readAlongState.listening = false;
-                setReadAlongButtons({ listening: false, canSubmit: !!readAlongState.transcript, finished: false });
-
-                if (error && error.name === 'InvalidStateError') {
-                    setReadAlongStatus('录音状态：麦克风准备中');
-                    document.getElementById('readAlongFeedback').innerText = '麦克风还在准备中，请稍等一秒后再点一次“开始跟读”。';
-                } else {
-                    setReadAlongStatus('录音状态：启动失败');
-                    document.getElementById('readAlongFeedback').innerText = '麦克风启动失败，请检查浏览器权限设置后再试。';
-                }
-            }
-        }
-
-        function stopReadAlongListening(silent = false) {
-            if (readAlongState.recognition && readAlongState.listening) {
-                readAlongManualStop = true;
-                try {
-                    readAlongState.recognition.stop();
-                } catch (error) {
-                    if (!silent) {
-                        console.warn(error);
-                    }
-                }
-            }
-
-            readAlongState.listening = false;
-            setReadAlongStatus('录音状态：已停止录音');
-            setReadAlongButtons({ listening: false, canSubmit: !!readAlongState.transcript, finished: false });
-        }
-
-        function nextReadAlongSentence() {
-            const config = readAlongLibrary[readAlongState.bookKey];
-            if (!config) return;
-
-            stopReadAlongListening(true);
-            window.speechSynthesis.cancel();
-
-            if (readAlongState.index >= config.sentences.length - 1) {
-                buildReadAlongSummary();
-                return;
-            }
-
-            readAlongState.index += 1;
-            renderReadAlongStep();
         }
 
         function openResource(type, filename, reward, totalPages = 0, isUpper = false) {
@@ -5445,19 +4616,6 @@
             trainingData[bookKey].sentences.push(...payload.sentences);
         });
 
-        Object.entries(trainingData).forEach(([bookKey, payload]) => {
-            if (readAlongLibrary[bookKey] || !payload?.sentences?.length) {
-                return;
-            }
-
-            readAlongLibrary[bookKey] = {
-                title: getReadAlongBookDisplayName(bookKey),
-                sentences: payload.sentences
-                    .map(item => item.en.trim())
-                    .filter(Boolean)
-            };
-        });
-
         let currentTraining = null;
         let trainingStep = 0; // 0: 词汇学习, 1: 词汇测试, 2: 句子学习, 3: 句子测试
         let trainingIndex = 0;
@@ -6562,12 +5720,6 @@
             });
         });
 
-        const readAlongModal = document.getElementById('readAlongModal');
-        readAlongModal.addEventListener('hidden.bs.modal', function () {
-            stopReadAlongListening(true);
-            clearReadAlongAutoAdvance();
-            window.speechSynthesis.cancel();
-        });
     </script>
 </body>
 </html>
